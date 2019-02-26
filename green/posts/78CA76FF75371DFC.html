@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="个人博客demo标签">
+  <meta name="description" content="静态博客发布程序:使用PHPKoa开发，基于Markdown文档发布的轻量级博客管理应用">
   <meta name="keywords" content="开源WEB开发框架">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>demo | PKBOOK</title>
+  <title>PKBook 静态博客发布程序 | PKBOOK</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <link rel="icon" type="image/png" href="https://naka1205.github.io/green/assets/i/favicon.png">
@@ -14,7 +14,7 @@
   <link rel="icon" sizes="192x192" href="https://naka1205.github.io/green/assets/i/app-icon72x72@2x.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="demo PKBOOK"/>
+  <meta name="apple-mobile-web-app-title" content="PKBook 静态博客发布程序 PKBOOK"/>
   <link rel="apple-touch-icon-precomposed" href="https://naka1205.github.io/green/assets/i/app-icon72x72@2x.png">
   <meta name="msapplication-TileImage" content="https://naka1205.github.io/green/assets/i/app-icon72x72@2x.png">
   <meta name="msapplication-TileColor" content="#0e90d2">
@@ -49,7 +49,7 @@
                                 <li><a href="https://naka1205.github.io/green/category/EBE0C8BF4C48AB3E/index.html">php</a></li>
                             </ul>
             </li>
-                        <li  class="am-active" ><a href="https://naka1205.github.io/green/tags.html">标签</a></li>
+                        <li ><a href="https://naka1205.github.io/green/tags.html">标签</a></li>
             <li ><a href="https://naka1205.github.io/green/about.html">关于我们</a></li>
         </ul>
         <form class="am-topbar-form am-topbar-right am-form-inline" role="search">
@@ -66,22 +66,73 @@
 <!-- menu end -->
 <!-- content start -->
 
-
-<div class="am-g am-g-fixed blog-fixed">
+<div class="am-g am-g-fixed blog-fixed blog-content">
     <div class="am-u-md-8 am-u-sm-12">
-        <h1 class="blog-text-center">-- demo --</h1>
-                <article class="am-g blog-entry-article">
-            <div class="am-u-lg-12 am-u-md-12 am-u-sm-12 blog-entry-text">
-                <span><a href="https://naka1205.github.io/green/category/A89FFEA4B288A9A7/index.html" class="blog-color">demo&nbsp;</a></span>
-                <span>2019-02-13 17:10:02</span>
-                <h1><a href="https://naka1205.github.io/green/posts/484111DA5D7E4F07.html">Hello world</a></h1>
-                <p>你可以选择在原处不停地跟周遭不解的人解释你为何这么做，让他们理解你，你可以选择什么都不讲，自顾自往前走。
-                </p>
-                <p><a href="https://naka1205.github.io/green/posts/484111DA5D7E4F07.html" class="blog-continue">阅读全文</a></p>
-            </div>
+        <article class="am-article blog-article-p">
+        <div class="am-article-hd">
+            <h1 class="am-article-title blog-text-center">PKBook 静态博客发布程序</h1>
+            <p class="am-article-meta blog-text-center">
+                <span><a href="https://naka1205.github.io/green/category/EBE0C8BF4C48AB3E/index.html" class="blog-color">php &nbsp;</a></span>-
+                <span><a>2019-02-26 13:30:22</a></span>
+            </p>
+        </div>        
+        <div class="am-article-bd">
+            <h1>PKBook</h1>
+<p>静态博客发布程序: 使用 <a href="https://github.com/naka1205/phpkoa">PHPKoa</a> 开发，基于 <code>Markdown</code> 文档发布的轻量级博客管理应用。</p>
+<h1>主要特性</h1>
+<ul>
+<li>文档管理：采用 <code>Amaze UI</code> 搭建可视化后台管理</li>
+<li>文档编辑：采用 <code>editor.md</code> 开源 <code>Markdown</code> 编辑器</li>
+<li>用户评论：支持 <code>GitHub Issues</code> 的评论系统</li>
+<li>图片上传：支持 <code>qiniu</code> 图片上传</li>
+<li>博客主题：支持主题定制</li>
+<li>静态发布：后台管理快速发布 <code>html</code> 静态文件</li>
+<li>文章搜素：支持全文关键词索引</li>
+</ul>
+<h1>在线体验</h1>
+<ol>
+<li><a href="https://naka1205.github.io/green/index.html">green</a> 使用 <code>Amaze UI</code> 博客主题模板！
+<img src="http://files.kmei.org/green.png" alt="green主题" title="green主题" /></li>
+<li><a href="https://naka1205.github.io/next/index.html">next</a> 基于 <code>HEXO</code> 博客主题改写！
+<img src="http://files.kmei.org/next.png" alt="next主题" title="next主题" /></li>
+<li><a href="https://naka1205.github.io/gitbook/index.html">gitbook</a> 基于 <code>GitBook</code> 默认主题改写！
+<img src="http://files.kmei.org/gitbook.png" alt="gitbook主题" title="gitbook主题" /></li>
+</ol>        </div>
         </article>
         
-    </div>
+        <div class="am-g blog-article-widget blog-article-margin">
+            <div class="am-u-lg-4 am-u-md-5 am-u-sm-7 am-u-sm-centered blog-text-center">
+            <span class="am-icon-tags"> &nbsp;</span>
+                        <a href="https://naka1205.github.io/green/tag/CB0A035D51E89748/index.html">blog</a>
+            ,            <a href="https://naka1205.github.io/green/tag/EBE0C8BF4C48AB3E/index.html">php</a>
+            ,            <a href="https://naka1205.github.io/green/tag/6C69910FC1E10047/index.html">html</a>
+                        <hr>
+            <a href=""><span class="am-icon-qq am-icon-fw am-primary blog-icon"></span></a>
+            <a href=""><span class="am-icon-wechat am-icon-fw blog-icon"></span></a>
+            <a href=""><span class="am-icon-weibo am-icon-fw blog-icon"></span></a>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="am-g blog-author blog-article-margin">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                <p>
+                    <span>本文作者： &nbsp;: &nbsp;</span><span class="blog-color">naka1205</span>
+                    <br>
+                    <span>本文链接： &nbsp;: &nbsp;</span><a href="https://naka1205.github.io/green/posts/78CA76FF75371DFC.html" title="PKBook 静态博客发布程序">https://naka1205.github.io/green/posts/78CA76FF75371DFC.html</a>
+                    <br>
+                    <span>版权声明： &nbsp;: &nbsp;</span>本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a>许可协议。转载请注明出处！
+                </p>
+            </div>
+        </div>
+
+        <hr>
+                <ul class="am-pagination blog-article-margin">
+                        <li class="am-pagination-prev"><a href="https://naka1205.github.io/green/posts/484111DA5D7E4F07.html">&laquo; Hello world</a></li>
+                    </ul>
+        <hr>
+            </div>
 
     <div class="am-u-md-4 am-u-sm-12 blog-sidebar">
 
@@ -113,7 +164,7 @@
     </div>
     
 </div>
-    
+
 </div>
 <!-- content end -->
 
