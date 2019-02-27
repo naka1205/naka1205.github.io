@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <title>首页 · 笨办法学C</title>
+    <title>变参函数 · 笨办法学C</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="笨办法学C 中文版">
+    <meta name="description" content="在C语言中，你可以通过创建“变参函数”来创建你自己的`printf`或者`scanf`版本。这些函数使用`stdarg.h`头，它们可以让你为你的库创建更加便利的接口。它们对于创建特定类型的“构建”函数、格式化函数和任何用到可变参数的函数都非常实用。">
     <meta name="keywords" content="笨办法学C">
     <meta name="generator" content="PKBook">
     <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/style.css">
@@ -91,70 +91,183 @@
     <div class="book-body">
         <div class="body-inner">
             <div class="book-header" role="navigation">
-                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/lcthw">导言：C的笛卡尔之梦</a></h1>
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/lcthw/p/2852FA26A8BCFAD2.html">变参函数</a></h1>
             </div>
             <div class="page-wrapper" tabindex="-1" role="main">
                 <div class="page-inner">
                     <div id="book-search-results">
                         <div class="search-noresults">
                             <section class="normal markdown-section">
-                                <h1 id="%E5%AF%BC%E8%A8%80%EF%BC%9AC%E7%9A%84%E7%AC%9B%E5%8D%A1%E5%B0%94%E4%B9%8B%E6%A2%A6" name="%E5%AF%BC%E8%A8%80%EF%BC%9AC%E7%9A%84%E7%AC%9B%E5%8D%A1%E5%B0%94%E4%B9%8B%E6%A2%A6">导言：C的笛卡尔之梦</h1>
-<blockquote>
-<p>原文：<a href="http://c.learncodethehardway.org/book/introduction.html">Introduction: The Cartesian Dream Of C</a></p>
-</blockquote>
-<blockquote>
-<p>译者：<a href="https://github.com/wizardforcel">飞龙</a></p>
-</blockquote>
-<p>&zwj;</p>
-<blockquote>
-<p>直到现在，凡是我当作最真实、最可靠而接受的东西，都是从感官或通过感官得来的。不过，我有时觉得这些感官是骗人的，并且为了小心谨慎起见，对于一经骗过我们的东西就决不完全加以信任。</p>
-</blockquote>
-<blockquote>
-<p>勒内·笛卡尔，《第一哲学沉思录》</p>
-</blockquote>
-<p>如果有一段引述用来描述C语言编程的话，那就是它了。对于大多数程序员，C是极其可怕而且邪恶的。他就像是恶魔、撒旦，或者一个使用指针的花言巧语和对机器的直接访问来破坏你生产力的骗子洛基。于是，一旦这位计算界的路西法将你缠住，他就会使用邪恶的“段错误”来毁掉你的世界，并且揭露出与你交易中的骗局而嘲笑你。</p>
-<p>然而，C并不应由于这些事实而受到责备。你的电脑和控制它的操作系统才是真正的骗子，而不是朋友。它们通过密谋来向你隐藏它们的真实执行逻辑，使你永远都不真正知道背后发生了什么。C编程语言的失败之处只是向你提供接触背后真正工作原理的途径，并且告诉了你一些难以接受的事实。C会向你展示痛苦的真像（红色药丸），它将幕布拉开来向你展示一些神奇的原理。C即是真理。</p>
-<p>既然C如此危险，为什么还要使用它？因为C给了你力量来穿越抽象的假象，并且将你从愚昧中解放出来。</p>
-<h2 id="%E4%BD%A0%E4%BC%9A%E5%AD%A6%E5%88%B0%E4%BB%80%E4%B9%88" name="%E4%BD%A0%E4%BC%9A%E5%AD%A6%E5%88%B0%E4%BB%80%E4%B9%88">你会学到什么</h2>
-<p>这本书的目的是让你足够熟悉C语言，并能够使用它编写自己的软件，或者修改其他人的代码。这本书的最后，我们会从一本叫做“K&amp;R C”的名著中选取实际的代码，并且用你学过的知识来做代码审查。你需要学习下面这些东西来达到这一阶段：</p>
+                                <h1 id="%E5%8F%98%E5%8F%82%E5%87%BD%E6%95%B0" name="%E5%8F%98%E5%8F%82%E5%87%BD%E6%95%B0">变参函数</h1>
+<p>在C语言中，你可以通过创建“变参函数”来创建你自己的<code>printf</code>或者<code>scanf</code>版本。这些函数使用<code>stdarg.h</code>头，它们可以让你为你的库创建更加便利的接口。它们对于创建特定类型的“构建”函数、格式化函数和任何用到可变参数的函数都非常实用。</p>
+<p>理解“变参函数”对于C语言编程并不必要，我在编程生涯中也只有大约20次用到它。但是，理解变参函数如何工作有助于你对它的调试，并且让你更加了解计算机。</p>
+<pre><code class="c">/** WARNING: This code is fresh and potentially isn't correct yet. */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdarg.h&gt;
+#include "dbg.h"
+
+#define MAX_DATA 100
+
+int read_string(char **out_string, int max_buffer)
+{
+    *out_string = calloc(1, max_buffer + 1);
+    check_mem(*out_string);
+
+    char *result = fgets(*out_string, max_buffer, stdin);
+    check(result != NULL, "Input error.");
+
+    return 0;
+
+error:
+    if(*out_string) free(*out_string);
+    *out_string = NULL;
+    return -1;
+}
+
+int read_int(int *out_int)
+{
+    char *input = NULL;
+    int rc = read_string(&amp;input, MAX_DATA);
+    check(rc == 0, "Failed to read number.");
+
+    *out_int = atoi(input);
+
+    free(input);
+    return 0;
+
+error:
+    if(input) free(input);
+    return -1;
+}
+
+int read_scan(const char *fmt, ...)
+{
+    int i = 0;
+    int rc = 0;
+    int *out_int = NULL;
+    char *out_char = NULL;
+    char **out_string = NULL;
+    int max_buffer = 0;
+
+    va_list argp;
+    va_start(argp, fmt);
+
+    for(i = 0; fmt[i] != '\0'; i++) {
+        if(fmt[i] == '%') {
+            i++;
+            switch(fmt[i]) {
+                case '\0':
+                    sentinel("Invalid format, you ended with %%.");
+                    break;
+
+                case 'd':
+                    out_int = va_arg(argp, int *);
+                    rc = read_int(out_int);
+                    check(rc == 0, "Failed to read int.");
+                    break;
+
+                case 'c':
+                    out_char = va_arg(argp, char *);
+                    *out_char = fgetc(stdin);
+                    break;
+
+                case 's':
+                    max_buffer = va_arg(argp, int);
+                    out_string = va_arg(argp, char **);
+                    rc = read_string(out_string, max_buffer);
+                    check(rc == 0, "Failed to read string.");
+                    break;
+
+                default:
+                    sentinel("Invalid format.");
+            }
+        } else {
+            fgetc(stdin);
+        }
+
+        check(!feof(stdin) &amp;&amp; !ferror(stdin), "Input error.");
+    }
+
+    va_end(argp);
+    return 0;
+
+error:
+    va_end(argp);
+    return -1;
+}
+
+
+
+int main(int argc, char *argv[])
+{
+    char *first_name = NULL;
+    char initial = ' ';
+    char *last_name = NULL;
+    int age = 0;
+
+    printf("What's your first name? ");
+    int rc = read_scan("%s", MAX_DATA, &amp;first_name);
+    check(rc == 0, "Failed first name.");
+
+    printf("What's your initial? ");
+    rc = read_scan("%c\n", &amp;initial);
+    check(rc == 0, "Failed initial.");
+
+    printf("What's your last name? ");
+    rc = read_scan("%s", MAX_DATA, &amp;last_name);
+    check(rc == 0, "Failed last name.");
+
+    printf("How old are you? ");
+    rc = read_scan("%d", &amp;age);
+
+    printf("---- RESULTS ----\n");
+    printf("First Name: %s", first_name);
+    printf("Initial: '%c'\n", initial);
+    printf("Last Name: %s", last_name);
+    printf("Age: %d\n", age);
+
+    free(first_name);
+    free(last_name);
+    return 0;
+error:
+    return -1;
+}</code></pre>
+<p>这个程序和上一个练习很像，除了我编写了自己的<code>scanf</code>风格函数，它以我自己的方式处理字符串。你应该对<code>main</code>函数很清楚了，以及<code>read_string</code>和<code>read_int</code>两个函数，因为它们并没有做什么新的东西。</p>
+<p>这里的变参函数叫做<code>read_scan</code>，它使用了<code>va_list</code>数据结构执行和<code>scanf</code>相同的工作，并支持宏和函数。下面是它的工作原理：</p>
 <ul>
-<li>C的基本语法和编写习惯。</li>
-<li>编译，<code>make</code>文件和链接。</li>
-<li>寻找和预防bug。</li>
-<li>防御性编程实践。</li>
-<li>使C的代码崩溃。</li>
-<li>编写基本的Unix系统软件。</li>
+<li>我将函数的最后一个参数设置为<code>...</code>，它向C表示这个函数在<code>fmt</code>参数之后接受任何数量的参数。我可以在它前面设置许多其它的参数，但是在它后面不能放置任何参数。</li>
+<li>在设置完一些参数时，我创建了<code>va_list</code>类型的变量，并且使用<code>va_list</code>来为其初始化。这配置了<code>stdarg.h</code>中的这一可以处理可变参数的组件。</li>
+<li>接着我使用了<code>for</code>循环，遍历<code>fmt</code>格式化字符串，并且处理了类似<code>scanf</code>的格式，但比它略简单。它里面只带有整数、字符和字符串。</li>
+<li>当我碰到占位符时，我使用了<code>switch</code>语句来确定需要做什么。</li>
+<li>现在，为了从<code>va_list argp</code>中获得遍历，我需要使用<code>va_arg(argp, TYPE)</code>宏，其中<code>TYPE</code>是我将要向参数传递的准确类型。这一设计的后果是你会非常盲目，所以如果你没有足够的变量传入，程序就会崩溃。</li>
+<li>和<code>scanf</code>的有趣的不同点是，当它碰到<code>'s'</code>占位符时，我使用<code>read_string</code>来创建字符串。<code>va_list argp</code>栈需要接受两个函数：需要读取的最大尺寸，以及用于输出的字符串指针。<code>read_string</code>使用这些信息来执行实际工作。</li>
+<li>这使<code>read_scan</code>比<code>scan</code>更加一致，因为你总是使用<code>&amp;</code>提供变量的地址，并且合理地设置它们。</li>
+<li>最后，如果它碰到了不在格式中的字符，它仅仅会读取并跳过，而并不关心字符是什么，因为它只需要跳过。</li>
 </ul>
-<p>截至最后一章，你将会有足够的工具来解决基本的系统软件、库和其它小项目。</p>
-<h2 id="%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E6%9C%AC%E4%B9%A6" name="%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E6%9C%AC%E4%B9%A6">如何阅读本书</h2>
-<p>这本书为那些已经掌握至少一门编程语言的人而设计。如果你还没有接触过编程，我推荐你先学习<a href="http://learnpythonthehardway.org/">笨办法学Python</a>，这本书适用于真正的新手并且适合作为第一本编程书。一旦你学会了Python，你可以返回来开始学习这本书。</p>
-<p>对于那些已经学会编程的人，这本书的开头可能有些奇怪。它不像其它书一样，那些书中你会阅读一段段的文字然后编写一些代码。相反，这本书中我会让你立即开始编程，之后我会解释你做了什么。这样更有效果，因为你已经经历过的事情解释起来更加容易。</p>
-<p>由于采用了这样的结构，下面是本书中你必须遵守的规则：</p>
+<h2 id="%E4%BD%A0%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88" name="%E4%BD%A0%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88">你会看到什么</h2>
+<p>当你运行程序时，会得到与下面详细的结果：</p>
+<pre><code class="sh">$ make ex25
+cc -Wall -g -DNDEBUG    ex25.c   -o ex25
+$ ./ex25
+What's your first name? Zed
+What's your initial? A
+What's your last name? Shaw
+How old are you? 37
+---- RESULTS ----
+First Name: Zed
+Initial: 'A'
+Last Name: Shaw
+Age: 37</code></pre>
+<h2 id="%E5%A6%82%E4%BD%95%E4%BD%BF%E5%AE%83%E5%B4%A9%E6%BA%83" name="%E5%A6%82%E4%BD%95%E4%BD%BF%E5%AE%83%E5%B4%A9%E6%BA%83">如何使它崩溃</h2>
+<p>这个程序对缓冲区溢出更加健壮，但是和<code>scanf</code>一样，它不能够处理输入的格式错误。为了使它崩溃，试着修改代码，把首先传入用于<code>'%s'</code>格式的尺寸去掉。同时试着传入多于<code>MAX_DATA</code>的数据，之后找到在<code>read_string</code>中不使用<code>calloc</code>的方法，并且修改它的工作方式。最后还有个问题是<code>fgets</code>会吃掉换行符，所以试着使用<code>fgetc</code>修复它，要注意字符串结尾应为<code>'\0'</code>。</p>
+<h2 id="%E9%99%84%E5%8A%A0%E9%A2%98" name="%E9%99%84%E5%8A%A0%E9%A2%98">附加题</h2>
 <ul>
-<li>手动输入所有代码。不要复制粘贴！</li>
-<li>正确地输入所有代码，也包括注释。</li>
-<li>运行代码并保证产生相同的输出。</li>
-<li>如果出现了bug则修正它。</li>
-<li>做附加题时，如果你做不出某道题，马上跳过。</li>
-<li>在寻求帮助之前首先试着自己弄懂。</li>
-</ul>
-<p>如果你遵守了这些规则，完成了本书的每一件事，并且还不会编程C代码的话，你至少尝试过了。它并不适用于每个人，但是尝试的过程会让你成为一个更好的程序员。</p>
-<h2 id="%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B" name="%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B">核心能力</h2>
-<p>我假设你之前使用为“弱者”设计的语言。这些“易用的”语言之一是Python或者Ruby，它们带给了你草率的思维和半吊子的黑魔法。或者，你可能使用类似Lisp的语言，它假设计算机是纯函数式的奇幻大陆，带有一些为婴儿准备的充气墙。再或者你可能学过Prolog，于是你认为整个世界都是一个数据库，你可以从中寻找线索。甚至更糟糕的是，我假设你一直都在用IDE，所以你的大脑布满了内存漏洞，并且你每打三个字符都要按CTRL+空格来打出函数的整个名字。</p>
-<p>无论你的背景如何，你都可能不擅长下面四个技能：</p>
-<p>阅读和编写</p>
-<p>如果你使用IDE这会尤其正确。但是总体上我发现程序员做了很多“略读”，并且在理解上存在问题。它们会略读需要详细理解的代码，并且觉得他们已经理解了但事实上没有。其它语言提供了可以让他们避免实际编写任何代码的工具，所以面对一种类似C的语言时，他们就玩完了。你需要知道每个人都有这个问题，并且你可以通过强迫自己慢下来并且仔细对待阅读和编写代码来改正它。一开始你可能感到痛苦和无聊，但是这样的次数多了它也就变得容易了。</p>
-<p>专注细节</p>
-<p>每个人都不擅长这方面，它也是劣质软件的罪魁祸首。其它语言让你不会集中注意力，但是C要求你集中全部注意力，因为它直接在机器上运行，并且机器比较挑剔。C中没有“相似的类型”或者“足够接近”，所以你需要注意，再三检查你的代码，并假设你写的任何代码都是错的，直到你能证明它是对的。</p>
-<p>定位差异</p>
-<p>其它语言程序员的一个关键问题就是他们的大脑被训练来指出那个语言的差异，而不是C。当你对比你的代码和我练习中的代码时，你的眼睛会跳过你认为不重要或者不熟悉的字符。我会给你一些策略来强制你观察你的错误，但是要记住如果你的代码并不完全像书中的代码，它就是错的。</p>
-<p>规划和调试</p>
-<p>我喜欢其它较简单的语言，因为我可以想怎么写就怎么写。我将已有的想法输入进解释器，然后可以立即看到结果。你可以把你的想法试验出来，但是要注意，如果你仍然打算“试验代码使其能够工作”，它就行不通了。C对于你来说稍困难，因为你需要规划好首先创建什么。的确，你也可以进行试验，但是比起其他语言，你必须在C中更早地严肃对待代码。我会教给你在编程之前规划程序核心部分的方法，这对于使你成为更好的程序员十分有帮助。即使一个很小的规划，都会使接下来的事情变得顺利。</p>
-<p>学习C语言会使你变成更好的程序员，因为会强制你更早、更频繁地解决这些问题。你不会再草率地编写半吊子的代码，代码也会能够正常工作。C的优势是，它是一个简单的语言，你可以自己来弄清楚，这使得它成为用于学习机器，以及提升程序员核心技能的最佳语言。</p>
-<p>C比其它语言都要难，而这是由于C并不对你隐藏细节，它们在其它语言中都试图并且未能被掩盖。</p>
-<h2 id="%E5%8D%8F%E8%AE%AE" name="%E5%8D%8F%E8%AE%AE">协议</h2>
-<p>原书在完稿之后可以自由分发，并且能在<a href="http://www.amazon.com/Learn-Hard-Way-Practical-Computational/dp/0321884922/">亚马逊</a>上购买。该中译版本遵循<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>协议，你可以在保留署名和出处的前提下以非商业目的自由转载。</p>                            </section>
-                            <div class="comments gitm-container" id="comments"></div>
+<li>再三检查确保你明白了每个<code>out_</code>变量的作用。最重要的是<code>out_string</code>，并且它是指针的指针。所以，理清当你设置时获取到的是指针还是内容尤为重要。</li>
+<li>使用变参系统编写一个和<code>printf</code>相似的函数，重新编写<code>main</code>来使用它。</li>
+<li>像往常一样，阅读这些函数/宏的手册页，确保知道了它在你的平台做了什么，一些平台会使用宏而其它平台会使用函数，还有一些平台会让它们不起作用。这完全取决于你所用的编译器和平台。</li>
+</ul>                            </section>
                         </div>
                         <div class="search-results">
                             <div class="has-results">
@@ -170,14 +283,27 @@
                     </div>
                 </div>
             </div>
-        </div>     
+        </div>
+                <a href="https://naka1205.github.io/lcthw/p/2F13B44DB3CFDC2E.html" class="navigation navigation-prev " aria-label="输入输出和文件">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/lcthw/p/41ABE0D9F5D3164C.html" class="navigation navigation-next " aria-label="编写第一个真正的程序">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
     </div>
 <script>
 var gitbook = gitbook || [];
 gitbook.push(function() {
     gitbook.page.hasChanged({
         "page": {
-            "title": '导言：C的笛卡尔之梦'
+            "title":  "变参函数",
+            "next": {
+                "title": "编写第一个真正的程序"
+            },
+            "previous": {
+                "title": "输入输出和文件"
+            }
         },
         "config": {
             "gitbook": "*",

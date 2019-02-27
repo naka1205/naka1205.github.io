@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <title>首页 · 笨办法学C</title>
+    <title>更安全的字符串 · 笨办法学C</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="笨办法学C 中文版">
+    <meta name="description" content="当人们谈论C的问题时，“字符串”的概念永远是首要缺陷之一。你已经用过它们，并且我也谈论过它们的种种缺陷，但是对为什么C字符串拥有缺陷，以及为什么一直是这样没有明确的解释。我会试着现在做出解释，部分原因是C风格字符串经过数十年的使用，有足够的证据表明它们是个非常糟糕的东西。">
     <meta name="keywords" content="笨办法学C">
     <meta name="generator" content="PKBook">
     <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/style.css">
@@ -91,70 +91,129 @@
     <div class="book-body">
         <div class="body-inner">
             <div class="book-header" role="navigation">
-                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/lcthw">导言：C的笛卡尔之梦</a></h1>
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/lcthw/p/95C8D9CEC85F55BD.html">更安全的字符串</a></h1>
             </div>
             <div class="page-wrapper" tabindex="-1" role="main">
                 <div class="page-inner">
                     <div id="book-search-results">
                         <div class="search-noresults">
                             <section class="normal markdown-section">
-                                <h1 id="%E5%AF%BC%E8%A8%80%EF%BC%9AC%E7%9A%84%E7%AC%9B%E5%8D%A1%E5%B0%94%E4%B9%8B%E6%A2%A6" name="%E5%AF%BC%E8%A8%80%EF%BC%9AC%E7%9A%84%E7%AC%9B%E5%8D%A1%E5%B0%94%E4%B9%8B%E6%A2%A6">导言：C的笛卡尔之梦</h1>
-<blockquote>
-<p>原文：<a href="http://c.learncodethehardway.org/book/introduction.html">Introduction: The Cartesian Dream Of C</a></p>
-</blockquote>
-<blockquote>
-<p>译者：<a href="https://github.com/wizardforcel">飞龙</a></p>
-</blockquote>
-<p>&zwj;</p>
-<blockquote>
-<p>直到现在，凡是我当作最真实、最可靠而接受的东西，都是从感官或通过感官得来的。不过，我有时觉得这些感官是骗人的，并且为了小心谨慎起见，对于一经骗过我们的东西就决不完全加以信任。</p>
-</blockquote>
-<blockquote>
-<p>勒内·笛卡尔，《第一哲学沉思录》</p>
-</blockquote>
-<p>如果有一段引述用来描述C语言编程的话，那就是它了。对于大多数程序员，C是极其可怕而且邪恶的。他就像是恶魔、撒旦，或者一个使用指针的花言巧语和对机器的直接访问来破坏你生产力的骗子洛基。于是，一旦这位计算界的路西法将你缠住，他就会使用邪恶的“段错误”来毁掉你的世界，并且揭露出与你交易中的骗局而嘲笑你。</p>
-<p>然而，C并不应由于这些事实而受到责备。你的电脑和控制它的操作系统才是真正的骗子，而不是朋友。它们通过密谋来向你隐藏它们的真实执行逻辑，使你永远都不真正知道背后发生了什么。C编程语言的失败之处只是向你提供接触背后真正工作原理的途径，并且告诉了你一些难以接受的事实。C会向你展示痛苦的真像（红色药丸），它将幕布拉开来向你展示一些神奇的原理。C即是真理。</p>
-<p>既然C如此危险，为什么还要使用它？因为C给了你力量来穿越抽象的假象，并且将你从愚昧中解放出来。</p>
-<h2 id="%E4%BD%A0%E4%BC%9A%E5%AD%A6%E5%88%B0%E4%BB%80%E4%B9%88" name="%E4%BD%A0%E4%BC%9A%E5%AD%A6%E5%88%B0%E4%BB%80%E4%B9%88">你会学到什么</h2>
-<p>这本书的目的是让你足够熟悉C语言，并能够使用它编写自己的软件，或者修改其他人的代码。这本书的最后，我们会从一本叫做“K&amp;R C”的名著中选取实际的代码，并且用你学过的知识来做代码审查。你需要学习下面这些东西来达到这一阶段：</p>
+                                <h1 id="%E6%9B%B4%E5%AE%89%E5%85%A8%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2" name="%E6%9B%B4%E5%AE%89%E5%85%A8%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2">更安全的字符串</h1>
+<p>我已经在练习26中，构建<code>devpkg</code>的时候介绍了<a href="http://bstring.sourceforge.net/">Better String</a>库。这个练习让你从现在开始熟悉<code>bstring</code>库，并且明白C风格字符串为什么十分糟糕。之后你需要修改<code>liblcthw</code>的代码来使用<code>bstring</code>。</p>
+<h2 id="%E4%B8%BA%E4%BB%80%E4%B9%88C%E9%A3%8E%E6%A0%BC%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8D%81%E5%88%86%E7%B3%9F%E7%B3%95" name="%E4%B8%BA%E4%BB%80%E4%B9%88C%E9%A3%8E%E6%A0%BC%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8D%81%E5%88%86%E7%B3%9F%E7%B3%95">为什么C风格字符串十分糟糕</h2>
+<p>当人们谈论C的问题时，“字符串”的概念永远是首要缺陷之一。你已经用过它们，并且我也谈论过它们的种种缺陷，但是对为什么C字符串拥有缺陷，以及为什么一直是这样没有明确的解释。我会试着现在做出解释，部分原因是C风格字符串经过数十年的使用，有足够的证据表明它们是个非常糟糕的东西。</p>
+<p>对于给定的任何C风格字符串，都不可能验证它是否有效。</p>
 <ul>
-<li>C的基本语法和编写习惯。</li>
-<li>编译，<code>make</code>文件和链接。</li>
-<li>寻找和预防bug。</li>
-<li>防御性编程实践。</li>
-<li>使C的代码崩溃。</li>
-<li>编写基本的Unix系统软件。</li>
+<li>以<code>'\0'</code>结尾的C字符串是有效的。</li>
+<li>任何处理无效C字符串的循环都是无限的（或者造成缓冲区溢出）。</li>
+<li>C字符串没有确定的长度，所以检查它们的唯一方法就是遍历它来观察循环是否正确终止。</li>
+<li>所以，不通过有限的循环就不可能验证C字符串。</li>
 </ul>
-<p>截至最后一章，你将会有足够的工具来解决基本的系统软件、库和其它小项目。</p>
-<h2 id="%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E6%9C%AC%E4%B9%A6" name="%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E6%9C%AC%E4%B9%A6">如何阅读本书</h2>
-<p>这本书为那些已经掌握至少一门编程语言的人而设计。如果你还没有接触过编程，我推荐你先学习<a href="http://learnpythonthehardway.org/">笨办法学Python</a>，这本书适用于真正的新手并且适合作为第一本编程书。一旦你学会了Python，你可以返回来开始学习这本书。</p>
-<p>对于那些已经学会编程的人，这本书的开头可能有些奇怪。它不像其它书一样，那些书中你会阅读一段段的文字然后编写一些代码。相反，这本书中我会让你立即开始编程，之后我会解释你做了什么。这样更有效果，因为你已经经历过的事情解释起来更加容易。</p>
-<p>由于采用了这样的结构，下面是本书中你必须遵守的规则：</p>
-<ul>
-<li>手动输入所有代码。不要复制粘贴！</li>
-<li>正确地输入所有代码，也包括注释。</li>
-<li>运行代码并保证产生相同的输出。</li>
-<li>如果出现了bug则修正它。</li>
-<li>做附加题时，如果你做不出某道题，马上跳过。</li>
-<li>在寻求帮助之前首先试着自己弄懂。</li>
-</ul>
-<p>如果你遵守了这些规则，完成了本书的每一件事，并且还不会编程C代码的话，你至少尝试过了。它并不适用于每个人，但是尝试的过程会让你成为一个更好的程序员。</p>
-<h2 id="%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B" name="%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B">核心能力</h2>
-<p>我假设你之前使用为“弱者”设计的语言。这些“易用的”语言之一是Python或者Ruby，它们带给了你草率的思维和半吊子的黑魔法。或者，你可能使用类似Lisp的语言，它假设计算机是纯函数式的奇幻大陆，带有一些为婴儿准备的充气墙。再或者你可能学过Prolog，于是你认为整个世界都是一个数据库，你可以从中寻找线索。甚至更糟糕的是，我假设你一直都在用IDE，所以你的大脑布满了内存漏洞，并且你每打三个字符都要按CTRL+空格来打出函数的整个名字。</p>
-<p>无论你的背景如何，你都可能不擅长下面四个技能：</p>
-<p>阅读和编写</p>
-<p>如果你使用IDE这会尤其正确。但是总体上我发现程序员做了很多“略读”，并且在理解上存在问题。它们会略读需要详细理解的代码，并且觉得他们已经理解了但事实上没有。其它语言提供了可以让他们避免实际编写任何代码的工具，所以面对一种类似C的语言时，他们就玩完了。你需要知道每个人都有这个问题，并且你可以通过强迫自己慢下来并且仔细对待阅读和编写代码来改正它。一开始你可能感到痛苦和无聊，但是这样的次数多了它也就变得容易了。</p>
-<p>专注细节</p>
-<p>每个人都不擅长这方面，它也是劣质软件的罪魁祸首。其它语言让你不会集中注意力，但是C要求你集中全部注意力，因为它直接在机器上运行，并且机器比较挑剔。C中没有“相似的类型”或者“足够接近”，所以你需要注意，再三检查你的代码，并假设你写的任何代码都是错的，直到你能证明它是对的。</p>
-<p>定位差异</p>
-<p>其它语言程序员的一个关键问题就是他们的大脑被训练来指出那个语言的差异，而不是C。当你对比你的代码和我练习中的代码时，你的眼睛会跳过你认为不重要或者不熟悉的字符。我会给你一些策略来强制你观察你的错误，但是要记住如果你的代码并不完全像书中的代码，它就是错的。</p>
-<p>规划和调试</p>
-<p>我喜欢其它较简单的语言，因为我可以想怎么写就怎么写。我将已有的想法输入进解释器，然后可以立即看到结果。你可以把你的想法试验出来，但是要注意，如果你仍然打算“试验代码使其能够工作”，它就行不通了。C对于你来说稍困难，因为你需要规划好首先创建什么。的确，你也可以进行试验，但是比起其他语言，你必须在C中更早地严肃对待代码。我会教给你在编程之前规划程序核心部分的方法，这对于使你成为更好的程序员十分有帮助。即使一个很小的规划，都会使接下来的事情变得顺利。</p>
-<p>学习C语言会使你变成更好的程序员，因为会强制你更早、更频繁地解决这些问题。你不会再草率地编写半吊子的代码，代码也会能够正常工作。C的优势是，它是一个简单的语言，你可以自己来弄清楚，这使得它成为用于学习机器，以及提升程序员核心技能的最佳语言。</p>
-<p>C比其它语言都要难，而这是由于C并不对你隐藏细节，它们在其它语言中都试图并且未能被掩盖。</p>
-<h2 id="%E5%8D%8F%E8%AE%AE" name="%E5%8D%8F%E8%AE%AE">协议</h2>
-<p>原书在完稿之后可以自由分发，并且能在<a href="http://www.amazon.com/Learn-Hard-Way-Practical-Computational/dp/0321884922/">亚马逊</a>上购买。该中译版本遵循<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>协议，你可以在保留署名和出处的前提下以非商业目的自由转载。</p>                            </section>
-                            <div class="comments gitm-container" id="comments"></div>
+<p>这个逻辑非常简单。你不能编写一个循环来验证C字符串是否有效，因为无效的字符串导致循环永远不会停止。就是这样，唯一的解决方案就是包含大小。一旦你知道了大小，你可以避免无限循环问题。如果你观察练习27中我向你展示的两个函数：</p>
+<blockquote>
+<p>译者注：检验C风格字符串是否有效等价于“停机问题”，这是一个非常著名的不可解问题。</p>
+</blockquote>
+<pre><code class="c">void copy(char to[], char from[])
+{
+    int i = 0;
+
+    // while loop will not end if from isn't '\0' terminated
+    while((to[i] = from[i]) != '\0') {
+        ++i;
+    }
+}
+
+int safercopy(int from_len, char *from, int to_len, char *to)
+{
+    int i = 0;
+    int max = from_len &gt; to_len - 1 ? to_len - 1 : from_len;
+
+    // to_len must have at least 1 byte
+    if(from_len &lt; 0 || to_len &lt;= 0) return -1;
+
+    for(i = 0; i &lt; max; i++) {
+        to[i] = from[i];
+    }
+
+    to[to_len - 1] = '\0';
+
+    return i;
+}</code></pre>
+<p>想象你想要向<code>copy</code>函数添加检查来确保<code>from</code>字符串有效。你该怎么做呢？你编写了一个循环来检查字符串是否已<code>'\0'</code>结尾。哦，等一下，如果字符串不以<code>'\0'</code>结尾，那它怎么让循环停下？不可能停下，所以无解。</p>
+<p>无论你怎么做，你都不能在不知道字符串长度的情况下检查C字符串的有效性，这里<code>safercopy</code>包含了程度。这个函数没有相同的问题，因为他的循环一定会中止，即使你传入了错误的大小，大小也是有限的。</p>
+<blockquote>
+<p>译者注：但是问题来了，对于一个C字符串，你怎么获取其大小？你需要在这个函数之前调用<code>strlen</code>，又是一个无限循环问题。</p>
+</blockquote>
+<p>于是，<code>bstring</code>库所做的事情就是创建一个结构体，它总是包含字符串长度。由于这个长度对于<code>bstring</code>来说总是可访问的，它上面的所有操作都会更安全。循环是有限的，内容也是有效的，并且这个主要的缺陷也不存在了。BString库也带有大量所需的字串操作，比如分割、格式化、搜索，并且大多数都会正确并安全地执行。</p>
+<p><code>bstring</code>中也可能有缺陷，但是经过这么长时间，可能性已经很低了。<code>glibc</code>中也有缺陷，所以你让程序员怎么做才好呢？</p>
+<h2 id="%E4%BD%BF%E7%94%A8+bstrlib" name="%E4%BD%BF%E7%94%A8+bstrlib">使用 bstrlib</h2>
+<p>有很多改进后的字符串库，但是我最喜欢<code>bstrlib</code>，因为它只有一个程序集，并且具有大多数所需的字符串功能。你已经在使用它了，所以这个练习中你需要从<a href="http://bstring.sourceforge.net/">Better String</a>获取两个文件，<code>bstrlib.c</code>和<code>bstrlib.h</code>。</p>
+<p>下面是我在<code>liblcthw</code>项目目录里所做的事情：</p>
+<pre><code class="sh">$ mkdir bstrlib
+$ cd bstrlib/
+$ unzip ~/Downloads/bstrlib-05122010.zip
+Archive:  /Users/zedshaw/Downloads/bstrlib-05122010.zip
+...
+$ ls
+bsafe.c             bstraux.c       bstrlib.h       bstrwrap.h      license.txt     test.cpp
+bsafe.h             bstraux.h       bstrlib.txt     cpptest.cpp     porting.txt     testaux.c
+bstest.c    bstrlib.c       bstrwrap.cpp    gpl.txt         security.txt
+$ mv bstrlib.h bstrlib.c ../src/lcthw/
+$ cd ../
+$ rm -rf bstrlib
+# make the edits
+$ vim src/lcthw/bstrlib.c
+$ make clean all
+...
+$</code></pre>
+<p>在第14行你可以看到，我编辑了<code>bstrlib.c</code>文件，来将它移动到新的位置，并且修复OSX上的bug。下面是差异：</p>
+<pre><code class="diff">25c25
+&lt; #include "bstrlib.h"
+---
+&gt; #include &lt;lcthw/bstrlib.h&gt;
+2759c2759
+&lt; #ifdef __GNUC__
+---
+&gt; #if defined(__GNUC__) &amp;&amp; !defined(__APPLE__)</code></pre>
+<p>我把包含修改为<code>&lt;lcthw/bstrlib.h&gt;</code>，然后修复2759行<code>ifdef</code>的问题。</p>
+<h2 id="%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8%E8%AF%A5%E5%BA%93" name="%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8%E8%AF%A5%E5%BA%93">学习使用该库</h2>
+<p>这个练习很短，只是让你准备好剩余的练习，它们会用到这个库。接下来两个联系中，我会使用<code>bstrlib.c</code>来创建Hashmap`数据结构。</p>
+<p>你现在应该阅读头文件和实现，之后编写<code>tests/bstr_tests.c</code>来测试下列函数，来熟悉这个库：</p>
+<p><code>bfromcstr</code></p>
+<p>从C风格字符串中创建一个<code>bstring</code>。</p>
+<p><code>blk2bstr</code></p>
+<p>与上面相同，但是可以提供缓冲区长度。</p>
+<p><code>bstrcpy</code></p>
+<p>复制<code>bstring</code>。</p>
+<p><code>bassign</code></p>
+<p>将一个<code>bstring</code>赋值为另一个。</p>
+<p><code>bassigncstr</code></p>
+<p>将<code>bsting</code>的内容设置为C字符串的内容。</p>
+<p><code>bassignblk</code></p>
+<p>将<code>bsting</code>的内容设置为C字符串的内容，但是可以提供长度。</p>
+<p><code>bdestroy</code></p>
+<p>销毁<code>bstring</code>。</p>
+<p><code>bconcat</code></p>
+<p>在一个<code>bstring</code>末尾连接另一个。</p>
+<p><code>bstricmp</code></p>
+<p>比较两个<code>bstring</code>，返回值与<code>strcmp</code>相同。</p>
+<p><code>biseq</code></p>
+<p>检查两个<code>bstring</code>是否相等。</p>
+<p><code>binstr</code></p>
+<p>判断一个<code>bstring</code>是否被包含于另一个。</p>
+<p><code>bfindreplace</code></p>
+<p>在一个<code>bstring</code>中寻找另一个，并且将其替换为别的。</p>
+<p><code>bsplit</code></p>
+<p>将<code>bstring</code>分割为<code>bstrList</code>。</p>
+<p><code>bformat</code></p>
+<p>执行字符串格式化，十分便利。</p>
+<p><code>blength</code></p>
+<p>获取<code>bstring</code>的长度。</p>
+<p><code>bdata</code></p>
+<p>获取<code>bstring</code>的数据。</p>
+<p><code>bchar</code></p>
+<p>获得<code>bstring</code>中的字符。</p>
+<p>你的测试应该覆盖到所有这些操作，以及你从头文件中发现的更多有趣的东西。在<code>valgrind</code>下运行测试，确保内存使用正确。</p>                            </section>
                         </div>
                         <div class="search-results">
                             <div class="has-results">
@@ -170,14 +229,27 @@
                     </div>
                 </div>
             </div>
-        </div>     
+        </div>
+                <a href="https://naka1205.github.io/lcthw/p/F674E4CC423F4082.html" class="navigation navigation-prev " aria-label="排序和搜索">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/lcthw/p/19B22BBE112EDD42.html" class="navigation navigation-next " aria-label="哈希表">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
     </div>
 <script>
 var gitbook = gitbook || [];
 gitbook.push(function() {
     gitbook.page.hasChanged({
         "page": {
-            "title": '导言：C的笛卡尔之梦'
+            "title":  "更安全的字符串",
+            "next": {
+                "title": "哈希表"
+            },
+            "previous": {
+                "title": "排序和搜索"
+            }
         },
         "config": {
             "gitbook": "*",

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <title>首页 · 笨办法学C</title>
+    <title>将 Cachegrind 和 Callgrind 用于性能调优 · 笨办法学C</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="笨办法学C 中文版">
+    <meta name="description" content="这个练习中，我打算上一节速成课，内容是使用`Valgrind`的两个工具`callgrind`和`cachegrind`。这两个工具会分析你程序的执行，并且告诉你哪一部分运行缓慢。这些结果非常精确，因为`Valgrind`的工作方式有助于你解决一些问题，比如执行过多的代码行，热点，内容访问问题，甚至是CPU的缓存未命中。">
     <meta name="keywords" content="笨办法学C">
     <meta name="generator" content="PKBook">
     <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/style.css">
@@ -91,70 +91,176 @@
     <div class="book-body">
         <div class="body-inner">
             <div class="book-header" role="navigation">
-                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/lcthw">导言：C的笛卡尔之梦</a></h1>
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/lcthw/p/35162CDAACDA8825.html">将 Cachegrind 和 Callgrind 用于性能调优</a></h1>
             </div>
             <div class="page-wrapper" tabindex="-1" role="main">
                 <div class="page-inner">
                     <div id="book-search-results">
                         <div class="search-noresults">
                             <section class="normal markdown-section">
-                                <h1 id="%E5%AF%BC%E8%A8%80%EF%BC%9AC%E7%9A%84%E7%AC%9B%E5%8D%A1%E5%B0%94%E4%B9%8B%E6%A2%A6" name="%E5%AF%BC%E8%A8%80%EF%BC%9AC%E7%9A%84%E7%AC%9B%E5%8D%A1%E5%B0%94%E4%B9%8B%E6%A2%A6">导言：C的笛卡尔之梦</h1>
+                                <h1 id="%E5%B0%86+Cachegrind+%E5%92%8C+Callgrind+%E7%94%A8%E4%BA%8E%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98" name="%E5%B0%86+Cachegrind+%E5%92%8C+Callgrind+%E7%94%A8%E4%BA%8E%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98">将 Cachegrind 和 Callgrind 用于性能调优</h1>
+<p>这个练习中，我打算上一节速成课，内容是使用<code>Valgrind</code>的两个工具<code>callgrind</code>和<code>cachegrind</code>。这两个工具会分析你程序的执行，并且告诉你哪一部分运行缓慢。这些结果非常精确，因为<code>Valgrind</code>的工作方式有助于你解决一些问题，比如执行过多的代码行，热点，内容访问问题，甚至是CPU的缓存未命中。</p>
+<p>为了做这个练习，我打算使用<code>bstree_tests</code>单元测试，你之前用于寻找能提升算法的地方。你需要确保你这些程序的版本没有任何<code>valgrind</code>错误，并且和我的代码非常相似，因为我会使用我的代码的转储来谈论<code>cachegrind</code>和<code>callgrind</code>如何工作。</p>
+<h2 id="%E8%BF%90%E8%A1%8C+Callgrind" name="%E8%BF%90%E8%A1%8C+Callgrind">运行 Callgrind</h2>
+<p>为了运行Callgrind，你需要向<code>valgrind</code>传入<code>--tool=callgrind</code>选项，之后它会产生<code>callgrind.out.PID</code>文件（其中PID为所运行程序的进程PID）。一旦你这样运行了，你就可以使用一个叫做<code>callgrind_annotate</code>的工具分析<code>callgrind.out</code>文件，它会告诉你哪个函数运行中使用了最多的指令。下面是个例子，我在<code>bstree_tests</code>上运行了<code>callgrind</code>，之后得到了这个信息：</p>
+<pre><code class="sh">$ valgrind --dsymutil=yes --tool=callgrind tests/bstree_tests
+...
+$ callgrind_annotate callgrind.out.1232
+--------------------------------------------------------------------------------
+Profile data file 'callgrind.out.1232' (creator: callgrind-3.7.0.SVN)
+--------------------------------------------------------------------------------
+I1 cache:
+D1 cache:
+LL cache:
+Timerange: Basic block 0 - 1098689
+Trigger: Program termination
+Profiled target:  tests/bstree_tests (PID 1232, part 1)
+Events recorded:  Ir
+Events shown:     Ir
+Event sort order: Ir
+Thresholds:       99
+Include dirs:     
+User annotated:   
+Auto-annotation:  off
+
+--------------------------------------------------------------------------------
+       Ir
+--------------------------------------------------------------------------------
+4,605,808  PROGRAM TOTALS
+
+--------------------------------------------------------------------------------
+       Ir  file:function
+--------------------------------------------------------------------------------
+  670,486  src/lcthw/bstrlib.c:bstrcmp [tests/bstree_tests]
+  194,377  src/lcthw/bstree.c:BSTree_get [tests/bstree_tests]
+   65,580  src/lcthw/bstree.c:default_compare [tests/bstree_tests]
+   16,338  src/lcthw/bstree.c:BSTree_delete [tests/bstree_tests]
+   13,000  src/lcthw/bstrlib.c:bformat [tests/bstree_tests]
+   11,000  src/lcthw/bstrlib.c:bfromcstralloc [tests/bstree_tests]
+    7,774  src/lcthw/bstree.c:BSTree_set [tests/bstree_tests]
+    5,800  src/lcthw/bstrlib.c:bdestroy [tests/bstree_tests]
+    2,323  src/lcthw/bstree.c:BSTreeNode_create [tests/bstree_tests]
+    1,183  /private/tmp/pkg-build/coregrind//vg_preloaded.c:vg_cleanup_env [/usr/local/lib/valgrind/vgpreload_core-amd64-darwin.so]
+
+$</code></pre>
+<p>我已经移除了单元测试和<code>valgrind</code>输出，因为它们对这个练习没有用。你应该看到了<code>callgrind_anotate</code>输出，它向你展示了每个函数所运行的指令数量（<code>valgrind</code>中叫做<code>Ir</code>），由高到低排序。你通常可以忽略头文件的数据，直接跳到函数列表。</p>
 <blockquote>
-<p>原文：<a href="http://c.learncodethehardway.org/book/introduction.html">Introduction: The Cartesian Dream Of C</a></p>
+<p>注</p>
 </blockquote>
 <blockquote>
-<p>译者：<a href="https://github.com/wizardforcel">飞龙</a></p>
+<p>如果你获取到一堆“???:Image”的行，并且它们不是你程序中的东西，那么你读到的是OS的垃圾。只需要在末尾添加<code>| grep -v "???"</code>来过滤掉它们。</p>
 </blockquote>
-<p>&zwj;</p>
-<blockquote>
-<p>直到现在，凡是我当作最真实、最可靠而接受的东西，都是从感官或通过感官得来的。不过，我有时觉得这些感官是骗人的，并且为了小心谨慎起见，对于一经骗过我们的东西就决不完全加以信任。</p>
-</blockquote>
-<blockquote>
-<p>勒内·笛卡尔，《第一哲学沉思录》</p>
-</blockquote>
-<p>如果有一段引述用来描述C语言编程的话，那就是它了。对于大多数程序员，C是极其可怕而且邪恶的。他就像是恶魔、撒旦，或者一个使用指针的花言巧语和对机器的直接访问来破坏你生产力的骗子洛基。于是，一旦这位计算界的路西法将你缠住，他就会使用邪恶的“段错误”来毁掉你的世界，并且揭露出与你交易中的骗局而嘲笑你。</p>
-<p>然而，C并不应由于这些事实而受到责备。你的电脑和控制它的操作系统才是真正的骗子，而不是朋友。它们通过密谋来向你隐藏它们的真实执行逻辑，使你永远都不真正知道背后发生了什么。C编程语言的失败之处只是向你提供接触背后真正工作原理的途径，并且告诉了你一些难以接受的事实。C会向你展示痛苦的真像（红色药丸），它将幕布拉开来向你展示一些神奇的原理。C即是真理。</p>
-<p>既然C如此危险，为什么还要使用它？因为C给了你力量来穿越抽象的假象，并且将你从愚昧中解放出来。</p>
-<h2 id="%E4%BD%A0%E4%BC%9A%E5%AD%A6%E5%88%B0%E4%BB%80%E4%B9%88" name="%E4%BD%A0%E4%BC%9A%E5%AD%A6%E5%88%B0%E4%BB%80%E4%B9%88">你会学到什么</h2>
-<p>这本书的目的是让你足够熟悉C语言，并能够使用它编写自己的软件，或者修改其他人的代码。这本书的最后，我们会从一本叫做“K&amp;R C”的名著中选取实际的代码，并且用你学过的知识来做代码审查。你需要学习下面这些东西来达到这一阶段：</p>
+<p>我现在可以对这个输出做个简短的分解，来找出下一步观察什么：</p>
 <ul>
-<li>C的基本语法和编写习惯。</li>
-<li>编译，<code>make</code>文件和链接。</li>
-<li>寻找和预防bug。</li>
-<li>防御性编程实践。</li>
-<li>使C的代码崩溃。</li>
-<li>编写基本的Unix系统软件。</li>
+<li>每一行都列出了<code>Ir</code>序号和执行它们的<code>file:function</code>。<code>Ir</code>是指令数量，并且如果它越少就越快。这里有些复杂，但是首先要着眼于<code>Ir</code>。</li>
+<li>解决这个程序的方式是观察最上面的函数，之后看看你首先可以改进哪一个。这里，我可以改进<code>bstrcmp</code>或者<code>BStree_get</code>。可能以<code>BStree_get</code>开始更容易些。</li>
+<li>这些函数的一部分由单元测试调用，所以我可以忽略它们。类似<code>bformat</code>，<code>bfromcstralloc</code>和 <code>bdestroy</code>就是这样的函数。</li>
+<li>我也可以找到我可以简单地避免调用的函数。例如，或许我可以假设<code>BSTree</code>仅仅处理<code>bstring</code>键，之后我可以不使用回调系统，并且完全移除<code>default_compare</code>。</li>
 </ul>
-<p>截至最后一章，你将会有足够的工具来解决基本的系统软件、库和其它小项目。</p>
-<h2 id="%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E6%9C%AC%E4%B9%A6" name="%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E6%9C%AC%E4%B9%A6">如何阅读本书</h2>
-<p>这本书为那些已经掌握至少一门编程语言的人而设计。如果你还没有接触过编程，我推荐你先学习<a href="http://learnpythonthehardway.org/">笨办法学Python</a>，这本书适用于真正的新手并且适合作为第一本编程书。一旦你学会了Python，你可以返回来开始学习这本书。</p>
-<p>对于那些已经学会编程的人，这本书的开头可能有些奇怪。它不像其它书一样，那些书中你会阅读一段段的文字然后编写一些代码。相反，这本书中我会让你立即开始编程，之后我会解释你做了什么。这样更有效果，因为你已经经历过的事情解释起来更加容易。</p>
-<p>由于采用了这样的结构，下面是本书中你必须遵守的规则：</p>
+<p>到目前为止，我只知道我打算改进<code>BSTree_get</code>，并且不是因为<code>BSTree_get</code>执行慢。这是分析的第二阶段。</p>
+<h2 id="Callgrind+%E6%B3%A8%E8%A7%A3%E6%BA%90%E6%96%87%E4%BB%B6" name="Callgrind+%E6%B3%A8%E8%A7%A3%E6%BA%90%E6%96%87%E4%BB%B6">Callgrind 注解源文件</h2>
+<p>下一步我使用<code>callgrind_annotate</code>输出<code>bstree.c</code>文件，并且使用所带有的<code>Ir</code>对每一行做注解。你可以通过运行下面的命令来得到注解后的源文件：</p>
+<pre><code class="sh">$ callgrind_annotate callgrind.out.1232 src/lcthw/bstree.c
+...</code></pre>
+<p>你的输出会是这个源文件的一个较大的转储，但是我会将它们剪切成包含<code>BSTree_get</code>和<code>BSTree_getnode</code>的部分：</p>
+<pre><code class="c">--------------------------------------------------------------------------------
+-- User-annotated source: src/lcthw/bstree.c
+--------------------------------------------------------------------------------
+    Ir
+
+
+ 2,453  static inline BSTreeNode *BSTree_getnode(BSTree *map, BSTreeNode *node, void *key)
+     .  {
+61,853      int cmp = map-&gt;compare(node-&gt;key, key);
+663,908  =&gt; src/lcthw/bstree.c:default_compare (14850x)
+     .
+14,850      if(cmp == 0) {
+     .          return node;
+24,794      } else if(cmp &lt; 0) {
+30,623          if(node-&gt;left) {
+     .              return BSTree_getnode(map, node-&gt;left, key);
+     .          } else {
+     .              return NULL;
+     .          }
+     .      } else {
+13,146          if(node-&gt;right) {
+     .              return BSTree_getnode(map, node-&gt;right, key);
+     .          } else {
+     .              return NULL;
+     .          }
+     .      }
+     .  }
+     .
+     .  void *BSTree_get(BSTree *map, void *key)
+ 4,912  {
+24,557      if(map-&gt;root == NULL) {
+14,736          return NULL;
+     .      } else {
+     .          BSTreeNode *node = BSTree_getnode(map, map-&gt;root, key);
+ 2,453          return node == NULL ? NULL : node-&gt;data;
+     .      }
+     .  }</code></pre>
+<p>每一行都显示它的<code>Ir</code>（指令）数量，或者一个点（<code>.</code>）来表示它并不重要。我所要找的就是一些热点，或者带有巨大数值的<code>Ir</code>的行，它能够被优化掉。这里，第十行的输出表明，<code>BSTree_getnode</code>开销非常大的原因是它调用了<code>default_comapre</code>，它又调用了<code>bstrcmp</code>。我已经知道了<code>bstrcmp</code>是性能最差的函数，所以如果我想要改进<code>BSTree_getnode</code>的速度，我应该首先解决掉它。</p>
+<p>之后我以相同方式查看<code>bstrcmp</code>：</p>
+<pre><code class="c"> 98,370  int bstrcmp (const_bstring b0, const_bstring b1) {
+      .  int i, v, n;
+      .
+196,740     if (b0 == NULL || b1 == NULL || b0-&gt;data == NULL || b1-&gt;data == NULL ||
+ 32,790             b0-&gt;slen &lt; 0 || b1-&gt;slen &lt; 0) return SHRT_MIN;
+ 65,580     n = b0-&gt;slen; if (n &gt; b1-&gt;slen) n = b1-&gt;slen;
+ 89,449     if (b0-&gt;slen == b1-&gt;slen &amp;&amp; (b0-&gt;data == b1-&gt;data || b0-&gt;slen == 0))
+      .             return BSTR_OK;
+      .
+ 23,915     for (i = 0; i &lt; n; i ++) {
+163,642             v = ((char) b0-&gt;data[i]) - ((char) b1-&gt;data[i]);
+      .             if (v != 0) return v;
+      .             if (b0-&gt;data[i] == (unsigned char) '\0') return BSTR_OK;
+      .     }
+      .
+      .     if (b0-&gt;slen &gt; n) return 1;
+      .     if (b1-&gt;slen &gt; n) return -1;
+      .     return BSTR_OK;
+      .  }</code></pre>
+<p>输出中让我预料之外的事情就是<code>bstrcmp</code>最糟糕的一行并不是我想象中的字符比较。对于内存访问，顶部的防御性<code>if</code>语句将所有可能的无效变量都检查了一遍。与第十七行比较字符的语句相比，这个<code>if</code>语句进行了多于两倍的内存访问。如果我要优化<code>bstcmp</code>，我会完全把它去掉，或者在其它一些地方来执行它。</p>
+<p>另一种选择是将这个检查改为<code>assert</code>，它只在开发时的运行中存在，之后在发布时把它去掉。我没有足够的证明来表明这行代码不适于这个数据结构，所以我可以证明移除它是可行的。</p>
+<p>然而，我并不想弱化这个函数的防御性，来得到一些性能。在真实的性能优化环境，我会简单地把它放到列表中，之后挖掘程序中能得到的其它收益。</p>
+<h2 id="%E8%B0%83%E4%BC%98%E4%B9%8B%E9%81%93" name="%E8%B0%83%E4%BC%98%E4%B9%8B%E9%81%93">调优之道</h2>
+<blockquote>
+<p>我们应该忽略微小的效率，对于97%的情况：过早优化是万恶之源。</p>
+</blockquote>
+<blockquote>
+<p>-- 高德纳</p>
+</blockquote>
+<p>在我看来，这个引述似乎忽略了一个关于性能调优的重点。在高德纳的话中，当你做性能调优时，如果你过早去做它，可能会导致各种问题。根据他的话，优化应该执行于“稍晚的某个时间”，或者这只是我的猜测。谁知道呢。</p>
+<p>我打算澄清这个引述并不是完全错误，而是忽略了某些东西，并且我打算给出我的引述。你可以引用我的这段话：</p>
+<blockquote>
+<p>使用证据来寻找最大的优化并花费最少的精力。</p>
+</blockquote>
+<blockquote>
+<p>-- 泽德 A. 肖</p>
+</blockquote>
+<p>你什么时候优化并不重要，但是你需要弄清楚你的优化是否真正能改进软件，以及需要投入多少精力来实现它。通过证据你就可以找到代码中的位置，用一点点精力就能取得最大的提升。通常这些地方都是一些愚蠢的决定，就像<code>bstrcmp</code>试图检查任何东西不为<code>NULL</code>一样。</p>
+<p>在某个特定时间点上，代码中需要调优的地方只剩下极其微小的优化，比如重新组织<code>if</code>语句，或者类似达夫设备这样的特殊循环。这时候，你应该停止优化，因为这是一个好机会，你可以通过重新设计软件并且避免这些事情来获得更多收益。</p>
+<p>这是一些只想做优化的程序员没有看到的事情。许多时候，把一件事情做快的最好方法就是寻找避免它们的办法。在上面的分析中，我不打算优化<code>bstrcmp</code>，我会寻找一个不使用它的方法。也许我可以使用一种哈希算法来执行可排序的哈希计算而不是始终使用<code>bstrcmp</code>。也许我可以通过首先尝试第一个字符，如果它们不匹配就没必要调用<code>bstrcmp</code>。</p>
+<p>如果在此之后你根本不能重新设计，那么就开始寻找微小的优化，但是要始终确保它们能够提升速度。要记住目标是使用最少的精力尽可能得到最大的效果。</p>
+<h2 id="%E4%BD%BF%E7%94%A8+KCachegrind" name="%E4%BD%BF%E7%94%A8+KCachegrind">使用 KCachegrind</h2>
+<p>这个练习最后一部分就是向你介绍一个叫做<a href="http://kcachegrind.sourceforge.net/html/Home.html">KCachegrind</a>的神奇的GUI工具，用于分析<code>callgrind</code> 和 <code>cachegrind</code>的输出。我使用Linux或BSD电脑上工作时几乎都会使用它，并且我实际上为了使用<code>KCachegrind</code>而切换到Linux来编写代码。</p>
+<p>教会你如何使用是这个练习之外的内容，你需要在这个练习之后自己学习如何用它。输出几乎是相同的，除了<code>KCachegrind</code>可以让你做这些：</p>
 <ul>
-<li>手动输入所有代码。不要复制粘贴！</li>
-<li>正确地输入所有代码，也包括注释。</li>
-<li>运行代码并保证产生相同的输出。</li>
-<li>如果出现了bug则修正它。</li>
-<li>做附加题时，如果你做不出某道题，马上跳过。</li>
-<li>在寻求帮助之前首先试着自己弄懂。</li>
+<li>图形化地浏览源码和执行次数，并使用各种排序来搜索可优化的东西。</li>
+<li>分析不同的图表，来可视化地观察什么占据了大多数时间，以及它调用了什么。</li>
+<li>查看真实的汇编机器码输出，使你能够看到实际的指令，给你更多的线索。</li>
+<li>可视化地显示源码中的循环和分支的跳跃方式，便于你更容易地找到优化代码的方法。</li>
 </ul>
-<p>如果你遵守了这些规则，完成了本书的每一件事，并且还不会编程C代码的话，你至少尝试过了。它并不适用于每个人，但是尝试的过程会让你成为一个更好的程序员。</p>
-<h2 id="%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B" name="%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B">核心能力</h2>
-<p>我假设你之前使用为“弱者”设计的语言。这些“易用的”语言之一是Python或者Ruby，它们带给了你草率的思维和半吊子的黑魔法。或者，你可能使用类似Lisp的语言，它假设计算机是纯函数式的奇幻大陆，带有一些为婴儿准备的充气墙。再或者你可能学过Prolog，于是你认为整个世界都是一个数据库，你可以从中寻找线索。甚至更糟糕的是，我假设你一直都在用IDE，所以你的大脑布满了内存漏洞，并且你每打三个字符都要按CTRL+空格来打出函数的整个名字。</p>
-<p>无论你的背景如何，你都可能不擅长下面四个技能：</p>
-<p>阅读和编写</p>
-<p>如果你使用IDE这会尤其正确。但是总体上我发现程序员做了很多“略读”，并且在理解上存在问题。它们会略读需要详细理解的代码，并且觉得他们已经理解了但事实上没有。其它语言提供了可以让他们避免实际编写任何代码的工具，所以面对一种类似C的语言时，他们就玩完了。你需要知道每个人都有这个问题，并且你可以通过强迫自己慢下来并且仔细对待阅读和编写代码来改正它。一开始你可能感到痛苦和无聊，但是这样的次数多了它也就变得容易了。</p>
-<p>专注细节</p>
-<p>每个人都不擅长这方面，它也是劣质软件的罪魁祸首。其它语言让你不会集中注意力，但是C要求你集中全部注意力，因为它直接在机器上运行，并且机器比较挑剔。C中没有“相似的类型”或者“足够接近”，所以你需要注意，再三检查你的代码，并假设你写的任何代码都是错的，直到你能证明它是对的。</p>
-<p>定位差异</p>
-<p>其它语言程序员的一个关键问题就是他们的大脑被训练来指出那个语言的差异，而不是C。当你对比你的代码和我练习中的代码时，你的眼睛会跳过你认为不重要或者不熟悉的字符。我会给你一些策略来强制你观察你的错误，但是要记住如果你的代码并不完全像书中的代码，它就是错的。</p>
-<p>规划和调试</p>
-<p>我喜欢其它较简单的语言，因为我可以想怎么写就怎么写。我将已有的想法输入进解释器，然后可以立即看到结果。你可以把你的想法试验出来，但是要注意，如果你仍然打算“试验代码使其能够工作”，它就行不通了。C对于你来说稍困难，因为你需要规划好首先创建什么。的确，你也可以进行试验，但是比起其他语言，你必须在C中更早地严肃对待代码。我会教给你在编程之前规划程序核心部分的方法，这对于使你成为更好的程序员十分有帮助。即使一个很小的规划，都会使接下来的事情变得顺利。</p>
-<p>学习C语言会使你变成更好的程序员，因为会强制你更早、更频繁地解决这些问题。你不会再草率地编写半吊子的代码，代码也会能够正常工作。C的优势是，它是一个简单的语言，你可以自己来弄清楚，这使得它成为用于学习机器，以及提升程序员核心技能的最佳语言。</p>
-<p>C比其它语言都要难，而这是由于C并不对你隐藏细节，它们在其它语言中都试图并且未能被掩盖。</p>
-<h2 id="%E5%8D%8F%E8%AE%AE" name="%E5%8D%8F%E8%AE%AE">协议</h2>
-<p>原书在完稿之后可以自由分发，并且能在<a href="http://www.amazon.com/Learn-Hard-Way-Practical-Computational/dp/0321884922/">亚马逊</a>上购买。该中译版本遵循<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>协议，你可以在保留署名和出处的前提下以非商业目的自由转载。</p>                            </section>
-                            <div class="comments gitm-container" id="comments"></div>
+<p>你应该在获取、安装和玩转<code>KCachegrind</code>上花一些时间。</p>
+<h2 id="%E9%99%84%E5%8A%A0%E9%A2%98" name="%E9%99%84%E5%8A%A0%E9%A2%98">附加题</h2>
+<ul>
+<li>阅读<a href="http://valgrind.org/docs/manual/cl-manual.html"> callgrind 手册页</a>并且尝试一些高级选项。</li>
+<li>阅读<a href="http://valgrind.org/docs/manual/cg-manual.html"> cachegrind 手册页</a>并且也尝试一些高级选项。</li>
+<li>在所有单元测试上使用<code>callgrind</code> 和 <code>cachegrind</code>，看看你能否找到可优化的地方。你找到一些预料之外的事情了吗？如果没有，你可能观察地不够仔细。</li>
+<li>使用 KCachegrind 并且观察它和我这里的输出有什么不同。</li>
+<li>现在使用这些工具来完成练习40的附加题和改进部分。</li>
+</ul>                            </section>
                         </div>
                         <div class="search-results">
                             <div class="has-results">
@@ -170,14 +276,27 @@
                     </div>
                 </div>
             </div>
-        </div>     
+        </div>
+                <a href="https://naka1205.github.io/lcthw/p/64206F3FDC812F26.html" class="navigation navigation-prev " aria-label="二叉搜索树">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/lcthw/p/288E5C87D0D80787.html" class="navigation navigation-next " aria-label="栈和队列">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
     </div>
 <script>
 var gitbook = gitbook || [];
 gitbook.push(function() {
     gitbook.page.hasChanged({
         "page": {
-            "title": '导言：C的笛卡尔之梦'
+            "title":  "将 Cachegrind 和 Callgrind 用于性能调优",
+            "next": {
+                "title": "栈和队列"
+            },
+            "previous": {
+                "title": "二叉搜索树"
+            }
         },
         "config": {
             "gitbook": "*",

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <title>首页 · 笨办法学C</title>
+    <title>准备 · 笨办法学C</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="笨办法学C 中文版">
+    <meta name="description" content="在这一章中，你将为C语言编程配置好你的系统。一个好消息是对于所有使用Linux或者Mac的人，你的系统是为C语言编程而设计的。C语言的创造者也对Unix操作系统的创造做出了贡献，并且Linux和OSX都是基于Unix的。事实上，安装工作会非常简单。">
     <meta name="keywords" content="笨办法学C">
     <meta name="generator" content="PKBook">
     <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/style.css">
@@ -91,70 +91,66 @@
     <div class="book-body">
         <div class="body-inner">
             <div class="book-header" role="navigation">
-                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/lcthw">导言：C的笛卡尔之梦</a></h1>
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/lcthw/p/C3D207FADFAF5841.html">准备</a></h1>
             </div>
             <div class="page-wrapper" tabindex="-1" role="main">
                 <div class="page-inner">
                     <div id="book-search-results">
                         <div class="search-noresults">
                             <section class="normal markdown-section">
-                                <h1 id="%E5%AF%BC%E8%A8%80%EF%BC%9AC%E7%9A%84%E7%AC%9B%E5%8D%A1%E5%B0%94%E4%B9%8B%E6%A2%A6" name="%E5%AF%BC%E8%A8%80%EF%BC%9AC%E7%9A%84%E7%AC%9B%E5%8D%A1%E5%B0%94%E4%B9%8B%E6%A2%A6">导言：C的笛卡尔之梦</h1>
+                                <h1 id="%E5%87%86%E5%A4%87" name="%E5%87%86%E5%A4%87">准备</h1>
+<p>在这一章中，你将为C语言编程配置好你的系统。一个好消息是对于所有使用Linux或者Mac的人，你的系统是为C语言编程而设计的。C语言的创造者也对Unix操作系统的创造做出了贡献，并且Linux和OSX都是基于Unix的。事实上，安装工作会非常简单。</p>
+<p>对于Windows上的用户，我有一个坏消息：在Windows上学习C非常痛苦。你可以在Windows上编写C代码，这并不是问题。问题是所有的库、函数和工具都和其它的C语言环境有些差异。C来自于Unix，并且和Unix平台配合得比较好。恐怕这是一个你并不能接受的事实。</p>
+<p>然而你并不需要为此恐慌。我并不是说要完全避免Windows。然而我说的是，如果你打算以最短的时间来学习C，你需要接触Unix并适应它。这同时也对你有帮助，因为懂得一些Unix的知识，也会让你懂得一些C编程的习惯，以及扩充你的技能。</p>
+<p>这也意味着每个人都需要使用命令行。嗯，就是这样。你将会进入命令行并且键入一些命令。不要为此感到害怕，因为我会告诉你要键入什么，以及结果应该是什么样子，所以你实际上会学到很多东西，同时扩充自己的技能。</p>
+<h2 id="Linux" name="Linux">Linux</h2>
+<p>在多数Linux系统上你都需要安装一些包。对于基于Debian的系统，例如Ubuntu你需要使用下列命令来安装一些东西：</p>
+<pre><code class="sh">$ sudo apt-get install build-essential</code></pre>
+<p>上面是命令行提示符的一个示例。你需要接触到能输入它的地方，找到你的“终端”程序并且运行它。接着，你会看到一个类似于<code>$</code>的Shell提示符，并且你可以在里面键入命令。不要键入<code>$</code>，而是它后面的东西。</p>
+<p>下面是在基于RPM的Linux系统，例如Fedora中执行相同安装工作的方法：</p>
+<pre><code class="sh">$ su -c "yum groupinstall development-tools"</code></pre>
+<p>一旦你运行了它，它会正常工作，你应该能够做本书的第一个练习。如果不能请告诉我。</p>
+<h2 id="Mac+OSX" name="Mac+OSX">Mac OSX</h2>
+<p>在 Mac OSX上，安装工作会更简单。首先，你需要从苹果官网下载最新的<code>XCode</code>，或者找到你的安装DVD并从中安装。需要下载的文件很大，要花费很长时间，所以我推荐你从DVD安装。同时，上网搜索“安装xcode”来指导你来安装它。</p>
+<p>一旦你安装完XCode，可能需要重启你的电脑。你可以找到你的终端程序并且将它放到快捷启动栏中。在本书中你会经常用到终端，所以最好将它放到顺手的区域。</p>
+<h2 id="Windows" name="Windows">Windows</h2>
+<p>对于Windows用户，你需要在虚拟机中安装并运行一个基本的Ubuntu Linux系统，来做本书的练习，并且避免任何Windows中安装的问题。</p>
 <blockquote>
-<p>原文：<a href="http://c.learncodethehardway.org/book/introduction.html">Introduction: The Cartesian Dream Of C</a></p>
+<p>译者注：如果你的Windows版本是Win10 14316及之后的版本，可以开启Ubuntu子系统来获取Linux环境。</p>
 </blockquote>
-<blockquote>
-<p>译者：<a href="https://github.com/wizardforcel">飞龙</a></p>
-</blockquote>
-<p>&zwj;</p>
-<blockquote>
-<p>直到现在，凡是我当作最真实、最可靠而接受的东西，都是从感官或通过感官得来的。不过，我有时觉得这些感官是骗人的，并且为了小心谨慎起见，对于一经骗过我们的东西就决不完全加以信任。</p>
-</blockquote>
-<blockquote>
-<p>勒内·笛卡尔，《第一哲学沉思录》</p>
-</blockquote>
-<p>如果有一段引述用来描述C语言编程的话，那就是它了。对于大多数程序员，C是极其可怕而且邪恶的。他就像是恶魔、撒旦，或者一个使用指针的花言巧语和对机器的直接访问来破坏你生产力的骗子洛基。于是，一旦这位计算界的路西法将你缠住，他就会使用邪恶的“段错误”来毁掉你的世界，并且揭露出与你交易中的骗局而嘲笑你。</p>
-<p>然而，C并不应由于这些事实而受到责备。你的电脑和控制它的操作系统才是真正的骗子，而不是朋友。它们通过密谋来向你隐藏它们的真实执行逻辑，使你永远都不真正知道背后发生了什么。C编程语言的失败之处只是向你提供接触背后真正工作原理的途径，并且告诉了你一些难以接受的事实。C会向你展示痛苦的真像（红色药丸），它将幕布拉开来向你展示一些神奇的原理。C即是真理。</p>
-<p>既然C如此危险，为什么还要使用它？因为C给了你力量来穿越抽象的假象，并且将你从愚昧中解放出来。</p>
-<h2 id="%E4%BD%A0%E4%BC%9A%E5%AD%A6%E5%88%B0%E4%BB%80%E4%B9%88" name="%E4%BD%A0%E4%BC%9A%E5%AD%A6%E5%88%B0%E4%BB%80%E4%B9%88">你会学到什么</h2>
-<p>这本书的目的是让你足够熟悉C语言，并能够使用它编写自己的软件，或者修改其他人的代码。这本书的最后，我们会从一本叫做“K&amp;R C”的名著中选取实际的代码，并且用你学过的知识来做代码审查。你需要学习下面这些东西来达到这一阶段：</p>
+<h2 id="%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8" name="%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8">文本编辑器</h2>
+<p>对于程序员来说，文本编辑器的选择有些困难。对于初学者我推荐他们使用<a href="http://projects.gnome.org/gedit/"><code>Gedit</code></a>，因为它很简单，并且可以用于编写代码。然而，它在特定的国际化环境中并不能正常工作。如果你已经是老司机的话，你可以选用你最喜欢的编辑器。</p>
+<p>出于这种考虑，我打算让你尝试一些你所在平台上的标准的用于编程的文本编辑器，并且长期使用其中你最喜欢的一个。如果你已经用了Gedit并且很喜欢他，那么就一致用下去。如果你打算尝试一些不同的编辑器，则赶快尝试并选择一个。</p>
+<p>最重要的事情是，不要纠结于寻找最完美的编辑器。文本编辑器几乎都很奇怪，你只需要选择一个并熟悉它，如果你发现喜欢别的编辑器可以切换到它。不要在挑选它和把它变得更好上面花很多时间。</p>
+<p>这是亦可以尝试的一些编辑器：</p>
 <ul>
-<li>C的基本语法和编写习惯。</li>
-<li>编译，<code>make</code>文件和链接。</li>
-<li>寻找和预防bug。</li>
-<li>防御性编程实践。</li>
-<li>使C的代码崩溃。</li>
-<li>编写基本的Unix系统软件。</li>
+<li>Linux和OSX上的<a href="http://projects.gnome.org/gedit/"><code>Gedit</code></a>。</li>
+<li>OSX上的<a href="http://www.barebones.com/products/textwrangler/"><code>TextWrangler</code></a>。</li>
+<li>可以在终端中运行并几乎在任何地方工作的<a href="http://www.nano-editor.org/"><code>Nano</code></a>。</li>
+<li><a href="http://www.gnu.org/software/emacs/"><code>Emacs</code></a>和<a href="http://emacsformacosx.com/"><code>Emacs OSX</code></a>。需要学习一些东西。</li>
+<li><a href="http://www.vim.org/"><code>Vim</code></a>和<a href="http://code.google.com/p/macvim/"><code>Mac Vim</code></a>。</li>
 </ul>
-<p>截至最后一章，你将会有足够的工具来解决基本的系统软件、库和其它小项目。</p>
-<h2 id="%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E6%9C%AC%E4%B9%A6" name="%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E6%9C%AC%E4%B9%A6">如何阅读本书</h2>
-<p>这本书为那些已经掌握至少一门编程语言的人而设计。如果你还没有接触过编程，我推荐你先学习<a href="http://learnpythonthehardway.org/">笨办法学Python</a>，这本书适用于真正的新手并且适合作为第一本编程书。一旦你学会了Python，你可以返回来开始学习这本书。</p>
-<p>对于那些已经学会编程的人，这本书的开头可能有些奇怪。它不像其它书一样，那些书中你会阅读一段段的文字然后编写一些代码。相反，这本书中我会让你立即开始编程，之后我会解释你做了什么。这样更有效果，因为你已经经历过的事情解释起来更加容易。</p>
-<p>由于采用了这样的结构，下面是本书中你必须遵守的规则：</p>
-<ul>
-<li>手动输入所有代码。不要复制粘贴！</li>
-<li>正确地输入所有代码，也包括注释。</li>
-<li>运行代码并保证产生相同的输出。</li>
-<li>如果出现了bug则修正它。</li>
-<li>做附加题时，如果你做不出某道题，马上跳过。</li>
-<li>在寻求帮助之前首先试着自己弄懂。</li>
-</ul>
-<p>如果你遵守了这些规则，完成了本书的每一件事，并且还不会编程C代码的话，你至少尝试过了。它并不适用于每个人，但是尝试的过程会让你成为一个更好的程序员。</p>
-<h2 id="%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B" name="%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B">核心能力</h2>
-<p>我假设你之前使用为“弱者”设计的语言。这些“易用的”语言之一是Python或者Ruby，它们带给了你草率的思维和半吊子的黑魔法。或者，你可能使用类似Lisp的语言，它假设计算机是纯函数式的奇幻大陆，带有一些为婴儿准备的充气墙。再或者你可能学过Prolog，于是你认为整个世界都是一个数据库，你可以从中寻找线索。甚至更糟糕的是，我假设你一直都在用IDE，所以你的大脑布满了内存漏洞，并且你每打三个字符都要按CTRL+空格来打出函数的整个名字。</p>
-<p>无论你的背景如何，你都可能不擅长下面四个技能：</p>
-<p>阅读和编写</p>
-<p>如果你使用IDE这会尤其正确。但是总体上我发现程序员做了很多“略读”，并且在理解上存在问题。它们会略读需要详细理解的代码，并且觉得他们已经理解了但事实上没有。其它语言提供了可以让他们避免实际编写任何代码的工具，所以面对一种类似C的语言时，他们就玩完了。你需要知道每个人都有这个问题，并且你可以通过强迫自己慢下来并且仔细对待阅读和编写代码来改正它。一开始你可能感到痛苦和无聊，但是这样的次数多了它也就变得容易了。</p>
-<p>专注细节</p>
-<p>每个人都不擅长这方面，它也是劣质软件的罪魁祸首。其它语言让你不会集中注意力，但是C要求你集中全部注意力，因为它直接在机器上运行，并且机器比较挑剔。C中没有“相似的类型”或者“足够接近”，所以你需要注意，再三检查你的代码，并假设你写的任何代码都是错的，直到你能证明它是对的。</p>
-<p>定位差异</p>
-<p>其它语言程序员的一个关键问题就是他们的大脑被训练来指出那个语言的差异，而不是C。当你对比你的代码和我练习中的代码时，你的眼睛会跳过你认为不重要或者不熟悉的字符。我会给你一些策略来强制你观察你的错误，但是要记住如果你的代码并不完全像书中的代码，它就是错的。</p>
-<p>规划和调试</p>
-<p>我喜欢其它较简单的语言，因为我可以想怎么写就怎么写。我将已有的想法输入进解释器，然后可以立即看到结果。你可以把你的想法试验出来，但是要注意，如果你仍然打算“试验代码使其能够工作”，它就行不通了。C对于你来说稍困难，因为你需要规划好首先创建什么。的确，你也可以进行试验，但是比起其他语言，你必须在C中更早地严肃对待代码。我会教给你在编程之前规划程序核心部分的方法，这对于使你成为更好的程序员十分有帮助。即使一个很小的规划，都会使接下来的事情变得顺利。</p>
-<p>学习C语言会使你变成更好的程序员，因为会强制你更早、更频繁地解决这些问题。你不会再草率地编写半吊子的代码，代码也会能够正常工作。C的优势是，它是一个简单的语言，你可以自己来弄清楚，这使得它成为用于学习机器，以及提升程序员核心技能的最佳语言。</p>
-<p>C比其它语言都要难，而这是由于C并不对你隐藏细节，它们在其它语言中都试图并且未能被掩盖。</p>
-<h2 id="%E5%8D%8F%E8%AE%AE" name="%E5%8D%8F%E8%AE%AE">协议</h2>
-<p>原书在完稿之后可以自由分发，并且能在<a href="http://www.amazon.com/Learn-Hard-Way-Practical-Computational/dp/0321884922/">亚马逊</a>上购买。该中译版本遵循<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>协议，你可以在保留署名和出处的前提下以非商业目的自由转载。</p>                            </section>
-                            <div class="comments gitm-container" id="comments"></div>
+<p>每个人都可能选择一款不同的编辑器，这些只是一部分人所选择的开源编辑器。在找到你最喜欢的那个之前，尝试其中的一些，甚至是一些商业编辑器。</p>
+<h2 id="%E8%AD%A6%E5%91%8A%EF%BC%9A%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8IDE" name="%E8%AD%A6%E5%91%8A%EF%BC%9A%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8IDE">警告：不要使用IDE</h2>
+<p>IDE，或者“集成开发工具”，会使你变笨。如果你想要成为一个好的程序员，它会是最糟糕的工具，因为它隐藏了背后的细节，你的工作是弄清楚背后发生了什么。如果你试着完成一些事情，并且所在平台根据特定的IDE而设计，它们非常有用，但是对于学习C编程（以及许多其它语言），它们没有意义。</p>
+<blockquote>
+<p>注</p>
+</blockquote>
+<blockquote>
+<p>如果你玩过吉他，你应该知道TAB是什么。但是对于其它人，让我对其做个解释。在音乐中有一种乐谱叫做“五线谱”。它是通用、非常古老的乐谱，以一种通用的方法来记下其它人应该在乐器上弹奏的音符。如果你弹过钢琴，这种乐谱非常易于使用，因为它几乎就是为钢琴和交响乐发明的。</p>
+</blockquote>
+<blockquote>
+<p>然而吉他是一种奇怪的乐器，它并不能很好地适用这种乐谱。所以吉他手通常使用一种叫做TAB（tablature）的乐谱。它所做的不是告诉你该弹奏哪个音符，而是在当时应该拨哪根弦。你完全可以在不知道所弹奏的单个音符的情况下学习整首乐曲，许多人也都是这么做的，但是如果你想知道你弹的是什么，TAB是毫无意义的。</p>
+</blockquote>
+<blockquote>
+<p>传统的乐谱可能比TAB更难一些，但是会告诉你如何演奏音乐，而不是如果玩吉他。通过传统的乐谱我可以在钢琴上，或者在贝斯上弹奏相同的曲子。我也可以将它放到电脑中，为它设计全部的曲谱。但是通过TAB我只能在吉他上弹奏。</p>
+</blockquote>
+<blockquote>
+<p>IDE就像是TAB，你可以用它非常快速地编程，但是你只能够用一种语言在一个平台上编程。这就是公司喜欢将它卖给你的原因。它们知道你比较懒，并且由于它只适用于它们自己的平台，他们就将你锁定在了那个平台上。</p>
+</blockquote>
+<blockquote>
+<p>打破这一循环的办法就是不用IDE学习编程。一个普通的文本编辑器，或者一个程序员使用的文本编辑器，例如Vim或者Emacs，能让你更熟悉代码。这有一点点困难，但是终结果是你将会熟悉任何代码，在任何计算机上，以任何语言，并且懂得背后的原理。</p>
+</blockquote>                            </section>
                         </div>
                         <div class="search-results">
                             <div class="has-results">
@@ -170,14 +166,24 @@
                     </div>
                 </div>
             </div>
-        </div>     
+        </div>
+                <a href="https://naka1205.github.io/lcthw/p/6C82D57E03DDE1F0.html" class="navigation navigation-next " aria-label="启用编译器">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
     </div>
 <script>
 var gitbook = gitbook || [];
 gitbook.push(function() {
     gitbook.page.hasChanged({
         "page": {
-            "title": '导言：C的笛卡尔之梦'
+            "title":  "准备",
+            "next": {
+                "title": "启用编译器"
+            },
+            "previous": {
+                "title": ""
+            }
         },
         "config": {
             "gitbook": "*",

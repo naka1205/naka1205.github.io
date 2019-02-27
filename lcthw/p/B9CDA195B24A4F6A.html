@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <title>首页 · 笨办法学C</title>
+    <title>Valgrind 介绍 · 笨办法学C</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="笨办法学C 中文版">
+    <meta name="description" content="现在是介绍另一个工具的时间了，在你学习C的过程中，你会时时刻刻用到它，它就是`Valgrind`。我现在就向你介绍`Valgrind`，是因为从现在开始你将会在“如何使它崩溃”一节中用到它。`Valgrind`是一个运行你的程序的程序，并且随后会报告所有你犯下的可怕错误。它是一款相当棒的自由软件，我在编写C代码时一直使用它。">
     <meta name="keywords" content="笨办法学C">
     <meta name="generator" content="PKBook">
     <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/style.css">
@@ -91,70 +91,164 @@
     <div class="book-body">
         <div class="body-inner">
             <div class="book-header" role="navigation">
-                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/lcthw">导言：C的笛卡尔之梦</a></h1>
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/lcthw/p/B9CDA195B24A4F6A.html">Valgrind 介绍</a></h1>
             </div>
             <div class="page-wrapper" tabindex="-1" role="main">
                 <div class="page-inner">
                     <div id="book-search-results">
                         <div class="search-noresults">
                             <section class="normal markdown-section">
-                                <h1 id="%E5%AF%BC%E8%A8%80%EF%BC%9AC%E7%9A%84%E7%AC%9B%E5%8D%A1%E5%B0%94%E4%B9%8B%E6%A2%A6" name="%E5%AF%BC%E8%A8%80%EF%BC%9AC%E7%9A%84%E7%AC%9B%E5%8D%A1%E5%B0%94%E4%B9%8B%E6%A2%A6">导言：C的笛卡尔之梦</h1>
+                                <h1 id="Valgrind+%E4%BB%8B%E7%BB%8D" name="Valgrind+%E4%BB%8B%E7%BB%8D">Valgrind 介绍</h1>
+<p>现在是介绍另一个工具的时间了，在你学习C的过程中，你会时时刻刻用到它，它就是 <code>Valgrind</code>。我现在就向你介绍 <code>Valgrind</code>，是因为从现在开始你将会在“如何使它崩溃”一节中用到它。<code>Valgrind</code>是一个运行你的程序的程序，并且随后会报告所有你犯下的可怕错误。它是一款相当棒的自由软件，我在编写C代码时一直使用它。</p>
+<p>回忆一下在上一章中，我让你移除<code>printf</code>的一个参数，来使你的代码崩溃。它打印出了一些奇怪的结果，但我并没有告诉你为什么它会这样打印。这个练习中我们要使用<code>Valgrind</code>来搞清楚为什么。</p>
 <blockquote>
-<p>原文：<a href="http://c.learncodethehardway.org/book/introduction.html">Introduction: The Cartesian Dream Of C</a></p>
+<p>注</p>
 </blockquote>
 <blockquote>
-<p>译者：<a href="https://github.com/wizardforcel">飞龙</a></p>
-</blockquote>
-<p>&zwj;</p>
-<blockquote>
-<p>直到现在，凡是我当作最真实、最可靠而接受的东西，都是从感官或通过感官得来的。不过，我有时觉得这些感官是骗人的，并且为了小心谨慎起见，对于一经骗过我们的东西就决不完全加以信任。</p>
+<p>这本书的前几章讲解了一小段代码，同时掺杂了一些必要的工具，它们在本书的剩余章节会用到。这样做的原因是，阅读这本书的大多数人都不熟悉编译语言，也必然不熟悉自动化的辅助工具。通过先让你懂得如何使用<code>make</code>和<code>Valgrind</code>，我可以在后面使用它们更快地教你C语言，以及帮助你尽早找出所有的bug。</p>
 </blockquote>
 <blockquote>
-<p>勒内·笛卡尔，《第一哲学沉思录》</p>
+<p>这一章之后我就不再介绍更多的工具了，每章的内容大部分是代码，以及少量的语法。然而，我也会提及少量工具，我们可以用它来真正了解发生了什么，以及更好地了解常见的错误和问题。</p>
 </blockquote>
-<p>如果有一段引述用来描述C语言编程的话，那就是它了。对于大多数程序员，C是极其可怕而且邪恶的。他就像是恶魔、撒旦，或者一个使用指针的花言巧语和对机器的直接访问来破坏你生产力的骗子洛基。于是，一旦这位计算界的路西法将你缠住，他就会使用邪恶的“段错误”来毁掉你的世界，并且揭露出与你交易中的骗局而嘲笑你。</p>
-<p>然而，C并不应由于这些事实而受到责备。你的电脑和控制它的操作系统才是真正的骗子，而不是朋友。它们通过密谋来向你隐藏它们的真实执行逻辑，使你永远都不真正知道背后发生了什么。C编程语言的失败之处只是向你提供接触背后真正工作原理的途径，并且告诉了你一些难以接受的事实。C会向你展示痛苦的真像（红色药丸），它将幕布拉开来向你展示一些神奇的原理。C即是真理。</p>
-<p>既然C如此危险，为什么还要使用它？因为C给了你力量来穿越抽象的假象，并且将你从愚昧中解放出来。</p>
-<h2 id="%E4%BD%A0%E4%BC%9A%E5%AD%A6%E5%88%B0%E4%BB%80%E4%B9%88" name="%E4%BD%A0%E4%BC%9A%E5%AD%A6%E5%88%B0%E4%BB%80%E4%B9%88">你会学到什么</h2>
-<p>这本书的目的是让你足够熟悉C语言，并能够使用它编写自己的软件，或者修改其他人的代码。这本书的最后，我们会从一本叫做“K&amp;R C”的名著中选取实际的代码，并且用你学过的知识来做代码审查。你需要学习下面这些东西来达到这一阶段：</p>
+<h2 id="%E5%AE%89%E8%A3%85+Valgrind" name="%E5%AE%89%E8%A3%85+Valgrind">安装 Valgrind</h2>
+<p>你可以用OS上的包管理器来安装<code>Valgrind</code>，但是我想让你学习如何从源码安装程序。这涉及到下面几个步骤：</p>
 <ul>
-<li>C的基本语法和编写习惯。</li>
-<li>编译，<code>make</code>文件和链接。</li>
-<li>寻找和预防bug。</li>
-<li>防御性编程实践。</li>
-<li>使C的代码崩溃。</li>
-<li>编写基本的Unix系统软件。</li>
+<li>下载源码的归档文件来获得源码</li>
+<li>解压归档文件，将文件提取到你的电脑上</li>
+<li>运行<code>./configure</code>来建立构建所需的配置</li>
+<li>运行<code>make</code>来构建源码，就像之前所做的那样</li>
+<li>运行<code>sudo make install</code>来将它安装到你的电脑</li>
 </ul>
-<p>截至最后一章，你将会有足够的工具来解决基本的系统软件、库和其它小项目。</p>
-<h2 id="%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E6%9C%AC%E4%B9%A6" name="%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E6%9C%AC%E4%B9%A6">如何阅读本书</h2>
-<p>这本书为那些已经掌握至少一门编程语言的人而设计。如果你还没有接触过编程，我推荐你先学习<a href="http://learnpythonthehardway.org/">笨办法学Python</a>，这本书适用于真正的新手并且适合作为第一本编程书。一旦你学会了Python，你可以返回来开始学习这本书。</p>
-<p>对于那些已经学会编程的人，这本书的开头可能有些奇怪。它不像其它书一样，那些书中你会阅读一段段的文字然后编写一些代码。相反，这本书中我会让你立即开始编程，之后我会解释你做了什么。这样更有效果，因为你已经经历过的事情解释起来更加容易。</p>
-<p>由于采用了这样的结构，下面是本书中你必须遵守的规则：</p>
+<p>下面是执行以上步骤的脚本，我想让你复制它：</p>
+<pre><code class="sh"># 1) Download it (use wget if you don't have curl)
+curl -O http://valgrind.org/downloads/valgrind-3.6.1.tar.bz2
+
+# use md5sum to make sure it matches the one on the site
+md5sum valgrind-3.6.1.tar.bz2
+
+# 2) Unpack it.
+tar -xjvf valgrind-3.6.1.tar.bz2
+
+# cd into the newly created directory
+cd valgrind-3.6.1
+
+# 3) configure it
+./configure
+
+# 4) make it
+make
+
+# 5) install it (need root)
+sudo make install</code></pre>
+<p>按照这份脚本，但是如果 <code>Valgrind</code> 有新的版本请更新它。如果它不能正常执行，也请试着深入研究原因。</p>
+<h2 id="%E4%BD%BF%E7%94%A8+Valgrind" name="%E4%BD%BF%E7%94%A8+Valgrind">使用 Valgrind</h2>
+<p>使用 <code>Valgrind</code> 十分简单，只要执行<code>valgrind theprogram</code>，它就会运行你的程序，随后打印出你的程序运行时出现的所有错误。在这个练习中，我们会崩溃在一个错误输出上，然后会修复它。</p>
+<p>首先，这里有一个<code>ex3.c</code>的故意出错的版本，叫做<code>ex4.c</code>。出于练习目的，将它再次输入到文件中：</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+/* Warning: This program is wrong on purpose. */
+
+int main()
+{
+    int age = 10;
+    int height;
+
+    printf("I am %d years old.\n");
+    printf("I am %d inches tall.\n", height);
+
+    return 0;
+}</code></pre>
+<p>你会发现，除了两个经典的错误外，其余部分都相同：</p>
 <ul>
-<li>手动输入所有代码。不要复制粘贴！</li>
-<li>正确地输入所有代码，也包括注释。</li>
-<li>运行代码并保证产生相同的输出。</li>
-<li>如果出现了bug则修正它。</li>
-<li>做附加题时，如果你做不出某道题，马上跳过。</li>
-<li>在寻求帮助之前首先试着自己弄懂。</li>
+<li>没有初始化<code>height</code>变量</li>
+<li>没有将<code>age</code>变量传入第一个<code>printf</code>函数</li>
 </ul>
-<p>如果你遵守了这些规则，完成了本书的每一件事，并且还不会编程C代码的话，你至少尝试过了。它并不适用于每个人，但是尝试的过程会让你成为一个更好的程序员。</p>
-<h2 id="%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B" name="%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B">核心能力</h2>
-<p>我假设你之前使用为“弱者”设计的语言。这些“易用的”语言之一是Python或者Ruby，它们带给了你草率的思维和半吊子的黑魔法。或者，你可能使用类似Lisp的语言，它假设计算机是纯函数式的奇幻大陆，带有一些为婴儿准备的充气墙。再或者你可能学过Prolog，于是你认为整个世界都是一个数据库，你可以从中寻找线索。甚至更糟糕的是，我假设你一直都在用IDE，所以你的大脑布满了内存漏洞，并且你每打三个字符都要按CTRL+空格来打出函数的整个名字。</p>
-<p>无论你的背景如何，你都可能不擅长下面四个技能：</p>
-<p>阅读和编写</p>
-<p>如果你使用IDE这会尤其正确。但是总体上我发现程序员做了很多“略读”，并且在理解上存在问题。它们会略读需要详细理解的代码，并且觉得他们已经理解了但事实上没有。其它语言提供了可以让他们避免实际编写任何代码的工具，所以面对一种类似C的语言时，他们就玩完了。你需要知道每个人都有这个问题，并且你可以通过强迫自己慢下来并且仔细对待阅读和编写代码来改正它。一开始你可能感到痛苦和无聊，但是这样的次数多了它也就变得容易了。</p>
-<p>专注细节</p>
-<p>每个人都不擅长这方面，它也是劣质软件的罪魁祸首。其它语言让你不会集中注意力，但是C要求你集中全部注意力，因为它直接在机器上运行，并且机器比较挑剔。C中没有“相似的类型”或者“足够接近”，所以你需要注意，再三检查你的代码，并假设你写的任何代码都是错的，直到你能证明它是对的。</p>
-<p>定位差异</p>
-<p>其它语言程序员的一个关键问题就是他们的大脑被训练来指出那个语言的差异，而不是C。当你对比你的代码和我练习中的代码时，你的眼睛会跳过你认为不重要或者不熟悉的字符。我会给你一些策略来强制你观察你的错误，但是要记住如果你的代码并不完全像书中的代码，它就是错的。</p>
-<p>规划和调试</p>
-<p>我喜欢其它较简单的语言，因为我可以想怎么写就怎么写。我将已有的想法输入进解释器，然后可以立即看到结果。你可以把你的想法试验出来，但是要注意，如果你仍然打算“试验代码使其能够工作”，它就行不通了。C对于你来说稍困难，因为你需要规划好首先创建什么。的确，你也可以进行试验，但是比起其他语言，你必须在C中更早地严肃对待代码。我会教给你在编程之前规划程序核心部分的方法，这对于使你成为更好的程序员十分有帮助。即使一个很小的规划，都会使接下来的事情变得顺利。</p>
-<p>学习C语言会使你变成更好的程序员，因为会强制你更早、更频繁地解决这些问题。你不会再草率地编写半吊子的代码，代码也会能够正常工作。C的优势是，它是一个简单的语言，你可以自己来弄清楚，这使得它成为用于学习机器，以及提升程序员核心技能的最佳语言。</p>
-<p>C比其它语言都要难，而这是由于C并不对你隐藏细节，它们在其它语言中都试图并且未能被掩盖。</p>
-<h2 id="%E5%8D%8F%E8%AE%AE" name="%E5%8D%8F%E8%AE%AE">协议</h2>
-<p>原书在完稿之后可以自由分发，并且能在<a href="http://www.amazon.com/Learn-Hard-Way-Practical-Computational/dp/0321884922/">亚马逊</a>上购买。该中译版本遵循<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>协议，你可以在保留署名和出处的前提下以非商业目的自由转载。</p>                            </section>
-                            <div class="comments gitm-container" id="comments"></div>
+<h2 id="%E4%BD%A0%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88" name="%E4%BD%A0%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88">你会看到什么</h2>
+<p>现在我们像通常一样构建它，但是不要直接运行，而是使用<code>Valgrind</code>来运行它（见源码："使用Valgrind构建并运行 ex4.c"）：</p>
+<pre><code class="sh">$ make ex4
+cc -Wall -g    ex4.c   -o ex4
+ex4.c: In function 'main':
+ex4.c:10: warning: too few arguments for format
+ex4.c:7: warning: unused variable 'age'
+ex4.c:11: warning: 'height' is used uninitialized in this function
+$ valgrind ./ex4
+==3082== Memcheck, a memory error detector
+==3082== Copyright (C) 2002-2010, and GNU GPL'd, by Julian Seward et al.
+==3082== Using Valgrind-3.6.0.SVN-Debian and LibVEX; rerun with -h for copyright info
+==3082== Command: ./ex4
+==3082==
+I am -16775432 years old.
+==3082== Use of uninitialised value of size 8
+==3082==    at 0x4E730EB: _itoa_word (_itoa.c:195)
+==3082==    by 0x4E743D8: vfprintf (vfprintf.c:1613)
+==3082==    by 0x4E7E6F9: printf (printf.c:35)
+==3082==    by 0x40052B: main (ex4.c:11)
+==3082==
+==3082== Conditional jump or move depends on uninitialised value(s)
+==3082==    at 0x4E730F5: _itoa_word (_itoa.c:195)
+==3082==    by 0x4E743D8: vfprintf (vfprintf.c:1613)
+==3082==    by 0x4E7E6F9: printf (printf.c:35)
+==3082==    by 0x40052B: main (ex4.c:11)
+==3082==
+==3082== Conditional jump or move depends on uninitialised value(s)
+==3082==    at 0x4E7633B: vfprintf (vfprintf.c:1613)
+==3082==    by 0x4E7E6F9: printf (printf.c:35)
+==3082==    by 0x40052B: main (ex4.c:11)
+==3082==
+==3082== Conditional jump or move depends on uninitialised value(s)
+==3082==    at 0x4E744C6: vfprintf (vfprintf.c:1613)
+==3082==    by 0x4E7E6F9: printf (printf.c:35)
+==3082==    by 0x40052B: main (ex4.c:11)
+==3082==
+I am 0 inches tall.
+==3082==
+==3082== HEAP SUMMARY:
+==3082==     in use at exit: 0 bytes in 0 blocks
+==3082==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==3082==
+==3082== All heap blocks were freed -- no leaks are possible
+==3082==
+==3082== For counts of detected and suppressed errors, rerun with: -v
+==3082== Use --track-origins=yes to see where uninitialised values come from
+==3082== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 4 from 4)
+$</code></pre>
+<blockquote>
+<p>注</p>
+</blockquote>
+<blockquote>
+<p>如果你运行了<code>Valgrind</code>，它显示一些类似于<code>by 0x4052112: (below main) (libc-start.c:226)</code>的东西，而不是<code>main.c</code>中的行号，你需要使用<code>valgrind --track-origins=yes ./ex4</code>命令来运行你的<code>Valgrind</code>。由于某些原因，<code>valgrind</code>的Debian和Ubuntu上的版本会这样，但是其它的不会。</p>
+</blockquote>
+<p>上面那段输出非常长，因为<code>Valgrind</code>在明确地告诉你程序中的每个错误都在哪儿。让我们从开头逐行分析一下（行号在左边，你可以参照）：</p>
+<p>1</p>
+<p>你执行了通常的<code>make ex4</code>来构建它。确保你看到的<code>cc</code>命令和它一样，并且带有<code>-g</code>选项，否则<code>Valgrind</code>的输出不会带上行号。</p>
+<p>2~6</p>
+<p>要注意编译器也会向你报告源码的错误，它警告你“向格式化函数传入了过少的变量”，因为你忘记包含<code>age</code>变量。</p>
+<p>7</p>
+<p>然后使用<code>valgrind ./ex4</code>来运行程序。</p>
+<p>8</p>
+<p>之后<code>Valgrind</code>变得十分奇怪，并向你报错：</p>
+<p>14~18</p>
+<p>在<code>main (ex4.c:11)</code>（意思是文件<code>ex4.c</code>的<code>main</code>函数的第11行）的那行中，有“大小为8的未初始化的值”。你通过查看错误找到了它，并且在它下面看到了“栈踪迹”。最开始看到的那行<code>(ex4.c:11)</code>在最下面，如果你不明白哪里出错了，你可以向上看，比如<code>printf.c:35</code>。通常最下面的一行最重要（这个例子中是第18行）。</p>
+<p>20~24</p>
+<p>下一个错误位于 <code>main</code> 函数中的 <code>ex4.c:11</code>。<code>Valgrind</code>不喜欢这一行，它说的是一些 if 语句或者 while 循环基于一个未初始化的值，在这个例子中是<code>height</code>。</p>
+<p>25~35</p>
+<p>剩下的错误都大同小异，因为这个值还在继续使用。</p>
+<p>37~46</p>
+<p>最后程序退出了，<code>Valgrind</code>显示出一份摘要，告诉你程序有多烂。</p>
+<p>这段信息读起来会相当多，下面是你的处理方法：</p>
+<ul>
+<li>无论什么时候你运行C程序并且使它工作，都应该使用<code>Valgrind</code>重新运行它来检查。</li>
+<li>对于得到的每个错误，找到“源码:行数”提示的位置，然后修复它。你可以上网搜索错误信息，来弄清楚它的意思。</li>
+<li>一旦你的程序在<code>Valgrind</code>下不出现任何错误信息，应该就好了。你可能学会了如何编写代码的一些技巧。</li>
+</ul>
+<p>在这个练习中我并不期待你马上完全掌握<code>Valgrind</code>，但是你应该安装并且学会如何快速使用它，以便我们将它用于后面的练习。</p>
+<h2 id="%E9%99%84%E5%8A%A0%E9%A2%98" name="%E9%99%84%E5%8A%A0%E9%A2%98">附加题</h2>
+<ul>
+<li>按照上面的指导，使用<code>Valgrind</code>和编译器修复这个程序。</li>
+<li>在互联网上查询<code>Valgrind</code>相关的资料。</li>
+<li>下载另一个程序并手动构建它。尝试一些你已经使用，但从来没有手动构建的程序。</li>
+<li>看看<code>Valgrind</code>的源码是如何在目录下组织的，并且阅读它的Makefile文件。不要担心，这对我来说没有任何意义。</li>
+</ul>                            </section>
                         </div>
                         <div class="search-results">
                             <div class="has-results">
@@ -170,14 +264,27 @@
                     </div>
                 </div>
             </div>
-        </div>     
+        </div>
+                <a href="https://naka1205.github.io/lcthw/p/D3BE6C8A075EF92E.html" class="navigation navigation-prev " aria-label="格式化输出">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/lcthw/p/624C7D3C62504470.html" class="navigation navigation-next " aria-label="一个C程序的结构">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
     </div>
 <script>
 var gitbook = gitbook || [];
 gitbook.push(function() {
     gitbook.page.hasChanged({
         "page": {
-            "title": '导言：C的笛卡尔之梦'
+            "title":  "Valgrind 介绍",
+            "next": {
+                "title": "一个C程序的结构"
+            },
+            "previous": {
+                "title": "格式化输出"
+            }
         },
         "config": {
             "gitbook": "*",

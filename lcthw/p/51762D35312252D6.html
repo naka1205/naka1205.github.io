@@ -1,0 +1,520 @@
+<!DOCTYPE HTML>
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>三叉搜索树 · 笨办法学C</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="我打算向你介绍的最后一种数据结构就是三叉搜索树（`TSTree`），它和`BSTree`很像，除了它有三个分支，`low`、`equal`和`high`。它的用法和`BStree`以及`Hashmap`基本相同，用于储存键值对的数据，但是它通过键中的独立字符来控制。这使得`TSTree`具有一些`BStree`和`Hashmap`不具备的功能。">
+    <meta name="keywords" content="笨办法学C">
+    <meta name="generator" content="PKBook">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/style.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/search.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/ebook.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/website.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css" rel="stylesheet">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://naka1205.github.io/lcthw/assets/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://naka1205.github.io/lcthw/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div class="book">
+    <div class="book-summary">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="输入关键词搜索" />
+        </div>
+        <nav role="navigation">
+    <ul class="summary">
+        <li><a href="https://naka1205.github.io/lcthw/index.html" target="blank" class="header">导言：C的笛卡尔之梦</a></li>
+        <li class="divider"></li>
+                <li class="header">练习</li>
+                        <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/lcthw/p/C3D207FADFAF5841.html"><a href="https://naka1205.github.io/lcthw/p/C3D207FADFAF5841.html">准备</a></li>
+                        <li class="chapter " data-level="1.2" data-path="https://naka1205.github.io/lcthw/p/6C82D57E03DDE1F0.html"><a href="https://naka1205.github.io/lcthw/p/6C82D57E03DDE1F0.html">启用编译器</a></li>
+                        <li class="chapter " data-level="1.3" data-path="https://naka1205.github.io/lcthw/p/44DB81B8DEDE247B.html"><a href="https://naka1205.github.io/lcthw/p/44DB81B8DEDE247B.html">用Make来代替Python</a></li>
+                        <li class="chapter " data-level="1.4" data-path="https://naka1205.github.io/lcthw/p/D3BE6C8A075EF92E.html"><a href="https://naka1205.github.io/lcthw/p/D3BE6C8A075EF92E.html">格式化输出</a></li>
+                        <li class="chapter " data-level="1.5" data-path="https://naka1205.github.io/lcthw/p/B9CDA195B24A4F6A.html"><a href="https://naka1205.github.io/lcthw/p/B9CDA195B24A4F6A.html">Valgrind 介绍</a></li>
+                        <li class="chapter " data-level="1.6" data-path="https://naka1205.github.io/lcthw/p/624C7D3C62504470.html"><a href="https://naka1205.github.io/lcthw/p/624C7D3C62504470.html">一个C程序的结构</a></li>
+                        <li class="chapter " data-level="1.7" data-path="https://naka1205.github.io/lcthw/p/33CC823F6781FDB9.html"><a href="https://naka1205.github.io/lcthw/p/33CC823F6781FDB9.html">变量类型</a></li>
+                        <li class="chapter " data-level="1.8" data-path="https://naka1205.github.io/lcthw/p/171C2758259C8DE1.html"><a href="https://naka1205.github.io/lcthw/p/171C2758259C8DE1.html">更多变量和一些算术</a></li>
+                        <li class="chapter " data-level="1.9" data-path="https://naka1205.github.io/lcthw/p/C2C3F49A54034E72.html"><a href="https://naka1205.github.io/lcthw/p/C2C3F49A54034E72.html">大小和数组</a></li>
+                        <li class="chapter " data-level="1.10" data-path="https://naka1205.github.io/lcthw/p/3046A11FC869E5C2.html"><a href="https://naka1205.github.io/lcthw/p/3046A11FC869E5C2.html">数组和字符串</a></li>
+                        <li class="chapter " data-level="1.11" data-path="https://naka1205.github.io/lcthw/p/3018A6B457AE4FF5.html"><a href="https://naka1205.github.io/lcthw/p/3018A6B457AE4FF5.html">字符串数组和循环</a></li>
+                        <li class="chapter " data-level="1.12" data-path="https://naka1205.github.io/lcthw/p/F552B2B9C8E36656.html"><a href="https://naka1205.github.io/lcthw/p/F552B2B9C8E36656.html">While循环和布尔表达式</a></li>
+                        <li class="chapter " data-level="1.13" data-path="https://naka1205.github.io/lcthw/p/71D0E364C2783A96.html"><a href="https://naka1205.github.io/lcthw/p/71D0E364C2783A96.html">If，Else If，Else</a></li>
+                        <li class="chapter " data-level="1.14" data-path="https://naka1205.github.io/lcthw/p/0E9AB6AD5C029EF6.html"><a href="https://naka1205.github.io/lcthw/p/0E9AB6AD5C029EF6.html">Switch语句</a></li>
+                        <li class="chapter " data-level="1.15" data-path="https://naka1205.github.io/lcthw/p/5D2945A8677CE165.html"><a href="https://naka1205.github.io/lcthw/p/5D2945A8677CE165.html">编写并使用函数</a></li>
+                        <li class="chapter " data-level="1.16" data-path="https://naka1205.github.io/lcthw/p/8B5745CD2156FCC3.html"><a href="https://naka1205.github.io/lcthw/p/8B5745CD2156FCC3.html">指针，可怕的指针</a></li>
+                        <li class="chapter " data-level="1.17" data-path="https://naka1205.github.io/lcthw/p/CDCC108031940336.html"><a href="https://naka1205.github.io/lcthw/p/CDCC108031940336.html">结构体和指向它们的指针</a></li>
+                        <li class="chapter " data-level="1.18" data-path="https://naka1205.github.io/lcthw/p/178F8DDE733AD0DD.html"><a href="https://naka1205.github.io/lcthw/p/178F8DDE733AD0DD.html">堆和栈的内存分配</a></li>
+                        <li class="chapter " data-level="1.19" data-path="https://naka1205.github.io/lcthw/p/DC3B5E7AC8CF3946.html"><a href="https://naka1205.github.io/lcthw/p/DC3B5E7AC8CF3946.html">函数指针</a></li>
+                        <li class="chapter " data-level="1.20" data-path="https://naka1205.github.io/lcthw/p/746ADCFC76734882.html"><a href="https://naka1205.github.io/lcthw/p/746ADCFC76734882.html">一个简单的对象系统</a></li>
+                        <li class="chapter " data-level="1.21" data-path="https://naka1205.github.io/lcthw/p/8BBFC8E0CA1C348B.html"><a href="https://naka1205.github.io/lcthw/p/8BBFC8E0CA1C348B.html">Zed的强大的调试宏</a></li>
+                        <li class="chapter " data-level="1.22" data-path="https://naka1205.github.io/lcthw/p/B67D461964D39489.html"><a href="https://naka1205.github.io/lcthw/p/B67D461964D39489.html">高级数据类型和控制结构</a></li>
+                        <li class="chapter " data-level="1.23" data-path="https://naka1205.github.io/lcthw/p/6822F5C25F64C05F.html"><a href="https://naka1205.github.io/lcthw/p/6822F5C25F64C05F.html">栈、作用域和全局</a></li>
+                        <li class="chapter " data-level="1.24" data-path="https://naka1205.github.io/lcthw/p/F6AD606057D5DA1A.html"><a href="https://naka1205.github.io/lcthw/p/F6AD606057D5DA1A.html">认识达夫设备</a></li>
+                        <li class="chapter " data-level="1.25" data-path="https://naka1205.github.io/lcthw/p/2F13B44DB3CFDC2E.html"><a href="https://naka1205.github.io/lcthw/p/2F13B44DB3CFDC2E.html">输入输出和文件</a></li>
+                        <li class="chapter " data-level="1.26" data-path="https://naka1205.github.io/lcthw/p/2852FA26A8BCFAD2.html"><a href="https://naka1205.github.io/lcthw/p/2852FA26A8BCFAD2.html">变参函数</a></li>
+                        <li class="chapter " data-level="1.27" data-path="https://naka1205.github.io/lcthw/p/41ABE0D9F5D3164C.html"><a href="https://naka1205.github.io/lcthw/p/41ABE0D9F5D3164C.html">编写第一个真正的程序</a></li>
+                        <li class="chapter " data-level="1.28" data-path="https://naka1205.github.io/lcthw/p/FFD032B7FC697307.html"><a href="https://naka1205.github.io/lcthw/p/FFD032B7FC697307.html">创造性和防御性编程</a></li>
+                        <li class="chapter " data-level="1.29" data-path="https://naka1205.github.io/lcthw/p/5C8A5BE0B219BE30.html"><a href="https://naka1205.github.io/lcthw/p/5C8A5BE0B219BE30.html">Makefile 进阶</a></li>
+                        <li class="chapter " data-level="1.30" data-path="https://naka1205.github.io/lcthw/p/09D69E06B935E885.html"><a href="https://naka1205.github.io/lcthw/p/09D69E06B935E885.html">库和链接</a></li>
+                        <li class="chapter " data-level="1.31" data-path="https://naka1205.github.io/lcthw/p/866A23BE27D0D7E6.html"><a href="https://naka1205.github.io/lcthw/p/866A23BE27D0D7E6.html">自动化测试</a></li>
+                        <li class="chapter " data-level="1.32" data-path="https://naka1205.github.io/lcthw/p/B6E48A0ED7072528.html"><a href="https://naka1205.github.io/lcthw/p/B6E48A0ED7072528.html">代码调试</a></li>
+                        <li class="chapter " data-level="1.33" data-path="https://naka1205.github.io/lcthw/p/364477FB0CED1A03.html"><a href="https://naka1205.github.io/lcthw/p/364477FB0CED1A03.html">双向链表</a></li>
+                        <li class="chapter " data-level="1.34" data-path="https://naka1205.github.io/lcthw/p/219AB7A902A81B94.html"><a href="https://naka1205.github.io/lcthw/p/219AB7A902A81B94.html">链表算法</a></li>
+                        <li class="chapter " data-level="1.35" data-path="https://naka1205.github.io/lcthw/p/4375976486E9101E.html"><a href="https://naka1205.github.io/lcthw/p/4375976486E9101E.html">动态数组</a></li>
+                        <li class="chapter " data-level="1.36" data-path="https://naka1205.github.io/lcthw/p/F674E4CC423F4082.html"><a href="https://naka1205.github.io/lcthw/p/F674E4CC423F4082.html">排序和搜索</a></li>
+                        <li class="chapter " data-level="1.37" data-path="https://naka1205.github.io/lcthw/p/95C8D9CEC85F55BD.html"><a href="https://naka1205.github.io/lcthw/p/95C8D9CEC85F55BD.html">更安全的字符串</a></li>
+                        <li class="chapter " data-level="1.38" data-path="https://naka1205.github.io/lcthw/p/19B22BBE112EDD42.html"><a href="https://naka1205.github.io/lcthw/p/19B22BBE112EDD42.html">哈希表</a></li>
+                        <li class="chapter " data-level="1.39" data-path="https://naka1205.github.io/lcthw/p/8ACDB75ECC6C4448.html"><a href="https://naka1205.github.io/lcthw/p/8ACDB75ECC6C4448.html">哈希算法</a></li>
+                        <li class="chapter " data-level="1.40" data-path="https://naka1205.github.io/lcthw/p/1D54A74DB0C212CF.html"><a href="https://naka1205.github.io/lcthw/p/1D54A74DB0C212CF.html">字符串算法</a></li>
+                        <li class="chapter " data-level="1.41" data-path="https://naka1205.github.io/lcthw/p/64206F3FDC812F26.html"><a href="https://naka1205.github.io/lcthw/p/64206F3FDC812F26.html">二叉搜索树</a></li>
+                        <li class="chapter " data-level="1.42" data-path="https://naka1205.github.io/lcthw/p/35162CDAACDA8825.html"><a href="https://naka1205.github.io/lcthw/p/35162CDAACDA8825.html">将 Cachegrind 和 Callgrind 用于性能调优</a></li>
+                        <li class="chapter " data-level="1.43" data-path="https://naka1205.github.io/lcthw/p/288E5C87D0D80787.html"><a href="https://naka1205.github.io/lcthw/p/288E5C87D0D80787.html">栈和队列</a></li>
+                        <li class="chapter " data-level="1.44" data-path="https://naka1205.github.io/lcthw/p/EFA4890803FAB6F6.html"><a href="https://naka1205.github.io/lcthw/p/EFA4890803FAB6F6.html">一个简单的统计引擎</a></li>
+                        <li class="chapter " data-level="1.45" data-path="https://naka1205.github.io/lcthw/p/E0AFFDAFB6FE468C.html"><a href="https://naka1205.github.io/lcthw/p/E0AFFDAFB6FE468C.html">环形缓冲区</a></li>
+                        <li class="chapter " data-level="1.46" data-path="https://naka1205.github.io/lcthw/p/EEC00C835A3D8361.html"><a href="https://naka1205.github.io/lcthw/p/EEC00C835A3D8361.html">一个简单的TCP/IP客户端</a></li>
+                        <li class="chapter " data-level="1.47" data-path="https://naka1205.github.io/lcthw/p/51762D35312252D6.html"><a href="https://naka1205.github.io/lcthw/p/51762D35312252D6.html">三叉搜索树</a></li>
+                        <li class="chapter " data-level="1.48" data-path="https://naka1205.github.io/lcthw/p/A0F3E9CEEB1897B5.html"><a href="https://naka1205.github.io/lcthw/p/A0F3E9CEEB1897B5.html">一个快速的URL路由</a></li>
+                    <li class="divider"></li>
+                <li class="header">后记</li>
+                        <li class="chapter " data-level="2.1" data-path="https://naka1205.github.io/lcthw/p/ACB13F6E3D683928.html"><a href="https://naka1205.github.io/lcthw/p/ACB13F6E3D683928.html">解构 K&amp;R C&rdquo; 已死</a></li>
+                    <li class="divider"></li>
+                <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
+    </ul>
+</nav>
+    </div>
+    
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/lcthw/p/51762D35312252D6.html">三叉搜索树</a></h1>
+            </div>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">
+                                <h1 id="%E4%B8%89%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91" name="%E4%B8%89%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91">三叉搜索树</h1>
+<p>我打算向你介绍的最后一种数据结构就是三叉搜索树（<code>TSTree</code>），它和<code>BSTree</code>很像，除了它有三个分支，<code>low</code>、<code>equal</code>和<code>high</code>。它的用法和<code>BStree</code>以及<code>Hashmap</code>基本相同，用于储存键值对的数据，但是它通过键中的独立字符来控制。这使得<code>TSTree</code>具有一些<code>BStree</code>和<code>Hashmap</code>不具备的功能。</p>
+<p><code>TSTree</code>的工作方式是，每个键都是字符串，根据字符串中字符的等性，通过构建或者遍历一棵树来进行插入。首先由根节点开始，观察每个节点的字符，如果小于、等于或大于则去往相应的方向。你可以参考这个头文件：</p>
+<pre><code class="c">#ifndef _lcthw_TSTree_h
+#define _lctwh_TSTree_h
+
+#include &lt;stdlib.h&gt;
+#include &lt;lcthw/darray.h&gt;
+
+typedef struct TSTree {
+    char splitchar;
+    struct TSTree *low;
+    struct TSTree *equal;
+    struct TSTree *high;
+    void *value;
+} TSTree;
+
+void *TSTree_search(TSTree *root, const char *key, size_t len);
+
+void *TSTree_search_prefix(TSTree *root, const char *key, size_t len);
+
+typedef void (*TSTree_traverse_cb)(void *value, void *data);
+
+TSTree *TSTree_insert(TSTree *node, const char *key, size_t len, void *value);
+
+void TSTree_traverse(TSTree *node, TSTree_traverse_cb cb, void *data);
+
+void TSTree_destroy(TSTree *root);
+
+#endif</code></pre>
+<p><code>TSTree</code>拥有下列成员：</p>
+<p>splitchar</p>
+<p>树中该节点的字符。</p>
+<p>low</p>
+<p>小于<code>splitchar</code>的分支。</p>
+<p>equal</p>
+<p>等于<code>splitchar</code>的分支。</p>
+<p>high</p>
+<p>大于<code>splitchar</code>的分支。</p>
+<p>value</p>
+<p>这个节点上符合当前<code>splitchar</code>的值的集合。</p>
+<p>你可以看到这个实现中含有下列操作：</p>
+<p>search</p>
+<p>为特定<code>key</code>寻找值的典型操作。</p>
+<p>search_prefix</p>
+<p>寻找第一个以<code>key</code>为前缀的值，这是你不能轻易使用<code>BSTree</code> 或 <code>Hashmap</code> 完成的操作。</p>
+<p>insert</p>
+<p>将<code>key</code>根据每个字符拆分，并把它插入到树中。</p>
+<p>traverse</p>
+<p>遍历整颗树，使你能够收集或分析所包含的所有键和值。</p>
+<p>唯一缺少的操作就是<code>TSTree_delete</code>，这是因为它是一个开销很大的操作，比<code>BSTree_delete</code>大得多。当我使用<code>TSTree</code>结构时，我将它们视为常量数据，我打算遍历许多次，但是永远不会移除任何东西。它们对于这样的操作会很快，但是不适于需要快速插入或删除的情况。为此我会使用<code>Hashmap</code>因为它优于<code>BSTree</code>和<code>TSTree</code>。</p>
+<p><code>TSTree</code>的实现非常简单，但是第一次可能难以理解。我会在你读完之后拆分它。</p>
+<pre><code class="c">#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;assert.h&gt;
+#include &lt;lcthw/dbg.h&gt;
+#include &lt;lcthw/tstree.h&gt;
+
+static inline TSTree *TSTree_insert_base(TSTree *root, TSTree *node,
+        const char *key, size_t len, void *value)
+{
+    if(node == NULL) {
+        node = (TSTree *) calloc(1, sizeof(TSTree));
+
+        if(root == NULL) {
+            root = node;
+        }
+
+        node-&gt;splitchar = *key;
+    }
+
+    if(*key &lt; node-&gt;splitchar) {
+        node-&gt;low = TSTree_insert_base(root, node-&gt;low, key, len, value);
+    } else if(*key == node-&gt;splitchar) {
+        if(len &gt; 1) {
+            node-&gt;equal = TSTree_insert_base(root, node-&gt;equal, key+1, len - 1, value);
+        } else {
+            assert(node-&gt;value == NULL &amp;&amp; "Duplicate insert into tst.");
+            node-&gt;value = value;
+        }
+    } else {
+        node-&gt;high = TSTree_insert_base(root, node-&gt;high, key, len, value);
+    }
+
+    return node;
+}
+
+TSTree *TSTree_insert(TSTree *node, const char *key, size_t len, void *value)
+{
+    return TSTree_insert_base(node, node, key, len, value);
+}
+
+void *TSTree_search(TSTree *root, const char *key, size_t len)
+{
+    TSTree *node = root;
+    size_t i = 0;
+
+    while(i &lt; len &amp;&amp; node) {
+        if(key[i] &lt; node-&gt;splitchar) {
+            node = node-&gt;low;
+        } else if(key[i] == node-&gt;splitchar) {
+            i++;
+            if(i &lt; len) node = node-&gt;equal;
+        } else {
+            node = node-&gt;high;
+        }
+    }
+
+    if(node) {
+        return node-&gt;value;
+    } else {
+        return NULL;
+    }
+}
+
+void *TSTree_search_prefix(TSTree *root, const char *key, size_t len)
+{
+    if(len == 0) return NULL;
+
+    TSTree *node = root;
+    TSTree *last = NULL;
+    size_t i = 0;
+
+    while(i &lt; len &amp;&amp; node) {
+        if(key[i] &lt; node-&gt;splitchar) {
+            node = node-&gt;low;
+        } else if(key[i] == node-&gt;splitchar) {
+            i++;
+            if(i &lt; len) {
+                if(node-&gt;value) last = node;
+                node = node-&gt;equal;
+            }
+        } else {
+            node = node-&gt;high;
+        }
+    }
+
+    node = node ? node : last;
+
+    // traverse until we find the first value in the equal chain
+    // this is then the first node with this prefix
+    while(node &amp;&amp; !node-&gt;value) {
+        node = node-&gt;equal;
+    }
+
+    return node ? node-&gt;value : NULL;
+}
+
+void TSTree_traverse(TSTree *node, TSTree_traverse_cb cb, void *data)
+{
+    if(!node) return;
+
+    if(node-&gt;low) TSTree_traverse(node-&gt;low, cb, data);
+
+    if(node-&gt;equal) {
+        TSTree_traverse(node-&gt;equal, cb, data);
+    }
+
+    if(node-&gt;high) TSTree_traverse(node-&gt;high, cb, data);
+
+    if(node-&gt;value) cb(node-&gt;value, data);
+}
+
+void TSTree_destroy(TSTree *node)
+{
+    if(node == NULL) return;
+
+    if(node-&gt;low) TSTree_destroy(node-&gt;low);
+
+    if(node-&gt;equal) {
+        TSTree_destroy(node-&gt;equal);
+    }
+
+    if(node-&gt;high) TSTree_destroy(node-&gt;high);
+
+    free(node);
+}</code></pre>
+<p>对于<code>TSTree_insert</code>，我使用了相同模式的递归结构，其中我创建了一个小型函数，它调用真正的递归函数。我对此并不做任何检查，但是你应该为之添加通常的防御性编程策略。要记住的一件事，就是它使用了一些不同的设计，这里并没有单独的<code>TSTree_create</code>函数，如果你将<code>node</code>传入为<code>NULL</code>，它会新建一个，然后返回最终的值。</p>
+<p>这意味着我需要为你分解<code>TSTree_insert_base</code>，使你理解插入操作。</p>
+<p>tstree.c:10-18</p>
+<p>像我提到的那样，如果函数接收到<code>NULL</code>，我需要创建节点，并且将<code>*key</code>（当前字符）赋值给它。这用于当我插入键时来构建树。</p>
+<p>tstree.c:20-21</p>
+<p>当<code>*key</code>小于<code>splitchar</code>时，选择<code>low</code>分支。</p>
+<p>tstree.c:22</p>
+<p>如果<code>splitchar</code>相等，我就要进一步确定等性。这会在我刚刚创建这个节点时发生，所以这里我会构建这棵树。</p>
+<p>tstree.c:23-24</p>
+<p>仍然有字符串需要处理，所以向下递归<code>equal</code>分支，并且移动到下一个<code>*key</code>字符。</p>
+<p>tstree.c:26-27</p>
+<p>这是最后一个字符的情况，所以我将值设置好。我编写了一个<code>assert</code>来避免重复。</p>
+<p>tstree.c:29-30</p>
+<p>最后的情况是<code>*key</code>大于<code>splitchar</code>，所以我需要向下递归<code>high</code>分支。</p>
+<p>这个数据结构的<code>key</code>实际上带有一些特性，我只会在<code>splitchar</code>相等时递增所要分析的字符。其它两种情况我只会继续遍历整个树，直到碰到了相等的字符，我才会递归处理下一个字符。这一操作使它对于找不到键的情况是非常快的。我可以传入一个不存在的键，简单地遍历一些<code>high</code>和<code>low</code>节点，直到我碰到了末尾并且知道这个键不存在。我并不需要处理键的每个字符，或者树的每个节点。</p>
+<p>一旦你理解了这些，之后来分析<code>TSTree_search</code>如何工作：</p>
+<p>tstree.c:46</p>
+<p>我并不需要递归处理整棵树，只需要使用<code>while</code>循环和当前的<code>node</code>节点。</p>
+<p>tstree.c:47-48</p>
+<p>如果当前字符小于节点中的<code>splitchar</code>，则选择<code>low</code>分支。</p>
+<p>tstree.c:49-51</p>
+<p>如果相等，自增<code>i</code>并且选择<code>equal</code>分支，只要不是最后一个字符。这就是<code>if(i &lt; len)</code>所做的，使我不会越过最后的<code>value</code>。</p>
+<p>tstree.c:52-53</p>
+<p>否则我会选择<code>high</code>分支，由于当前字符更大。</p>
+<p>tstree.c:57-61</p>
+<p>循环结束后如果<code>node</code>不为空，那么返回它的<code>value</code>，否则返回<code>NULL</code>。</p>
+<p>这并不难以理解，并且你可以看到<code>TSTree_search_prefix</code>函数用了几乎相同的算法。唯一的不同就是我并不试着寻找精确的匹配，而是可找到的最长前缀。我在相等时跟踪<code>last</code>节点来实现它，并且在搜索循环结束之后，遍历这个节点直到发现<code>value</code>。</p>
+<p>观察<code>TSTree_search_prefix</code>，你就会开始明白<code>TSTree</code>相对<code>BSTree</code> 和 <code>Hashmap</code>在查找操作上的另一个优点。给定一个长度为X的键，你可以在X步内找到任何键，但是也可以在X步加上额外的N步内找到第一个前缀，取决于匹配的键有多长。如果树中最长的键是十个字符，那么你就可以在10步之内找到任意的前缀。更重要的是，你可以通过对键的每个字符只比较一次来实现。</p>
+<p>相比之下，使用<code>BSTree</code>执行相同操作，你需要在<code>BSTree</code>的每一个可能匹配的节点中检查两个字符串是否有共同的前缀。这对于寻找键，或者检查键是否存在（<code>TSTree_search</code>）是相同的。你需要将每个字符与<code>BSTree</code>中的大多数字符对比，来确认是否匹配。</p>
+<p><code>Hashamp</code>对于寻找前缀更加糟糕，因为你不能够仅仅计算前缀的哈希值。你基本上不能高效在<code>Hashmap</code>中实现它，除非数据类似URL可以被解析。即使这样你还是需要遍历<code>Hashmap</code>的所有节点。</p>
+<blockquote>
+<p>译者注：二叉树和三叉树在搜索时都是走其中的一支，但由于二叉树中每个节点储存字符串，而三叉树储存的是字符。所以三叉树的整个搜索过程相当于一次字符串比较，而二叉树的每个节点都需要一次字符串比较。三叉树堆叠储存字符串使搜索起来更方便。</p>
+</blockquote>
+<blockquote>
+<p>至于哈希表，由于字符串整体和前缀计算出来的哈希值差别很大，所以按前缀搜索时，哈希的优势完全失效，所以只能改为暴力搜索，效果比二叉树还要差。</p>
+</blockquote>
+<p>最后的两个函数应该易于分析，因为它们是典型的遍历和销毁操作，你已经在其它数据结构中看到过了。</p>
+<p>最后，我编写了简单的单元测试，来确保我所做的全部东西正确。</p>
+<pre><code class="c">#include "minunit.h"
+#include &lt;lcthw/tstree.h&gt;
+#include &lt;string.h&gt;
+#include &lt;assert.h&gt;
+#include &lt;lcthw/bstrlib.h&gt;
+
+
+TSTree *node = NULL;
+char *valueA = "VALUEA";
+char *valueB = "VALUEB";
+char *value2 = "VALUE2";
+char *value4 = "VALUE4";
+char *reverse = "VALUER";
+int traverse_count = 0;
+
+struct tagbstring test1 = bsStatic("TEST");
+struct tagbstring test2 = bsStatic("TEST2");
+struct tagbstring test3 = bsStatic("TSET");
+struct tagbstring test4 = bsStatic("T");
+
+char *test_insert()
+{
+    node = TSTree_insert(node, bdata(&amp;test1), blength(&amp;test1), valueA);
+    mu_assert(node != NULL, "Failed to insert into tst.");
+
+    node = TSTree_insert(node, bdata(&amp;test2), blength(&amp;test2), value2);
+    mu_assert(node != NULL, "Failed to insert into tst with second name.");
+
+    node = TSTree_insert(node, bdata(&amp;test3), blength(&amp;test3), reverse);
+    mu_assert(node != NULL, "Failed to insert into tst with reverse name.");
+
+    node = TSTree_insert(node, bdata(&amp;test4), blength(&amp;test4), value4);
+    mu_assert(node != NULL, "Failed to insert into tst with second name.");
+
+    return NULL;
+}
+
+char *test_search_exact()
+{
+    // tst returns the last one inserted
+    void *res = TSTree_search(node, bdata(&amp;test1), blength(&amp;test1));
+    mu_assert(res == valueA, "Got the wrong value back, should get A not B.");
+
+    // tst does not find if not exact
+    res = TSTree_search(node, "TESTNO", strlen("TESTNO"));
+    mu_assert(res == NULL, "Should not find anything.");
+
+    return NULL;
+}
+
+char *test_search_prefix()
+{
+    void *res = TSTree_search_prefix(node, bdata(&amp;test1), blength(&amp;test1));
+    debug("result: %p, expected: %p", res, valueA);
+    mu_assert(res == valueA, "Got wrong valueA by prefix.");
+
+    res = TSTree_search_prefix(node, bdata(&amp;test1), 1);
+    debug("result: %p, expected: %p", res, valueA);
+    mu_assert(res == value4, "Got wrong value4 for prefix of 1.");
+
+    res = TSTree_search_prefix(node, "TE", strlen("TE"));
+    mu_assert(res != NULL, "Should find for short prefix.");
+
+    res = TSTree_search_prefix(node, "TE--", strlen("TE--"));
+    mu_assert(res != NULL, "Should find for partial prefix.");
+
+
+    return NULL;
+}
+
+void TSTree_traverse_test_cb(void *value, void *data)
+{
+    assert(value != NULL &amp;&amp; "Should not get NULL value.");
+    assert(data == valueA &amp;&amp; "Expecting valueA as the data.");
+    traverse_count++;
+}
+
+char *test_traverse()
+{
+    traverse_count = 0;
+    TSTree_traverse(node, TSTree_traverse_test_cb, valueA);
+    debug("traverse count is: %d", traverse_count);
+    mu_assert(traverse_count == 4, "Didn't find 4 keys.");
+
+    return NULL;
+}
+
+char *test_destroy()
+{
+    TSTree_destroy(node);
+
+    return NULL;
+}
+
+char * all_tests() {
+    mu_suite_start();
+
+    mu_run_test(test_insert);
+    mu_run_test(test_search_exact);
+    mu_run_test(test_search_prefix);
+    mu_run_test(test_traverse);
+    mu_run_test(test_destroy);
+
+    return NULL;
+}
+
+RUN_TESTS(all_tests);</code></pre>
+<h2 id="%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9" name="%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9">优点和缺点</h2>
+<p><code>TSTree</code>可以用于实现一些其它实用的事情：</p>
+<ul>
+<li>除了寻找前缀，你可以反转插入的所有键，之后通过后缀来寻找。我使用它来寻找主机名称，因为我想要找到<code>*.learncodethehardway.com</code>，所以如果我反向来寻找，会更快匹配到它们。</li>
+<li>你可以执行“模糊”搜索，其中你可以收集所有与键的大多数字符相似的节点，或者使用其它算法用于搜索近似的匹配。</li>
+<li>你可以寻找所有中间带有特定部分的键。</li>
+</ul>
+<p>我已经谈论了<code>TSTree</code>能做的一些事情，但是它们并不总是最好的数据结构。<code>TSTree</code>的缺点在于：</p>
+<ul>
+<li>像我提到过的那样，删除操作非常麻烦。它们适用于需要快速检索并且从不移除的操作。如果你需要删除，可以简单地将<code>value</code>置空，之后当树过大时周期性重构它。</li>
+<li>与<code>BSTree</code>和<code>Hashmap</code>相比，它在相同的键上使用了大量的空间。它对于键中的每个字符都使用了完整的节点。它对于短的键效果更好，但如果你在<code>TSTree</code>中放入一大堆东西，它会变得很大。</li>
+<li>它们也不适合处理非常长的键，然而“长”是主观的词，所以应当像通常一样先进行测试。如果你尝试储存一万个字符的键，那么应当使用<code>Hashmap</code>。</li>
+</ul>
+<h2 id="%E5%A6%82%E4%BD%95%E6%94%B9%E8%BF%9B" name="%E5%A6%82%E4%BD%95%E6%94%B9%E8%BF%9B">如何改进</h2>
+<p>像通常一样，浏览代码，使用防御性的先决条件、断言，并且检查每个函数来改进。下面是一些其他的改进方案，但是你并不需要全部实现它们：</p>
+<ul>
+<li>你可以使用<code>DArray</code>来允许重复的<code>value</code>值。</li>
+<li>因为我提到删除非常困难，但是你可以通过将值设为<code>NULL</code>来模拟，使值能够高效被删除。</li>
+<li>目前还不能获取到所有匹配指定前缀的值，我会让你在附加题中实现它。</li>
+<li>有一些其他得更复杂的算法会比它要好。查询前缀数组、前缀树和基数树的资料。</li>
+</ul>
+<h2 id="%E9%99%84%E5%8A%A0%E9%A2%98" name="%E9%99%84%E5%8A%A0%E9%A2%98">附加题</h2>
+<ul>
+<li>实现<code>TSTree_collect</code>返回<code>DArray</code>包含所有匹配指定前缀的键。</li>
+<li>实现<code>TSTree_search_suffix</code>和<code>TSTree_insert_suffix</code>，实现后缀搜索和插入。</li>
+<li>使用<code>valgrind</code>来查看与<code>BSTree</code> 和 <code>Hashmap</code>相比，这个结构使用了多少内存来储存数据。</li>
+</ul>                            </section>
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+                                <h1 class="search-results-title">
+                                    关于"<span class='search-query'></span>"的搜索结果共<span class='search-results-count'></span>条
+                                </h1>
+                                <ul class="search-results-list"></ul>
+                            </div>
+                            <div class="no-results">
+                                <h1 class="search-results-title">没有"<span class='search-query'></span>"相关内容</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <a href="https://naka1205.github.io/lcthw/p/EEC00C835A3D8361.html" class="navigation navigation-prev " aria-label="一个简单的TCP/IP客户端">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/lcthw/p/A0F3E9CEEB1897B5.html" class="navigation navigation-next " aria-label="一个快速的URL路由">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
+    </div>
+<script>
+var gitbook = gitbook || [];
+gitbook.push(function() {
+    gitbook.page.hasChanged({
+        "page": {
+            "title":  "三叉搜索树",
+            "next": {
+                "title": "一个快速的URL路由"
+            },
+            "previous": {
+                "title": "一个简单的TCP/IP客户端"
+            }
+        },
+        "config": {
+            "gitbook": "*",
+            "theme": "default",
+            "variables": {},
+            "plugins": ["-lunr", "-search", "-highlight","search-pro"],
+            "pluginsConfig": {
+                "search-pro": {},
+                "highlight": {},
+                "sharing": {},
+                "fontsettings": {},
+                "theme-default": {}
+            },
+            "structure": {},
+            "pdf": {},
+            "styles": {}
+        },
+        "file": {},
+        "gitbook": {},
+        "basePath": "https://naka1205.github.io/lcthw",
+        "book": {}
+    });
+});
+</script>
+</div>
+<script src="https://naka1205.github.io/lcthw/assets/js/gitbook.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/theme.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/jquery.mark.min.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/search.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/buttons.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/fontsettings.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/plugin.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+</body>
+</html>

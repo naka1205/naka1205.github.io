@@ -1,0 +1,436 @@
+<!DOCTYPE HTML>
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>一个简单的统计引擎 · 笨办法学C</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="这是一个简单的算法，我将其用于“联机”（不储存任何样本）收集概要统计。我在任何需要执行一些统计，比如均值、标准差和求和中使用它，但是其中我并不会储存所需的全部样本。我只需要储存计算出的结果，它们仅仅含有5个数值。">
+    <meta name="keywords" content="笨办法学C">
+    <meta name="generator" content="PKBook">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/style.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/search.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/ebook.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/website.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css" rel="stylesheet">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://naka1205.github.io/lcthw/assets/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://naka1205.github.io/lcthw/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div class="book">
+    <div class="book-summary">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="输入关键词搜索" />
+        </div>
+        <nav role="navigation">
+    <ul class="summary">
+        <li><a href="https://naka1205.github.io/lcthw/index.html" target="blank" class="header">导言：C的笛卡尔之梦</a></li>
+        <li class="divider"></li>
+                <li class="header">练习</li>
+                        <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/lcthw/p/C3D207FADFAF5841.html"><a href="https://naka1205.github.io/lcthw/p/C3D207FADFAF5841.html">准备</a></li>
+                        <li class="chapter " data-level="1.2" data-path="https://naka1205.github.io/lcthw/p/6C82D57E03DDE1F0.html"><a href="https://naka1205.github.io/lcthw/p/6C82D57E03DDE1F0.html">启用编译器</a></li>
+                        <li class="chapter " data-level="1.3" data-path="https://naka1205.github.io/lcthw/p/44DB81B8DEDE247B.html"><a href="https://naka1205.github.io/lcthw/p/44DB81B8DEDE247B.html">用Make来代替Python</a></li>
+                        <li class="chapter " data-level="1.4" data-path="https://naka1205.github.io/lcthw/p/D3BE6C8A075EF92E.html"><a href="https://naka1205.github.io/lcthw/p/D3BE6C8A075EF92E.html">格式化输出</a></li>
+                        <li class="chapter " data-level="1.5" data-path="https://naka1205.github.io/lcthw/p/B9CDA195B24A4F6A.html"><a href="https://naka1205.github.io/lcthw/p/B9CDA195B24A4F6A.html">Valgrind 介绍</a></li>
+                        <li class="chapter " data-level="1.6" data-path="https://naka1205.github.io/lcthw/p/624C7D3C62504470.html"><a href="https://naka1205.github.io/lcthw/p/624C7D3C62504470.html">一个C程序的结构</a></li>
+                        <li class="chapter " data-level="1.7" data-path="https://naka1205.github.io/lcthw/p/33CC823F6781FDB9.html"><a href="https://naka1205.github.io/lcthw/p/33CC823F6781FDB9.html">变量类型</a></li>
+                        <li class="chapter " data-level="1.8" data-path="https://naka1205.github.io/lcthw/p/171C2758259C8DE1.html"><a href="https://naka1205.github.io/lcthw/p/171C2758259C8DE1.html">更多变量和一些算术</a></li>
+                        <li class="chapter " data-level="1.9" data-path="https://naka1205.github.io/lcthw/p/C2C3F49A54034E72.html"><a href="https://naka1205.github.io/lcthw/p/C2C3F49A54034E72.html">大小和数组</a></li>
+                        <li class="chapter " data-level="1.10" data-path="https://naka1205.github.io/lcthw/p/3046A11FC869E5C2.html"><a href="https://naka1205.github.io/lcthw/p/3046A11FC869E5C2.html">数组和字符串</a></li>
+                        <li class="chapter " data-level="1.11" data-path="https://naka1205.github.io/lcthw/p/3018A6B457AE4FF5.html"><a href="https://naka1205.github.io/lcthw/p/3018A6B457AE4FF5.html">字符串数组和循环</a></li>
+                        <li class="chapter " data-level="1.12" data-path="https://naka1205.github.io/lcthw/p/F552B2B9C8E36656.html"><a href="https://naka1205.github.io/lcthw/p/F552B2B9C8E36656.html">While循环和布尔表达式</a></li>
+                        <li class="chapter " data-level="1.13" data-path="https://naka1205.github.io/lcthw/p/71D0E364C2783A96.html"><a href="https://naka1205.github.io/lcthw/p/71D0E364C2783A96.html">If，Else If，Else</a></li>
+                        <li class="chapter " data-level="1.14" data-path="https://naka1205.github.io/lcthw/p/0E9AB6AD5C029EF6.html"><a href="https://naka1205.github.io/lcthw/p/0E9AB6AD5C029EF6.html">Switch语句</a></li>
+                        <li class="chapter " data-level="1.15" data-path="https://naka1205.github.io/lcthw/p/5D2945A8677CE165.html"><a href="https://naka1205.github.io/lcthw/p/5D2945A8677CE165.html">编写并使用函数</a></li>
+                        <li class="chapter " data-level="1.16" data-path="https://naka1205.github.io/lcthw/p/8B5745CD2156FCC3.html"><a href="https://naka1205.github.io/lcthw/p/8B5745CD2156FCC3.html">指针，可怕的指针</a></li>
+                        <li class="chapter " data-level="1.17" data-path="https://naka1205.github.io/lcthw/p/CDCC108031940336.html"><a href="https://naka1205.github.io/lcthw/p/CDCC108031940336.html">结构体和指向它们的指针</a></li>
+                        <li class="chapter " data-level="1.18" data-path="https://naka1205.github.io/lcthw/p/178F8DDE733AD0DD.html"><a href="https://naka1205.github.io/lcthw/p/178F8DDE733AD0DD.html">堆和栈的内存分配</a></li>
+                        <li class="chapter " data-level="1.19" data-path="https://naka1205.github.io/lcthw/p/DC3B5E7AC8CF3946.html"><a href="https://naka1205.github.io/lcthw/p/DC3B5E7AC8CF3946.html">函数指针</a></li>
+                        <li class="chapter " data-level="1.20" data-path="https://naka1205.github.io/lcthw/p/746ADCFC76734882.html"><a href="https://naka1205.github.io/lcthw/p/746ADCFC76734882.html">一个简单的对象系统</a></li>
+                        <li class="chapter " data-level="1.21" data-path="https://naka1205.github.io/lcthw/p/8BBFC8E0CA1C348B.html"><a href="https://naka1205.github.io/lcthw/p/8BBFC8E0CA1C348B.html">Zed的强大的调试宏</a></li>
+                        <li class="chapter " data-level="1.22" data-path="https://naka1205.github.io/lcthw/p/B67D461964D39489.html"><a href="https://naka1205.github.io/lcthw/p/B67D461964D39489.html">高级数据类型和控制结构</a></li>
+                        <li class="chapter " data-level="1.23" data-path="https://naka1205.github.io/lcthw/p/6822F5C25F64C05F.html"><a href="https://naka1205.github.io/lcthw/p/6822F5C25F64C05F.html">栈、作用域和全局</a></li>
+                        <li class="chapter " data-level="1.24" data-path="https://naka1205.github.io/lcthw/p/F6AD606057D5DA1A.html"><a href="https://naka1205.github.io/lcthw/p/F6AD606057D5DA1A.html">认识达夫设备</a></li>
+                        <li class="chapter " data-level="1.25" data-path="https://naka1205.github.io/lcthw/p/2F13B44DB3CFDC2E.html"><a href="https://naka1205.github.io/lcthw/p/2F13B44DB3CFDC2E.html">输入输出和文件</a></li>
+                        <li class="chapter " data-level="1.26" data-path="https://naka1205.github.io/lcthw/p/2852FA26A8BCFAD2.html"><a href="https://naka1205.github.io/lcthw/p/2852FA26A8BCFAD2.html">变参函数</a></li>
+                        <li class="chapter " data-level="1.27" data-path="https://naka1205.github.io/lcthw/p/41ABE0D9F5D3164C.html"><a href="https://naka1205.github.io/lcthw/p/41ABE0D9F5D3164C.html">编写第一个真正的程序</a></li>
+                        <li class="chapter " data-level="1.28" data-path="https://naka1205.github.io/lcthw/p/FFD032B7FC697307.html"><a href="https://naka1205.github.io/lcthw/p/FFD032B7FC697307.html">创造性和防御性编程</a></li>
+                        <li class="chapter " data-level="1.29" data-path="https://naka1205.github.io/lcthw/p/5C8A5BE0B219BE30.html"><a href="https://naka1205.github.io/lcthw/p/5C8A5BE0B219BE30.html">Makefile 进阶</a></li>
+                        <li class="chapter " data-level="1.30" data-path="https://naka1205.github.io/lcthw/p/09D69E06B935E885.html"><a href="https://naka1205.github.io/lcthw/p/09D69E06B935E885.html">库和链接</a></li>
+                        <li class="chapter " data-level="1.31" data-path="https://naka1205.github.io/lcthw/p/866A23BE27D0D7E6.html"><a href="https://naka1205.github.io/lcthw/p/866A23BE27D0D7E6.html">自动化测试</a></li>
+                        <li class="chapter " data-level="1.32" data-path="https://naka1205.github.io/lcthw/p/B6E48A0ED7072528.html"><a href="https://naka1205.github.io/lcthw/p/B6E48A0ED7072528.html">代码调试</a></li>
+                        <li class="chapter " data-level="1.33" data-path="https://naka1205.github.io/lcthw/p/364477FB0CED1A03.html"><a href="https://naka1205.github.io/lcthw/p/364477FB0CED1A03.html">双向链表</a></li>
+                        <li class="chapter " data-level="1.34" data-path="https://naka1205.github.io/lcthw/p/219AB7A902A81B94.html"><a href="https://naka1205.github.io/lcthw/p/219AB7A902A81B94.html">链表算法</a></li>
+                        <li class="chapter " data-level="1.35" data-path="https://naka1205.github.io/lcthw/p/4375976486E9101E.html"><a href="https://naka1205.github.io/lcthw/p/4375976486E9101E.html">动态数组</a></li>
+                        <li class="chapter " data-level="1.36" data-path="https://naka1205.github.io/lcthw/p/F674E4CC423F4082.html"><a href="https://naka1205.github.io/lcthw/p/F674E4CC423F4082.html">排序和搜索</a></li>
+                        <li class="chapter " data-level="1.37" data-path="https://naka1205.github.io/lcthw/p/95C8D9CEC85F55BD.html"><a href="https://naka1205.github.io/lcthw/p/95C8D9CEC85F55BD.html">更安全的字符串</a></li>
+                        <li class="chapter " data-level="1.38" data-path="https://naka1205.github.io/lcthw/p/19B22BBE112EDD42.html"><a href="https://naka1205.github.io/lcthw/p/19B22BBE112EDD42.html">哈希表</a></li>
+                        <li class="chapter " data-level="1.39" data-path="https://naka1205.github.io/lcthw/p/8ACDB75ECC6C4448.html"><a href="https://naka1205.github.io/lcthw/p/8ACDB75ECC6C4448.html">哈希算法</a></li>
+                        <li class="chapter " data-level="1.40" data-path="https://naka1205.github.io/lcthw/p/1D54A74DB0C212CF.html"><a href="https://naka1205.github.io/lcthw/p/1D54A74DB0C212CF.html">字符串算法</a></li>
+                        <li class="chapter " data-level="1.41" data-path="https://naka1205.github.io/lcthw/p/64206F3FDC812F26.html"><a href="https://naka1205.github.io/lcthw/p/64206F3FDC812F26.html">二叉搜索树</a></li>
+                        <li class="chapter " data-level="1.42" data-path="https://naka1205.github.io/lcthw/p/35162CDAACDA8825.html"><a href="https://naka1205.github.io/lcthw/p/35162CDAACDA8825.html">将 Cachegrind 和 Callgrind 用于性能调优</a></li>
+                        <li class="chapter " data-level="1.43" data-path="https://naka1205.github.io/lcthw/p/288E5C87D0D80787.html"><a href="https://naka1205.github.io/lcthw/p/288E5C87D0D80787.html">栈和队列</a></li>
+                        <li class="chapter " data-level="1.44" data-path="https://naka1205.github.io/lcthw/p/EFA4890803FAB6F6.html"><a href="https://naka1205.github.io/lcthw/p/EFA4890803FAB6F6.html">一个简单的统计引擎</a></li>
+                        <li class="chapter " data-level="1.45" data-path="https://naka1205.github.io/lcthw/p/E0AFFDAFB6FE468C.html"><a href="https://naka1205.github.io/lcthw/p/E0AFFDAFB6FE468C.html">环形缓冲区</a></li>
+                        <li class="chapter " data-level="1.46" data-path="https://naka1205.github.io/lcthw/p/EEC00C835A3D8361.html"><a href="https://naka1205.github.io/lcthw/p/EEC00C835A3D8361.html">一个简单的TCP/IP客户端</a></li>
+                        <li class="chapter " data-level="1.47" data-path="https://naka1205.github.io/lcthw/p/51762D35312252D6.html"><a href="https://naka1205.github.io/lcthw/p/51762D35312252D6.html">三叉搜索树</a></li>
+                        <li class="chapter " data-level="1.48" data-path="https://naka1205.github.io/lcthw/p/A0F3E9CEEB1897B5.html"><a href="https://naka1205.github.io/lcthw/p/A0F3E9CEEB1897B5.html">一个快速的URL路由</a></li>
+                    <li class="divider"></li>
+                <li class="header">后记</li>
+                        <li class="chapter " data-level="2.1" data-path="https://naka1205.github.io/lcthw/p/ACB13F6E3D683928.html"><a href="https://naka1205.github.io/lcthw/p/ACB13F6E3D683928.html">解构 K&amp;R C&rdquo; 已死</a></li>
+                    <li class="divider"></li>
+                <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
+    </ul>
+</nav>
+    </div>
+    
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/lcthw/p/EFA4890803FAB6F6.html">一个简单的统计引擎</a></h1>
+            </div>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">
+                                <h1 id="%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%BC%95%E6%93%8E" name="%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%BC%95%E6%93%8E">一个简单的统计引擎</h1>
+<p>这是一个简单的算法，我将其用于“联机”（不储存任何样本）收集概要统计。我在任何需要执行一些统计，比如均值、标准差和求和中使用它，但是其中我并不会储存所需的全部样本。我只需要储存计算出的结果，它们仅仅含有5个数值。</p>
+<h2 id="%E8%AE%A1%E7%AE%97%E6%A0%87%E5%87%86%E5%B7%AE%E5%92%8C%E5%9D%87%E5%80%BC" name="%E8%AE%A1%E7%AE%97%E6%A0%87%E5%87%86%E5%B7%AE%E5%92%8C%E5%9D%87%E5%80%BC">计算标准差和均值</h2>
+<p>首先你需要一系列样本。它可以使任何事情，比如完成一个任务所需的时间，某人访问某个东西的次数，或者甚至是网站的评分。是什么并不重要，只要你能得到一些数字，并且你想要知道它们的下列概要统计值：</p>
+<p><code>sum</code></p>
+<p>对所有数字求和。</p>
+<p><code>sumsq</code>（平方和）</p>
+<p>对所有数字求平方和。</p>
+<p><code>count(n)</code></p>
+<p>求出样本数量。</p>
+<p><code>min</code></p>
+<p>求出样本最小值。</p>
+<p><code>max</code></p>
+<p>求出样本最大值。</p>
+<p><code>mean</code></p>
+<p>求出样本的均值。它类似于但又不是中位数，但可作为中位数的估计。</p>
+<p><code>stddev</code></p>
+<p>使用<code>$sqrt(sumsq - (sum * mean) / (n - 1) )</code>来计算标准差，其中<code>sqrt</code>为<code>math.h</code>头文件中的平方根。</p>
+<p>我将会使用R来验证这些计算，因为我知道R能够计算正确。</p>
+<pre><code class="r">&gt; s &lt;- runif(n=10, max=10)
+&gt; s
+ [1] 6.1061334 9.6783204 1.2747090 8.2395131 0.3333483 6.9755066 1.0626275
+ [8] 7.6587523 4.9382973 9.5788115
+&gt; summary(s)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
+ 0.3333  2.1910  6.5410  5.5850  8.0940  9.6780
+&gt; sd(s)
+[1] 3.547868
+&gt; sum(s)
+[1] 55.84602
+&gt; sum(s * s)
+[1] 425.1641
+&gt; sum(s) * mean(s)
+[1] 311.8778
+&gt; sum(s * s) - sum(s) * mean(s)
+[1] 113.2863
+&gt; (sum(s * s) - sum(s) * mean(s)) / (length(s) - 1)
+[1] 12.58737
+&gt; sqrt((sum(s * s) - sum(s) * mean(s)) / (length(s) - 1))
+[1] 3.547868
+&gt;</code></pre>
+<p>你并不需要懂得R，只需要看着我拆分代码来解释如何检查这些运算：</p>
+<p>lines 1-4</p>
+<p>我使用<code>runit</code>函数来获得“随机形式”的数字分布，之后将它们打印出来。我会在接下来的单元测试中用到它。</p>
+<p>lines 5-7</p>
+<p>这个就是概要，便于你看到R如何计算它们。</p>
+<p>lines 8-9</p>
+<p>这是使用<code>sd</code>函数计算的<code>stddev</code>。</p>
+<p>lines 10-11</p>
+<p>现在我开始手动进行这一计算，首先计算<code>sum</code>。</p>
+<p>lines 12-13</p>
+<p><code>stddev</code>公式中的下一部分是<code>sumsq</code>，我可以通过<code>sum(s * s)</code>来得到，它告诉R将整个<code>s</code>列表乘以其自身，之后计算它们的<code>sum</code>。R的可以在整个数据结构上做运算，就像这样。</p>
+<p>lines 14-15</p>
+<p>观察那个公式，我之后需要<code>sum</code>乘上<code>mean</code>，所以我执行了<code>sum(s) * mean(s)</code>。</p>
+<p>lines 16-17</p>
+<p>我接着将<code>sumsq</code>参与运算，得到<code>sum(s * s) - sum(s) * mean(s)</code>。</p>
+<p>lines 18-19</p>
+<p>还需要除以<code>n - 1</code>，所以我执行了<code>(sum(s * s) - sum(s) * mean(s)) / (length(s) - 1)</code>。</p>
+<p>lines 20-21</p>
+<p>随后，我使用<code>sqrt</code>算出平方根，并得到3.547868，它符合R通过<code>sd</code>的运算结果。</p>
+<h2 id="%E5%AE%9E%E7%8E%B0" name="%E5%AE%9E%E7%8E%B0">实现</h2>
+<p>这就是计算<code>stddev</code>的方法，现在我可以编写一些简单的代码来实现这一计算。</p>
+<pre><code class="c">#ifndef lcthw_stats_h
+#define lctwh_stats_h
+
+typedef struct Stats {
+    double sum;
+    double sumsq;
+    unsigned long n;
+    double min;
+    double max;
+} Stats;
+
+Stats *Stats_recreate(double sum, double sumsq, unsigned long n, double min, double max);
+
+Stats *Stats_create();
+
+double Stats_mean(Stats *st);
+
+double Stats_stddev(Stats *st);
+
+void Stats_sample(Stats *st, double s);
+
+void Stats_dump(Stats *st);
+
+#endif</code></pre>
+<p>这里你可以看到我将所需的统计量放入一个struct，并且创建了用于处理样本和获得数值的函数。实现它只是转换数字的一个练习：</p>
+<pre><code class="c">#include &lt;math.h&gt;
+#include &lt;lcthw/stats.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;lcthw/dbg.h&gt;
+
+Stats *Stats_recreate(double sum, double sumsq, unsigned long n, double min, double max)
+{
+    Stats *st = malloc(sizeof(Stats));
+    check_mem(st);
+
+    st-&gt;sum = sum;
+    st-&gt;sumsq = sumsq;
+    st-&gt;n = n;
+    st-&gt;min = min;
+    st-&gt;max = max;
+
+    return st;
+
+error:
+    return NULL;
+}
+
+Stats *Stats_create()
+{
+    return Stats_recreate(0.0, 0.0, 0L, 0.0, 0.0);
+}
+
+double Stats_mean(Stats *st)
+{
+    return st-&gt;sum / st-&gt;n;
+}
+
+double Stats_stddev(Stats *st)
+{
+   return sqrt( (st-&gt;sumsq - ( st-&gt;sum * st-&gt;sum / st-&gt;n)) / (st-&gt;n - 1) );
+}
+
+void Stats_sample(Stats *st, double s)
+{
+    st-&gt;sum += s;
+    st-&gt;sumsq += s * s;
+
+    if(st-&gt;n == 0) {
+        st-&gt;min = s;
+        st-&gt;max = s;
+    } else {
+        if(st-&gt;min &gt; s) st-&gt;min = s;
+        if(st-&gt;max &lt; s) st-&gt;max = s;
+    }
+
+    st-&gt;n += 1;
+}
+
+void Stats_dump(Stats *st)
+{
+    fprintf(stderr, "sum: %f, sumsq: %f, n: %ld, min: %f, max: %f, mean: %f, stddev: %f",
+            st-&gt;sum, st-&gt;sumsq, st-&gt;n, st-&gt;min, st-&gt;max,
+            Stats_mean(st), Stats_stddev(st));
+}</code></pre>
+<p>下面是<code>stats.c</code>中每个函数的作用：</p>
+<p>Stats_recreate</p>
+<p>我希望从一些数据中加载这些数据，这和函数让我重新创建<code>Stats</code>结构体。</p>
+<p>Stats_create</p>
+<p>只是以全0的值调用<code>Stats_recreate</code>。</p>
+<p>Stats_mean</p>
+<p>使用<code>sum</code>和<code>n</code>计算均值。</p>
+<p>Stats_stddev</p>
+<p>实现我之前的公式，唯一的不同就是我使用<code>t-&gt;sum / st-&gt;n</code>来计算均值，而不是调用<code>Stats_mean</code>。</p>
+<p>Stats_sample</p>
+<p>它用于在<code>Stats</code>结构体中储存数值。当你向它提供数值时，它看到<code>n</code>是0，并且相应地设置<code>min</code>和<code>max</code>。之后的每次调用都会使<code>sum</code>、<code>sumsq</code>和<code>n</code>增加，并且计算出这一新的样本的<code>min</code>和<code>max</code>值。</p>
+<p>Stats_dump</p>
+<p>简单的调试函数，用于转储统计量，便于你看到它们。</p>
+<p>我需要干的最后一件事，就是确保这些运算正确。我打算使用我的样本，以及来自于R会话中的计算结果创建单元测试，来确保我会得到正确的结果。</p>
+<pre><code class="c">#include "minunit.h"
+#include &lt;lcthw/stats.h&gt;
+#include &lt;math.h&gt;
+
+const int NUM_SAMPLES = 10;
+double samples[] = {
+    6.1061334, 9.6783204, 1.2747090, 8.2395131, 0.3333483,
+    6.9755066, 1.0626275, 7.6587523, 4.9382973, 9.5788115
+};
+
+Stats expect = {
+    .sumsq = 425.1641,
+    .sum = 55.84602,
+    .min = 0.333,
+    .max = 9.678,
+    .n = 10,
+};
+double expect_mean = 5.584602;
+double expect_stddev = 3.547868;
+
+#define EQ(X,Y,N) (round((X) * pow(10, N)) == round((Y) * pow(10, N)))
+
+char *test_operations()
+{
+    int i = 0;
+    Stats *st = Stats_create();
+    mu_assert(st != NULL, "Failed to create stats.");
+
+    for(i = 0; i &lt; NUM_SAMPLES; i++) {
+        Stats_sample(st, samples[i]);
+    }
+
+    Stats_dump(st);
+
+    mu_assert(EQ(st-&gt;sumsq, expect.sumsq, 3), "sumsq not valid");
+    mu_assert(EQ(st-&gt;sum, expect.sum, 3), "sum not valid");
+    mu_assert(EQ(st-&gt;min, expect.min, 3), "min not valid");
+    mu_assert(EQ(st-&gt;max, expect.max, 3), "max not valid");
+    mu_assert(EQ(st-&gt;n, expect.n, 3), "max not valid");
+    mu_assert(EQ(expect_mean, Stats_mean(st), 3), "mean not valid");
+    mu_assert(EQ(expect_stddev, Stats_stddev(st), 3), "stddev not valid");
+
+    return NULL;
+}
+
+char *test_recreate()
+{
+    Stats *st = Stats_recreate(expect.sum, expect.sumsq, expect.n, expect.min, expect.max);
+
+    mu_assert(st-&gt;sum == expect.sum, "sum not equal");
+    mu_assert(st-&gt;sumsq == expect.sumsq, "sumsq not equal");
+    mu_assert(st-&gt;n == expect.n, "n not equal");
+    mu_assert(st-&gt;min == expect.min, "min not equal");
+    mu_assert(st-&gt;max == expect.max, "max not equal");
+    mu_assert(EQ(expect_mean, Stats_mean(st), 3), "mean not valid");
+    mu_assert(EQ(expect_stddev, Stats_stddev(st), 3), "stddev not valid");
+
+    return NULL;
+}
+
+char *all_tests()
+{
+    mu_suite_start();
+
+    mu_run_test(test_operations);
+    mu_run_test(test_recreate);
+
+    return NULL;
+}
+
+RUN_TESTS(all_tests);</code></pre>
+<p>这个单元测试中没什么新东西，除了<code>EQ</code>宏。我比较懒，并且不想查询比较两个<code>double</code>值的标准方法，所以我使用了这个宏。<code>double</code>的问题是等性不是完全相等，因为我使用了两个不同的系统，并带有不同的四舍五入的位数。解决方案就是判断两个数“乘以10的X次方是否相等”。</p>
+<p>我使用<code>EQ</code>来计算数字的10的幂，之后使用<code>round</code>函数来获得证书。这是个简单的方法来四舍五入N位小数，并以整数比较结果。我确定有数以亿计的其它方法能做相同的事情，但是现在我就用这种。</p>
+<p>预期结果储存在<code>Stats</code> <code>struct</code>中，之后我只是确保我得到的数值接近R给我的数值。</p>
+<h2 id="%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8" name="%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8">如何使用</h2>
+<p>你可以使用标准差和均值来决定一个新的样本是否是“有趣”的，或者你可以使用它们计算统计量的统计量。前者对于人们来说更容易理解，所以我用登录的例子来做个简短的解释。</p>
+<p>假设你在跟踪人们花费多长时间在一台服务器上，并且你打算用统计来分析它。每次有人登录进来，你都对它们在这里的时长保持跟踪，之后调用<code>Stats_sample</code>函数。我会寻找停留“过长”时间的人，以及“过短”的人。</p>
+<p>比起设定特殊的级别，我更倾向于将一个人的停留时间与<code>mean (plus or minus) 2 * stddev</code>这个范围进行比较。我计算出<code>mean</code>和<code>2 * stddev</code>，并且如果它们在这个范围之外，我就认为是“有趣”的。由于我使用了联机算法来维护这些统计量，所以它非常快，并且我可以使软件标记在这个范围外的用户。</p>
+<p>这不仅仅用于找出行为异常的用户，更有助于标记一些潜在的问题，你可以查看它们来观察发生了什么。它基于所有用户的行为来计算，这也避免了你任意挑出一个数值而并不基于实际情况的问题。</p>
+<p>你可以从中学到的通用规则是，<code>mean (plus or minus) 2 * stddev</code>是90%的值预期所属的范围预测值，任何在它之外的值都是有趣的。</p>
+<p>第二种利用这些统计量的方式就是继续将其用于其它的<code>Stats</code>计算。基本上像通常一样使用<code>Stats_sample</code>，但是之后在<code>min</code>、<code>max</code>、<code>n</code>、<code>mean</code>和<code>stddev</code>上执行<code>Stats_sample</code>。这会提供二级的度量，并且让你对比样本的样本。</p>
+<p>被搞晕了吗？我会以上面的例子基础，并且假设你拥有100台服务器，每台都运行一个应用。你已经在每个应用服务器上跟踪了用户的登录时长，但是你想要比较所有的这100和应用，并且标记它们当中任何登录时间过长的用户。最简单的方式就是每次有人登录进来时，计算新的登录统计量，之后将<code>Stats structs</code>的元素添加到第二个<code>Stats</code>中。</p>
+<p>你最后应该会得到一些统计量，它们可以这样命名：</p>
+<p>均值的均值</p>
+<p>这是一个<code>Stats struct</code>，它向你提供所有服务器的均值的<code>mean</code>和<code>stddev</code>。你可以用全局视角来观察任何在此之外的用户或服务器。</p>
+<p>标准差的均值</p>
+<p>另一个<code>Stats struct</code>，计算这些服务器的分布的统计量。你之后可以分析每个服务器并且观察是否它们中的任何服务器具有异常分散的分布，通过将它们的<code>stddev</code>和这个<code>mean of stddevs</code>统计量进行对比。</p>
+<p>你可以计算出全部统计量，但是这两个是最有用的。如果你打算监视服务器上的移除登录时间，你可以这样做：</p>
+<ul>
+<li>用户John登录并登出服务器A。获取服务器A的统计量，并更新它们。</li>
+<li>获取<code>mean of means</code>统计量，计算出A的均值并且将其加入样本。我叫它<code>m_of_m</code>。</li>
+<li>获取<code>mean of stddev</code>统计量，将A的标准差添加到样本中。我叫它<code>m_of_s</code>。</li>
+<li>如果A的<code>mean</code>在<code>m_of_m.mean + 2 * m_of_m.stddev</code>范围外，标记它可能存在问题。</li>
+<li>如果A的<code>stddev</code>在<code>m_of_s.mean + 2 * m_of_s.stddev</code>范围外，标记它可能存在行为异常。</li>
+<li>最后，如果John的登录时长在A的范围之外，或A的<code>m_of_m</code>范围之外，标记为有趣的。</li>
+</ul>
+<p>通过计算“均值的均值”，或者“标准差的均值”，你可以以最小的执行和储存总量，有效地跟踪许多度量。</p>
+<h2 id="%E9%99%84%E5%8A%A0%E9%A2%98" name="%E9%99%84%E5%8A%A0%E9%A2%98">附加题</h2>
+<ul>
+<li>将<code>Stats_stddev</code> 和 <code>Stats_mean</code>转换为<code>static inline</code>函数，放到<code>stats.h</code>文件中，而不是<code>stats.c</code>文件。</li>
+<li>使用这份代码来编写<code>string_algos_test.c</code>的性能测试。使它为可选的，并且运行基准测试作为一系列样本，之后报告结果。</li>
+<li>编写它的另一个语言的版本。确保这个版本基于我的数据正确执行。</li>
+<li>编写一个小型程序，它能从文件读取所有数字，并执行这些统计。</li>
+<li>使程序接收一个数据表，其中第一行是表头，剩下的行含有任意数量空格分隔的数值。你的程序应该按照表头中的名称，打印出每一列的统计值。</li>
+</ul>                            </section>
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+                                <h1 class="search-results-title">
+                                    关于"<span class='search-query'></span>"的搜索结果共<span class='search-results-count'></span>条
+                                </h1>
+                                <ul class="search-results-list"></ul>
+                            </div>
+                            <div class="no-results">
+                                <h1 class="search-results-title">没有"<span class='search-query'></span>"相关内容</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <a href="https://naka1205.github.io/lcthw/p/288E5C87D0D80787.html" class="navigation navigation-prev " aria-label="栈和队列">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/lcthw/p/E0AFFDAFB6FE468C.html" class="navigation navigation-next " aria-label="环形缓冲区">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
+    </div>
+<script>
+var gitbook = gitbook || [];
+gitbook.push(function() {
+    gitbook.page.hasChanged({
+        "page": {
+            "title":  "一个简单的统计引擎",
+            "next": {
+                "title": "环形缓冲区"
+            },
+            "previous": {
+                "title": "栈和队列"
+            }
+        },
+        "config": {
+            "gitbook": "*",
+            "theme": "default",
+            "variables": {},
+            "plugins": ["-lunr", "-search", "-highlight","search-pro"],
+            "pluginsConfig": {
+                "search-pro": {},
+                "highlight": {},
+                "sharing": {},
+                "fontsettings": {},
+                "theme-default": {}
+            },
+            "structure": {},
+            "pdf": {},
+            "styles": {}
+        },
+        "file": {},
+        "gitbook": {},
+        "basePath": "https://naka1205.github.io/lcthw",
+        "book": {}
+    });
+});
+</script>
+</div>
+<script src="https://naka1205.github.io/lcthw/assets/js/gitbook.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/theme.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/jquery.mark.min.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/search.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/buttons.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/fontsettings.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/plugin.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+</body>
+</html>
