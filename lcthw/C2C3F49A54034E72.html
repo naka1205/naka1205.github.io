@@ -1,0 +1,271 @@
+<!DOCTYPE HTML>
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>大小和数组 · 笨办法学C</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="在上一个练习中你做了一些算术运算，并且使用了`'\0'`（空）字符。这对于其它语言来说非常奇怪，因为它们把“字符串”和“字节数组”看做不同的东西。但是C中的字符串就是字节数组，并且只有不同的打印函数才知道它们的不同。">
+    <meta name="keywords" content="笨办法学C">
+    <meta name="generator" content="PKBook">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/style.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/search.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/ebook.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/website.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css" rel="stylesheet">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://naka1205.github.io/lcthw/assets/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://naka1205.github.io/lcthw/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div class="book">
+    <div class="book-summary">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="输入关键词搜索" />
+        </div>
+        <nav role="navigation">
+    <ul class="summary">
+        <li><a href="https://naka1205.github.io/lcthw/index.html" target="blank" class="header">导言：C的笛卡尔之梦</a></li>
+        <li class="divider"></li>
+                <li class="header">练习</li>
+                        <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/lcthw/C3D207FADFAF5841.html"><a href="https://naka1205.github.io/lcthw/C3D207FADFAF5841.html">准备</a></li>
+                        <li class="chapter " data-level="1.2" data-path="https://naka1205.github.io/lcthw/6C82D57E03DDE1F0.html"><a href="https://naka1205.github.io/lcthw/6C82D57E03DDE1F0.html">启用编译器</a></li>
+                        <li class="chapter " data-level="1.3" data-path="https://naka1205.github.io/lcthw/44DB81B8DEDE247B.html"><a href="https://naka1205.github.io/lcthw/44DB81B8DEDE247B.html">用Make来代替Python</a></li>
+                        <li class="chapter " data-level="1.4" data-path="https://naka1205.github.io/lcthw/D3BE6C8A075EF92E.html"><a href="https://naka1205.github.io/lcthw/D3BE6C8A075EF92E.html">格式化输出</a></li>
+                        <li class="chapter " data-level="1.5" data-path="https://naka1205.github.io/lcthw/B9CDA195B24A4F6A.html"><a href="https://naka1205.github.io/lcthw/B9CDA195B24A4F6A.html">Valgrind 介绍</a></li>
+                        <li class="chapter " data-level="1.6" data-path="https://naka1205.github.io/lcthw/624C7D3C62504470.html"><a href="https://naka1205.github.io/lcthw/624C7D3C62504470.html">一个C程序的结构</a></li>
+                        <li class="chapter " data-level="1.7" data-path="https://naka1205.github.io/lcthw/33CC823F6781FDB9.html"><a href="https://naka1205.github.io/lcthw/33CC823F6781FDB9.html">变量类型</a></li>
+                        <li class="chapter " data-level="1.8" data-path="https://naka1205.github.io/lcthw/171C2758259C8DE1.html"><a href="https://naka1205.github.io/lcthw/171C2758259C8DE1.html">更多变量和一些算术</a></li>
+                        <li class="chapter " data-level="1.9" data-path="https://naka1205.github.io/lcthw/C2C3F49A54034E72.html"><a href="https://naka1205.github.io/lcthw/C2C3F49A54034E72.html">大小和数组</a></li>
+                        <li class="chapter " data-level="1.10" data-path="https://naka1205.github.io/lcthw/3046A11FC869E5C2.html"><a href="https://naka1205.github.io/lcthw/3046A11FC869E5C2.html">数组和字符串</a></li>
+                        <li class="chapter " data-level="1.11" data-path="https://naka1205.github.io/lcthw/3018A6B457AE4FF5.html"><a href="https://naka1205.github.io/lcthw/3018A6B457AE4FF5.html">字符串数组和循环</a></li>
+                        <li class="chapter " data-level="1.12" data-path="https://naka1205.github.io/lcthw/F552B2B9C8E36656.html"><a href="https://naka1205.github.io/lcthw/F552B2B9C8E36656.html">While循环和布尔表达式</a></li>
+                        <li class="chapter " data-level="1.13" data-path="https://naka1205.github.io/lcthw/71D0E364C2783A96.html"><a href="https://naka1205.github.io/lcthw/71D0E364C2783A96.html">If，Else If，Else</a></li>
+                        <li class="chapter " data-level="1.14" data-path="https://naka1205.github.io/lcthw/0E9AB6AD5C029EF6.html"><a href="https://naka1205.github.io/lcthw/0E9AB6AD5C029EF6.html">Switch语句</a></li>
+                        <li class="chapter " data-level="1.15" data-path="https://naka1205.github.io/lcthw/5D2945A8677CE165.html"><a href="https://naka1205.github.io/lcthw/5D2945A8677CE165.html">编写并使用函数</a></li>
+                        <li class="chapter " data-level="1.16" data-path="https://naka1205.github.io/lcthw/8B5745CD2156FCC3.html"><a href="https://naka1205.github.io/lcthw/8B5745CD2156FCC3.html">指针，可怕的指针</a></li>
+                        <li class="chapter " data-level="1.17" data-path="https://naka1205.github.io/lcthw/CDCC108031940336.html"><a href="https://naka1205.github.io/lcthw/CDCC108031940336.html">结构体和指向它们的指针</a></li>
+                        <li class="chapter " data-level="1.18" data-path="https://naka1205.github.io/lcthw/178F8DDE733AD0DD.html"><a href="https://naka1205.github.io/lcthw/178F8DDE733AD0DD.html">堆和栈的内存分配</a></li>
+                        <li class="chapter " data-level="1.19" data-path="https://naka1205.github.io/lcthw/DC3B5E7AC8CF3946.html"><a href="https://naka1205.github.io/lcthw/DC3B5E7AC8CF3946.html">函数指针</a></li>
+                        <li class="chapter " data-level="1.20" data-path="https://naka1205.github.io/lcthw/746ADCFC76734882.html"><a href="https://naka1205.github.io/lcthw/746ADCFC76734882.html">一个简单的对象系统</a></li>
+                        <li class="chapter " data-level="1.21" data-path="https://naka1205.github.io/lcthw/8BBFC8E0CA1C348B.html"><a href="https://naka1205.github.io/lcthw/8BBFC8E0CA1C348B.html">Zed的强大的调试宏</a></li>
+                        <li class="chapter " data-level="1.22" data-path="https://naka1205.github.io/lcthw/B67D461964D39489.html"><a href="https://naka1205.github.io/lcthw/B67D461964D39489.html">高级数据类型和控制结构</a></li>
+                        <li class="chapter " data-level="1.23" data-path="https://naka1205.github.io/lcthw/6822F5C25F64C05F.html"><a href="https://naka1205.github.io/lcthw/6822F5C25F64C05F.html">栈、作用域和全局</a></li>
+                        <li class="chapter " data-level="1.24" data-path="https://naka1205.github.io/lcthw/F6AD606057D5DA1A.html"><a href="https://naka1205.github.io/lcthw/F6AD606057D5DA1A.html">认识达夫设备</a></li>
+                        <li class="chapter " data-level="1.25" data-path="https://naka1205.github.io/lcthw/2F13B44DB3CFDC2E.html"><a href="https://naka1205.github.io/lcthw/2F13B44DB3CFDC2E.html">输入输出和文件</a></li>
+                        <li class="chapter " data-level="1.26" data-path="https://naka1205.github.io/lcthw/2852FA26A8BCFAD2.html"><a href="https://naka1205.github.io/lcthw/2852FA26A8BCFAD2.html">变参函数</a></li>
+                        <li class="chapter " data-level="1.27" data-path="https://naka1205.github.io/lcthw/41ABE0D9F5D3164C.html"><a href="https://naka1205.github.io/lcthw/41ABE0D9F5D3164C.html">编写第一个真正的程序</a></li>
+                        <li class="chapter " data-level="1.28" data-path="https://naka1205.github.io/lcthw/FFD032B7FC697307.html"><a href="https://naka1205.github.io/lcthw/FFD032B7FC697307.html">创造性和防御性编程</a></li>
+                        <li class="chapter " data-level="1.29" data-path="https://naka1205.github.io/lcthw/5C8A5BE0B219BE30.html"><a href="https://naka1205.github.io/lcthw/5C8A5BE0B219BE30.html">Makefile 进阶</a></li>
+                        <li class="chapter " data-level="1.30" data-path="https://naka1205.github.io/lcthw/09D69E06B935E885.html"><a href="https://naka1205.github.io/lcthw/09D69E06B935E885.html">库和链接</a></li>
+                        <li class="chapter " data-level="1.31" data-path="https://naka1205.github.io/lcthw/866A23BE27D0D7E6.html"><a href="https://naka1205.github.io/lcthw/866A23BE27D0D7E6.html">自动化测试</a></li>
+                        <li class="chapter " data-level="1.32" data-path="https://naka1205.github.io/lcthw/B6E48A0ED7072528.html"><a href="https://naka1205.github.io/lcthw/B6E48A0ED7072528.html">代码调试</a></li>
+                        <li class="chapter " data-level="1.33" data-path="https://naka1205.github.io/lcthw/364477FB0CED1A03.html"><a href="https://naka1205.github.io/lcthw/364477FB0CED1A03.html">双向链表</a></li>
+                        <li class="chapter " data-level="1.34" data-path="https://naka1205.github.io/lcthw/219AB7A902A81B94.html"><a href="https://naka1205.github.io/lcthw/219AB7A902A81B94.html">链表算法</a></li>
+                        <li class="chapter " data-level="1.35" data-path="https://naka1205.github.io/lcthw/4375976486E9101E.html"><a href="https://naka1205.github.io/lcthw/4375976486E9101E.html">动态数组</a></li>
+                        <li class="chapter " data-level="1.36" data-path="https://naka1205.github.io/lcthw/F674E4CC423F4082.html"><a href="https://naka1205.github.io/lcthw/F674E4CC423F4082.html">排序和搜索</a></li>
+                        <li class="chapter " data-level="1.37" data-path="https://naka1205.github.io/lcthw/95C8D9CEC85F55BD.html"><a href="https://naka1205.github.io/lcthw/95C8D9CEC85F55BD.html">更安全的字符串</a></li>
+                        <li class="chapter " data-level="1.38" data-path="https://naka1205.github.io/lcthw/19B22BBE112EDD42.html"><a href="https://naka1205.github.io/lcthw/19B22BBE112EDD42.html">哈希表</a></li>
+                        <li class="chapter " data-level="1.39" data-path="https://naka1205.github.io/lcthw/8ACDB75ECC6C4448.html"><a href="https://naka1205.github.io/lcthw/8ACDB75ECC6C4448.html">哈希算法</a></li>
+                        <li class="chapter " data-level="1.40" data-path="https://naka1205.github.io/lcthw/1D54A74DB0C212CF.html"><a href="https://naka1205.github.io/lcthw/1D54A74DB0C212CF.html">字符串算法</a></li>
+                        <li class="chapter " data-level="1.41" data-path="https://naka1205.github.io/lcthw/64206F3FDC812F26.html"><a href="https://naka1205.github.io/lcthw/64206F3FDC812F26.html">二叉搜索树</a></li>
+                        <li class="chapter " data-level="1.42" data-path="https://naka1205.github.io/lcthw/35162CDAACDA8825.html"><a href="https://naka1205.github.io/lcthw/35162CDAACDA8825.html">将 Cachegrind 和 Callgrind 用于性能调优</a></li>
+                        <li class="chapter " data-level="1.43" data-path="https://naka1205.github.io/lcthw/288E5C87D0D80787.html"><a href="https://naka1205.github.io/lcthw/288E5C87D0D80787.html">栈和队列</a></li>
+                        <li class="chapter " data-level="1.44" data-path="https://naka1205.github.io/lcthw/EFA4890803FAB6F6.html"><a href="https://naka1205.github.io/lcthw/EFA4890803FAB6F6.html">一个简单的统计引擎</a></li>
+                        <li class="chapter " data-level="1.45" data-path="https://naka1205.github.io/lcthw/E0AFFDAFB6FE468C.html"><a href="https://naka1205.github.io/lcthw/E0AFFDAFB6FE468C.html">环形缓冲区</a></li>
+                        <li class="chapter " data-level="1.46" data-path="https://naka1205.github.io/lcthw/EEC00C835A3D8361.html"><a href="https://naka1205.github.io/lcthw/EEC00C835A3D8361.html">一个简单的TCP/IP客户端</a></li>
+                        <li class="chapter " data-level="1.47" data-path="https://naka1205.github.io/lcthw/51762D35312252D6.html"><a href="https://naka1205.github.io/lcthw/51762D35312252D6.html">三叉搜索树</a></li>
+                        <li class="chapter " data-level="1.48" data-path="https://naka1205.github.io/lcthw/A0F3E9CEEB1897B5.html"><a href="https://naka1205.github.io/lcthw/A0F3E9CEEB1897B5.html">一个快速的URL路由</a></li>
+                    <li class="divider"></li>
+                <li class="header">后记</li>
+                        <li class="chapter " data-level="2.1" data-path="https://naka1205.github.io/lcthw/ACB13F6E3D683928.html"><a href="https://naka1205.github.io/lcthw/ACB13F6E3D683928.html">解构 K&amp;R C&rdquo; 已死</a></li>
+                    <li class="divider"></li>
+                <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
+    </ul>
+</nav>
+    </div>
+    
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/lcthw/C2C3F49A54034E72.html">大小和数组</a></h1>
+            </div>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">
+                                <h1 id="%E5%A4%A7%E5%B0%8F%E5%92%8C%E6%95%B0%E7%BB%84" name="%E5%A4%A7%E5%B0%8F%E5%92%8C%E6%95%B0%E7%BB%84">大小和数组</h1>
+<p>在上一个练习中你做了一些算术运算，并且使用了<code>'\0'</code>（空）字符。这对于其它语言来说非常奇怪，因为它们把“字符串”和“字节数组”看做不同的东西。但是C中的字符串就是字节数组，并且只有不同的打印函数才知道它们的不同。</p>
+<p>在我真正解释其重要性之前，我先要介绍一些概念：<code>sizeof</code>和数组。下面是我们将要讨论的一段代码：</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+int main(int argc, char *argv[])
+{
+    int areas[] = {10, 12, 13, 14, 20};
+    char name[] = "Zed";
+    char full_name[] = {
+        'Z', 'e', 'd',
+         ' ', 'A', '.', ' ',
+         'S', 'h', 'a', 'w', '\0'
+    };
+
+    // WARNING: On some systems you may have to change the
+    // %ld in this code to a %u since it will use unsigned ints
+    printf("The size of an int: %ld\n", sizeof(int));
+    printf("The size of areas (int[]): %ld\n",
+            sizeof(areas));
+    printf("The number of ints in areas: %ld\n",
+            sizeof(areas) / sizeof(int));
+    printf("The first area is %d, the 2nd %d.\n",
+            areas[0], areas[1]);
+
+    printf("The size of a char: %ld\n", sizeof(char));
+    printf("The size of name (char[]): %ld\n",
+            sizeof(name));
+    printf("The number of chars: %ld\n",
+            sizeof(name) / sizeof(char));
+
+    printf("The size of full_name (char[]): %ld\n",
+            sizeof(full_name));
+    printf("The number of chars: %ld\n",
+            sizeof(full_name) / sizeof(char));
+
+    printf("name=\"%s\" and full_name=\"%s\"\n",
+            name, full_name);
+
+    return 0;
+}</code></pre>
+<p>这段代码中我们创建了一些不同数据类型的数组。由于数组是C语言工作机制的核心，有大量的方法可以用来创建数组。我们暂且使用<code>type name[] = {initializer};</code>语法，之后我们会深入研究。这个语法的意思是，“我想要那个类型的数组并且初始化为{..}”。C语言看到它时，会做这些事情：</p>
+<ul>
+<li>查看它的类型，以第一个数组为例，它是<code>int</code>。</li>
+<li>查看<code>[]</code>，看到了没有提供长度。</li>
+<li>查看初始化表达式<code>{10, 12, 13, 14, 20}</code>，并且了解你想在数组中存放这5个整数。</li>
+<li>在电脑中开辟出一块空间，可以依次存放这5个整数。</li>
+<li>将数组命名为<code>areas</code>，也就是你想要的名字，并且在当前位置给元素赋值。</li>
+</ul>
+<p>在<code>areas</code>的例子中，我们创建了一个含有5个整数的数组来存放那些数字。当它看到<code>char name[] = "Zed";</code>时，它会执行相同的步骤。我们先假设它创建了一个含有3个字符的数组，并且把字符赋值给<code>name</code>。我们创建的最后一个数组是<code>full_name</code>，但是我们用了一个比较麻烦的语法，每次用一个字符将其拼写出来。对C来说，<code>name</code>和<code>full_name</code>的方法都可以创建字符数组。</p>
+<p>在文件的剩余部分，我们使用了<code>sizeof</code>关键字来问C语言这些东西占多少个字节。C语言无非是内存块的大小和地址以及在上面执行的操作。它向你提供了<code>sizeof</code>便于你理解它们，所以你在使用一个东西之前可以先询问它占多少空间。</p>
+<p>这是比较麻烦的地方，所以我们先运行它，之后再解释。</p>
+<h2 id="%E4%BD%A0%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88" name="%E4%BD%A0%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88">你会看到什么</h2>
+<pre><code class="sh">$ make ex8
+cc -Wall -g    ex8.c   -o ex8
+$ ./ex8
+The size of an int: 4
+The size of areas (int[]): 20
+The number of ints in areas: 5
+The first area is 10, the 2nd 12.
+The size of a char: 1
+The size of name (char[]): 4
+The number of chars: 4
+The size of full_name (char[]): 12
+The number of chars: 12
+name="Zed" and full_name="Zed A. Shaw"
+$</code></pre>
+<p>现在你可以看到这些不同<code>printf</code>调用的输出，并且瞥见C语言是如何工作的。你的输出实际上可能会跟我的完全不同，因为你电脑上的整数大小可能会不一样。下面我会过一遍我的输出：</p>
+<blockquote>
+<p>译者注：16位机器上的<code>int</code>是16位的，不过现在16位机很少见了吧。</p>
+</blockquote>
+<p>　　5</p>
+<p>　　我的电脑认为<code>int</code>的大小是4个字节。你的电脑上根据位数不同可能会使用不同的大小。</p>
+<p>　　6</p>
+<p>　　<code>areas</code>中含有5个整数，所以我的电脑自然就需要20个字节来储存它。</p>
+<p>　　7</p>
+<p>　　如果我们把<code>areas</code>的大小与<code>int</code>的大小相除，我们就会得到元素数量为5。这也符合我们在初始化语句中所写的东西。</p>
+<p>　　8</p>
+<p>　　接着我们访问了数组，读出<code>areas[0]</code>和<code>areas[1]</code>，这也意味着C语言的数组下标是0开头的，像Python和Ruby一样。</p>
+<p>　　9~11</p>
+<p>　　我们对<code>name</code>数组执行同样的操作，但是注意到数组的大小有些奇怪，它占4个字节，但是我们用了三个字符来打出"Zed"。那么第四个字符是哪儿来的呢？</p>
+<p>　　12~13</p>
+<p>　　我们对<code>full_name</code>数组执行了相同的操作，但它是正常的。</p>
+<p>　　13</p>
+<p>　　最后我们打印出<code>name</code>和<code>full_name</code>，根据<code>printf</code>证明它们实际上就是“字符串”。</p>
+<p>确保你理解了上面这些东西，并且知道这些输出对应哪些创建的变量。后面我们会在它的基础上探索更多关于数组和存储空间的事情。</p>
+<h2 id="%E5%A6%82%E4%BD%95%E4%BD%BF%E5%AE%83%E5%B4%A9%E6%BA%83" name="%E5%A6%82%E4%BD%95%E4%BD%BF%E5%AE%83%E5%B4%A9%E6%BA%83">如何使它崩溃</h2>
+<p>使这个程序崩溃非常容易，只需要尝试下面这些事情：</p>
+<ul>
+<li>将<code>full_name</code>最后的<code>'\0'</code>去掉，并重新运行它，在<code>valgrind</code>下再运行一遍。现在将<code>full_name</code>的定义从<code>main</code>函数中移到它的上面，尝试在<code>Valgrind</code>下运行它来看看是否能得到一些新的错误。有些情况下，你会足够幸运，不会得到任何错误。</li>
+<li>将<code>areas[0]</code>改为<code>areas[10]</code>并打印，来看看<code>Valgrind</code>会输出什么。</li>
+<li>尝试上述操作的不同变式，也对<code>name</code>和<code>full_name</code>执行一遍。</li>
+</ul>
+<h2 id="%E9%99%84%E5%8A%A0%E9%A2%98" name="%E9%99%84%E5%8A%A0%E9%A2%98">附加题</h2>
+<ul>
+<li>尝试使用<code>areas[0] = 100;</code>以及相似的操作对<code>areas</code>的元素赋值。</li>
+<li>尝试对<code>name</code>和<code>full_name</code>的元素赋值。</li>
+<li>尝试将<code>areas</code>的一个元素赋值为<code>name</code>中的字符。</li>
+<li>上网搜索在不同的CPU上整数所占的不同大小。</li>
+</ul>                            </section>
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+                                <h1 class="search-results-title">
+                                    关于"<span class='search-query'></span>"的搜索结果共<span class='search-results-count'></span>条
+                                </h1>
+                                <ul class="search-results-list"></ul>
+                            </div>
+                            <div class="no-results">
+                                <h1 class="search-results-title">没有"<span class='search-query'></span>"相关内容</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <a href="https://naka1205.github.io/lcthw/171C2758259C8DE1.html" class="navigation navigation-prev " aria-label="更多变量和一些算术">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/lcthw/3046A11FC869E5C2.html" class="navigation navigation-next " aria-label="数组和字符串">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
+    </div>
+<script>
+var gitbook = gitbook || [];
+gitbook.push(function() {
+    gitbook.page.hasChanged({
+        "page": {
+            "title":  "大小和数组",
+            "next": {
+                "title": "数组和字符串"
+            },
+            "previous": {
+                "title": "更多变量和一些算术"
+            }
+        },
+        "config": {
+            "gitbook": "*",
+            "theme": "default",
+            "variables": {},
+            "plugins": ["-lunr", "-search", "-highlight","search-pro"],
+            "pluginsConfig": {
+                "search-pro": {},
+                "highlight": {},
+                "sharing": {},
+                "fontsettings": {},
+                "theme-default": {}
+            },
+            "structure": {},
+            "pdf": {},
+            "styles": {}
+        },
+        "file": {},
+        "gitbook": {},
+        "basePath": "https://naka1205.github.io/lcthw",
+        "book": {}
+    });
+});
+</script>
+</div>
+<script src="https://naka1205.github.io/lcthw/assets/js/gitbook.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/theme.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/jquery.mark.min.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/search.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/buttons.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/fontsettings.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/plugin.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+</body>
+</html>

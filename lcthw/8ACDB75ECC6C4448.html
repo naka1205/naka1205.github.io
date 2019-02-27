@@ -1,0 +1,441 @@
+<!DOCTYPE HTML>
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>哈希算法 · 笨办法学C</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="你应该看到我使用了Jenkinshash作为`Hashmap`数据结构的默认哈希函数，所以这个练习的重点会放在这三个新的函数上。它们的代码通常来说不多，并且没有任何优化。像往常一样我会放慢速度来让你理解。">
+    <meta name="keywords" content="笨办法学C">
+    <meta name="generator" content="PKBook">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/style.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/search.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/ebook.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/website.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css" rel="stylesheet">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://naka1205.github.io/lcthw/assets/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://naka1205.github.io/lcthw/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div class="book">
+    <div class="book-summary">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="输入关键词搜索" />
+        </div>
+        <nav role="navigation">
+    <ul class="summary">
+        <li><a href="https://naka1205.github.io/lcthw/index.html" target="blank" class="header">导言：C的笛卡尔之梦</a></li>
+        <li class="divider"></li>
+                <li class="header">练习</li>
+                        <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/lcthw/C3D207FADFAF5841.html"><a href="https://naka1205.github.io/lcthw/C3D207FADFAF5841.html">准备</a></li>
+                        <li class="chapter " data-level="1.2" data-path="https://naka1205.github.io/lcthw/6C82D57E03DDE1F0.html"><a href="https://naka1205.github.io/lcthw/6C82D57E03DDE1F0.html">启用编译器</a></li>
+                        <li class="chapter " data-level="1.3" data-path="https://naka1205.github.io/lcthw/44DB81B8DEDE247B.html"><a href="https://naka1205.github.io/lcthw/44DB81B8DEDE247B.html">用Make来代替Python</a></li>
+                        <li class="chapter " data-level="1.4" data-path="https://naka1205.github.io/lcthw/D3BE6C8A075EF92E.html"><a href="https://naka1205.github.io/lcthw/D3BE6C8A075EF92E.html">格式化输出</a></li>
+                        <li class="chapter " data-level="1.5" data-path="https://naka1205.github.io/lcthw/B9CDA195B24A4F6A.html"><a href="https://naka1205.github.io/lcthw/B9CDA195B24A4F6A.html">Valgrind 介绍</a></li>
+                        <li class="chapter " data-level="1.6" data-path="https://naka1205.github.io/lcthw/624C7D3C62504470.html"><a href="https://naka1205.github.io/lcthw/624C7D3C62504470.html">一个C程序的结构</a></li>
+                        <li class="chapter " data-level="1.7" data-path="https://naka1205.github.io/lcthw/33CC823F6781FDB9.html"><a href="https://naka1205.github.io/lcthw/33CC823F6781FDB9.html">变量类型</a></li>
+                        <li class="chapter " data-level="1.8" data-path="https://naka1205.github.io/lcthw/171C2758259C8DE1.html"><a href="https://naka1205.github.io/lcthw/171C2758259C8DE1.html">更多变量和一些算术</a></li>
+                        <li class="chapter " data-level="1.9" data-path="https://naka1205.github.io/lcthw/C2C3F49A54034E72.html"><a href="https://naka1205.github.io/lcthw/C2C3F49A54034E72.html">大小和数组</a></li>
+                        <li class="chapter " data-level="1.10" data-path="https://naka1205.github.io/lcthw/3046A11FC869E5C2.html"><a href="https://naka1205.github.io/lcthw/3046A11FC869E5C2.html">数组和字符串</a></li>
+                        <li class="chapter " data-level="1.11" data-path="https://naka1205.github.io/lcthw/3018A6B457AE4FF5.html"><a href="https://naka1205.github.io/lcthw/3018A6B457AE4FF5.html">字符串数组和循环</a></li>
+                        <li class="chapter " data-level="1.12" data-path="https://naka1205.github.io/lcthw/F552B2B9C8E36656.html"><a href="https://naka1205.github.io/lcthw/F552B2B9C8E36656.html">While循环和布尔表达式</a></li>
+                        <li class="chapter " data-level="1.13" data-path="https://naka1205.github.io/lcthw/71D0E364C2783A96.html"><a href="https://naka1205.github.io/lcthw/71D0E364C2783A96.html">If，Else If，Else</a></li>
+                        <li class="chapter " data-level="1.14" data-path="https://naka1205.github.io/lcthw/0E9AB6AD5C029EF6.html"><a href="https://naka1205.github.io/lcthw/0E9AB6AD5C029EF6.html">Switch语句</a></li>
+                        <li class="chapter " data-level="1.15" data-path="https://naka1205.github.io/lcthw/5D2945A8677CE165.html"><a href="https://naka1205.github.io/lcthw/5D2945A8677CE165.html">编写并使用函数</a></li>
+                        <li class="chapter " data-level="1.16" data-path="https://naka1205.github.io/lcthw/8B5745CD2156FCC3.html"><a href="https://naka1205.github.io/lcthw/8B5745CD2156FCC3.html">指针，可怕的指针</a></li>
+                        <li class="chapter " data-level="1.17" data-path="https://naka1205.github.io/lcthw/CDCC108031940336.html"><a href="https://naka1205.github.io/lcthw/CDCC108031940336.html">结构体和指向它们的指针</a></li>
+                        <li class="chapter " data-level="1.18" data-path="https://naka1205.github.io/lcthw/178F8DDE733AD0DD.html"><a href="https://naka1205.github.io/lcthw/178F8DDE733AD0DD.html">堆和栈的内存分配</a></li>
+                        <li class="chapter " data-level="1.19" data-path="https://naka1205.github.io/lcthw/DC3B5E7AC8CF3946.html"><a href="https://naka1205.github.io/lcthw/DC3B5E7AC8CF3946.html">函数指针</a></li>
+                        <li class="chapter " data-level="1.20" data-path="https://naka1205.github.io/lcthw/746ADCFC76734882.html"><a href="https://naka1205.github.io/lcthw/746ADCFC76734882.html">一个简单的对象系统</a></li>
+                        <li class="chapter " data-level="1.21" data-path="https://naka1205.github.io/lcthw/8BBFC8E0CA1C348B.html"><a href="https://naka1205.github.io/lcthw/8BBFC8E0CA1C348B.html">Zed的强大的调试宏</a></li>
+                        <li class="chapter " data-level="1.22" data-path="https://naka1205.github.io/lcthw/B67D461964D39489.html"><a href="https://naka1205.github.io/lcthw/B67D461964D39489.html">高级数据类型和控制结构</a></li>
+                        <li class="chapter " data-level="1.23" data-path="https://naka1205.github.io/lcthw/6822F5C25F64C05F.html"><a href="https://naka1205.github.io/lcthw/6822F5C25F64C05F.html">栈、作用域和全局</a></li>
+                        <li class="chapter " data-level="1.24" data-path="https://naka1205.github.io/lcthw/F6AD606057D5DA1A.html"><a href="https://naka1205.github.io/lcthw/F6AD606057D5DA1A.html">认识达夫设备</a></li>
+                        <li class="chapter " data-level="1.25" data-path="https://naka1205.github.io/lcthw/2F13B44DB3CFDC2E.html"><a href="https://naka1205.github.io/lcthw/2F13B44DB3CFDC2E.html">输入输出和文件</a></li>
+                        <li class="chapter " data-level="1.26" data-path="https://naka1205.github.io/lcthw/2852FA26A8BCFAD2.html"><a href="https://naka1205.github.io/lcthw/2852FA26A8BCFAD2.html">变参函数</a></li>
+                        <li class="chapter " data-level="1.27" data-path="https://naka1205.github.io/lcthw/41ABE0D9F5D3164C.html"><a href="https://naka1205.github.io/lcthw/41ABE0D9F5D3164C.html">编写第一个真正的程序</a></li>
+                        <li class="chapter " data-level="1.28" data-path="https://naka1205.github.io/lcthw/FFD032B7FC697307.html"><a href="https://naka1205.github.io/lcthw/FFD032B7FC697307.html">创造性和防御性编程</a></li>
+                        <li class="chapter " data-level="1.29" data-path="https://naka1205.github.io/lcthw/5C8A5BE0B219BE30.html"><a href="https://naka1205.github.io/lcthw/5C8A5BE0B219BE30.html">Makefile 进阶</a></li>
+                        <li class="chapter " data-level="1.30" data-path="https://naka1205.github.io/lcthw/09D69E06B935E885.html"><a href="https://naka1205.github.io/lcthw/09D69E06B935E885.html">库和链接</a></li>
+                        <li class="chapter " data-level="1.31" data-path="https://naka1205.github.io/lcthw/866A23BE27D0D7E6.html"><a href="https://naka1205.github.io/lcthw/866A23BE27D0D7E6.html">自动化测试</a></li>
+                        <li class="chapter " data-level="1.32" data-path="https://naka1205.github.io/lcthw/B6E48A0ED7072528.html"><a href="https://naka1205.github.io/lcthw/B6E48A0ED7072528.html">代码调试</a></li>
+                        <li class="chapter " data-level="1.33" data-path="https://naka1205.github.io/lcthw/364477FB0CED1A03.html"><a href="https://naka1205.github.io/lcthw/364477FB0CED1A03.html">双向链表</a></li>
+                        <li class="chapter " data-level="1.34" data-path="https://naka1205.github.io/lcthw/219AB7A902A81B94.html"><a href="https://naka1205.github.io/lcthw/219AB7A902A81B94.html">链表算法</a></li>
+                        <li class="chapter " data-level="1.35" data-path="https://naka1205.github.io/lcthw/4375976486E9101E.html"><a href="https://naka1205.github.io/lcthw/4375976486E9101E.html">动态数组</a></li>
+                        <li class="chapter " data-level="1.36" data-path="https://naka1205.github.io/lcthw/F674E4CC423F4082.html"><a href="https://naka1205.github.io/lcthw/F674E4CC423F4082.html">排序和搜索</a></li>
+                        <li class="chapter " data-level="1.37" data-path="https://naka1205.github.io/lcthw/95C8D9CEC85F55BD.html"><a href="https://naka1205.github.io/lcthw/95C8D9CEC85F55BD.html">更安全的字符串</a></li>
+                        <li class="chapter " data-level="1.38" data-path="https://naka1205.github.io/lcthw/19B22BBE112EDD42.html"><a href="https://naka1205.github.io/lcthw/19B22BBE112EDD42.html">哈希表</a></li>
+                        <li class="chapter " data-level="1.39" data-path="https://naka1205.github.io/lcthw/8ACDB75ECC6C4448.html"><a href="https://naka1205.github.io/lcthw/8ACDB75ECC6C4448.html">哈希算法</a></li>
+                        <li class="chapter " data-level="1.40" data-path="https://naka1205.github.io/lcthw/1D54A74DB0C212CF.html"><a href="https://naka1205.github.io/lcthw/1D54A74DB0C212CF.html">字符串算法</a></li>
+                        <li class="chapter " data-level="1.41" data-path="https://naka1205.github.io/lcthw/64206F3FDC812F26.html"><a href="https://naka1205.github.io/lcthw/64206F3FDC812F26.html">二叉搜索树</a></li>
+                        <li class="chapter " data-level="1.42" data-path="https://naka1205.github.io/lcthw/35162CDAACDA8825.html"><a href="https://naka1205.github.io/lcthw/35162CDAACDA8825.html">将 Cachegrind 和 Callgrind 用于性能调优</a></li>
+                        <li class="chapter " data-level="1.43" data-path="https://naka1205.github.io/lcthw/288E5C87D0D80787.html"><a href="https://naka1205.github.io/lcthw/288E5C87D0D80787.html">栈和队列</a></li>
+                        <li class="chapter " data-level="1.44" data-path="https://naka1205.github.io/lcthw/EFA4890803FAB6F6.html"><a href="https://naka1205.github.io/lcthw/EFA4890803FAB6F6.html">一个简单的统计引擎</a></li>
+                        <li class="chapter " data-level="1.45" data-path="https://naka1205.github.io/lcthw/E0AFFDAFB6FE468C.html"><a href="https://naka1205.github.io/lcthw/E0AFFDAFB6FE468C.html">环形缓冲区</a></li>
+                        <li class="chapter " data-level="1.46" data-path="https://naka1205.github.io/lcthw/EEC00C835A3D8361.html"><a href="https://naka1205.github.io/lcthw/EEC00C835A3D8361.html">一个简单的TCP/IP客户端</a></li>
+                        <li class="chapter " data-level="1.47" data-path="https://naka1205.github.io/lcthw/51762D35312252D6.html"><a href="https://naka1205.github.io/lcthw/51762D35312252D6.html">三叉搜索树</a></li>
+                        <li class="chapter " data-level="1.48" data-path="https://naka1205.github.io/lcthw/A0F3E9CEEB1897B5.html"><a href="https://naka1205.github.io/lcthw/A0F3E9CEEB1897B5.html">一个快速的URL路由</a></li>
+                    <li class="divider"></li>
+                <li class="header">后记</li>
+                        <li class="chapter " data-level="2.1" data-path="https://naka1205.github.io/lcthw/ACB13F6E3D683928.html"><a href="https://naka1205.github.io/lcthw/ACB13F6E3D683928.html">解构 K&amp;R C&rdquo; 已死</a></li>
+                    <li class="divider"></li>
+                <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
+    </ul>
+</nav>
+    </div>
+    
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/lcthw/8ACDB75ECC6C4448.html">哈希算法</a></h1>
+            </div>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">
+                                <h1 id="%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95" name="%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95">哈希算法</h1>
+<p>你需要在这个练习中实现下面这三个哈希函数：</p>
+<p>FNV-1a</p>
+<p>以创造者Glenn Fowler、Phong Vo 和 Landon Curt Noll的名字命名。这个算法产生合理的数值并且相当快。</p>
+<p>Adler-32</p>
+<p>以Mark Adler命名。一个比较糟糕的算法，但是由来已久并且适于学习。</p>
+<p>DJB Hash</p>
+<p>由Dan J. Bernstein (DJB)发明的哈希算法，但是难以找到这个算法的讨论。它非常快，但是结果不是很好。</p>
+<p>你应该看到我使用了Jenkins hash作为<code>Hashmap</code>数据结构的默认哈希函数，所以这个练习的重点会放在这三个新的函数上。它们的代码通常来说不多，并且没有任何优化。像往常一样我会放慢速度来让你理解。</p>
+<p>头文件非常简单，所以我以它开始：</p>
+<pre><code class="c">#ifndef hashmap_algos_h
+#define hashmap_algos_h
+
+#include &lt;stdint.h&gt;
+
+uint32_t Hashmap_fnv1a_hash(void *data);
+
+uint32_t Hashmap_adler32_hash(void *data);
+
+uint32_t Hashmap_djb_hash(void *data);
+
+#endif</code></pre>
+<p>我只是声明了三个函数，我会在<code>hashmap_algos.c</code>文件中实现它们：</p>
+<pre><code class="c">#include &lt;lcthw/hashmap_algos.h&gt;
+#include &lt;lcthw/bstrlib.h&gt;
+
+// settings taken from
+// http://www.isthe.com/chongo/tech/comp/fnv/index.html#FNV-param
+const uint32_t FNV_PRIME = 16777619;
+const uint32_t FNV_OFFSET_BASIS = 2166136261;
+
+uint32_t Hashmap_fnv1a_hash(void *data)
+{
+    bstring s = (bstring)data;
+    uint32_t hash = FNV_OFFSET_BASIS;
+    int i = 0;
+
+    for(i = 0; i &lt; blength(s); i++) {
+        hash ^= bchare(s, i, 0);
+        hash *= FNV_PRIME;
+    }
+
+    return hash;
+}
+
+const int MOD_ADLER = 65521;
+
+uint32_t Hashmap_adler32_hash(void *data)
+{
+    bstring s = (bstring)data;
+    uint32_t a = 1, b = 0;
+    int i = 0;
+
+    for (i = 0; i &lt; blength(s); i++)
+    {
+        a = (a + bchare(s, i, 0)) % MOD_ADLER;
+        b = (b + a) % MOD_ADLER;
+    }
+
+    return (b &lt;&lt; 16) | a;
+}
+
+uint32_t Hashmap_djb_hash(void *data)
+{
+    bstring s = (bstring)data;
+    uint32_t hash = 5381;
+    int i = 0;
+
+    for(i = 0; i &lt; blength(s); i++) {
+        hash = ((hash &lt;&lt; 5) + hash) + bchare(s, i, 0); /* hash * 33 + c */
+    }
+
+    return hash;
+}</code></pre>
+<p>这个文件中有三个哈希函数。你应该注意到我默认使用<code>bstring</code>作为键，并且使用了<code>bchare</code>函数从字符串获取字符，然而如果字符超出了字符串的长度会返回0。</p>
+<p>这些算法中每个都可以在网上搜索到，所以你需要搜索它们并阅读相关内容。同时我主要使用维基百科上的结果，之后参照了其它来源。</p>
+<p>接着我为每个算法编写了单元测试，同时也测试了它们在多个桶中的分布情况。</p>
+<pre><code class="c">#include &lt;lcthw/bstrlib.h&gt;
+#include &lt;lcthw/hashmap.h&gt;
+#include &lt;lcthw/hashmap_algos.h&gt;
+#include &lt;lcthw/darray.h&gt;
+#include "minunit.h"
+
+struct tagbstring test1 = bsStatic("test data 1");
+struct tagbstring test2 = bsStatic("test data 2");
+struct tagbstring test3 = bsStatic("xest data 3");
+
+char *test_fnv1a()
+{
+    uint32_t hash = Hashmap_fnv1a_hash(&amp;test1);
+    mu_assert(hash != 0, "Bad hash.");
+
+    hash = Hashmap_fnv1a_hash(&amp;test2);
+    mu_assert(hash != 0, "Bad hash.");
+
+    hash = Hashmap_fnv1a_hash(&amp;test3);
+    mu_assert(hash != 0, "Bad hash.");
+
+    return NULL;
+}
+
+char *test_adler32()
+{
+    uint32_t hash = Hashmap_adler32_hash(&amp;test1);
+    mu_assert(hash != 0, "Bad hash.");
+
+    hash = Hashmap_adler32_hash(&amp;test2);
+    mu_assert(hash != 0, "Bad hash.");
+
+    hash = Hashmap_adler32_hash(&amp;test3);
+    mu_assert(hash != 0, "Bad hash.");
+
+    return NULL;
+}
+
+char *test_djb()
+{
+    uint32_t hash = Hashmap_djb_hash(&amp;test1);
+    mu_assert(hash != 0, "Bad hash.");
+
+    hash = Hashmap_djb_hash(&amp;test2);
+    mu_assert(hash != 0, "Bad hash.");
+
+    hash = Hashmap_djb_hash(&amp;test3);
+    mu_assert(hash != 0, "Bad hash.");
+
+    return NULL;
+}
+
+#define BUCKETS 100
+#define BUFFER_LEN 20
+#define NUM_KEYS BUCKETS * 1000
+enum { ALGO_FNV1A, ALGO_ADLER32, ALGO_DJB};
+
+int gen_keys(DArray *keys, int num_keys)
+{
+    int i = 0;
+    FILE *urand = fopen("/dev/urandom", "r");
+    check(urand != NULL, "Failed to open /dev/urandom");
+
+    struct bStream *stream = bsopen((bNread)fread, urand);
+    check(stream != NULL, "Failed to open /dev/urandom");
+
+    bstring key = bfromcstr("");
+    int rc = 0;
+
+    // FNV1a histogram
+    for(i = 0; i &lt; num_keys; i++) {
+        rc = bsread(key, stream, BUFFER_LEN);
+        check(rc &gt;= 0, "Failed to read from /dev/urandom.");
+
+        DArray_push(keys, bstrcpy(key));
+    }
+
+    bsclose(stream);
+    fclose(urand);
+    return 0;
+
+error:
+    return -1;
+}
+
+void destroy_keys(DArray *keys)
+{
+    int i = 0;
+    for(i = 0; i &lt; NUM_KEYS; i++) {
+        bdestroy(DArray_get(keys, i));
+    }
+
+    DArray_destroy(keys);
+}
+
+void fill_distribution(int *stats, DArray *keys, Hashmap_hash hash_func)
+{
+    int i = 0;
+    uint32_t hash = 0;
+
+    for(i = 0; i &lt; DArray_count(keys); i++) {
+        hash = hash_func(DArray_get(keys, i));
+        stats[hash % BUCKETS] += 1;
+    }
+
+}
+
+char *test_distribution()
+{
+    int i = 0;
+    int stats[3][BUCKETS] = {{0}};
+    DArray *keys = DArray_create(0, NUM_KEYS);
+
+    mu_assert(gen_keys(keys, NUM_KEYS) == 0, "Failed to generate random keys.");
+
+    fill_distribution(stats[ALGO_FNV1A], keys, Hashmap_fnv1a_hash);
+    fill_distribution(stats[ALGO_ADLER32], keys, Hashmap_adler32_hash);
+    fill_distribution(stats[ALGO_DJB], keys, Hashmap_djb_hash);
+
+    fprintf(stderr, "FNV\tA32\tDJB\n");
+
+    for(i = 0; i &lt; BUCKETS; i++) {
+        fprintf(stderr, "%d\t%d\t%d\n",
+                stats[ALGO_FNV1A][i],
+                stats[ALGO_ADLER32][i],
+                stats[ALGO_DJB][i]);
+    }
+
+    destroy_keys(keys);
+
+    return NULL;
+}
+
+char *all_tests()
+{
+    mu_suite_start();
+
+    mu_run_test(test_fnv1a);
+    mu_run_test(test_adler32);
+    mu_run_test(test_djb);
+    mu_run_test(test_distribution);
+
+    return NULL;
+}
+
+RUN_TESTS(all_tests);</code></pre>
+<p>我在代码中将<code>BUCKETS</code>的值设置得非常高，因为我的电脑足够快。如果你将它和<code>NUM_KEYS</code>调低，就会比较慢了。这个测试运行之后，对于每个哈希函数，通过使用R语言做统计分析，可以观察键的分布情况。</p>
+<p>我实现它的方式是使用<code>gen_keys</code>函数生成键的大型列表。这些键从<code>/dev/urandom</code>设备中获得，它们是一些随机的字节。之后我使用了这些键来调用<code>fill_distribution</code>，填充了<code>stats</code>数组，这些键计算哈希值后会被放入理论上的一些桶中。所有这类函数会遍历所有键，计算哈希，之后执行类似<code>Hashmap</code>所做的事情来寻找正确的桶。</p>
+<p>最后我只是简单打印出一个三列的表格，包含每个桶的最终数量，展示了每个桶中随机储存了多少个键。之后可以观察这些数值，来判断这些哈希函数是否合理对键进行分配。</p>
+<h2 id="%E4%BD%A0%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88" name="%E4%BD%A0%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88">你会看到什么</h2>
+<p>教授R是这本书范围之外的内容，但是如果你想试试它，可以访问<a href="http://www.r-project.org/">r-project.org</a>。</p>
+<p>下面是一个简略的shell会话，向你展示了我如何运行<code>1tests/hashmap_algos_test</code>来获取<code>test_distribution</code>产生的表（这里没有展示），之后使用R来观察统计结果：</p>
+<pre><code class="sh">$ tests/hashmap_algos_tests
+# copy-paste the table it prints out
+$ vim hash.txt
+$ R
+&gt; hash &lt;- read.table("hash.txt", header=T)
+&gt; summary(hash)
+      FNV            A32              DJB      
+ Min.   : 945   Min.   : 908.0   Min.   : 927  
+ 1st Qu.: 980   1st Qu.: 980.8   1st Qu.: 979  
+ Median : 998   Median :1000.0   Median : 998  
+ Mean   :1000   Mean   :1000.0   Mean   :1000  
+ 3rd Qu.:1016   3rd Qu.:1019.2   3rd Qu.:1021  
+ Max.   :1072   Max.   :1075.0   Max.   :1082  </code></pre>
+<p>首先我只是运行测试，它会在屏幕上打印表格。之后我将它复制粘贴到下来并使用<code>vim hash.txt</code>来储存数据。如果你观察数据，它会带有显示这三个算法的<code>FNV A32 DJB</code>表头。</p>
+<p>接着，我运行R来使用<code>read.table</code>命令加载数据集。它是个非常智能的函数，适用于这种tab分隔的数据，我只要告诉它<code>header=T</code>，它就知道数据集中带有表头。</p>
+<p>最后，我家在了数据并且可以使用<code>summary</code>来打印出它每行的统计结果。这里你可以看到每个函数处理随机数据实际上都没有问题。我会解释每个行的意义：</p>
+<p>Min.</p>
+<p>它是列出数据的最小值。FNV似乎在这方面是最优的，因为它有最大的结果，也就是说它的下界最严格。</p>
+<p>1st Qu.</p>
+<p>数据的第一个四分位点。</p>
+<p>Median</p>
+<p>如果你对它们排序，这个数值就是最重点的那个数。中位数比起均值来讲更有用一些。</p>
+<p>Mean</p>
+<p>均值对大多数人意味着“平均”，它是数据的总数比数量。如果你观察它们，所有均值都是1000，这非常棒。如果你将它去中位数对比，你会发现，这三个中位数都很接近均值。这就意味着这些数据都没有“偏向”一端，所以均值是可信的。</p>
+<p>3rd Qu.</p>
+<p>数据后四分之一的起始点，代表了尾部的数值。</p>
+<p>Max.</p>
+<p>这是数据中的最大值，代表了它们的上界。</p>
+<p>观察这些数据，你会发现这些哈希算法似乎都适用于随机的键，并且均值与我设置的<code>NUM_KEYS</code>匹配。我所要找的就是如果我为每个桶中生成了1000个键，那么平均每个桶中就应该有100个键。如果哈希函数工作不正常，你会发现统计结果中均值不是1000，并且第一个和第三个四分位点非常高。一个好的哈希算法应该使平均值为1000，并且具有严格的范围。</p>
+<p>同时，你应该明白即使在这个单元测试的不同运行之间，你的数据的大多数应该和我不同。</p>
+<h2 id="%E5%A6%82%E4%BD%95%E4%BD%BF%E5%AE%83%E5%B4%A9%E6%BA%83" name="%E5%A6%82%E4%BD%95%E4%BD%BF%E5%AE%83%E5%B4%A9%E6%BA%83">如何使它崩溃</h2>
+<p>这个练习的最后，我打算向你介绍使它崩溃的方法。我需要让你变写你能编写的最烂的哈希函数，并且我会使用数据来证明它确实很烂。你可以使用R来进行统计，就像我上面一样，但也可能你知道其他可以使用的工具来进行相同的统计操作。</p>
+<p>这里的目标是让一个哈希函数，它表面看起来是正常的，但实际运行就得到一个糟糕的均值，并且分布广泛。这意味着你不能只让你返回1，而是需要返回一些看似正常的数值，但是分布广泛并且都填充到相同的桶中。</p>
+<p>如果你对这四个函数之一做了一些小修改来完成任务，我会给你额外的分数。</p>
+<p>这个练习的目的是，想像一下一些“友好”的程序员见到你并且打算改进你的哈希函数，但是实际上只是留了个把你的<code>Hashmap</code>搞砸的后门。</p>
+<h2 id="%E9%99%84%E5%8A%A0%E9%A2%98" name="%E9%99%84%E5%8A%A0%E9%A2%98">附加题</h2>
+<ul>
+<li>将<code>hashmap.c</code>中的<code>default_hash</code>换成<code>hashmap_algos.c</code>中的算法之一，并且再次通过所有测试。</li>
+<li>向<code>hashmap_algos_tests.c</code>添加<code>default_hash</code>，并将它与其它三个哈希函数比较。</li>
+<li>寻找一些更多的哈希函数并添加进来，你永远都不可能找到太多的哈希函数！</li>
+</ul>                            </section>
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+                                <h1 class="search-results-title">
+                                    关于"<span class='search-query'></span>"的搜索结果共<span class='search-results-count'></span>条
+                                </h1>
+                                <ul class="search-results-list"></ul>
+                            </div>
+                            <div class="no-results">
+                                <h1 class="search-results-title">没有"<span class='search-query'></span>"相关内容</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <a href="https://naka1205.github.io/lcthw/19B22BBE112EDD42.html" class="navigation navigation-prev " aria-label="哈希表">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/lcthw/1D54A74DB0C212CF.html" class="navigation navigation-next " aria-label="字符串算法">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
+    </div>
+<script>
+var gitbook = gitbook || [];
+gitbook.push(function() {
+    gitbook.page.hasChanged({
+        "page": {
+            "title":  "哈希算法",
+            "next": {
+                "title": "字符串算法"
+            },
+            "previous": {
+                "title": "哈希表"
+            }
+        },
+        "config": {
+            "gitbook": "*",
+            "theme": "default",
+            "variables": {},
+            "plugins": ["-lunr", "-search", "-highlight","search-pro"],
+            "pluginsConfig": {
+                "search-pro": {},
+                "highlight": {},
+                "sharing": {},
+                "fontsettings": {},
+                "theme-default": {}
+            },
+            "structure": {},
+            "pdf": {},
+            "styles": {}
+        },
+        "file": {},
+        "gitbook": {},
+        "basePath": "https://naka1205.github.io/lcthw",
+        "book": {}
+    });
+});
+</script>
+</div>
+<script src="https://naka1205.github.io/lcthw/assets/js/gitbook.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/theme.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/jquery.mark.min.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/search.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/buttons.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/fontsettings.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/plugin.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+</body>
+</html>

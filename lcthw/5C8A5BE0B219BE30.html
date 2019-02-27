@@ -1,0 +1,424 @@
+<!DOCTYPE HTML>
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>Makefile 进阶 · 笨办法学C</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="在下面的三个练习中你会创建一个项目的目录框架，用于构建之后的C程序。这个目录框架会在这本书中剩余的章节中使用，并且这个练习中我会涉及到`Makefile`便于你理解它。">
+    <meta name="keywords" content="笨办法学C">
+    <meta name="generator" content="PKBook">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/style.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/search.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/ebook.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/website.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css" rel="stylesheet">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://naka1205.github.io/lcthw/assets/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://naka1205.github.io/lcthw/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div class="book">
+    <div class="book-summary">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="输入关键词搜索" />
+        </div>
+        <nav role="navigation">
+    <ul class="summary">
+        <li><a href="https://naka1205.github.io/lcthw/index.html" target="blank" class="header">导言：C的笛卡尔之梦</a></li>
+        <li class="divider"></li>
+                <li class="header">练习</li>
+                        <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/lcthw/C3D207FADFAF5841.html"><a href="https://naka1205.github.io/lcthw/C3D207FADFAF5841.html">准备</a></li>
+                        <li class="chapter " data-level="1.2" data-path="https://naka1205.github.io/lcthw/6C82D57E03DDE1F0.html"><a href="https://naka1205.github.io/lcthw/6C82D57E03DDE1F0.html">启用编译器</a></li>
+                        <li class="chapter " data-level="1.3" data-path="https://naka1205.github.io/lcthw/44DB81B8DEDE247B.html"><a href="https://naka1205.github.io/lcthw/44DB81B8DEDE247B.html">用Make来代替Python</a></li>
+                        <li class="chapter " data-level="1.4" data-path="https://naka1205.github.io/lcthw/D3BE6C8A075EF92E.html"><a href="https://naka1205.github.io/lcthw/D3BE6C8A075EF92E.html">格式化输出</a></li>
+                        <li class="chapter " data-level="1.5" data-path="https://naka1205.github.io/lcthw/B9CDA195B24A4F6A.html"><a href="https://naka1205.github.io/lcthw/B9CDA195B24A4F6A.html">Valgrind 介绍</a></li>
+                        <li class="chapter " data-level="1.6" data-path="https://naka1205.github.io/lcthw/624C7D3C62504470.html"><a href="https://naka1205.github.io/lcthw/624C7D3C62504470.html">一个C程序的结构</a></li>
+                        <li class="chapter " data-level="1.7" data-path="https://naka1205.github.io/lcthw/33CC823F6781FDB9.html"><a href="https://naka1205.github.io/lcthw/33CC823F6781FDB9.html">变量类型</a></li>
+                        <li class="chapter " data-level="1.8" data-path="https://naka1205.github.io/lcthw/171C2758259C8DE1.html"><a href="https://naka1205.github.io/lcthw/171C2758259C8DE1.html">更多变量和一些算术</a></li>
+                        <li class="chapter " data-level="1.9" data-path="https://naka1205.github.io/lcthw/C2C3F49A54034E72.html"><a href="https://naka1205.github.io/lcthw/C2C3F49A54034E72.html">大小和数组</a></li>
+                        <li class="chapter " data-level="1.10" data-path="https://naka1205.github.io/lcthw/3046A11FC869E5C2.html"><a href="https://naka1205.github.io/lcthw/3046A11FC869E5C2.html">数组和字符串</a></li>
+                        <li class="chapter " data-level="1.11" data-path="https://naka1205.github.io/lcthw/3018A6B457AE4FF5.html"><a href="https://naka1205.github.io/lcthw/3018A6B457AE4FF5.html">字符串数组和循环</a></li>
+                        <li class="chapter " data-level="1.12" data-path="https://naka1205.github.io/lcthw/F552B2B9C8E36656.html"><a href="https://naka1205.github.io/lcthw/F552B2B9C8E36656.html">While循环和布尔表达式</a></li>
+                        <li class="chapter " data-level="1.13" data-path="https://naka1205.github.io/lcthw/71D0E364C2783A96.html"><a href="https://naka1205.github.io/lcthw/71D0E364C2783A96.html">If，Else If，Else</a></li>
+                        <li class="chapter " data-level="1.14" data-path="https://naka1205.github.io/lcthw/0E9AB6AD5C029EF6.html"><a href="https://naka1205.github.io/lcthw/0E9AB6AD5C029EF6.html">Switch语句</a></li>
+                        <li class="chapter " data-level="1.15" data-path="https://naka1205.github.io/lcthw/5D2945A8677CE165.html"><a href="https://naka1205.github.io/lcthw/5D2945A8677CE165.html">编写并使用函数</a></li>
+                        <li class="chapter " data-level="1.16" data-path="https://naka1205.github.io/lcthw/8B5745CD2156FCC3.html"><a href="https://naka1205.github.io/lcthw/8B5745CD2156FCC3.html">指针，可怕的指针</a></li>
+                        <li class="chapter " data-level="1.17" data-path="https://naka1205.github.io/lcthw/CDCC108031940336.html"><a href="https://naka1205.github.io/lcthw/CDCC108031940336.html">结构体和指向它们的指针</a></li>
+                        <li class="chapter " data-level="1.18" data-path="https://naka1205.github.io/lcthw/178F8DDE733AD0DD.html"><a href="https://naka1205.github.io/lcthw/178F8DDE733AD0DD.html">堆和栈的内存分配</a></li>
+                        <li class="chapter " data-level="1.19" data-path="https://naka1205.github.io/lcthw/DC3B5E7AC8CF3946.html"><a href="https://naka1205.github.io/lcthw/DC3B5E7AC8CF3946.html">函数指针</a></li>
+                        <li class="chapter " data-level="1.20" data-path="https://naka1205.github.io/lcthw/746ADCFC76734882.html"><a href="https://naka1205.github.io/lcthw/746ADCFC76734882.html">一个简单的对象系统</a></li>
+                        <li class="chapter " data-level="1.21" data-path="https://naka1205.github.io/lcthw/8BBFC8E0CA1C348B.html"><a href="https://naka1205.github.io/lcthw/8BBFC8E0CA1C348B.html">Zed的强大的调试宏</a></li>
+                        <li class="chapter " data-level="1.22" data-path="https://naka1205.github.io/lcthw/B67D461964D39489.html"><a href="https://naka1205.github.io/lcthw/B67D461964D39489.html">高级数据类型和控制结构</a></li>
+                        <li class="chapter " data-level="1.23" data-path="https://naka1205.github.io/lcthw/6822F5C25F64C05F.html"><a href="https://naka1205.github.io/lcthw/6822F5C25F64C05F.html">栈、作用域和全局</a></li>
+                        <li class="chapter " data-level="1.24" data-path="https://naka1205.github.io/lcthw/F6AD606057D5DA1A.html"><a href="https://naka1205.github.io/lcthw/F6AD606057D5DA1A.html">认识达夫设备</a></li>
+                        <li class="chapter " data-level="1.25" data-path="https://naka1205.github.io/lcthw/2F13B44DB3CFDC2E.html"><a href="https://naka1205.github.io/lcthw/2F13B44DB3CFDC2E.html">输入输出和文件</a></li>
+                        <li class="chapter " data-level="1.26" data-path="https://naka1205.github.io/lcthw/2852FA26A8BCFAD2.html"><a href="https://naka1205.github.io/lcthw/2852FA26A8BCFAD2.html">变参函数</a></li>
+                        <li class="chapter " data-level="1.27" data-path="https://naka1205.github.io/lcthw/41ABE0D9F5D3164C.html"><a href="https://naka1205.github.io/lcthw/41ABE0D9F5D3164C.html">编写第一个真正的程序</a></li>
+                        <li class="chapter " data-level="1.28" data-path="https://naka1205.github.io/lcthw/FFD032B7FC697307.html"><a href="https://naka1205.github.io/lcthw/FFD032B7FC697307.html">创造性和防御性编程</a></li>
+                        <li class="chapter " data-level="1.29" data-path="https://naka1205.github.io/lcthw/5C8A5BE0B219BE30.html"><a href="https://naka1205.github.io/lcthw/5C8A5BE0B219BE30.html">Makefile 进阶</a></li>
+                        <li class="chapter " data-level="1.30" data-path="https://naka1205.github.io/lcthw/09D69E06B935E885.html"><a href="https://naka1205.github.io/lcthw/09D69E06B935E885.html">库和链接</a></li>
+                        <li class="chapter " data-level="1.31" data-path="https://naka1205.github.io/lcthw/866A23BE27D0D7E6.html"><a href="https://naka1205.github.io/lcthw/866A23BE27D0D7E6.html">自动化测试</a></li>
+                        <li class="chapter " data-level="1.32" data-path="https://naka1205.github.io/lcthw/B6E48A0ED7072528.html"><a href="https://naka1205.github.io/lcthw/B6E48A0ED7072528.html">代码调试</a></li>
+                        <li class="chapter " data-level="1.33" data-path="https://naka1205.github.io/lcthw/364477FB0CED1A03.html"><a href="https://naka1205.github.io/lcthw/364477FB0CED1A03.html">双向链表</a></li>
+                        <li class="chapter " data-level="1.34" data-path="https://naka1205.github.io/lcthw/219AB7A902A81B94.html"><a href="https://naka1205.github.io/lcthw/219AB7A902A81B94.html">链表算法</a></li>
+                        <li class="chapter " data-level="1.35" data-path="https://naka1205.github.io/lcthw/4375976486E9101E.html"><a href="https://naka1205.github.io/lcthw/4375976486E9101E.html">动态数组</a></li>
+                        <li class="chapter " data-level="1.36" data-path="https://naka1205.github.io/lcthw/F674E4CC423F4082.html"><a href="https://naka1205.github.io/lcthw/F674E4CC423F4082.html">排序和搜索</a></li>
+                        <li class="chapter " data-level="1.37" data-path="https://naka1205.github.io/lcthw/95C8D9CEC85F55BD.html"><a href="https://naka1205.github.io/lcthw/95C8D9CEC85F55BD.html">更安全的字符串</a></li>
+                        <li class="chapter " data-level="1.38" data-path="https://naka1205.github.io/lcthw/19B22BBE112EDD42.html"><a href="https://naka1205.github.io/lcthw/19B22BBE112EDD42.html">哈希表</a></li>
+                        <li class="chapter " data-level="1.39" data-path="https://naka1205.github.io/lcthw/8ACDB75ECC6C4448.html"><a href="https://naka1205.github.io/lcthw/8ACDB75ECC6C4448.html">哈希算法</a></li>
+                        <li class="chapter " data-level="1.40" data-path="https://naka1205.github.io/lcthw/1D54A74DB0C212CF.html"><a href="https://naka1205.github.io/lcthw/1D54A74DB0C212CF.html">字符串算法</a></li>
+                        <li class="chapter " data-level="1.41" data-path="https://naka1205.github.io/lcthw/64206F3FDC812F26.html"><a href="https://naka1205.github.io/lcthw/64206F3FDC812F26.html">二叉搜索树</a></li>
+                        <li class="chapter " data-level="1.42" data-path="https://naka1205.github.io/lcthw/35162CDAACDA8825.html"><a href="https://naka1205.github.io/lcthw/35162CDAACDA8825.html">将 Cachegrind 和 Callgrind 用于性能调优</a></li>
+                        <li class="chapter " data-level="1.43" data-path="https://naka1205.github.io/lcthw/288E5C87D0D80787.html"><a href="https://naka1205.github.io/lcthw/288E5C87D0D80787.html">栈和队列</a></li>
+                        <li class="chapter " data-level="1.44" data-path="https://naka1205.github.io/lcthw/EFA4890803FAB6F6.html"><a href="https://naka1205.github.io/lcthw/EFA4890803FAB6F6.html">一个简单的统计引擎</a></li>
+                        <li class="chapter " data-level="1.45" data-path="https://naka1205.github.io/lcthw/E0AFFDAFB6FE468C.html"><a href="https://naka1205.github.io/lcthw/E0AFFDAFB6FE468C.html">环形缓冲区</a></li>
+                        <li class="chapter " data-level="1.46" data-path="https://naka1205.github.io/lcthw/EEC00C835A3D8361.html"><a href="https://naka1205.github.io/lcthw/EEC00C835A3D8361.html">一个简单的TCP/IP客户端</a></li>
+                        <li class="chapter " data-level="1.47" data-path="https://naka1205.github.io/lcthw/51762D35312252D6.html"><a href="https://naka1205.github.io/lcthw/51762D35312252D6.html">三叉搜索树</a></li>
+                        <li class="chapter " data-level="1.48" data-path="https://naka1205.github.io/lcthw/A0F3E9CEEB1897B5.html"><a href="https://naka1205.github.io/lcthw/A0F3E9CEEB1897B5.html">一个快速的URL路由</a></li>
+                    <li class="divider"></li>
+                <li class="header">后记</li>
+                        <li class="chapter " data-level="2.1" data-path="https://naka1205.github.io/lcthw/ACB13F6E3D683928.html"><a href="https://naka1205.github.io/lcthw/ACB13F6E3D683928.html">解构 K&amp;R C&rdquo; 已死</a></li>
+                    <li class="divider"></li>
+                <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
+    </ul>
+</nav>
+    </div>
+    
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/lcthw/5C8A5BE0B219BE30.html">Makefile 进阶</a></h1>
+            </div>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">
+                                <h1 id="Makefile+%E8%BF%9B%E9%98%B6" name="Makefile+%E8%BF%9B%E9%98%B6">Makefile 进阶</h1>
+<p>在下面的三个练习中你会创建一个项目的目录框架，用于构建之后的C程序。这个目录框架会在这本书中剩余的章节中使用，并且这个练习中我会涉及到<code>Makefile</code>便于你理解它。</p>
+<p>这个结构的目的是，在不凭借配置工具的情况下，使构建中等规模的程序变得容易。如果完成了它，你会学到很多GNU make和一些小型shell脚本方面的东西。</p>
+<h2 id="%E5%9F%BA%E6%9C%AC%E7%9A%84%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84" name="%E5%9F%BA%E6%9C%AC%E7%9A%84%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84">基本的项目结构</h2>
+<p>首先要做的事情是创建一个C的目录框架，并且放置一些多续项目都拥有的，基本的文件和目录。这是我的目录：</p>
+<pre><code class="sh">$ mkdir c-skeleton
+$ cd c-skeleton/
+$ touch LICENSE README.md Makefile
+$ mkdir bin src tests
+$ cp dbg.h src/   # this is from Ex20
+$ ls -l
+total 8
+-rw-r--r--  1 zedshaw  staff     0 Mar 31 16:38 LICENSE
+-rw-r--r--  1 zedshaw  staff  1168 Apr  1 17:00 Makefile
+-rw-r--r--  1 zedshaw  staff     0 Mar 31 16:38 README.md
+drwxr-xr-x  2 zedshaw  staff    68 Mar 31 16:38 bin
+drwxr-xr-x  2 zedshaw  staff    68 Apr  1 10:07 build
+drwxr-xr-x  3 zedshaw  staff   102 Apr  3 16:28 src
+drwxr-xr-x  2 zedshaw  staff    68 Mar 31 16:38 tests
+$ ls -l src
+total 8
+-rw-r--r--  1 zedshaw  staff  982 Apr  3 16:28 dbg.h
+$</code></pre>
+<p>之后你会看到我执行了<code>ls -l</code>，所以你会看到最终结果。</p>
+<p>下面是每个文件所做的事情：</p>
+<p><code>LICENSE</code></p>
+<p>如果你在项目中发布源码，你会希望包含一份协议。如果你不这么多，虽然你有代码的版权，但是通常没有人有权使用。</p>
+<p><code>README.md</code></p>
+<p>对你项目的简要说明。它以<code>.md</code>结尾，所以应该作为Markdown来解析。</p>
+<p><code>Makefile</code></p>
+<p>这个项目的主要构建文件。</p>
+<p><code>bin/</code></p>
+<p>放置可运行程序的地方。这里通常是空的，Makefile会在这里生成程序。</p>
+<p><code>build/</code></p>
+<p>当值库和其它构建组件的地方。通常也是空的，Makefile会在这里生成这些东西。</p>
+<p><code>src/</code></p>
+<p>放置源码的地方，通常是<code>.c</code>和<code>.h</code>文件。</p>
+<p><code>tests/</code></p>
+<p>放置自动化测试的地方。</p>
+<p><code>src/dbg.h</code></p>
+<p>我将练习20的<code>dbg.h</code>复制到了这里。</p>
+<p>我刚才分解了这个项目框架的每个组件，所以你应该明白它们怎么工作。</p>
+<h2 id="Makefile" name="Makefile">Makefile</h2>
+<p>我要讲到的第一件事情就是Makefile，因为你可以从中了解其它东西的情况。这个练习的Makeile比之前更加详细，所以我会在你输入它之后做详细的分解。</p>
+<pre><code class="make">CFLAGS=-g -O2 -Wall -Wextra -Isrc -rdynamic -DNDEBUG $(OPTFLAGS)
+LIBS=-ldl $(OPTLIBS)
+PREFIX?=/usr/local
+
+SOURCES=$(wildcard src/**/*.c src/*.c)
+OBJECTS=$(patsubst %.c,%.o,$(SOURCES))
+
+TEST_SRC=$(wildcard tests/*_tests.c)
+TESTS=$(patsubst %.c,%,$(TEST_SRC))
+
+TARGET=build/libYOUR_LIBRARY.a
+SO_TARGET=$(patsubst %.a,%.so,$(TARGET))
+
+# The Target Build
+all: $(TARGET) $(SO_TARGET) tests
+
+dev: CFLAGS=-g -Wall -Isrc -Wall -Wextra $(OPTFLAGS)
+dev: all
+
+$(TARGET): CFLAGS += -fPIC
+$(TARGET): build $(OBJECTS)
+       ar rcs $@ $(OBJECTS)
+       ranlib $@
+
+$(SO_TARGET): $(TARGET) $(OBJECTS)
+       $(CC) -shared -o $@ $(OBJECTS)
+
+build:
+       @mkdir -p build
+       @mkdir -p bin
+
+# The Unit Tests
+.PHONY: tests
+tests: CFLAGS += $(TARGET)
+tests: $(TESTS)
+       sh ./tests/runtests.sh
+
+valgrind:
+       VALGRIND="valgrind --log-file=/tmp/valgrind-%p.log" $(MAKE)
+
+# The Cleaner
+clean:
+       rm -rf build $(OBJECTS) $(TESTS)
+       rm -f tests/tests.log
+       find . -name "*.gc*" -exec rm {} \;
+       rm -rf `find . -name "*.dSYM" -print`
+
+# The Install
+install: all
+       install -d $(DESTDIR)/$(PREFIX)/lib/
+       install $(TARGET) $(DESTDIR)/$(PREFIX)/lib/
+
+# The Checker
+BADFUNCS='[^_.&gt;a-zA-Z0-9](str(n?cpy|n?cat|xfrm|n?dup|str|pbrk|tok|_)|stpn?cpy|a?sn?printf|byte_)'
+check:
+       @echo Files with potentially dangerous functions.
+       @egrep $(BADFUNCS) $(SOURCES) || true
+</code></pre>
+<p>要记住你应该使用一致的Tab字符来缩进Makefile。你的编辑器应该知道怎么做，但是如果不是这样你可以换个编辑器。没有程序员会使用一个连如此简单的事情都做不好的编辑器。</p>
+<h2 id="%E5%A4%B4%E9%83%A8" name="%E5%A4%B4%E9%83%A8">头部</h2>
+<p>这个Makefile设计用于构建一个库，我们之后会用到它，并且通过使用<code>GNU make</code>的特殊特性使它在任何平台上都可用。我会在这一节拆分它的每一部分，先从头部开始。</p>
+<p>Makefile:1</p>
+<p>这是通常的<code>CFLAGS</code>，几乎每个项目都会设置，但是带有用于构建库的其它东西。你可能需要为不同平台调整它。要注意最后的<code>OPTFLAGS</code>变量可以让使用者按需扩展构建选项。</p>
+<p>Makefile:2</p>
+<p>用于链接库的选项，同样也允许其它人使用<code>OPTFLAGS</code>变量扩展链接选项。</p>
+<p>Makefile:3</p>
+<p>设置一个叫做<code>PREFIX</code>的可选变量，它只在没有<code>PREFIX</code>设置的平台上运行Makefile时有效。这就是<code>?=</code>的作用。</p>
+<p>Makefile:5</p>
+<p>这神奇的一行通过执行<code>wildcard</code>搜索在<code>src/</code>中所有<code>*.c</code>文件来动态创建<code>SOURCES</code>变量。你需要提供<code>src/**/*.c</code>和<code>src/*.c</code>以便GNU make能够包含<code>src</code>目录及其子目录的所有此类文件。</p>
+<p>Makefile:6</p>
+<p>一旦你创建了源文件列表，你可以使用<code>patsubst</code>命令获取<code>*.c</code>文件的<code>SOURCES</code>来创建目标文件的新列表。你可以告诉<code>patsubst</code>把所有<code>%.c</code>扩展为<code>%.o</code>，并将它们赋给<code>OBJECTS</code>。</p>
+<p>Makefile:8</p>
+<p>再次使用<code>wildcard</code>来寻找所有用于单元测试的测试源文件。它们存放在不同的目录中。</p>
+<p>Makefile:9</p>
+<p>之后使用相同的<code>patsubst</code>技巧来动态获得所有<code>TEST</code>目标。其中我去掉了<code>.c</code>后缀，使整个程序使用相同的名字创建。之前我将<code>.c</code>替换为<code>.o</code>来创建目标文件。</p>
+<p>Makefile:11</p>
+<p>最后，我将最终目标设置为<code>build/libYOUR_LIBRARY.a</code>，你可以为你实际构建的任何库来修改它。</p>
+<p>这就是Makefile的头部了，但是我应该对“让其他人扩展构建”做个解释。你在运行它的时候可以这样做：</p>
+<pre><code class="sh"># WARNING! Just a demonstration, won't really work right now.
+# this installs the library into /tmp
+$ make PREFIX=/tmp install
+# this tells it to add pthreads
+$ make OPTFLAGS=-pthread</code></pre>
+<p>如果你传入匹配<code>Makefile</code>中相同名称的变量，它们会在构建中生效。你可以利用它来修改<code>Makefile</code>的运行方式。第一条命令改变了<code>PREFIX</code>，使它安装到<code>/tmp</code>。第二条设置了<code>OPTFLAGS</code>，为之添加了<code>pthread</code>选项。</p>
+<h2 id="%E6%9E%84%E5%BB%BA%E7%9B%AE%E6%A0%87" name="%E6%9E%84%E5%BB%BA%E7%9B%AE%E6%A0%87">构建目标</h2>
+<p>我会继续<code>Makefile</code>的分解，这一部分用于构建目标文件（object file）和目标（target）：</p>
+<p>Makefile:14</p>
+<p>要记住在没有提供目标时<code>make</code>会默认运行第一个目标。这里它叫做<code>all:</code>，并且它提供了<code>$(TARGET) tests</code>作为构建目标。查看<code>TARGET</code>变量，你会发现这就是库文件，所以<code>all:</code>首先会构建出库文件。之后，<code>tests</code>目标会构建单元测试。</p>
+<p>Makefile:16</p>
+<p>另一个用于执行“开发者构建”的目标，它介绍了一种为单一目标修改选项的技巧，如果我执行“开发构建”，我希望<code>CFLAGS</code>包含类似<code>Wextra</code>这样用于发现bug的选项。如果你将它们放到目标的那行中，并再编写一行来指向原始目标（这里是<code>all</code>），那么它就会将改为你设置的选项。我通常将它用于在不同的平台上设置所需的不同选项。</p>
+<p>Makefile:19</p>
+<p>构建<code>TARGET</code>库，然而它同样使用了15行的技巧，向一个目标提供选项来为当前目标修改它们。这里我通过适用<code>+=</code>语法为库的构建添加了<code>-fPIC</code>。</p>
+<p>Makefile:20</p>
+<p>现在这一真实目标首先创建<code>build</code>目录，之后编译所有<code>OBJECTS</code>。</p>
+<p>Makefile:21</p>
+<p>运行实际创建<code>TARGET</code>的<code>ar</code>的命令。<code>$@ $(OBJECTS)</code>语法的意思是，将当前目标的名称放在这里，并把<code>OBJECTS</code>的内容放在后面。这里<code>$@</code>的值为19行的<code>$(TARGET)</code>，它实际上为<code>build/libYOUR_LIBRARY.a</code>。看起来在这一重定向中它做了很多跟踪工作，它也有这个功能，并且你可以通过修改顶部的<code>TARGET</code>，来构建一个全新的库。</p>
+<p>Makefile:22</p>
+<p>最后，在<code>TARGET</code>上运行<code>ranlib</code>来构建这个库。</p>
+<p>Makefile:24-24</p>
+<p>用于在<code>build/</code>和<code>bin/</code>目录不存在的条件下创建它们。之后它被19行引用，那里提供了<code>build</code>目标来确保<code>build/</code>目录已创建。</p>
+<p>你现在拥有了用于构建软件的所需的所有东西。之后我们会创建用于构建和运行单元测试的东西，来执行自动化测试。</p>
+<h2 id="%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95" name="%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95">单元测试</h2>
+<p>C不同于其他语言，因为它更易于为每个需要测试的东西创建小型程序。一些测试框架试图模拟其他语言中的模块概念，并且执行动态加载，但是它在C中并不适用。这也不是必要的，因为你可以仅仅编写一个程序用于每个测试。</p>
+<p>我接下来会涉及到Makefile的这一部分，并且你会看到<code>test/</code>目录中真正起作用的内容。</p>
+<p>Makefile:29</p>
+<p>如果你拥有一个不是“真实”的目标，只有有个目录或者文件叫这个名字，你需要使用g<code>.PHONY:</code>标签来标记它，以便<code>make</code>忽略该文件。</p>
+<p>Makefile:30</p>
+<p>我使用了与修改<code>CFLAGS</code>变量相同的技巧，并且将<code>TARGET</code>添加到构建中，于是每个测试程序都会链接<code>TARGET</code>库。这里它会添加<code>build/libYOUR_LIBRARY.a</code>用于链接。</p>
+<p>Makefile:31</p>
+<p>之后我创建了实际的<code>test:</code>目录，它依赖于所有在<code>TESTS</code>变量中列出的程序。这一行实际上说，“Make，请使用你已知的程序构建方法，以及当前<code>CFLAGS</code>设置的内容来构建<code>TESTS</code>中的每个程序。”</p>
+<p>Makefile:32</p>
+<p>最后，所有<code>TESTS</code>构建完之后，会运行一个我稍后创建的简单shell脚本，它知道如何全部运行他们并报告它们的输出、这一行实际上运行它来让你看到测试结果。</p>
+<p>Makefile:34-35</p>
+<p>为了能够动态使用<code>Valgrind</code>重复运行测试，我创建了<code>valgrind:</code>标签，它设置了正确的变量并且再次运行它。它会将<code>Valgrind</code>的日志放到<code>/tmp/valgrind-*.log</code>，你可以查看并了解发生了什么。之后<code>tests/runtests.sh</code>看到<code>VALGRIND</code>变量时，它会明白要在<code>Valgrind</code>下运行测试程序。</p>
+<p>你需要为单元测试创建一个小型的shell脚本，它知道如何运行程序。我们开始创建这个<code>tests/runtests.sh</code>脚本：</p>
+<pre><code class="sh">echo "Running unit tests:"
+
+for i in tests/*_tests
+do
+    if test -f $i
+    then
+        if $VALGRIND ./$i 2&gt;&gt; tests/tests.log
+        then
+            echo $i PASS
+        else
+            echo "ERROR in test $i: here's tests/tests.log"
+            echo "------"
+            tail tests/tests.log
+            exit 1
+        fi
+    fi
+done
+
+echo ""</code></pre>
+<p>当我提到单元测试如何工作时，我会在之后用到它。</p>
+<h2 id="%E6%B8%85%E7%90%86%E5%B7%A5%E5%85%B7" name="%E6%B8%85%E7%90%86%E5%B7%A5%E5%85%B7">清理工具</h2>
+<p>我已经有了用于单元测试的工具，所以下一步就是创建需要重置时的清理工具。</p>
+<p>Makefile:38</p>
+<p><code>clean:</code>目标在我需要清理这个项目的任何时候都会执行清理。</p>
+<p>Makefile:39-42</p>
+<p>这会清理不同编译器和工具留下的多数垃圾。它也会移除<code>build/</code>目录并且使用了一个技巧来清理XCode为调试目的而留下的<code>*.dSYM</code>。</p>
+<p>如果你碰到了想要执行清理的垃圾，你只需要简单地扩展需要删除的文件列表。</p>
+<h2 id="%E5%AE%89%E8%A3%85" name="%E5%AE%89%E8%A3%85">安装</h2>
+<p>然后，我会需要一种安装项目的方法，对<code>Makefile</code>来说就是把构建出来的库放到通常的<code>PREFIX</code>目录下，它通常是<code>/usr/local/lib</code>。</p>
+<p>Makefile:45</p>
+<p>它会使<code>install:</code>依赖于<code>all:</code>目录，所以当你运行<code>make install</code>之后也会先确保一切都已构建。</p>
+<p>Makefile:46</p>
+<p>接下来我使用<code>install</code>程序来创建<code>lib</code>目标的目录。其中我通过使用两个为安装者提供便利的变量，尝试让安装尽可能灵活。<code>DESTDIR</code>交给安装者，便于在安全或者特定的目录里执行自己的构建。<code>PREFIX</code>在别人想要将项目安装到其它目录而不是<code>/user/local</code>时会被使用。</p>
+<p>Makefile:47</p>
+<p>在此之后我使用<code>insyall</code>来实际安装这个库，到它需要安装的地方。</p>
+<p><code>install</code>程序的目的是确保这些事情都设置了正确的权限。当你运行<code>make install</code>时你通常使用root权限来执行，所以通常的构建过程应为<code>make &amp;&amp; sudo make install</code>。</p>
+<h2 id="%E6%A3%80%E6%9F%A5%E5%B7%A5%E5%85%B7" name="%E6%A3%80%E6%9F%A5%E5%B7%A5%E5%85%B7">检查工具</h2>
+<p><code>Makefile</code>的最后一部分是个额外的部分，我把它包含在我的C项目中用于发现任何使用C中“危险”函数的情况。这些函数是字符串函数和另一些“不保护栈”的函数。</p>
+<p>Makefile:50</p>
+<p>设置变量，它是个稍大的正则表达式，用于检索类似<code>strcpy</code>的危险函数。</p>
+<p>Makefile:51</p>
+<p>这是<code>check:</code>目标，使你能够随时执行检查。</p>
+<p>Makefile:52</p>
+<p>它只是一个打印信息的方式，使用了<code>@echo</code>来告诉<code>make</code>不要打印命令，只需打印输出。</p>
+<p>Makefile:53</p>
+<p>对源文件运行<code>egrep</code>命令来寻找任何危险的字符串。最后的<code>|| true</code>是一种方法，用于防止<code>make</code>认为<code>egrep</code>没有找到任何东西是执行失败。</p>
+<p>当你执行它之后，它会表现得十分奇怪，如果没有任何危险的函数，你会得到一个错误。</p>
+<h2 id="%E4%BD%A0%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88" name="%E4%BD%A0%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88">你会看到什么</h2>
+<p>我在完成这个项目框架目录的构建之前，还设置了两个额外的练习。下面这是我对<code>Makefile</code>特性的测试结果：</p>
+<pre><code class="sh">$ make clean
+rm -rf build  
+rm -f tests/tests.log
+find . -name "*.gc*" -exec rm {} \;
+rm -rf `find . -name "*.dSYM" -print`
+$ make check
+Files with potentially dangerous functions.
+^Cmake: *** [check] Interrupt: 2
+
+$ make
+ar rcs build/libYOUR_LIBRARY.a
+ar: no archive members specified
+usage:  ar -d [-TLsv] archive file ...
+      ar -m [-TLsv] archive file ...
+      ar -m [-abiTLsv] position archive file ...
+      ar -p [-TLsv] archive [file ...]
+      ar -q [-cTLsv] archive file ...
+      ar -r [-cuTLsv] archive file ...
+      ar -r [-abciuTLsv] position archive file ...
+      ar -t [-TLsv] archive [file ...]
+      ar -x [-ouTLsv] archive [file ...]
+make: *** [build/libYOUR_LIBRARY.a] Error 1
+$ make valgrind
+VALGRIND="valgrind --log-file=/tmp/valgrind-%p.log" make
+ar rcs build/libYOUR_LIBRARY.a
+ar: no archive members specified
+usage:  ar -d [-TLsv] archive file ...
+      ar -m [-TLsv] archive file ...
+      ar -m [-abiTLsv] position archive file ...
+      ar -p [-TLsv] archive [file ...]
+      ar -q [-cTLsv] archive file ...
+      ar -r [-cuTLsv] archive file ...
+      ar -r [-abciuTLsv] position archive file ...
+      ar -t [-TLsv] archive [file ...]
+      ar -x [-ouTLsv] archive [file ...]
+make[1]: *** [build/libYOUR_LIBRARY.a] Error 1
+make: *** [valgrind] Error 2
+$</code></pre>
+<p>当我运行<code>clean:</code>目标时它会生效，但是由于我在<code>src/</code>目录中并没有任何源文件，其它命令并没有真正起作用。我会在下个练习中补完它。</p>
+<h2 id="%E9%99%84%E5%8A%A0%E9%A2%98" name="%E9%99%84%E5%8A%A0%E9%A2%98">附加题</h2>
+<ul>
+<li>尝试通过将源文件和头文件添加进<code>src/</code>，来使<code>Makefile</code>真正起作用，并且构建出库文件。在源文件中不应该需要<code>main</code>函数。</li>
+<li>研究<code>check:</code>目标会使用<code>BADFUNCS</code>的正则表达式来寻找什么函数。</li>
+<li>如果你没有做过自动化测试，查询有关资料为以后做准备。</li>
+</ul>                            </section>
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+                                <h1 class="search-results-title">
+                                    关于"<span class='search-query'></span>"的搜索结果共<span class='search-results-count'></span>条
+                                </h1>
+                                <ul class="search-results-list"></ul>
+                            </div>
+                            <div class="no-results">
+                                <h1 class="search-results-title">没有"<span class='search-query'></span>"相关内容</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <a href="https://naka1205.github.io/lcthw/FFD032B7FC697307.html" class="navigation navigation-prev " aria-label="创造性和防御性编程">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/lcthw/09D69E06B935E885.html" class="navigation navigation-next " aria-label="库和链接">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
+    </div>
+<script>
+var gitbook = gitbook || [];
+gitbook.push(function() {
+    gitbook.page.hasChanged({
+        "page": {
+            "title":  "Makefile 进阶",
+            "next": {
+                "title": "库和链接"
+            },
+            "previous": {
+                "title": "创造性和防御性编程"
+            }
+        },
+        "config": {
+            "gitbook": "*",
+            "theme": "default",
+            "variables": {},
+            "plugins": ["-lunr", "-search", "-highlight","search-pro"],
+            "pluginsConfig": {
+                "search-pro": {},
+                "highlight": {},
+                "sharing": {},
+                "fontsettings": {},
+                "theme-default": {}
+            },
+            "structure": {},
+            "pdf": {},
+            "styles": {}
+        },
+        "file": {},
+        "gitbook": {},
+        "basePath": "https://naka1205.github.io/lcthw",
+        "book": {}
+    });
+});
+</script>
+</div>
+<script src="https://naka1205.github.io/lcthw/assets/js/gitbook.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/theme.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/jquery.mark.min.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/search.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/buttons.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/fontsettings.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/plugin.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE HTML>
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>Zed的强大的调试宏 · 笨办法学C</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="在C中有一个永恒的问题，它伴随了你很长时间，然而在这个练习我打算使用一系列我开发的宏来解决它。到现在为止你都不知道它们的强大之处，所以你必须使用它们，总有一天你会来找我说，“Zed，这些调试宏真是太伟大了，我应该把我的第一个孩子的出生归功于你，因为你治好了我十年的心脏病，并且打消了我数次想要自杀的念头。真是要谢谢你这样一个好人，这里有一百万美元，和LeoFender设计的SnakeheadTelecaster电吉他的原型。”">
+    <meta name="keywords" content="笨办法学C">
+    <meta name="generator" content="PKBook">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/style.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/search.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/ebook.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/website.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css" rel="stylesheet">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://naka1205.github.io/lcthw/assets/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://naka1205.github.io/lcthw/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div class="book">
+    <div class="book-summary">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="输入关键词搜索" />
+        </div>
+        <nav role="navigation">
+    <ul class="summary">
+        <li><a href="https://naka1205.github.io/lcthw/index.html" target="blank" class="header">导言：C的笛卡尔之梦</a></li>
+        <li class="divider"></li>
+                <li class="header">练习</li>
+                        <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/lcthw/C3D207FADFAF5841.html"><a href="https://naka1205.github.io/lcthw/C3D207FADFAF5841.html">准备</a></li>
+                        <li class="chapter " data-level="1.2" data-path="https://naka1205.github.io/lcthw/6C82D57E03DDE1F0.html"><a href="https://naka1205.github.io/lcthw/6C82D57E03DDE1F0.html">启用编译器</a></li>
+                        <li class="chapter " data-level="1.3" data-path="https://naka1205.github.io/lcthw/44DB81B8DEDE247B.html"><a href="https://naka1205.github.io/lcthw/44DB81B8DEDE247B.html">用Make来代替Python</a></li>
+                        <li class="chapter " data-level="1.4" data-path="https://naka1205.github.io/lcthw/D3BE6C8A075EF92E.html"><a href="https://naka1205.github.io/lcthw/D3BE6C8A075EF92E.html">格式化输出</a></li>
+                        <li class="chapter " data-level="1.5" data-path="https://naka1205.github.io/lcthw/B9CDA195B24A4F6A.html"><a href="https://naka1205.github.io/lcthw/B9CDA195B24A4F6A.html">Valgrind 介绍</a></li>
+                        <li class="chapter " data-level="1.6" data-path="https://naka1205.github.io/lcthw/624C7D3C62504470.html"><a href="https://naka1205.github.io/lcthw/624C7D3C62504470.html">一个C程序的结构</a></li>
+                        <li class="chapter " data-level="1.7" data-path="https://naka1205.github.io/lcthw/33CC823F6781FDB9.html"><a href="https://naka1205.github.io/lcthw/33CC823F6781FDB9.html">变量类型</a></li>
+                        <li class="chapter " data-level="1.8" data-path="https://naka1205.github.io/lcthw/171C2758259C8DE1.html"><a href="https://naka1205.github.io/lcthw/171C2758259C8DE1.html">更多变量和一些算术</a></li>
+                        <li class="chapter " data-level="1.9" data-path="https://naka1205.github.io/lcthw/C2C3F49A54034E72.html"><a href="https://naka1205.github.io/lcthw/C2C3F49A54034E72.html">大小和数组</a></li>
+                        <li class="chapter " data-level="1.10" data-path="https://naka1205.github.io/lcthw/3046A11FC869E5C2.html"><a href="https://naka1205.github.io/lcthw/3046A11FC869E5C2.html">数组和字符串</a></li>
+                        <li class="chapter " data-level="1.11" data-path="https://naka1205.github.io/lcthw/3018A6B457AE4FF5.html"><a href="https://naka1205.github.io/lcthw/3018A6B457AE4FF5.html">字符串数组和循环</a></li>
+                        <li class="chapter " data-level="1.12" data-path="https://naka1205.github.io/lcthw/F552B2B9C8E36656.html"><a href="https://naka1205.github.io/lcthw/F552B2B9C8E36656.html">While循环和布尔表达式</a></li>
+                        <li class="chapter " data-level="1.13" data-path="https://naka1205.github.io/lcthw/71D0E364C2783A96.html"><a href="https://naka1205.github.io/lcthw/71D0E364C2783A96.html">If，Else If，Else</a></li>
+                        <li class="chapter " data-level="1.14" data-path="https://naka1205.github.io/lcthw/0E9AB6AD5C029EF6.html"><a href="https://naka1205.github.io/lcthw/0E9AB6AD5C029EF6.html">Switch语句</a></li>
+                        <li class="chapter " data-level="1.15" data-path="https://naka1205.github.io/lcthw/5D2945A8677CE165.html"><a href="https://naka1205.github.io/lcthw/5D2945A8677CE165.html">编写并使用函数</a></li>
+                        <li class="chapter " data-level="1.16" data-path="https://naka1205.github.io/lcthw/8B5745CD2156FCC3.html"><a href="https://naka1205.github.io/lcthw/8B5745CD2156FCC3.html">指针，可怕的指针</a></li>
+                        <li class="chapter " data-level="1.17" data-path="https://naka1205.github.io/lcthw/CDCC108031940336.html"><a href="https://naka1205.github.io/lcthw/CDCC108031940336.html">结构体和指向它们的指针</a></li>
+                        <li class="chapter " data-level="1.18" data-path="https://naka1205.github.io/lcthw/178F8DDE733AD0DD.html"><a href="https://naka1205.github.io/lcthw/178F8DDE733AD0DD.html">堆和栈的内存分配</a></li>
+                        <li class="chapter " data-level="1.19" data-path="https://naka1205.github.io/lcthw/DC3B5E7AC8CF3946.html"><a href="https://naka1205.github.io/lcthw/DC3B5E7AC8CF3946.html">函数指针</a></li>
+                        <li class="chapter " data-level="1.20" data-path="https://naka1205.github.io/lcthw/746ADCFC76734882.html"><a href="https://naka1205.github.io/lcthw/746ADCFC76734882.html">一个简单的对象系统</a></li>
+                        <li class="chapter " data-level="1.21" data-path="https://naka1205.github.io/lcthw/8BBFC8E0CA1C348B.html"><a href="https://naka1205.github.io/lcthw/8BBFC8E0CA1C348B.html">Zed的强大的调试宏</a></li>
+                        <li class="chapter " data-level="1.22" data-path="https://naka1205.github.io/lcthw/B67D461964D39489.html"><a href="https://naka1205.github.io/lcthw/B67D461964D39489.html">高级数据类型和控制结构</a></li>
+                        <li class="chapter " data-level="1.23" data-path="https://naka1205.github.io/lcthw/6822F5C25F64C05F.html"><a href="https://naka1205.github.io/lcthw/6822F5C25F64C05F.html">栈、作用域和全局</a></li>
+                        <li class="chapter " data-level="1.24" data-path="https://naka1205.github.io/lcthw/F6AD606057D5DA1A.html"><a href="https://naka1205.github.io/lcthw/F6AD606057D5DA1A.html">认识达夫设备</a></li>
+                        <li class="chapter " data-level="1.25" data-path="https://naka1205.github.io/lcthw/2F13B44DB3CFDC2E.html"><a href="https://naka1205.github.io/lcthw/2F13B44DB3CFDC2E.html">输入输出和文件</a></li>
+                        <li class="chapter " data-level="1.26" data-path="https://naka1205.github.io/lcthw/2852FA26A8BCFAD2.html"><a href="https://naka1205.github.io/lcthw/2852FA26A8BCFAD2.html">变参函数</a></li>
+                        <li class="chapter " data-level="1.27" data-path="https://naka1205.github.io/lcthw/41ABE0D9F5D3164C.html"><a href="https://naka1205.github.io/lcthw/41ABE0D9F5D3164C.html">编写第一个真正的程序</a></li>
+                        <li class="chapter " data-level="1.28" data-path="https://naka1205.github.io/lcthw/FFD032B7FC697307.html"><a href="https://naka1205.github.io/lcthw/FFD032B7FC697307.html">创造性和防御性编程</a></li>
+                        <li class="chapter " data-level="1.29" data-path="https://naka1205.github.io/lcthw/5C8A5BE0B219BE30.html"><a href="https://naka1205.github.io/lcthw/5C8A5BE0B219BE30.html">Makefile 进阶</a></li>
+                        <li class="chapter " data-level="1.30" data-path="https://naka1205.github.io/lcthw/09D69E06B935E885.html"><a href="https://naka1205.github.io/lcthw/09D69E06B935E885.html">库和链接</a></li>
+                        <li class="chapter " data-level="1.31" data-path="https://naka1205.github.io/lcthw/866A23BE27D0D7E6.html"><a href="https://naka1205.github.io/lcthw/866A23BE27D0D7E6.html">自动化测试</a></li>
+                        <li class="chapter " data-level="1.32" data-path="https://naka1205.github.io/lcthw/B6E48A0ED7072528.html"><a href="https://naka1205.github.io/lcthw/B6E48A0ED7072528.html">代码调试</a></li>
+                        <li class="chapter " data-level="1.33" data-path="https://naka1205.github.io/lcthw/364477FB0CED1A03.html"><a href="https://naka1205.github.io/lcthw/364477FB0CED1A03.html">双向链表</a></li>
+                        <li class="chapter " data-level="1.34" data-path="https://naka1205.github.io/lcthw/219AB7A902A81B94.html"><a href="https://naka1205.github.io/lcthw/219AB7A902A81B94.html">链表算法</a></li>
+                        <li class="chapter " data-level="1.35" data-path="https://naka1205.github.io/lcthw/4375976486E9101E.html"><a href="https://naka1205.github.io/lcthw/4375976486E9101E.html">动态数组</a></li>
+                        <li class="chapter " data-level="1.36" data-path="https://naka1205.github.io/lcthw/F674E4CC423F4082.html"><a href="https://naka1205.github.io/lcthw/F674E4CC423F4082.html">排序和搜索</a></li>
+                        <li class="chapter " data-level="1.37" data-path="https://naka1205.github.io/lcthw/95C8D9CEC85F55BD.html"><a href="https://naka1205.github.io/lcthw/95C8D9CEC85F55BD.html">更安全的字符串</a></li>
+                        <li class="chapter " data-level="1.38" data-path="https://naka1205.github.io/lcthw/19B22BBE112EDD42.html"><a href="https://naka1205.github.io/lcthw/19B22BBE112EDD42.html">哈希表</a></li>
+                        <li class="chapter " data-level="1.39" data-path="https://naka1205.github.io/lcthw/8ACDB75ECC6C4448.html"><a href="https://naka1205.github.io/lcthw/8ACDB75ECC6C4448.html">哈希算法</a></li>
+                        <li class="chapter " data-level="1.40" data-path="https://naka1205.github.io/lcthw/1D54A74DB0C212CF.html"><a href="https://naka1205.github.io/lcthw/1D54A74DB0C212CF.html">字符串算法</a></li>
+                        <li class="chapter " data-level="1.41" data-path="https://naka1205.github.io/lcthw/64206F3FDC812F26.html"><a href="https://naka1205.github.io/lcthw/64206F3FDC812F26.html">二叉搜索树</a></li>
+                        <li class="chapter " data-level="1.42" data-path="https://naka1205.github.io/lcthw/35162CDAACDA8825.html"><a href="https://naka1205.github.io/lcthw/35162CDAACDA8825.html">将 Cachegrind 和 Callgrind 用于性能调优</a></li>
+                        <li class="chapter " data-level="1.43" data-path="https://naka1205.github.io/lcthw/288E5C87D0D80787.html"><a href="https://naka1205.github.io/lcthw/288E5C87D0D80787.html">栈和队列</a></li>
+                        <li class="chapter " data-level="1.44" data-path="https://naka1205.github.io/lcthw/EFA4890803FAB6F6.html"><a href="https://naka1205.github.io/lcthw/EFA4890803FAB6F6.html">一个简单的统计引擎</a></li>
+                        <li class="chapter " data-level="1.45" data-path="https://naka1205.github.io/lcthw/E0AFFDAFB6FE468C.html"><a href="https://naka1205.github.io/lcthw/E0AFFDAFB6FE468C.html">环形缓冲区</a></li>
+                        <li class="chapter " data-level="1.46" data-path="https://naka1205.github.io/lcthw/EEC00C835A3D8361.html"><a href="https://naka1205.github.io/lcthw/EEC00C835A3D8361.html">一个简单的TCP/IP客户端</a></li>
+                        <li class="chapter " data-level="1.47" data-path="https://naka1205.github.io/lcthw/51762D35312252D6.html"><a href="https://naka1205.github.io/lcthw/51762D35312252D6.html">三叉搜索树</a></li>
+                        <li class="chapter " data-level="1.48" data-path="https://naka1205.github.io/lcthw/A0F3E9CEEB1897B5.html"><a href="https://naka1205.github.io/lcthw/A0F3E9CEEB1897B5.html">一个快速的URL路由</a></li>
+                    <li class="divider"></li>
+                <li class="header">后记</li>
+                        <li class="chapter " data-level="2.1" data-path="https://naka1205.github.io/lcthw/ACB13F6E3D683928.html"><a href="https://naka1205.github.io/lcthw/ACB13F6E3D683928.html">解构 K&amp;R C&rdquo; 已死</a></li>
+                    <li class="divider"></li>
+                <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
+    </ul>
+</nav>
+    </div>
+    
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/lcthw/8BBFC8E0CA1C348B.html">Zed的强大的调试宏</a></h1>
+            </div>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">
+                                <h1 id="Zed%E7%9A%84%E5%BC%BA%E5%A4%A7%E7%9A%84%E8%B0%83%E8%AF%95%E5%AE%8F" name="Zed%E7%9A%84%E5%BC%BA%E5%A4%A7%E7%9A%84%E8%B0%83%E8%AF%95%E5%AE%8F">Zed的强大的调试宏</h1>
+<p>在C中有一个永恒的问题，它伴随了你很长时间，然而在这个练习我打算使用一系列我开发的宏来解决它。到现在为止你都不知道它们的强大之处，所以你必须使用它们，总有一天你会来找我说，“Zed，这些调试宏真是太伟大了，我应该把我的第一个孩子的出生归功于你，因为你治好了我十年的心脏病，并且打消了我数次想要自杀的念头。真是要谢谢你这样一个好人，这里有一百万美元，和Leo Fender设计的Snakehead Telecaster电吉他的原型。”</p>
+<p>是的，它们的确很强大。</p>
+<h2 id="C%E7%9A%84%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E9%97%AE%E9%A2%98" name="C%E7%9A%84%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E9%97%AE%E9%A2%98">C的错误处理问题</h2>
+<p>几乎每个编程语言中，错误处理都非常难。有些语言尽可能试图避免错误这个概念，而另一些语言发明了复杂了控制结构，比如异常来传递错误状态。当然的错误大多是因为程序员假定错误不会发生，并且这一乐观的思想影响了他们所用和所创造的语言。</p>
+<p>C通过返回错误码或设置全局的<code>errno</code>值来解决这些问题，并且你需要检查这些值。这种机制可以检查现存的复杂代码中，你执行的东西是否发生错误。当你编写更多的C代码时，你应该按照下列模式：</p>
+<ul>
+<li>调用函数。</li>
+<li>如果返回值出现错误（每次都必须检查）。</li>
+<li>清理创建的所有资源。</li>
+<li>打印出所有可能有帮助的错误信息。</li>
+</ul>
+<p>这意味着对于每一个函数调用（是的，每个函数）你都可能需要多编写3~4行代码来确保它正常功能。这些还不包括清理你到目前创建的所有垃圾。如果你有10个不同的结构体，3个方式。和一个数据库链接，当你发现错误时你应该写额外的14行。</p>
+<p>之前这并不是个问题，因为发生错误时，C程序会像你以前做的那样直接退出。你不需要清理任何东西，因为OS会为你自动去做。然而现在很多C程序需要持续运行数周、数月或者数年，并且需要优雅地处理来自于多种资源的错误。你并不能仅仅让你的服务器在首次运行就退出，你也不能让你写的库使使用它的程序退出。这非常糟糕。</p>
+<p>其它语言通过异常来解决这个问题，但是这些问题也会在C中出现（其它语言也一样）。在C中你只能够返回一个值，但是异常是基于栈的返回系统，可以返回任意值。C语言中，尝试在栈上模拟异常非常困难，并且其它库也不会兼容。</p>
+<h2 id="%E8%B0%83%E8%AF%95%E5%AE%8F" name="%E8%B0%83%E8%AF%95%E5%AE%8F">调试宏</h2>
+<p>我使用的解决方案是，使用一系列“调试宏”，它们在C中实现了基本的调试和错误处理系统。这个系统非常易于理解，兼容于每个库，并且使C代码更加健壮和简洁。</p>
+<p>它通过实现一系列转换来处理错误，任何时候发生了错误，你的函数都会跳到执行清理和返回错误代码的“error:”区域。你可以使用<code>check</code>宏来检查错误代码，打印错误信息，然后跳到清理区域。你也可以使用一系列日志函数来打印出有用的调试信息。</p>
+<p>我现在会向你展示你目前所见过的，最强大且卓越的代码的全部内容。</p>
+<pre><code class="c">#ifndef __dbg_h__
+#define __dbg_h__
+
+#include &lt;stdio.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;string.h&gt;
+
+#ifdef NDEBUG
+#define debug(M, ...)
+#else
+#define debug(M, ...) fprintf(stderr, "DEBUG %s:%d: " M "\n", __FILE__, __LINE__, ##__VA_ARGS__)
+#endif
+
+#define clean_errno() (errno == 0 ? "None" : strerror(errno))
+
+#define log_err(M, ...) fprintf(stderr, "[ERROR] (%s:%d: errno: %s) " M "\n", __FILE__, __LINE__, clean_errno(), ##__VA_ARGS__)
+
+#define log_warn(M, ...) fprintf(stderr, "[WARN] (%s:%d: errno: %s) " M "\n", __FILE__, __LINE__, clean_errno(), ##__VA_ARGS__)
+
+#define log_info(M, ...) fprintf(stderr, "[INFO] (%s:%d) " M "\n", __FILE__, __LINE__, ##__VA_ARGS__)
+
+#define check(A, M, ...) if(!(A)) { log_err(M, ##__VA_ARGS__); errno=0; goto error; }
+
+#define sentinel(M, ...)  { log_err(M, ##__VA_ARGS__); errno=0; goto error; }
+
+#define check_mem(A) check((A), "Out of memory.")
+
+#define check_debug(A, M, ...) if(!(A)) { debug(M, ##__VA_ARGS__); errno=0; goto error; }
+
+#endif</code></pre>
+<p>是的，这就是全部代码了，下面是它每一行所做的事情。</p>
+<p>dbg.h:1-2</p>
+<p>防止意外包含多次的保护措施，你已经在上一个练习中见过了。</p>
+<p>dbg.h:4-6</p>
+<p>包含这些宏所需的函数。</p>
+<p>dbg.h:8</p>
+<p><code>#ifdef</code>的起始，它可以让你重新编译程序来移除所有调试日志信息。</p>
+<p>dbg.h:9</p>
+<p>如果你定义了<code>NDEBUG</code>之后编译，没有任何调试信息会输出。你可以看到<code>#define debug()</code>被替换为空（右边没有任何东西）。</p>
+<p>dbg.h:10</p>
+<p>上面的<code>#ifdef</code>所匹配的<code>#else</code>。</p>
+<p>dbg.h:11</p>
+<p>用于替代的<code>#define debug</code>，它将任何使用<code>debug("format", arg1, arg2)</code>的地方替换成<code>fprintf</code>对<code>stderr</code>的调用。许多程序员并不知道，但是你的确可以创建与<code>printf</code>类似的可变参数宏。许多C编译器（实际上是C预处理器）并不支持它，但是gcc可以做到。这里的魔法是使用<code>##__VA_ARGS__</code>，意思是将剩余的所有额外参数放到这里。同时也要注意，使用了<code>__FILE__</code>和<code>__LINE__</code>来获取当前<code>fine:line</code>用于调试信息。这会非常有帮助。</p>
+<p>dbg.h:12</p>
+<p><code>#ifdef</code>的结尾。</p>
+<p>dbg.h:14</p>
+<p><code>clean_errno</code>宏用于获取<code>errno</code>的安全可读的版本。中间奇怪的语法是“三元运算符”，你会在后面学到它。</p>
+<p>dbg.h:16-20</p>
+<p><code>log_err</code>，<code>log_warn</code>和<code>log_info</code>宏用于为最终用户记录信息。它们类似于<code>debug</code>但不能被编译。</p>
+<p>dbg.h:22</p>
+<p>到目前为止最棒的宏。<code>check</code>会保证条件<code>A</code>为真，否则会记录错误<code>M</code>（带着<code>log_err</code>的可变参数），之后跳到函数的<code>error:</code>区域来执行清理。</p>
+<p>dbg.h:24</p>
+<p>第二个最棒的宏，<code>sentinel</code>可以放在函数的任何不应该执行的地方，它会打印错误信息并且跳到<code>error:</code>标签。你可以将它放到<code>if-statements</code>或者<code>switch-statements</code>的不该被执行的分支中，比如<code>default</code>。</p>
+<p>dbg.h:26</p>
+<p>简写的<code>check_mem</code>宏，用于确保指针有效，否则会报告“内存耗尽”的错误。</p>
+<p>dbg.h:28</p>
+<p>用于替代的<code>check_debug</code>宏，它仍然会检查并处理错误，尤其是你并不想报告的普遍错误。它里面使用了<code>debug</code>代替<code>log_err</code>来报告错误，所以当你定义了<code>NDEBUG</code>，它仍然会检查并且发生错误时跳出，但是不会打印消息了。</p>
+<h2 id="%E4%BD%BF%E7%94%A8dbg.h" name="%E4%BD%BF%E7%94%A8dbg.h">使用dbg.h</h2>
+<p>下面是一个例子，在一个小的程序中使用了<code>dbg.h</code>的所有函数。这实际上并没有做什么事情，只是向你演示了如何使用每个宏。我们将在接下来的所有程序中使用这些宏，所有要确保理解了如何使用它们。</p>
+<pre><code class="c">#include "dbg.h"
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+
+void test_debug()
+{
+    // notice you don't need the \n
+    debug("I have Brown Hair.");
+
+    // passing in arguments like printf
+    debug("I am %d years old.", 37);
+}
+
+void test_log_err()
+{
+    log_err("I believe everything is broken.");
+    log_err("There are %d problems in %s.", 0, "space");
+}
+
+void test_log_warn()
+{
+    log_warn("You can safely ignore this.");
+    log_warn("Maybe consider looking at: %s.", "/etc/passwd");
+}
+
+void test_log_info()
+{
+    log_info("Well I did something mundane.");
+    log_info("It happened %f times today.", 1.3f);
+}
+
+int test_check(char *file_name)
+{
+    FILE *input = NULL;
+    char *block = NULL;
+
+    block = malloc(100);
+    check_mem(block); // should work
+
+    input = fopen(file_name,"r");
+    check(input, "Failed to open %s.", file_name);
+
+    free(block);
+    fclose(input);
+    return 0;
+
+error:
+    if(block) free(block);
+    if(input) fclose(input);
+    return -1;
+}
+
+int test_sentinel(int code)
+{
+    char *temp = malloc(100);
+    check_mem(temp);
+
+    switch(code) {
+        case 1:
+            log_info("It worked.");
+            break;
+        default:
+            sentinel("I shouldn't run.");
+    }
+
+    free(temp);
+    return 0;
+
+error:
+    if(temp) free(temp);
+    return -1;
+}
+
+int test_check_mem()
+{
+    char *test = NULL;
+    check_mem(test);
+
+    free(test);
+    return 1;
+
+error:
+    return -1;
+}
+
+int test_check_debug()
+{
+    int i = 0;
+    check_debug(i != 0, "Oops, I was 0.");
+
+    return 0;
+error:
+    return -1;
+}
+
+int main(int argc, char *argv[])
+{
+    check(argc == 2, "Need an argument.");
+
+    test_debug();
+    test_log_err();
+    test_log_warn();
+    test_log_info();
+
+    check(test_check("ex20.c") == 0, "failed with ex20.c");
+    check(test_check(argv[1]) == -1, "failed with argv");
+    check(test_sentinel(1) == 0, "test_sentinel failed.");
+    check(test_sentinel(100) == -1, "test_sentinel failed.");
+    check(test_check_mem() == -1, "test_check_mem failed.");
+    check(test_check_debug() == -1, "test_check_debug failed.");
+
+    return 0;
+
+error:
+    return 1;
+}</code></pre>
+<p>要注意<code>check</code>是如何使用的，并且当它为<code>false</code>时会跳到<code>error:</code>标签来执行清理。这一行读作“检查A是否为真，不为真就打印M并跳出”。</p>
+<h2 id="%E4%BD%A0%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88" name="%E4%BD%A0%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88">你会看到什么</h2>
+<p>当你执行这段代码并且向第一个参数提供一些东西，你会看到：</p>
+<pre><code class="sh">$ make ex20
+cc -Wall -g -DNDEBUG    ex20.c   -o ex20
+$ ./ex20 test
+[ERROR] (ex20.c:16: errno: None) I believe everything is broken.
+[ERROR] (ex20.c:17: errno: None) There are 0 problems in space.
+[WARN] (ex20.c:22: errno: None) You can safely ignore this.
+[WARN] (ex20.c:23: errno: None) Maybe consider looking at: /etc/passwd.
+[INFO] (ex20.c:28) Well I did something mundane.
+[INFO] (ex20.c:29) It happened 1.300000 times today.
+[ERROR] (ex20.c:38: errno: No such file or directory) Failed to open test.
+[INFO] (ex20.c:57) It worked.
+[ERROR] (ex20.c:60: errno: None) I shouldn't run.
+[ERROR] (ex20.c:74: errno: None) Out of memory.</code></pre>
+<p>看到<code>check</code>失败之后，它是如何打印具体的行号了吗？这会为接下来的调试工作节省时间。同时也观察<code>errno</code>被设置时它如何打印错误信息。同样，这也可以节省你调试的时间。</p>
+<h2 id="C%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E5%A6%82%E4%BD%95%E6%89%A9%E5%B1%95%E5%AE%8F" name="C%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E5%A6%82%E4%BD%95%E6%89%A9%E5%B1%95%E5%AE%8F">C预处理器如何扩展宏</h2>
+<p>现在我会向你简单介绍一些预处理器的工作原理，让你知道这些宏是如何工作的。我会拆分<code>dbg.h</code>中阿最复杂的宏并且让你运行<code>cpp</code>来让你观察它实际上是如何工作的。</p>
+<p>假设我有一个函数叫做<code>dosomething()</code>，执行成功是返回0，发生错误时返回-1。每次我调用<code>dosomething</code>的时候，我都要检查错误码，所以我将代码写成这样：</p>
+<pre><code class="c">int rc = dosomething();
+
+if(rc != 0) {
+    fprintf(stderr, "There was an error: %s\n", strerror());
+    goto error;
+}</code></pre>
+<p>我想使用预处理器做的是，将这个<code>if</code>语句封装为更可读并且便于记忆的一行代码。于是可以使用这个<code>check</code>来执行<code>dbg.h</code>中的宏所做的事情：</p>
+<pre><code class="c">int rc = dosomething();
+check(rc == 0, "There was an error.");</code></pre>
+<p>这样更加简洁，并且恰好解释了所做的事情：检查函数是否正常工作，如果没有就报告错误。我们需要一些特别的预处理器“技巧”来完成它，这些技巧使预处理器作为代码生成工具更加易用。再次看看<code>check</code>和<code>log_err</code>宏：</p>
+<pre><code class="c">#define log_err(M, ...) fprintf(stderr, "[ERROR] (%s:%d: errno: %s) " M "\n", __FILE__, __LINE__, clean_errno(), ##__VA_ARGS__)
+#define check(A, M, ...) if(!(A)) { log_err(M, ##__VA_ARGS__); errno=0; goto error; }</code></pre>
+<p>第一个宏，<code>log_err</code>更简单一些，只是将它自己替换为<code>fprintf</code>对<code>stderr</code>的调用。这个宏唯一的技巧性部分就是在<code>log_err(M, ...)</code>的定义中使用<code>...</code>。它所做的是让你向宏传入可变参数，从而传入<code>fprintf</code>需要接收的参数。它们是如何注入<code>fprintf</code>的呢？观察末尾的<code>##__VA_ARGS__</code>，它告诉预处理器将<code>...</code>所在位置的参数注入到<code>fprintf</code>调用的相应位置。于是你可以像这样调用了：</p>
+<pre><code class="c">log_err("Age: %d, name: %s", age, name);</code></pre>
+<p><code>age, name</code>参数就是<code>...</code>所定义的部分，这些参数会被注入到<code>fprintf</code>中，输出会变成：</p>
+<pre><code class="c">fprintf(stderr, "[ERROR] (%s:%d: errno: %s) Age %d: name %d\n",
+    __FILE__, __LINE__, clean_errno(), age, name);</code></pre>
+<p>看到末尾的<code>age, name</code>了吗？这就是<code>...</code>和<code>##__VA_ARGS__</code>的工作机制，在调用其它变参宏（或者函数）的时候它会起作用。观察<code>check</code>宏调用<code>log_err</code>的方式，它也是用了<code>...</code>和<code>##__VA_ARGS__</code>。这就是传递整个<code>printf</code>风格的格式字符串给<code>check</code>的途径，它之后会传给<code>log_err</code>，二者的机制都像<code>printf</code>一样。</p>
+<p>下一步是学习<code>check</code>如何为错误检查构造<code>if</code>语句，如果我们剖析<code>log_err</code>的用法，我们会得到：</p>
+<pre><code class="c">if(!(A)) { errno=0; goto error; }</code></pre>
+<p>它的意思是，如果<code>A</code>为假，则重置<code>errno</code>并且调用<code>error</code>标签。<code>check</code>宏会被上述<code>if</code>语句·替换，所以如果我们手动扩展<code>check(rc == 0, "There was an error.")</code>，我们会得到：</p>
+<pre><code class="c">if(!(rc == 0)) {
+    log_err("There was an error.");
+    errno=0;
+    goto error;
+}</code></pre>
+<p>在这两个宏的展开过程中，你应该了解了预处理器会将宏替换为它的定义的扩展版本，并且递归地来执行这个步骤，扩展宏定义中的宏。预处理器是个递归的模板系统，就像我之前提到的那样。它的强大来源于使用参数化的代码来生成整个代码块，这使它成为便利的代码生成工具。</p>
+<p>下面只剩一个问题了：为什么不像<code>die</code>一样使用函数呢？原因是需要在错误处理时使用<code>file:line</code>的数值和<code>goto</code>操作。如果你在函数在内部执行这些，你不会得到错误真正出现位置的行号，并且<code>goto</code>的实现也相当麻烦。</p>
+<p>另一个原因是，如果你编写原始的<code>if</code>语句，它看起来就像是你代码中的其它的<code>if</code>语句，所以它看起来并不像一个错误检查。通过将<code>if</code>语句包装成<code>check</code>宏，就会使这一错误检查的逻辑更清晰，而不是主控制流的一部分。</p>
+<p>最后，C预处理器提供了条件编译部分代码的功能，所以你可以编写只在构建程序的开发或调试版本时需要的代码。你可以看到这在<code>dbg.h</code>中已经用到了，<code>debug</code>宏的主体部分只被编译器用到。如果没有这个功能，你需要多出一个<code>if</code>语句来检查是否为“调试模式”，也浪费了CPU资源来进行没有必要的检查。</p>
+<h2 id="%E9%99%84%E5%8A%A0%E9%A2%98" name="%E9%99%84%E5%8A%A0%E9%A2%98">附加题</h2>
+<ul>
+<li>将<code>#define NDEBUG</code>放在文件顶端来消除所有调试信息。</li>
+<li>撤销上面添加的一行，并在<code>MakeFile</code>顶端将<code>-D NDEBUG</code>添加到<code>CFLAGS</code>，之后重新编译来达到同样效果。</li>
+<li>修改日志宏，使之包含函数名称和<code>file:line</code>。</li>
+</ul>                            </section>
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+                                <h1 class="search-results-title">
+                                    关于"<span class='search-query'></span>"的搜索结果共<span class='search-results-count'></span>条
+                                </h1>
+                                <ul class="search-results-list"></ul>
+                            </div>
+                            <div class="no-results">
+                                <h1 class="search-results-title">没有"<span class='search-query'></span>"相关内容</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <a href="https://naka1205.github.io/lcthw/746ADCFC76734882.html" class="navigation navigation-prev " aria-label="一个简单的对象系统">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/lcthw/B67D461964D39489.html" class="navigation navigation-next " aria-label="高级数据类型和控制结构">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
+    </div>
+<script>
+var gitbook = gitbook || [];
+gitbook.push(function() {
+    gitbook.page.hasChanged({
+        "page": {
+            "title":  "Zed的强大的调试宏",
+            "next": {
+                "title": "高级数据类型和控制结构"
+            },
+            "previous": {
+                "title": "一个简单的对象系统"
+            }
+        },
+        "config": {
+            "gitbook": "*",
+            "theme": "default",
+            "variables": {},
+            "plugins": ["-lunr", "-search", "-highlight","search-pro"],
+            "pluginsConfig": {
+                "search-pro": {},
+                "highlight": {},
+                "sharing": {},
+                "fontsettings": {},
+                "theme-default": {}
+            },
+            "structure": {},
+            "pdf": {},
+            "styles": {}
+        },
+        "file": {},
+        "gitbook": {},
+        "basePath": "https://naka1205.github.io/lcthw",
+        "book": {}
+    });
+});
+</script>
+</div>
+<script src="https://naka1205.github.io/lcthw/assets/js/gitbook.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/theme.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/jquery.mark.min.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/search.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/buttons.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/fontsettings.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/plugin.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+</body>
+</html>

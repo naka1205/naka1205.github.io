@@ -1,0 +1,384 @@
+<!DOCTYPE HTML>
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>栈、作用域和全局 · 笨办法学C</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="许多人在开始编程时，对“作用域”这个概念都不是很清楚。起初它来源于系统栈的使用方式（在之前提到过一些），以及它用于临时变量储存的方式。这个练习中，我们会通过学习栈数据结构如何工作来了解作用域，然后再来看看现代C语言处理作用域的方式。">
+    <meta name="keywords" content="笨办法学C">
+    <meta name="generator" content="PKBook">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/style.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/search.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/ebook.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/website.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css" rel="stylesheet">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://naka1205.github.io/lcthw/assets/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://naka1205.github.io/lcthw/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div class="book">
+    <div class="book-summary">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="输入关键词搜索" />
+        </div>
+        <nav role="navigation">
+    <ul class="summary">
+        <li><a href="https://naka1205.github.io/lcthw/index.html" target="blank" class="header">导言：C的笛卡尔之梦</a></li>
+        <li class="divider"></li>
+                <li class="header">练习</li>
+                        <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/lcthw/C3D207FADFAF5841.html"><a href="https://naka1205.github.io/lcthw/C3D207FADFAF5841.html">准备</a></li>
+                        <li class="chapter " data-level="1.2" data-path="https://naka1205.github.io/lcthw/6C82D57E03DDE1F0.html"><a href="https://naka1205.github.io/lcthw/6C82D57E03DDE1F0.html">启用编译器</a></li>
+                        <li class="chapter " data-level="1.3" data-path="https://naka1205.github.io/lcthw/44DB81B8DEDE247B.html"><a href="https://naka1205.github.io/lcthw/44DB81B8DEDE247B.html">用Make来代替Python</a></li>
+                        <li class="chapter " data-level="1.4" data-path="https://naka1205.github.io/lcthw/D3BE6C8A075EF92E.html"><a href="https://naka1205.github.io/lcthw/D3BE6C8A075EF92E.html">格式化输出</a></li>
+                        <li class="chapter " data-level="1.5" data-path="https://naka1205.github.io/lcthw/B9CDA195B24A4F6A.html"><a href="https://naka1205.github.io/lcthw/B9CDA195B24A4F6A.html">Valgrind 介绍</a></li>
+                        <li class="chapter " data-level="1.6" data-path="https://naka1205.github.io/lcthw/624C7D3C62504470.html"><a href="https://naka1205.github.io/lcthw/624C7D3C62504470.html">一个C程序的结构</a></li>
+                        <li class="chapter " data-level="1.7" data-path="https://naka1205.github.io/lcthw/33CC823F6781FDB9.html"><a href="https://naka1205.github.io/lcthw/33CC823F6781FDB9.html">变量类型</a></li>
+                        <li class="chapter " data-level="1.8" data-path="https://naka1205.github.io/lcthw/171C2758259C8DE1.html"><a href="https://naka1205.github.io/lcthw/171C2758259C8DE1.html">更多变量和一些算术</a></li>
+                        <li class="chapter " data-level="1.9" data-path="https://naka1205.github.io/lcthw/C2C3F49A54034E72.html"><a href="https://naka1205.github.io/lcthw/C2C3F49A54034E72.html">大小和数组</a></li>
+                        <li class="chapter " data-level="1.10" data-path="https://naka1205.github.io/lcthw/3046A11FC869E5C2.html"><a href="https://naka1205.github.io/lcthw/3046A11FC869E5C2.html">数组和字符串</a></li>
+                        <li class="chapter " data-level="1.11" data-path="https://naka1205.github.io/lcthw/3018A6B457AE4FF5.html"><a href="https://naka1205.github.io/lcthw/3018A6B457AE4FF5.html">字符串数组和循环</a></li>
+                        <li class="chapter " data-level="1.12" data-path="https://naka1205.github.io/lcthw/F552B2B9C8E36656.html"><a href="https://naka1205.github.io/lcthw/F552B2B9C8E36656.html">While循环和布尔表达式</a></li>
+                        <li class="chapter " data-level="1.13" data-path="https://naka1205.github.io/lcthw/71D0E364C2783A96.html"><a href="https://naka1205.github.io/lcthw/71D0E364C2783A96.html">If，Else If，Else</a></li>
+                        <li class="chapter " data-level="1.14" data-path="https://naka1205.github.io/lcthw/0E9AB6AD5C029EF6.html"><a href="https://naka1205.github.io/lcthw/0E9AB6AD5C029EF6.html">Switch语句</a></li>
+                        <li class="chapter " data-level="1.15" data-path="https://naka1205.github.io/lcthw/5D2945A8677CE165.html"><a href="https://naka1205.github.io/lcthw/5D2945A8677CE165.html">编写并使用函数</a></li>
+                        <li class="chapter " data-level="1.16" data-path="https://naka1205.github.io/lcthw/8B5745CD2156FCC3.html"><a href="https://naka1205.github.io/lcthw/8B5745CD2156FCC3.html">指针，可怕的指针</a></li>
+                        <li class="chapter " data-level="1.17" data-path="https://naka1205.github.io/lcthw/CDCC108031940336.html"><a href="https://naka1205.github.io/lcthw/CDCC108031940336.html">结构体和指向它们的指针</a></li>
+                        <li class="chapter " data-level="1.18" data-path="https://naka1205.github.io/lcthw/178F8DDE733AD0DD.html"><a href="https://naka1205.github.io/lcthw/178F8DDE733AD0DD.html">堆和栈的内存分配</a></li>
+                        <li class="chapter " data-level="1.19" data-path="https://naka1205.github.io/lcthw/DC3B5E7AC8CF3946.html"><a href="https://naka1205.github.io/lcthw/DC3B5E7AC8CF3946.html">函数指针</a></li>
+                        <li class="chapter " data-level="1.20" data-path="https://naka1205.github.io/lcthw/746ADCFC76734882.html"><a href="https://naka1205.github.io/lcthw/746ADCFC76734882.html">一个简单的对象系统</a></li>
+                        <li class="chapter " data-level="1.21" data-path="https://naka1205.github.io/lcthw/8BBFC8E0CA1C348B.html"><a href="https://naka1205.github.io/lcthw/8BBFC8E0CA1C348B.html">Zed的强大的调试宏</a></li>
+                        <li class="chapter " data-level="1.22" data-path="https://naka1205.github.io/lcthw/B67D461964D39489.html"><a href="https://naka1205.github.io/lcthw/B67D461964D39489.html">高级数据类型和控制结构</a></li>
+                        <li class="chapter " data-level="1.23" data-path="https://naka1205.github.io/lcthw/6822F5C25F64C05F.html"><a href="https://naka1205.github.io/lcthw/6822F5C25F64C05F.html">栈、作用域和全局</a></li>
+                        <li class="chapter " data-level="1.24" data-path="https://naka1205.github.io/lcthw/F6AD606057D5DA1A.html"><a href="https://naka1205.github.io/lcthw/F6AD606057D5DA1A.html">认识达夫设备</a></li>
+                        <li class="chapter " data-level="1.25" data-path="https://naka1205.github.io/lcthw/2F13B44DB3CFDC2E.html"><a href="https://naka1205.github.io/lcthw/2F13B44DB3CFDC2E.html">输入输出和文件</a></li>
+                        <li class="chapter " data-level="1.26" data-path="https://naka1205.github.io/lcthw/2852FA26A8BCFAD2.html"><a href="https://naka1205.github.io/lcthw/2852FA26A8BCFAD2.html">变参函数</a></li>
+                        <li class="chapter " data-level="1.27" data-path="https://naka1205.github.io/lcthw/41ABE0D9F5D3164C.html"><a href="https://naka1205.github.io/lcthw/41ABE0D9F5D3164C.html">编写第一个真正的程序</a></li>
+                        <li class="chapter " data-level="1.28" data-path="https://naka1205.github.io/lcthw/FFD032B7FC697307.html"><a href="https://naka1205.github.io/lcthw/FFD032B7FC697307.html">创造性和防御性编程</a></li>
+                        <li class="chapter " data-level="1.29" data-path="https://naka1205.github.io/lcthw/5C8A5BE0B219BE30.html"><a href="https://naka1205.github.io/lcthw/5C8A5BE0B219BE30.html">Makefile 进阶</a></li>
+                        <li class="chapter " data-level="1.30" data-path="https://naka1205.github.io/lcthw/09D69E06B935E885.html"><a href="https://naka1205.github.io/lcthw/09D69E06B935E885.html">库和链接</a></li>
+                        <li class="chapter " data-level="1.31" data-path="https://naka1205.github.io/lcthw/866A23BE27D0D7E6.html"><a href="https://naka1205.github.io/lcthw/866A23BE27D0D7E6.html">自动化测试</a></li>
+                        <li class="chapter " data-level="1.32" data-path="https://naka1205.github.io/lcthw/B6E48A0ED7072528.html"><a href="https://naka1205.github.io/lcthw/B6E48A0ED7072528.html">代码调试</a></li>
+                        <li class="chapter " data-level="1.33" data-path="https://naka1205.github.io/lcthw/364477FB0CED1A03.html"><a href="https://naka1205.github.io/lcthw/364477FB0CED1A03.html">双向链表</a></li>
+                        <li class="chapter " data-level="1.34" data-path="https://naka1205.github.io/lcthw/219AB7A902A81B94.html"><a href="https://naka1205.github.io/lcthw/219AB7A902A81B94.html">链表算法</a></li>
+                        <li class="chapter " data-level="1.35" data-path="https://naka1205.github.io/lcthw/4375976486E9101E.html"><a href="https://naka1205.github.io/lcthw/4375976486E9101E.html">动态数组</a></li>
+                        <li class="chapter " data-level="1.36" data-path="https://naka1205.github.io/lcthw/F674E4CC423F4082.html"><a href="https://naka1205.github.io/lcthw/F674E4CC423F4082.html">排序和搜索</a></li>
+                        <li class="chapter " data-level="1.37" data-path="https://naka1205.github.io/lcthw/95C8D9CEC85F55BD.html"><a href="https://naka1205.github.io/lcthw/95C8D9CEC85F55BD.html">更安全的字符串</a></li>
+                        <li class="chapter " data-level="1.38" data-path="https://naka1205.github.io/lcthw/19B22BBE112EDD42.html"><a href="https://naka1205.github.io/lcthw/19B22BBE112EDD42.html">哈希表</a></li>
+                        <li class="chapter " data-level="1.39" data-path="https://naka1205.github.io/lcthw/8ACDB75ECC6C4448.html"><a href="https://naka1205.github.io/lcthw/8ACDB75ECC6C4448.html">哈希算法</a></li>
+                        <li class="chapter " data-level="1.40" data-path="https://naka1205.github.io/lcthw/1D54A74DB0C212CF.html"><a href="https://naka1205.github.io/lcthw/1D54A74DB0C212CF.html">字符串算法</a></li>
+                        <li class="chapter " data-level="1.41" data-path="https://naka1205.github.io/lcthw/64206F3FDC812F26.html"><a href="https://naka1205.github.io/lcthw/64206F3FDC812F26.html">二叉搜索树</a></li>
+                        <li class="chapter " data-level="1.42" data-path="https://naka1205.github.io/lcthw/35162CDAACDA8825.html"><a href="https://naka1205.github.io/lcthw/35162CDAACDA8825.html">将 Cachegrind 和 Callgrind 用于性能调优</a></li>
+                        <li class="chapter " data-level="1.43" data-path="https://naka1205.github.io/lcthw/288E5C87D0D80787.html"><a href="https://naka1205.github.io/lcthw/288E5C87D0D80787.html">栈和队列</a></li>
+                        <li class="chapter " data-level="1.44" data-path="https://naka1205.github.io/lcthw/EFA4890803FAB6F6.html"><a href="https://naka1205.github.io/lcthw/EFA4890803FAB6F6.html">一个简单的统计引擎</a></li>
+                        <li class="chapter " data-level="1.45" data-path="https://naka1205.github.io/lcthw/E0AFFDAFB6FE468C.html"><a href="https://naka1205.github.io/lcthw/E0AFFDAFB6FE468C.html">环形缓冲区</a></li>
+                        <li class="chapter " data-level="1.46" data-path="https://naka1205.github.io/lcthw/EEC00C835A3D8361.html"><a href="https://naka1205.github.io/lcthw/EEC00C835A3D8361.html">一个简单的TCP/IP客户端</a></li>
+                        <li class="chapter " data-level="1.47" data-path="https://naka1205.github.io/lcthw/51762D35312252D6.html"><a href="https://naka1205.github.io/lcthw/51762D35312252D6.html">三叉搜索树</a></li>
+                        <li class="chapter " data-level="1.48" data-path="https://naka1205.github.io/lcthw/A0F3E9CEEB1897B5.html"><a href="https://naka1205.github.io/lcthw/A0F3E9CEEB1897B5.html">一个快速的URL路由</a></li>
+                    <li class="divider"></li>
+                <li class="header">后记</li>
+                        <li class="chapter " data-level="2.1" data-path="https://naka1205.github.io/lcthw/ACB13F6E3D683928.html"><a href="https://naka1205.github.io/lcthw/ACB13F6E3D683928.html">解构 K&amp;R C&rdquo; 已死</a></li>
+                    <li class="divider"></li>
+                <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
+    </ul>
+</nav>
+    </div>
+    
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/lcthw/6822F5C25F64C05F.html">栈、作用域和全局</a></h1>
+            </div>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">
+                                <h1 id="%E6%A0%88%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%85%A8%E5%B1%80" name="%E6%A0%88%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%85%A8%E5%B1%80">栈、作用域和全局</h1>
+<p>许多人在开始编程时，对“作用域”这个概念都不是很清楚。起初它来源于系统栈的使用方式（在之前提到过一些），以及它用于临时变量储存的方式。这个练习中，我们会通过学习栈数据结构如何工作来了解作用域，然后再来看看现代C语言处理作用域的方式。</p>
+<p>这个练习的真正目的是了解一些比较麻烦的东西在C中如何存储。当一个人没有掌握作用域的概念时，它几乎也不能理解变量在哪里被创建，存在以及销毁。一旦你知道了这些，作用域的概念会变得易于理解。</p>
+<p>这个练习需要如下三个文件：</p>
+<p><code>ex22.h</code></p>
+<p>用于创建一些外部变量和一些函数的头文件。</p>
+<p><code>ex22.c</code></p>
+<p>它并不像通常一样，是包含<code>main</code>的源文件，而是含有一些<code>ex22.h</code>中声明的函数和变量，并且会变成<code>ex22.o</code>。</p>
+<p><code>ex22_main.c</code></p>
+<p><code>main</code>函数实际所在的文件，它会包含另外两个文件，并演示了它们包含的东西以及其它作用域概念。</p>
+<h2 id="ex22.h+%E5%92%8C+ex22.c" name="ex22.h+%E5%92%8C+ex22.c">ex22.h 和 ex22.c</h2>
+<p>你的第一步是创建你自己的<code>ex22.h</code>头文件，其中定义了所需的函数和“导出”变量。</p>
+<pre><code class="c">#ifndef _ex22_h
+#define _ex22_h
+
+// makes THE_SIZE in ex22.c available to other .c files
+extern int THE_SIZE;
+
+// gets and sets an internal static variable in ex22.c
+int get_age();
+void set_age(int age);
+
+// updates a static variable that's inside update_ratio
+double update_ratio(double ratio);
+
+void print_size();
+
+#endif</code></pre>
+<p>最重要的事情是<code>extern int THE_SIZE</code>的用法，我将会在你创建完<code>ex22.c</code>之后解释它：</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+#include "ex22.h"
+#include "dbg.h"
+
+int THE_SIZE = 1000;
+
+static int THE_AGE = 37;
+
+int get_age()
+{
+    return THE_AGE;
+}
+
+void set_age(int age)
+{
+    THE_AGE = age;
+}
+
+
+double update_ratio(double new_ratio)
+{
+    static double ratio = 1.0;
+
+    double old_ratio = ratio;
+    ratio = new_ratio;
+
+    return old_ratio;
+}
+
+void print_size()
+{
+    log_info("I think size is: %d", THE_SIZE);
+}</code></pre>
+<p>这两个文件引入了一些新的变量储存方式：</p>
+<p><code>extern</code></p>
+<p>这个关键词告诉编译器“这个变量已存在，但是他在别的‘外部区域’里”。通常它的意思是一个<code>.c</code>文件要用到另一个<code>.c</code>文件中定义的变量。这种情况下，我们可以说<code>ex22.c</code>中的<code>THE_SIZE</code>变量能被<code>ex22_main.c</code>访问到。</p>
+<p><code>static</code>（文件）</p>
+<p>这个关键词某种意义上是<code>extern</code>的反义词，意思是这个变量只能在当前的<code>.c</code>文件中使用，程序的其它部分不可访问。要记住文件级别的<code>static</code>（比如这里的<code>THE_AGE</code>）和其它位置不同。</p>
+<p><code>static</code>（函数）</p>
+<p>如果你使用<code>static</code>在函数中声明变量，它和文件中的<code>static</code>定义类似，但是只能够在该函数中访问。它是一种创建某个函数的持续状态的方法，但事实上它很少用于现代的C语言，因为它们很难和线程一起使用。</p>
+<p>在上面的两个文件中，你需要理解如下几个变量和函数：</p>
+<p><code>THE_SIZE</code></p>
+<p>这个你使用<code>extern</code>声明的变量将会在<code>ex22_main.c</code>中用到。</p>
+<p><code>get_age</code>和<code>set_age</code></p>
+<p>它们用于操作静态变量<code>THE_AGE</code>，并通过函数将其暴露给程序的其它部分。你不能够直接访问到<code>THE_AGE</code>，但是这些函数可以。</p>
+<p><code>update_ratio</code></p>
+<p>它生成新的<code>ratio</code>值并返回旧的值。它使用了函数级的静态变量<code>ratio</code>来跟踪<code>ratio</code>当前的值。</p>
+<p><code>print_size</code></p>
+<p>打印出<code>ex22.c</code>所认为的<code>THE_SIZE</code>的当前值。</p>
+<h2 id="ex22_main.c" name="ex22_main.c">ex22_main.c</h2>
+<p>一旦你写完了上面那些文件，你可以接着编程<code>main</code>函数，它会使用所有上面的文件并且演示了一些更多的作用域转换：</p>
+<pre><code class="c">#include "ex22.h"
+#include "dbg.h"
+
+const char *MY_NAME = "Zed A. Shaw";
+
+void scope_demo(int count)
+{
+    log_info("count is: %d", count);
+
+    if(count &gt; 10) {
+        int count = 100;  // BAD! BUGS!
+
+        log_info("count in this scope is %d", count);
+    }
+
+    log_info("count is at exit: %d", count);
+
+    count = 3000;
+
+    log_info("count after assign: %d", count);
+}
+
+int main(int argc, char *argv[])
+{
+    // test out THE_AGE accessors
+    log_info("My name: %s, age: %d", MY_NAME, get_age());
+
+    set_age(100);
+
+    log_info("My age is now: %d", get_age());
+
+    // test out THE_SIZE extern
+    log_info("THE_SIZE is: %d", THE_SIZE);
+    print_size();
+
+    THE_SIZE = 9;
+
+    log_info("THE SIZE is now: %d", THE_SIZE);
+    print_size();
+
+    // test the ratio function static
+    log_info("Ratio at first: %f", update_ratio(2.0));
+    log_info("Ratio again: %f", update_ratio(10.0));
+    log_info("Ratio once more: %f", update_ratio(300.0));
+
+    // test the scope demo
+    int count = 4;
+    scope_demo(count);
+    scope_demo(count * 20);
+
+    log_info("count after calling scope_demo: %d", count);
+
+    return 0;
+}</code></pre>
+<p>我会把这个文件逐行拆分，你应该能够找到我提到的每个变量在哪里定义。</p>
+<p>ex22_main.c:4</p>
+<p>使用了<code>const</code>来创建常量，它可用于替代<code>define</code>来创建常量。</p>
+<p>ex22_main.c:6</p>
+<p>一个简单的函数，演示了函数中更多的作用域问题。</p>
+<p>ex22_main.c:8</p>
+<p>在函数顶端打印出<code>count</code>的值。</p>
+<p>ex22_main.c:10</p>
+<p><code>if</code>语句会开启一个新的作用域区块，并且在其中创建了另一个<code>count</code>变量。这个版本的<code>count</code>变量是一个全新的变量。<code>if</code>语句就好像开启了一个新的“迷你函数”。</p>
+<p>ex22_main.c:11</p>
+<p><code>count</code>对于当前区块是局部变量，实际上不同于函数参数列表中的参数。</p>
+<p>ex22_main.c:13</p>
+<p>将它打印出来，所以你可以在这里看到100，并不是传给<code>scope_demo</code>的参数。</p>
+<p>ex22_main.c:16</p>
+<p>这里是最难懂得部分。你在两部分都有<code>count</code>变量，一个数函数参数，另一个是<code>if</code>语句中。<code>if</code>语句创建了新的代码块，所以11行的<code>count</code>并不影响同名的参数。这一行将其打印出来，你会看到它打印了参数的值而不是100。</p>
+<p>ex22_main.c:18-20</p>
+<p>之后我将<code>count</code>参数设为3000并且打印出来，这里演示了你也可以修改函数参数的值，但并不会影响变量的调用者版本。</p>
+<p>确保你浏览了整个函数，但是不要认为你已经十分了解作用娱乐。如果你在一个代码块中（比如<code>if</code>或<code>while</code>语句）创建了一些变量，这些变量是全新的变量，并且只在这个代码块中存在。这是至关重要的东西，也是许多bug的来源。我要强调你应该在这里花一些时间。</p>
+<p><code>ex22_main.c</code>的剩余部分通过操作和打印变量演示了它们的全部。</p>
+<p>ex22_main.c:26</p>
+<p>打印出<code>MY_NAME</code>的当前值，并且使用<code>get_age</code>读写器从<code>ex22.c</code>获取<code>THE_AGE</code>。</p>
+<p>ex22_main.c:27-30</p>
+<p>使用了<code>ex22.c</code>中的<code>set_age</code>来修改并打印<code>THE_AGE</code>。</p>
+<p>ex22_main.c:33-39</p>
+<p>接下来我对<code>ex22.c</code>中的<code>THE_SIZE</code>做了相同的事情，但这一次我直接访问了它，并且同时演示了它实际上在那个文件中已经修改了，还使用<code>print_size</code>打印了它。</p>
+<p>ex22_main.c:42-44</p>
+<p>展示了<code>update_ratio</code>中的<code>ratio</code>在两次函数调用中如何保持了它的值。</p>
+<p>ex22_main.c:46-51</p>
+<p>最后运行<code>scope_demo</code>，你可以在实例中观察到作用域。要注意到的关键点是，<code>count</code>局部变量在调用后保持不变。你将它像一个变量一样传入函数，它一定不会发生改变。要想达到目的你需要我们的老朋友指针。如果你将指向<code>count</code>的指针传入函数，那么函数就会持有它的地址并且能够改变它。</p>
+<p>上面解释了这些文件中所发生的事情，但是你应该跟踪它们，并且确保在你学习的过程中明白了每个变量都在什么位置。</p>
+<h2 id="%E4%BD%A0%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88" name="%E4%BD%A0%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88">你会看到什么</h2>
+<p>这次我想让你手动构建这两个文件，而不是使用你的<code>Makefile</code>。于是你可以看到它们实际上如何被编译器放到一起。这是你应该做的事情，并且你应该看到如下输出：</p>
+<pre><code class="sh">$ cc -Wall -g -DNDEBUG   -c -o ex22.o ex22.c
+$ cc -Wall -g -DNDEBUG    ex22_main.c ex22.o   -o ex22_main
+$ ./ex22_main
+[INFO] (ex22_main.c:26) My name: Zed A. Shaw, age: 37
+[INFO] (ex22_main.c:30) My age is now: 100
+[INFO] (ex22_main.c:33) THE_SIZE is: 1000
+[INFO] (ex22.c:32) I think size is: 1000
+[INFO] (ex22_main.c:38) THE SIZE is now: 9
+[INFO] (ex22.c:32) I think size is: 9
+[INFO] (ex22_main.c:42) Ratio at first: 1.000000
+[INFO] (ex22_main.c:43) Ratio again: 2.000000
+[INFO] (ex22_main.c:44) Ratio once more: 10.000000
+[INFO] (ex22_main.c:8) count is: 4
+[INFO] (ex22_main.c:16) count is at exit: 4
+[INFO] (ex22_main.c:20) count after assign: 3000
+[INFO] (ex22_main.c:8) count is: 80
+[INFO] (ex22_main.c:13) count in this scope is 100
+[INFO] (ex22_main.c:16) count is at exit: 80
+[INFO] (ex22_main.c:20) count after assign: 3000
+[INFO] (ex22_main.c:51) count after calling scope_demo: 4</code></pre>
+<p>确保你跟踪了每个变量是如何改变的，并且将其匹配到所输出的那一行。我使用了<code>dbg.h</code>的<code>log_info</code>来让你获得每个变量打印的具体行号，并且在文件中找到它用于跟踪。</p>
+<h2 id="%E4%BD%9C%E7%94%A8%E5%9F%9F%E3%80%81%E6%A0%88%E5%92%8CBug" name="%E4%BD%9C%E7%94%A8%E5%9F%9F%E3%80%81%E6%A0%88%E5%92%8CBug">作用域、栈和Bug</h2>
+<p>如果你正确完成了这个练习，你会看到有很多不同方式在C代码中放置变量。你可以使用<code>extern</code>或者访问类似<code>get_age</code>的函数来创建全局。你也可以在任何代码块中创建新的变量，它们在退出代码块之前会拥有自己的值，并且屏蔽掉外部的变量。你也可以响函数传递一个值并且修改它，但是调用者的变量版本不会发生改变。</p>
+<p>需要理解的最重要的事情是，这些都可以造成bug。C中在你机器中许多位置放置和访问变量的能力会让你对它们所在的位置感到困扰。如果你不知道它们的位置，你就可能不能适当地管理它们。</p>
+<p>下面是一些编程C代码时需要遵循的规则，可以让你避免与栈相关的bug：</p>
+<ul>
+<li>不要隐藏某个变量，就像上面<code>scope_demo</code>中对<code>count</code>所做的一样。这可能会产生一些隐蔽的bug，你认为你改变了某个变量但实际上没有。</li>
+<li>避免过多的全局变量，尤其是跨越多个文件。如果必须的话，要使用读写器函数，就像<code>get_age</code>。这并不适用于常量，因为它们是只读的。我是说对于<code>THE_SIZE</code>这种变量，如果你希望别人能够修改它，就应该使用读写器函数。</li>
+<li>在你不清楚的情况下，应该把它放在堆上。不要依赖于栈的语义，或者指定区域，而是要直接使用<code>malloc</code>创建它。</li>
+<li>不要使用函数级的静态变量，就像<code>update_ratio</code>。它们并不有用，而且当你想要使你的代码运行在多线程环境时，会有很大的隐患。对于良好的全局变量，它们也非常难于寻找。</li>
+<li>避免复用函数参数，因为你搞不清楚仅仅想要复用它还是希望修改它的调用者版本。</li>
+</ul>
+<h2 id="%E5%A6%82%E4%BD%95%E4%BD%BF%E5%AE%83%E5%B4%A9%E6%BA%83" name="%E5%A6%82%E4%BD%95%E4%BD%BF%E5%AE%83%E5%B4%A9%E6%BA%83">如何使它崩溃</h2>
+<p>对于这个练习，崩溃这个程序涉及到尝试访问或修改你不能访问的东西。</p>
+<ul>
+<li>试着从<code>ex22_main.c</code>直接访问<code>ex22.c</code>中的你不能访问变量。例如，你能不能获取<code>update_ratio</code>中的<code>ratio</code>？如果你用一个指针指向它会发生什么？</li>
+<li>移除<code>ex22.h</code>的<code>extern</code>声明，来观察会得到什么错误或警告。</li>
+<li>对不同变量添加<code>static</code>或者<code>const</code>限定符，之后尝试修改它们。</li>
+</ul>
+<h2 id="%E9%99%84%E5%8A%A0%E9%A2%98" name="%E9%99%84%E5%8A%A0%E9%A2%98">附加题</h2>
+<ul>
+<li>研究“值传递”和“引用传递”的差异，并且为二者编写示例。（译者注：C中没有引用传递，你可以搜索“指针传递”。）</li>
+<li>使用指针来访问原本不能访问的变量。</li>
+<li>使用<code>Valgrind</code>来观察错误的访问是什么样子。</li>
+<li>编写一个递归调用并导致栈溢出的函数。如果不知道递归函数是什么的话，试着在<code>scope_demo</code>底部调用<code>scope_demo</code>本身，会形成一种循环。</li>
+<li>重新编写<code>Makefile</code>使之能够构建这些文件。</li>
+</ul>                            </section>
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+                                <h1 class="search-results-title">
+                                    关于"<span class='search-query'></span>"的搜索结果共<span class='search-results-count'></span>条
+                                </h1>
+                                <ul class="search-results-list"></ul>
+                            </div>
+                            <div class="no-results">
+                                <h1 class="search-results-title">没有"<span class='search-query'></span>"相关内容</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <a href="https://naka1205.github.io/lcthw/B67D461964D39489.html" class="navigation navigation-prev " aria-label="高级数据类型和控制结构">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/lcthw/F6AD606057D5DA1A.html" class="navigation navigation-next " aria-label="认识达夫设备">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
+    </div>
+<script>
+var gitbook = gitbook || [];
+gitbook.push(function() {
+    gitbook.page.hasChanged({
+        "page": {
+            "title":  "栈、作用域和全局",
+            "next": {
+                "title": "认识达夫设备"
+            },
+            "previous": {
+                "title": "高级数据类型和控制结构"
+            }
+        },
+        "config": {
+            "gitbook": "*",
+            "theme": "default",
+            "variables": {},
+            "plugins": ["-lunr", "-search", "-highlight","search-pro"],
+            "pluginsConfig": {
+                "search-pro": {},
+                "highlight": {},
+                "sharing": {},
+                "fontsettings": {},
+                "theme-default": {}
+            },
+            "structure": {},
+            "pdf": {},
+            "styles": {}
+        },
+        "file": {},
+        "gitbook": {},
+        "basePath": "https://naka1205.github.io/lcthw",
+        "book": {}
+    });
+});
+</script>
+</div>
+<script src="https://naka1205.github.io/lcthw/assets/js/gitbook.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/theme.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/jquery.mark.min.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/search.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/buttons.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/fontsettings.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/plugin.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+</body>
+</html>

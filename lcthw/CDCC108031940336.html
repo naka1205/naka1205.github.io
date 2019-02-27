@@ -1,0 +1,340 @@
+<!DOCTYPE HTML>
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>结构体和指向它们的指针 · 笨办法学C</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="在这个练习中你将会学到如何创建`struct`，将一个指针指向它们，以及使用它们来理解内存的内部结构。我也会借助上一节课中的指针知识，并且让你使用`malloc`从原始内存中构造这些结构体。">
+    <meta name="keywords" content="笨办法学C">
+    <meta name="generator" content="PKBook">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/style.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/search.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/ebook.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/website.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css" rel="stylesheet">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://naka1205.github.io/lcthw/assets/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://naka1205.github.io/lcthw/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div class="book">
+    <div class="book-summary">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="输入关键词搜索" />
+        </div>
+        <nav role="navigation">
+    <ul class="summary">
+        <li><a href="https://naka1205.github.io/lcthw/index.html" target="blank" class="header">导言：C的笛卡尔之梦</a></li>
+        <li class="divider"></li>
+                <li class="header">练习</li>
+                        <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/lcthw/C3D207FADFAF5841.html"><a href="https://naka1205.github.io/lcthw/C3D207FADFAF5841.html">准备</a></li>
+                        <li class="chapter " data-level="1.2" data-path="https://naka1205.github.io/lcthw/6C82D57E03DDE1F0.html"><a href="https://naka1205.github.io/lcthw/6C82D57E03DDE1F0.html">启用编译器</a></li>
+                        <li class="chapter " data-level="1.3" data-path="https://naka1205.github.io/lcthw/44DB81B8DEDE247B.html"><a href="https://naka1205.github.io/lcthw/44DB81B8DEDE247B.html">用Make来代替Python</a></li>
+                        <li class="chapter " data-level="1.4" data-path="https://naka1205.github.io/lcthw/D3BE6C8A075EF92E.html"><a href="https://naka1205.github.io/lcthw/D3BE6C8A075EF92E.html">格式化输出</a></li>
+                        <li class="chapter " data-level="1.5" data-path="https://naka1205.github.io/lcthw/B9CDA195B24A4F6A.html"><a href="https://naka1205.github.io/lcthw/B9CDA195B24A4F6A.html">Valgrind 介绍</a></li>
+                        <li class="chapter " data-level="1.6" data-path="https://naka1205.github.io/lcthw/624C7D3C62504470.html"><a href="https://naka1205.github.io/lcthw/624C7D3C62504470.html">一个C程序的结构</a></li>
+                        <li class="chapter " data-level="1.7" data-path="https://naka1205.github.io/lcthw/33CC823F6781FDB9.html"><a href="https://naka1205.github.io/lcthw/33CC823F6781FDB9.html">变量类型</a></li>
+                        <li class="chapter " data-level="1.8" data-path="https://naka1205.github.io/lcthw/171C2758259C8DE1.html"><a href="https://naka1205.github.io/lcthw/171C2758259C8DE1.html">更多变量和一些算术</a></li>
+                        <li class="chapter " data-level="1.9" data-path="https://naka1205.github.io/lcthw/C2C3F49A54034E72.html"><a href="https://naka1205.github.io/lcthw/C2C3F49A54034E72.html">大小和数组</a></li>
+                        <li class="chapter " data-level="1.10" data-path="https://naka1205.github.io/lcthw/3046A11FC869E5C2.html"><a href="https://naka1205.github.io/lcthw/3046A11FC869E5C2.html">数组和字符串</a></li>
+                        <li class="chapter " data-level="1.11" data-path="https://naka1205.github.io/lcthw/3018A6B457AE4FF5.html"><a href="https://naka1205.github.io/lcthw/3018A6B457AE4FF5.html">字符串数组和循环</a></li>
+                        <li class="chapter " data-level="1.12" data-path="https://naka1205.github.io/lcthw/F552B2B9C8E36656.html"><a href="https://naka1205.github.io/lcthw/F552B2B9C8E36656.html">While循环和布尔表达式</a></li>
+                        <li class="chapter " data-level="1.13" data-path="https://naka1205.github.io/lcthw/71D0E364C2783A96.html"><a href="https://naka1205.github.io/lcthw/71D0E364C2783A96.html">If，Else If，Else</a></li>
+                        <li class="chapter " data-level="1.14" data-path="https://naka1205.github.io/lcthw/0E9AB6AD5C029EF6.html"><a href="https://naka1205.github.io/lcthw/0E9AB6AD5C029EF6.html">Switch语句</a></li>
+                        <li class="chapter " data-level="1.15" data-path="https://naka1205.github.io/lcthw/5D2945A8677CE165.html"><a href="https://naka1205.github.io/lcthw/5D2945A8677CE165.html">编写并使用函数</a></li>
+                        <li class="chapter " data-level="1.16" data-path="https://naka1205.github.io/lcthw/8B5745CD2156FCC3.html"><a href="https://naka1205.github.io/lcthw/8B5745CD2156FCC3.html">指针，可怕的指针</a></li>
+                        <li class="chapter " data-level="1.17" data-path="https://naka1205.github.io/lcthw/CDCC108031940336.html"><a href="https://naka1205.github.io/lcthw/CDCC108031940336.html">结构体和指向它们的指针</a></li>
+                        <li class="chapter " data-level="1.18" data-path="https://naka1205.github.io/lcthw/178F8DDE733AD0DD.html"><a href="https://naka1205.github.io/lcthw/178F8DDE733AD0DD.html">堆和栈的内存分配</a></li>
+                        <li class="chapter " data-level="1.19" data-path="https://naka1205.github.io/lcthw/DC3B5E7AC8CF3946.html"><a href="https://naka1205.github.io/lcthw/DC3B5E7AC8CF3946.html">函数指针</a></li>
+                        <li class="chapter " data-level="1.20" data-path="https://naka1205.github.io/lcthw/746ADCFC76734882.html"><a href="https://naka1205.github.io/lcthw/746ADCFC76734882.html">一个简单的对象系统</a></li>
+                        <li class="chapter " data-level="1.21" data-path="https://naka1205.github.io/lcthw/8BBFC8E0CA1C348B.html"><a href="https://naka1205.github.io/lcthw/8BBFC8E0CA1C348B.html">Zed的强大的调试宏</a></li>
+                        <li class="chapter " data-level="1.22" data-path="https://naka1205.github.io/lcthw/B67D461964D39489.html"><a href="https://naka1205.github.io/lcthw/B67D461964D39489.html">高级数据类型和控制结构</a></li>
+                        <li class="chapter " data-level="1.23" data-path="https://naka1205.github.io/lcthw/6822F5C25F64C05F.html"><a href="https://naka1205.github.io/lcthw/6822F5C25F64C05F.html">栈、作用域和全局</a></li>
+                        <li class="chapter " data-level="1.24" data-path="https://naka1205.github.io/lcthw/F6AD606057D5DA1A.html"><a href="https://naka1205.github.io/lcthw/F6AD606057D5DA1A.html">认识达夫设备</a></li>
+                        <li class="chapter " data-level="1.25" data-path="https://naka1205.github.io/lcthw/2F13B44DB3CFDC2E.html"><a href="https://naka1205.github.io/lcthw/2F13B44DB3CFDC2E.html">输入输出和文件</a></li>
+                        <li class="chapter " data-level="1.26" data-path="https://naka1205.github.io/lcthw/2852FA26A8BCFAD2.html"><a href="https://naka1205.github.io/lcthw/2852FA26A8BCFAD2.html">变参函数</a></li>
+                        <li class="chapter " data-level="1.27" data-path="https://naka1205.github.io/lcthw/41ABE0D9F5D3164C.html"><a href="https://naka1205.github.io/lcthw/41ABE0D9F5D3164C.html">编写第一个真正的程序</a></li>
+                        <li class="chapter " data-level="1.28" data-path="https://naka1205.github.io/lcthw/FFD032B7FC697307.html"><a href="https://naka1205.github.io/lcthw/FFD032B7FC697307.html">创造性和防御性编程</a></li>
+                        <li class="chapter " data-level="1.29" data-path="https://naka1205.github.io/lcthw/5C8A5BE0B219BE30.html"><a href="https://naka1205.github.io/lcthw/5C8A5BE0B219BE30.html">Makefile 进阶</a></li>
+                        <li class="chapter " data-level="1.30" data-path="https://naka1205.github.io/lcthw/09D69E06B935E885.html"><a href="https://naka1205.github.io/lcthw/09D69E06B935E885.html">库和链接</a></li>
+                        <li class="chapter " data-level="1.31" data-path="https://naka1205.github.io/lcthw/866A23BE27D0D7E6.html"><a href="https://naka1205.github.io/lcthw/866A23BE27D0D7E6.html">自动化测试</a></li>
+                        <li class="chapter " data-level="1.32" data-path="https://naka1205.github.io/lcthw/B6E48A0ED7072528.html"><a href="https://naka1205.github.io/lcthw/B6E48A0ED7072528.html">代码调试</a></li>
+                        <li class="chapter " data-level="1.33" data-path="https://naka1205.github.io/lcthw/364477FB0CED1A03.html"><a href="https://naka1205.github.io/lcthw/364477FB0CED1A03.html">双向链表</a></li>
+                        <li class="chapter " data-level="1.34" data-path="https://naka1205.github.io/lcthw/219AB7A902A81B94.html"><a href="https://naka1205.github.io/lcthw/219AB7A902A81B94.html">链表算法</a></li>
+                        <li class="chapter " data-level="1.35" data-path="https://naka1205.github.io/lcthw/4375976486E9101E.html"><a href="https://naka1205.github.io/lcthw/4375976486E9101E.html">动态数组</a></li>
+                        <li class="chapter " data-level="1.36" data-path="https://naka1205.github.io/lcthw/F674E4CC423F4082.html"><a href="https://naka1205.github.io/lcthw/F674E4CC423F4082.html">排序和搜索</a></li>
+                        <li class="chapter " data-level="1.37" data-path="https://naka1205.github.io/lcthw/95C8D9CEC85F55BD.html"><a href="https://naka1205.github.io/lcthw/95C8D9CEC85F55BD.html">更安全的字符串</a></li>
+                        <li class="chapter " data-level="1.38" data-path="https://naka1205.github.io/lcthw/19B22BBE112EDD42.html"><a href="https://naka1205.github.io/lcthw/19B22BBE112EDD42.html">哈希表</a></li>
+                        <li class="chapter " data-level="1.39" data-path="https://naka1205.github.io/lcthw/8ACDB75ECC6C4448.html"><a href="https://naka1205.github.io/lcthw/8ACDB75ECC6C4448.html">哈希算法</a></li>
+                        <li class="chapter " data-level="1.40" data-path="https://naka1205.github.io/lcthw/1D54A74DB0C212CF.html"><a href="https://naka1205.github.io/lcthw/1D54A74DB0C212CF.html">字符串算法</a></li>
+                        <li class="chapter " data-level="1.41" data-path="https://naka1205.github.io/lcthw/64206F3FDC812F26.html"><a href="https://naka1205.github.io/lcthw/64206F3FDC812F26.html">二叉搜索树</a></li>
+                        <li class="chapter " data-level="1.42" data-path="https://naka1205.github.io/lcthw/35162CDAACDA8825.html"><a href="https://naka1205.github.io/lcthw/35162CDAACDA8825.html">将 Cachegrind 和 Callgrind 用于性能调优</a></li>
+                        <li class="chapter " data-level="1.43" data-path="https://naka1205.github.io/lcthw/288E5C87D0D80787.html"><a href="https://naka1205.github.io/lcthw/288E5C87D0D80787.html">栈和队列</a></li>
+                        <li class="chapter " data-level="1.44" data-path="https://naka1205.github.io/lcthw/EFA4890803FAB6F6.html"><a href="https://naka1205.github.io/lcthw/EFA4890803FAB6F6.html">一个简单的统计引擎</a></li>
+                        <li class="chapter " data-level="1.45" data-path="https://naka1205.github.io/lcthw/E0AFFDAFB6FE468C.html"><a href="https://naka1205.github.io/lcthw/E0AFFDAFB6FE468C.html">环形缓冲区</a></li>
+                        <li class="chapter " data-level="1.46" data-path="https://naka1205.github.io/lcthw/EEC00C835A3D8361.html"><a href="https://naka1205.github.io/lcthw/EEC00C835A3D8361.html">一个简单的TCP/IP客户端</a></li>
+                        <li class="chapter " data-level="1.47" data-path="https://naka1205.github.io/lcthw/51762D35312252D6.html"><a href="https://naka1205.github.io/lcthw/51762D35312252D6.html">三叉搜索树</a></li>
+                        <li class="chapter " data-level="1.48" data-path="https://naka1205.github.io/lcthw/A0F3E9CEEB1897B5.html"><a href="https://naka1205.github.io/lcthw/A0F3E9CEEB1897B5.html">一个快速的URL路由</a></li>
+                    <li class="divider"></li>
+                <li class="header">后记</li>
+                        <li class="chapter " data-level="2.1" data-path="https://naka1205.github.io/lcthw/ACB13F6E3D683928.html"><a href="https://naka1205.github.io/lcthw/ACB13F6E3D683928.html">解构 K&amp;R C&rdquo; 已死</a></li>
+                    <li class="divider"></li>
+                <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
+    </ul>
+</nav>
+    </div>
+    
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/lcthw/CDCC108031940336.html">结构体和指向它们的指针</a></h1>
+            </div>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">
+                                <h1 id="%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E6%8C%87%E5%90%91%E5%AE%83%E4%BB%AC%E7%9A%84%E6%8C%87%E9%92%88" name="%E7%BB%93%E6%9E%84%E4%BD%93%E5%92%8C%E6%8C%87%E5%90%91%E5%AE%83%E4%BB%AC%E7%9A%84%E6%8C%87%E9%92%88">结构体和指向它们的指针</h1>
+<p>在这个练习中你将会学到如何创建<code>struct</code>，将一个指针指向它们，以及使用它们来理解内存的内部结构。我也会借助上一节课中的指针知识，并且让你使用<code>malloc</code>从原始内存中构造这些结构体。</p>
+<p>像往常一样，下面是我们将要讨论的程序，你应该把它打下来并且使它正常工作：</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+#include &lt;assert.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+struct Person {
+    char *name;
+    int age;
+    int height;
+    int weight;
+};
+
+struct Person *Person_create(char *name, int age, int height, int weight)
+{
+    struct Person *who = malloc(sizeof(struct Person));
+    assert(who != NULL);
+
+    who-&gt;name = strdup(name);
+    who-&gt;age = age;
+    who-&gt;height = height;
+    who-&gt;weight = weight;
+
+    return who;
+}
+
+void Person_destroy(struct Person *who)
+{
+    assert(who != NULL);
+
+    free(who-&gt;name);
+    free(who);
+}
+
+void Person_print(struct Person *who)
+{
+    printf("Name: %s\n", who-&gt;name);
+    printf("\tAge: %d\n", who-&gt;age);
+    printf("\tHeight: %d\n", who-&gt;height);
+    printf("\tWeight: %d\n", who-&gt;weight);
+}
+
+int main(int argc, char *argv[])
+{
+    // make two people structures
+    struct Person *joe = Person_create(
+            "Joe Alex", 32, 64, 140);
+
+    struct Person *frank = Person_create(
+            "Frank Blank", 20, 72, 180);
+
+    // print them out and where they are in memory
+    printf("Joe is at memory location %p:\n", joe);
+    Person_print(joe);
+
+    printf("Frank is at memory location %p:\n", frank);
+    Person_print(frank);
+
+    // make everyone age 20 years and print them again
+    joe-&gt;age += 20;
+    joe-&gt;height -= 2;
+    joe-&gt;weight += 40;
+    Person_print(joe);
+
+    frank-&gt;age += 20;
+    frank-&gt;weight += 20;
+    Person_print(frank);
+
+    // destroy them both so we clean up
+    Person_destroy(joe);
+    Person_destroy(frank);
+
+    return 0;
+}</code></pre>
+<p>我打算使用一种和之前不一样的方法来描述这段程序。我并不会对程序做逐行的拆分，而是由你自己写出来。我会基于程序所包含的部分来给你提示，你的任务就是写出每行是干什么的。</p>
+<p>包含（<code>include</code>）</p>
+<p>我包含了一些新的头文件，来访问一些新的函数。每个头文件都提供了什么东西？</p>
+<p><code>struct Person</code></p>
+<p>这就是我创建结构体的地方了，结构体含有四个成员来描述一个人。最后我们得到了一个复合类型，让我们通过一个名字来整体引用这些成员，或它们的每一个。这就像数据库表中的一行或者OOP语言中的一个类那样。</p>
+<p><code>Pearson_create</code> 函数</p>
+<p>我需要一个方法来创建这些结构体，于是我定义了一个函数来实现。下面是这个函数做的几件重要的事情：</p>
+<ul>
+<li>使用用于内存分配的<code>malloc</code>来向OS申请一块原始的内存。</li>
+<li>向<code>malloc</code>传递<code>sizeof(struct Person)</code>参数，它计算结构体的大小，包含其中的所有成员。</li>
+<li>使用了<code>assert</code>来确保从<code>malloc</code>得到一块有效的内存。有一个特殊的常量叫做<code>NULL</code>，表示“未设置或无效的指针”。这个<code>assert</code>大致检查了<code>malloc</code>是否会返回<code>NULL</code>。</li>
+<li>使用<code>x-&gt;y</code>语法来初始化<code>struct Person</code>的每个成员，它指明了所初始化的成员。</li>
+<li>使用<code>strdup</code>来复制字符串<code>name</code>，是为了确保结构体真正拥有它。<code>strdup</code>的行为实际上类似<code>malloc</code>但是它同时会将原来的字符串复制到新创建的内存。</li>
+</ul>
+<blockquote>
+<p>译者注：<code>x-&gt;y</code>是<code>(*x).y</code>的简写。</p>
+</blockquote>
+<p><code>Person_destroy</code> 函数</p>
+<p>如果定义了创建函数，那么一定需要一个销毁函数，它会销毁<code>Person</code>结构体。我再一次使用了<code>assert</code>来确保不会得到错误的输入。接着我使用了<code>free</code>函数来交还通过<code>malloc</code>和<code>strdup</code>得到的内存。如果你不这么做则会出现“内存泄露”。</p>
+<blockquote>
+<p>译者注：不想显式释放内存又能避免内存泄露的办法是引入<code>libGC</code>库。你需要把所有的<code>malloc</code>换成<code>GC_malloc</code>，然后把所有的<code>free</code>删掉。</p>
+</blockquote>
+<p><code>Person_print</code> 函数</p>
+<p>接下来我需要一个方法来打印出人们的信息，这就是这个函数所做的事情。它用了相同的<code>x-&gt;y</code>语法从结构体中获取成员来打印。</p>
+<p><code>main</code> 函数</p>
+<p>我在<code>main</code>函数中使用了所有前面的函数和<code>struct Person</code>来执行下面的事情：</p>
+<ul>
+<li>创建了两个人：<code>joe</code>和<code>frank</code>。</li>
+<li>把它们打印出来，注意我用了<code>%p</code>占位符，所以你可以看到程序实际上把结构体放到了哪里。</li>
+<li>把它们的年龄增加20岁，同时增加它们的体重。</li>
+<li>之后打印出每个人。</li>
+<li>最后销毁结构体，以正确的方式清理它们。</li>
+</ul>
+<p>请仔细阅读上面的描述，然后做下面的事情：</p>
+<ul>
+<li>查询每个你不了解的函数或头文件。记住你通常可以使用<code>man 2 function</code>或者<code>man 3 function</code>来让它告诉你。你也可以上网搜索资料。</li>
+<li>在每一行上方编写注释，写下这一行代码做了什么。</li>
+<li>跟踪每一个函数调用和变量，你会知道它在程序中是在哪里出现的。</li>
+<li>同时也查询你不清楚的任何符号。</li>
+</ul>
+<h2 id="%E4%BD%A0%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88" name="%E4%BD%A0%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88">你会看到什么</h2>
+<p>在你使用描述性注释扩展程序之后，要确保它实际上能够运行，并且产生下面的输出：</p>
+<pre><code class="sh">$ make ex16
+cc -Wall -g    ex16.c   -o ex16
+
+$ ./ex16
+Joe is at memory location 0xeba010:
+Name: Joe Alex
+    Age: 32
+    Height: 64
+    Weight: 140
+Frank is at memory location 0xeba050:
+Name: Frank Blank
+   Age: 20
+   Height: 72
+   Weight: 180
+Name: Joe Alex
+   Age: 52
+   Height: 62
+   Weight: 180
+Name: Frank Blank
+   Age: 40
+   Height: 72
+   Weight: 200</code></pre>
+<h2 id="%E8%A7%A3%E9%87%8A%E7%BB%93%E6%9E%84%E4%BD%93" name="%E8%A7%A3%E9%87%8A%E7%BB%93%E6%9E%84%E4%BD%93">解释结构体</h2>
+<p>如果你完成了我要求的任务，你应该理解了结构体。不过让我来做一个明确的解释，确保你真正理解了它。</p>
+<p>C中的结构体是其它数据类型（变量）的一个集合，它们储存在一块内存中，然而你可以通过独立的名字来访问每个变量。它们就类似于数据库表中的一行记录，或者面向对象语言中的一个非常简单的类。让我们以这种方式来理解它：</p>
+<ul>
+<li>在上面的代码中，你创建了一个结构体，它们的成员用于描述一个人：名称、年龄、体重、身高。</li>
+<li>每个成员都有一个类型，比如是<code>int</code>。</li>
+<li>C会将它们打包到一起，于是它们可以用单个的结构体来存放。</li>
+<li><code>struct Person</code>是一个复合类型，这意味着你可以在同种表达式中将其引用为其它的数据类型。</li>
+<li>你可以将这一紧密的组合传递给其它函数，就像<code>Person_print</code>那样。</li>
+<li>如果结构体是指针的形式，接着你可以使用<code>x-&gt;y</code>通过它们的名字来访问结构体中独立的部分。</li>
+<li>还有一种创建结构体的方法，不需要指针，通过<code>x.y</code>来访问。你将会在附加题里面见到它。</li>
+</ul>
+<p>如果你不使用结构体，则需要自己计算出大小、打包以及定位出指定内容的内存片位置。实际上，在大多数早期（甚至现在的一些）的汇编代码中，这就是唯一的方式。在C中你就可以让C来处理这些复合数据类型的内存构造，并且专注于和它们交互。</p>
+<h2 id="%E5%A6%82%E4%BD%95%E4%BD%BF%E5%AE%83%E5%B4%A9%E6%BA%83" name="%E5%A6%82%E4%BD%95%E4%BD%BF%E5%AE%83%E5%B4%A9%E6%BA%83">如何使它崩溃</h2>
+<p>使这个程序崩溃的办法涉及到使用指针和<code>malloc</code>系统的方法：</p>
+<ul>
+<li>试着传递<code>NULL</code>给<code>Person_destroy</code>来看看会发生什么。如果它没有崩溃，你必须移除Makefile的<code>CFLAGS</code>中的<code>-g</code>选项。</li>
+<li>在结尾处忘记调用<code>Person_destroy</code>，在<code>Valgrind</code>下运行程序，你会看到它报告出你忘记释放内存。弄清楚你应该向<code>valgrind</code>传递什么参数来让它向你报告内存如何泄露。</li>
+<li>忘记在<code>Person_destroy</code>中释放<code>who-&gt;name</code>，并且对比两次的输出。同时，使用正确的选项来让<code>Valgrind</code>告诉你哪里错了。</li>
+<li>这一次，向<code>Person_print</code>传递<code>NULL</code>，并且观察<code>Valgrind</code>会输出什么。</li>
+<li>你应该明白了<code>NULL</code>是个使程序崩溃的快速方法。</li>
+</ul>
+<h2 id="%E9%99%84%E5%8A%A0%E9%A2%98" name="%E9%99%84%E5%8A%A0%E9%A2%98">附加题</h2>
+<p>在这个练习的附加题中我想让你尝试一些有难度的东西：将这个程序改为不用指针和<code>malloc</code>的版本。这可能很困难，所以你需要研究下面这些东西：</p>
+<ul>
+<li>如何在栈上创建结构体，就像你创建任何其它变量那样。</li>
+<li>如何使用<code>x.y</code>而不是<code>x-&gt;y</code>来初始化结构体。</li>
+<li>如何不使用指针来将结构体传给其它函数。</li>
+</ul>                            </section>
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+                                <h1 class="search-results-title">
+                                    关于"<span class='search-query'></span>"的搜索结果共<span class='search-results-count'></span>条
+                                </h1>
+                                <ul class="search-results-list"></ul>
+                            </div>
+                            <div class="no-results">
+                                <h1 class="search-results-title">没有"<span class='search-query'></span>"相关内容</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <a href="https://naka1205.github.io/lcthw/8B5745CD2156FCC3.html" class="navigation navigation-prev " aria-label="指针，可怕的指针">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/lcthw/178F8DDE733AD0DD.html" class="navigation navigation-next " aria-label="堆和栈的内存分配">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
+    </div>
+<script>
+var gitbook = gitbook || [];
+gitbook.push(function() {
+    gitbook.page.hasChanged({
+        "page": {
+            "title":  "结构体和指向它们的指针",
+            "next": {
+                "title": "堆和栈的内存分配"
+            },
+            "previous": {
+                "title": "指针，可怕的指针"
+            }
+        },
+        "config": {
+            "gitbook": "*",
+            "theme": "default",
+            "variables": {},
+            "plugins": ["-lunr", "-search", "-highlight","search-pro"],
+            "pluginsConfig": {
+                "search-pro": {},
+                "highlight": {},
+                "sharing": {},
+                "fontsettings": {},
+                "theme-default": {}
+            },
+            "structure": {},
+            "pdf": {},
+            "styles": {}
+        },
+        "file": {},
+        "gitbook": {},
+        "basePath": "https://naka1205.github.io/lcthw",
+        "book": {}
+    });
+});
+</script>
+</div>
+<script src="https://naka1205.github.io/lcthw/assets/js/gitbook.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/theme.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/jquery.mark.min.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/search.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/buttons.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/fontsettings.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/plugin.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+</body>
+</html>

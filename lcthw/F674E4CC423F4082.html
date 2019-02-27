@@ -1,0 +1,687 @@
+<!DOCTYPE HTML>
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>排序和搜索 · 笨办法学C</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="这个练习中我打算涉及到四个排序算法和一个搜索算法。排序算法是快速排序、堆排序、归并排序和基数排序。之后在你完成基数排序之后，我打算想你展示二分搜索。">
+    <meta name="keywords" content="笨办法学C">
+    <meta name="generator" content="PKBook">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/style.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/search.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/ebook.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/website.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css" rel="stylesheet">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://naka1205.github.io/lcthw/assets/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://naka1205.github.io/lcthw/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div class="book">
+    <div class="book-summary">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="输入关键词搜索" />
+        </div>
+        <nav role="navigation">
+    <ul class="summary">
+        <li><a href="https://naka1205.github.io/lcthw/index.html" target="blank" class="header">导言：C的笛卡尔之梦</a></li>
+        <li class="divider"></li>
+                <li class="header">练习</li>
+                        <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/lcthw/C3D207FADFAF5841.html"><a href="https://naka1205.github.io/lcthw/C3D207FADFAF5841.html">准备</a></li>
+                        <li class="chapter " data-level="1.2" data-path="https://naka1205.github.io/lcthw/6C82D57E03DDE1F0.html"><a href="https://naka1205.github.io/lcthw/6C82D57E03DDE1F0.html">启用编译器</a></li>
+                        <li class="chapter " data-level="1.3" data-path="https://naka1205.github.io/lcthw/44DB81B8DEDE247B.html"><a href="https://naka1205.github.io/lcthw/44DB81B8DEDE247B.html">用Make来代替Python</a></li>
+                        <li class="chapter " data-level="1.4" data-path="https://naka1205.github.io/lcthw/D3BE6C8A075EF92E.html"><a href="https://naka1205.github.io/lcthw/D3BE6C8A075EF92E.html">格式化输出</a></li>
+                        <li class="chapter " data-level="1.5" data-path="https://naka1205.github.io/lcthw/B9CDA195B24A4F6A.html"><a href="https://naka1205.github.io/lcthw/B9CDA195B24A4F6A.html">Valgrind 介绍</a></li>
+                        <li class="chapter " data-level="1.6" data-path="https://naka1205.github.io/lcthw/624C7D3C62504470.html"><a href="https://naka1205.github.io/lcthw/624C7D3C62504470.html">一个C程序的结构</a></li>
+                        <li class="chapter " data-level="1.7" data-path="https://naka1205.github.io/lcthw/33CC823F6781FDB9.html"><a href="https://naka1205.github.io/lcthw/33CC823F6781FDB9.html">变量类型</a></li>
+                        <li class="chapter " data-level="1.8" data-path="https://naka1205.github.io/lcthw/171C2758259C8DE1.html"><a href="https://naka1205.github.io/lcthw/171C2758259C8DE1.html">更多变量和一些算术</a></li>
+                        <li class="chapter " data-level="1.9" data-path="https://naka1205.github.io/lcthw/C2C3F49A54034E72.html"><a href="https://naka1205.github.io/lcthw/C2C3F49A54034E72.html">大小和数组</a></li>
+                        <li class="chapter " data-level="1.10" data-path="https://naka1205.github.io/lcthw/3046A11FC869E5C2.html"><a href="https://naka1205.github.io/lcthw/3046A11FC869E5C2.html">数组和字符串</a></li>
+                        <li class="chapter " data-level="1.11" data-path="https://naka1205.github.io/lcthw/3018A6B457AE4FF5.html"><a href="https://naka1205.github.io/lcthw/3018A6B457AE4FF5.html">字符串数组和循环</a></li>
+                        <li class="chapter " data-level="1.12" data-path="https://naka1205.github.io/lcthw/F552B2B9C8E36656.html"><a href="https://naka1205.github.io/lcthw/F552B2B9C8E36656.html">While循环和布尔表达式</a></li>
+                        <li class="chapter " data-level="1.13" data-path="https://naka1205.github.io/lcthw/71D0E364C2783A96.html"><a href="https://naka1205.github.io/lcthw/71D0E364C2783A96.html">If，Else If，Else</a></li>
+                        <li class="chapter " data-level="1.14" data-path="https://naka1205.github.io/lcthw/0E9AB6AD5C029EF6.html"><a href="https://naka1205.github.io/lcthw/0E9AB6AD5C029EF6.html">Switch语句</a></li>
+                        <li class="chapter " data-level="1.15" data-path="https://naka1205.github.io/lcthw/5D2945A8677CE165.html"><a href="https://naka1205.github.io/lcthw/5D2945A8677CE165.html">编写并使用函数</a></li>
+                        <li class="chapter " data-level="1.16" data-path="https://naka1205.github.io/lcthw/8B5745CD2156FCC3.html"><a href="https://naka1205.github.io/lcthw/8B5745CD2156FCC3.html">指针，可怕的指针</a></li>
+                        <li class="chapter " data-level="1.17" data-path="https://naka1205.github.io/lcthw/CDCC108031940336.html"><a href="https://naka1205.github.io/lcthw/CDCC108031940336.html">结构体和指向它们的指针</a></li>
+                        <li class="chapter " data-level="1.18" data-path="https://naka1205.github.io/lcthw/178F8DDE733AD0DD.html"><a href="https://naka1205.github.io/lcthw/178F8DDE733AD0DD.html">堆和栈的内存分配</a></li>
+                        <li class="chapter " data-level="1.19" data-path="https://naka1205.github.io/lcthw/DC3B5E7AC8CF3946.html"><a href="https://naka1205.github.io/lcthw/DC3B5E7AC8CF3946.html">函数指针</a></li>
+                        <li class="chapter " data-level="1.20" data-path="https://naka1205.github.io/lcthw/746ADCFC76734882.html"><a href="https://naka1205.github.io/lcthw/746ADCFC76734882.html">一个简单的对象系统</a></li>
+                        <li class="chapter " data-level="1.21" data-path="https://naka1205.github.io/lcthw/8BBFC8E0CA1C348B.html"><a href="https://naka1205.github.io/lcthw/8BBFC8E0CA1C348B.html">Zed的强大的调试宏</a></li>
+                        <li class="chapter " data-level="1.22" data-path="https://naka1205.github.io/lcthw/B67D461964D39489.html"><a href="https://naka1205.github.io/lcthw/B67D461964D39489.html">高级数据类型和控制结构</a></li>
+                        <li class="chapter " data-level="1.23" data-path="https://naka1205.github.io/lcthw/6822F5C25F64C05F.html"><a href="https://naka1205.github.io/lcthw/6822F5C25F64C05F.html">栈、作用域和全局</a></li>
+                        <li class="chapter " data-level="1.24" data-path="https://naka1205.github.io/lcthw/F6AD606057D5DA1A.html"><a href="https://naka1205.github.io/lcthw/F6AD606057D5DA1A.html">认识达夫设备</a></li>
+                        <li class="chapter " data-level="1.25" data-path="https://naka1205.github.io/lcthw/2F13B44DB3CFDC2E.html"><a href="https://naka1205.github.io/lcthw/2F13B44DB3CFDC2E.html">输入输出和文件</a></li>
+                        <li class="chapter " data-level="1.26" data-path="https://naka1205.github.io/lcthw/2852FA26A8BCFAD2.html"><a href="https://naka1205.github.io/lcthw/2852FA26A8BCFAD2.html">变参函数</a></li>
+                        <li class="chapter " data-level="1.27" data-path="https://naka1205.github.io/lcthw/41ABE0D9F5D3164C.html"><a href="https://naka1205.github.io/lcthw/41ABE0D9F5D3164C.html">编写第一个真正的程序</a></li>
+                        <li class="chapter " data-level="1.28" data-path="https://naka1205.github.io/lcthw/FFD032B7FC697307.html"><a href="https://naka1205.github.io/lcthw/FFD032B7FC697307.html">创造性和防御性编程</a></li>
+                        <li class="chapter " data-level="1.29" data-path="https://naka1205.github.io/lcthw/5C8A5BE0B219BE30.html"><a href="https://naka1205.github.io/lcthw/5C8A5BE0B219BE30.html">Makefile 进阶</a></li>
+                        <li class="chapter " data-level="1.30" data-path="https://naka1205.github.io/lcthw/09D69E06B935E885.html"><a href="https://naka1205.github.io/lcthw/09D69E06B935E885.html">库和链接</a></li>
+                        <li class="chapter " data-level="1.31" data-path="https://naka1205.github.io/lcthw/866A23BE27D0D7E6.html"><a href="https://naka1205.github.io/lcthw/866A23BE27D0D7E6.html">自动化测试</a></li>
+                        <li class="chapter " data-level="1.32" data-path="https://naka1205.github.io/lcthw/B6E48A0ED7072528.html"><a href="https://naka1205.github.io/lcthw/B6E48A0ED7072528.html">代码调试</a></li>
+                        <li class="chapter " data-level="1.33" data-path="https://naka1205.github.io/lcthw/364477FB0CED1A03.html"><a href="https://naka1205.github.io/lcthw/364477FB0CED1A03.html">双向链表</a></li>
+                        <li class="chapter " data-level="1.34" data-path="https://naka1205.github.io/lcthw/219AB7A902A81B94.html"><a href="https://naka1205.github.io/lcthw/219AB7A902A81B94.html">链表算法</a></li>
+                        <li class="chapter " data-level="1.35" data-path="https://naka1205.github.io/lcthw/4375976486E9101E.html"><a href="https://naka1205.github.io/lcthw/4375976486E9101E.html">动态数组</a></li>
+                        <li class="chapter " data-level="1.36" data-path="https://naka1205.github.io/lcthw/F674E4CC423F4082.html"><a href="https://naka1205.github.io/lcthw/F674E4CC423F4082.html">排序和搜索</a></li>
+                        <li class="chapter " data-level="1.37" data-path="https://naka1205.github.io/lcthw/95C8D9CEC85F55BD.html"><a href="https://naka1205.github.io/lcthw/95C8D9CEC85F55BD.html">更安全的字符串</a></li>
+                        <li class="chapter " data-level="1.38" data-path="https://naka1205.github.io/lcthw/19B22BBE112EDD42.html"><a href="https://naka1205.github.io/lcthw/19B22BBE112EDD42.html">哈希表</a></li>
+                        <li class="chapter " data-level="1.39" data-path="https://naka1205.github.io/lcthw/8ACDB75ECC6C4448.html"><a href="https://naka1205.github.io/lcthw/8ACDB75ECC6C4448.html">哈希算法</a></li>
+                        <li class="chapter " data-level="1.40" data-path="https://naka1205.github.io/lcthw/1D54A74DB0C212CF.html"><a href="https://naka1205.github.io/lcthw/1D54A74DB0C212CF.html">字符串算法</a></li>
+                        <li class="chapter " data-level="1.41" data-path="https://naka1205.github.io/lcthw/64206F3FDC812F26.html"><a href="https://naka1205.github.io/lcthw/64206F3FDC812F26.html">二叉搜索树</a></li>
+                        <li class="chapter " data-level="1.42" data-path="https://naka1205.github.io/lcthw/35162CDAACDA8825.html"><a href="https://naka1205.github.io/lcthw/35162CDAACDA8825.html">将 Cachegrind 和 Callgrind 用于性能调优</a></li>
+                        <li class="chapter " data-level="1.43" data-path="https://naka1205.github.io/lcthw/288E5C87D0D80787.html"><a href="https://naka1205.github.io/lcthw/288E5C87D0D80787.html">栈和队列</a></li>
+                        <li class="chapter " data-level="1.44" data-path="https://naka1205.github.io/lcthw/EFA4890803FAB6F6.html"><a href="https://naka1205.github.io/lcthw/EFA4890803FAB6F6.html">一个简单的统计引擎</a></li>
+                        <li class="chapter " data-level="1.45" data-path="https://naka1205.github.io/lcthw/E0AFFDAFB6FE468C.html"><a href="https://naka1205.github.io/lcthw/E0AFFDAFB6FE468C.html">环形缓冲区</a></li>
+                        <li class="chapter " data-level="1.46" data-path="https://naka1205.github.io/lcthw/EEC00C835A3D8361.html"><a href="https://naka1205.github.io/lcthw/EEC00C835A3D8361.html">一个简单的TCP/IP客户端</a></li>
+                        <li class="chapter " data-level="1.47" data-path="https://naka1205.github.io/lcthw/51762D35312252D6.html"><a href="https://naka1205.github.io/lcthw/51762D35312252D6.html">三叉搜索树</a></li>
+                        <li class="chapter " data-level="1.48" data-path="https://naka1205.github.io/lcthw/A0F3E9CEEB1897B5.html"><a href="https://naka1205.github.io/lcthw/A0F3E9CEEB1897B5.html">一个快速的URL路由</a></li>
+                    <li class="divider"></li>
+                <li class="header">后记</li>
+                        <li class="chapter " data-level="2.1" data-path="https://naka1205.github.io/lcthw/ACB13F6E3D683928.html"><a href="https://naka1205.github.io/lcthw/ACB13F6E3D683928.html">解构 K&amp;R C&rdquo; 已死</a></li>
+                    <li class="divider"></li>
+                <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
+    </ul>
+</nav>
+    </div>
+    
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/lcthw/F674E4CC423F4082.html">排序和搜索</a></h1>
+            </div>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">
+                                <h1 id="%E6%8E%92%E5%BA%8F%E5%92%8C%E6%90%9C%E7%B4%A2" name="%E6%8E%92%E5%BA%8F%E5%92%8C%E6%90%9C%E7%B4%A2">排序和搜索</h1>
+<p>这个练习中我打算涉及到四个排序算法和一个搜索算法。排序算法是快速排序、堆排序、归并排序和基数排序。之后在你完成基数排序之后，我打算想你展示二分搜索。</p>
+<p>然而，我是一个懒人，大多数C标准库都实现了堆排序、快速排序和归并排序算法，你可以直接使用它们：</p>
+<pre><code class="c">#include &lt;lcthw/darray_algos.h&gt;
+#include &lt;stdlib.h&gt;
+
+int DArray_qsort(DArray *array, DArray_compare cmp)
+{
+    qsort(array-&gt;contents, DArray_count(array), sizeof(void *), cmp);
+    return 0;
+}
+
+int DArray_heapsort(DArray *array, DArray_compare cmp)
+{
+    return heapsort(array-&gt;contents, DArray_count(array), sizeof(void *), cmp);
+}
+
+int DArray_mergesort(DArray *array, DArray_compare cmp)
+{
+    return mergesort(array-&gt;contents, DArray_count(array), sizeof(void *), cmp);
+}</code></pre>
+<p>这就是<code>darray_algos.c</code>文件的整个实现，它在大多数现代Unix系统上都能运行。它们的每一个都使用<code>DArray_compare</code>对<code>contents</code>中储存的无类型指针进行排序。我也要向你展示这个头文件：</p>
+<pre><code class="c">#ifndef darray_algos_h
+#define darray_algos_h
+
+#include &lt;lcthw/darray.h&gt;
+
+typedef int (*DArray_compare)(const void *a, const void *b);
+
+int DArray_qsort(DArray *array, DArray_compare cmp);
+
+int DArray_heapsort(DArray *array, DArray_compare cmp);
+
+int DArray_mergesort(DArray *array, DArray_compare cmp);
+
+#endif</code></pre>
+<p>大小几乎一样，你也应该能预料到。接下来你可以了解单元测试中这三个函数如何使用：</p>
+<pre><code class="c">#include "minunit.h"
+#include &lt;lcthw/darray_algos.h&gt;
+
+int testcmp(char **a, char **b)
+{
+    return strcmp(*a, *b);
+}
+
+DArray *create_words()
+{
+    DArray *result = DArray_create(0, 5);
+    char *words[] = {"asdfasfd", "werwar", "13234", "asdfasfd", "oioj"};
+    int i = 0;
+
+    for(i = 0; i &lt; 5; i++) {
+        DArray_push(result, words[i]);
+    }
+
+    return result;
+}
+
+int is_sorted(DArray *array)
+{
+    int i = 0;
+
+    for(i = 0; i &lt; DArray_count(array) - 1; i++) {
+        if(strcmp(DArray_get(array, i), DArray_get(array, i+1)) &gt; 0) {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+char *run_sort_test(int (*func)(DArray *, DArray_compare), const char *name)
+{
+    DArray *words = create_words();
+    mu_assert(!is_sorted(words), "Words should start not sorted.");
+
+    debug("--- Testing %s sorting algorithm", name);
+    int rc = func(words, (DArray_compare)testcmp);
+    mu_assert(rc == 0, "sort failed");
+    mu_assert(is_sorted(words), "didn't sort it");
+
+    DArray_destroy(words);
+
+    return NULL;
+}
+
+char *test_qsort()
+{
+    return run_sort_test(DArray_qsort, "qsort");
+}
+
+char *test_heapsort()
+{
+    return run_sort_test(DArray_heapsort, "heapsort");
+}
+
+char *test_mergesort()
+{
+    return run_sort_test(DArray_mergesort, "mergesort");
+}
+
+
+char * all_tests()
+{
+    mu_suite_start();
+
+    mu_run_test(test_qsort);
+    mu_run_test(test_heapsort);
+    mu_run_test(test_mergesort);
+
+    return NULL;
+}
+
+RUN_TESTS(all_tests);</code></pre>
+<p>你需要注意的事情是第四行<code>testcmp</code>的定义，它困扰了我一整天。你必须使用<code>char **</code>而不是<code>char *</code>，因为<code>qsort</code>会向你提供指向<code>content</code>数组中指针的指针。原因是<code>qsort</code>会打扫数组，使用你的比较函数来处理数组中每个元素的指针。因为我在<code>contents</code>中存储指针，所以你需要使用指针的指针。</p>
+<p>有了这些之后，你只需要实现三个困难的搜索算法，每个大约20行。你应该在这里停下来，不过这本书的一部分就是学习这些算法的原理，附加题会涉及到实现这些算法。</p>
+<h2 id="%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F%E5%92%8C%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2" name="%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F%E5%92%8C%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2">基数排序和二分搜索</h2>
+<p>既然你打算自己实现快速排序、堆排序和归并排序，我打算向你展示一个流行的算法叫做基数排序。它的实用性很小，只能用于整数数组，并且看上去像魔法一样。这里我打算常见一个特殊的数据结构，叫做<code>RadixMap</code>，用于将一个整数映射为另一个。</p>
+<p>下面是为新算法创建的头文件，其中也含有数据结构：</p>
+<pre><code class="c">#ifndef _radixmap_h
+#include &lt;stdint.h&gt;
+
+typedef union RMElement {
+    uint64_t raw;
+    struct {
+        uint32_t key;
+        uint32_t value;
+    } data;
+} RMElement;
+
+typedef struct RadixMap {
+    size_t max;
+    size_t end;
+    uint32_t counter;
+    RMElement *contents;
+    RMElement *temp;
+} RadixMap;
+
+
+RadixMap *RadixMap_create(size_t max);
+
+void RadixMap_destroy(RadixMap *map);
+
+void RadixMap_sort(RadixMap *map);
+
+RMElement *RadixMap_find(RadixMap *map, uint32_t key);
+
+int RadixMap_add(RadixMap *map, uint32_t key, uint32_t value);
+
+int RadixMap_delete(RadixMap *map, RMElement *el);
+
+#endif</code></pre>
+<p>你看到了其中有许多和<code>Dynamic Array</code>或<code>List</code>数据结构相同的操作，不同就在于我只处理固定32位大小的<code>uint32_t</code>正忽视。我也会想你介绍C语言的一个新概念，叫做<code>union</code>。</p>
+<h2 id="C%E8%81%94%E5%90%88%E4%BD%93" name="C%E8%81%94%E5%90%88%E4%BD%93">C联合体</h2>
+<p>联合体是使用不同方式引用内存中同一块区域的方法。它们的工作方式，就像你把它定义为<code>sturct</code>，然而，每个元素共享同一片内存区域。你可以认为，联合体是内存中的一幅画，所有颜色不同的元素都重叠在它上面。</p>
+<p>它可以用于节约内存，或在不同格式之间转换内存块。它的第一个用途就是实现“可变类型”，你可以创建一个带有类型“标签”的结构体，之后在其中创建含有多种类型的联合体。用于在内存的不同格式之间转换时，只需要定义两个结构体，访问正确的那个类型。</p>
+<p>首先让我向你展示如何使用C联合体构造可变类型：</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+typedef enum {
+    TYPE_INT,
+    TYPE_FLOAT,
+    TYPE_STRING,
+} VariantType;
+
+struct Variant {
+    VariantType type;
+    union {
+        int as_integer;
+        float as_float;
+        char *as_string;
+    } data;
+};
+
+typedef struct Variant Variant;
+
+void Variant_print(Variant *var)
+{
+    switch(var-&gt;type) {
+        case TYPE_INT:
+           printf("INT: %d\n", var-&gt;data.as_integer);
+           break;
+        case TYPE_FLOAT:
+           printf("FLOAT: %f\n", var-&gt;data.as_float);
+           break;
+        case TYPE_STRING:
+           printf("STRING: %s\n", var-&gt;data.as_string);
+           break;
+        default:
+           printf("UNKNOWN TYPE: %d", var-&gt;type);
+    }
+}
+
+int main(int argc, char *argv[])
+{
+    Variant a_int = {.type = TYPE_INT, .data.as_integer = 100};
+    Variant a_float = {.type = TYPE_FLOAT, .data.as_float = 100.34};
+    Variant a_string = {.type = TYPE_STRING, .data.as_string = "YO DUDE!"};
+
+    Variant_print(&amp;a_int);
+    Variant_print(&amp;a_float);
+    Variant_print(&amp;a_string);
+
+    // here's how you access them
+    a_int.data.as_integer = 200;
+    a_float.data.as_float = 2.345;
+    a_string.data.as_string = "Hi there.";
+
+    Variant_print(&amp;a_int);
+    Variant_print(&amp;a_float);
+    Variant_print(&amp;a_string);
+
+    return 0;
+}</code></pre>
+<p>你可以在许多动态语言实现中发现它。对于为语言中所有基本类型，代码中首先定义了一些带有变迁的可变类型，之后通常给你所创建的类型打上<code>object</code>标签。这样的好处就是<code>Variant</code>通常只需要<code>VariantType type</code>标签的空间，加上联合体最大成员的空间，因为C将<code>Variant.data</code>的每个元素堆起来，它们是重叠的，只保证有足够的空间放下最大的元素。</p>
+<p><code>radixmap.h</code>文件中我创建了<code>RMElement</code>联合体，用于在类型之间转换内存块。这里，我希望存储<code>uint64_t</code>定长整数用于排序目录，但是我也希望使用两个<code>uint32_t</code>用于表示数据的<code>key</code>和<code>value</code>对。通过使用联合体我就能够使用所需的两种不同方法来访问内存。</p>
+<h2 id="%E5%AE%9E%E7%8E%B0" name="%E5%AE%9E%E7%8E%B0">实现</h2>
+<p>接下来是实际的<code>RadixMap</code>对于这些操作的实现：</p>
+<pre><code class="c">/*
+* Based on code by Andre Reinald then heavily modified by Zed A. Shaw.
+*/
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;assert.h&gt;
+#include &lt;lcthw/radixmap.h&gt;
+#include &lt;lcthw/dbg.h&gt;
+
+RadixMap *RadixMap_create(size_t max)
+{
+    RadixMap *map = calloc(sizeof(RadixMap), 1);
+    check_mem(map);
+
+    map-&gt;contents = calloc(sizeof(RMElement), max + 1);
+    check_mem(map-&gt;contents);
+
+    map-&gt;temp = calloc(sizeof(RMElement), max + 1);
+    check_mem(map-&gt;temp);
+
+    map-&gt;max = max;
+    map-&gt;end = 0;
+
+    return map;
+error:
+    return NULL;
+}
+
+void RadixMap_destroy(RadixMap *map)
+{
+    if(map) {
+        free(map-&gt;contents);
+        free(map-&gt;temp);
+        free(map);
+    }
+}
+
+
+#define ByteOf(x,y) (((uint8_t *)x)[(y)])
+
+static inline void radix_sort(short offset, uint64_t max, uint64_t *source, uint64_t *dest)
+{
+    uint64_t count[256] = {0};
+    uint64_t *cp = NULL;
+    uint64_t *sp = NULL;
+    uint64_t *end = NULL;
+    uint64_t s = 0;
+    uint64_t c = 0;
+
+    // count occurences of every byte value
+    for (sp = source, end = source + max; sp &lt; end; sp++) {
+        count[ByteOf(sp, offset)]++;
+    }
+
+    // transform count into index by summing elements and storing into same array
+    for (s = 0, cp = count, end = count + 256; cp &lt; end; cp++) {
+        c = *cp;
+        *cp = s;
+        s += c;
+    }
+
+    // fill dest with the right values in the right place
+    for (sp = source, end = source + max; sp &lt; end; sp++) {
+        cp = count + ByteOf(sp, offset);
+        dest[*cp] = *sp;
+        ++(*cp);
+    }
+}
+
+void RadixMap_sort(RadixMap *map)
+{
+    uint64_t *source = &amp;map-&gt;contents[0].raw;
+    uint64_t *temp = &amp;map-&gt;temp[0].raw;
+
+    radix_sort(0, map-&gt;end, source, temp);
+    radix_sort(1, map-&gt;end, temp, source);
+    radix_sort(2, map-&gt;end, source, temp);
+    radix_sort(3, map-&gt;end, temp, source);
+}
+
+RMElement *RadixMap_find(RadixMap *map, uint32_t to_find)
+{
+    int low = 0;
+    int high = map-&gt;end - 1;
+    RMElement *data = map-&gt;contents;
+
+    while (low &lt;= high) {
+        int middle = low + (high - low)/2;
+        uint32_t key = data[middle].data.key;
+
+        if (to_find &lt; key) {
+            high = middle - 1;
+        } else if (to_find &gt; key) {
+            low = middle + 1;
+        } else {
+            return &amp;data[middle];
+        }
+    }
+
+    return NULL;
+}
+
+int RadixMap_add(RadixMap *map, uint32_t key, uint32_t value)
+{
+    check(key &lt; UINT32_MAX, "Key can't be equal to UINT32_MAX.");
+
+    RMElement element = {.data = {.key = key, .value = value}};
+    check(map-&gt;end + 1 &lt; map-&gt;max, "RadixMap is full.");
+
+    map-&gt;contents[map-&gt;end++] = element;
+
+    RadixMap_sort(map);
+
+    return 0;
+
+error:
+    return -1;
+}
+
+int RadixMap_delete(RadixMap *map, RMElement *el)
+{
+    check(map-&gt;end &gt; 0, "There is nothing to delete.");
+    check(el != NULL, "Can't delete a NULL element.");
+
+    el-&gt;data.key = UINT32_MAX;
+
+    if(map-&gt;end &gt; 1) {
+        // don't bother resorting a map of 1 length
+        RadixMap_sort(map);
+    }
+
+    map-&gt;end--;
+
+    return 0;
+error:
+    return -1;
+}</code></pre>
+<p>像往常一样键入它并使它通过单元测试，之后我会解释它。尤其要注意<code>radix_sort</code>函数，我实现它的方法非常特别。</p>
+<pre><code class="c">#include "minunit.h"
+#include &lt;lcthw/radixmap.h&gt;
+#include &lt;time.h&gt;
+
+static int make_random(RadixMap *map)
+{
+    size_t i = 0;
+
+    for (i = 0; i &lt; map-&gt;max - 1; i++) {
+        uint32_t key = (uint32_t)(rand() | (rand() &lt;&lt; 16));
+        check(RadixMap_add(map, key, i) == 0, "Failed to add key %u.", key);
+    }
+
+    return i;
+
+error:
+    return 0;
+}
+
+static int check_order(RadixMap *map)
+{
+    RMElement d1, d2;
+    unsigned int i = 0;
+
+    // only signal errors if any (should not be)
+    for (i = 0; map-&gt;end &gt; 0 &amp;&amp; i &lt; map-&gt;end-1; i++) {
+        d1 = map-&gt;contents[i];
+        d2 = map-&gt;contents[i+1];
+
+        if(d1.data.key &gt; d2.data.key) {
+            debug("FAIL:i=%u, key: %u, value: %u, equals max? %d\n", i, d1.data.key, d1.data.value,
+                    d2.data.key == UINT32_MAX);
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+static int test_search(RadixMap *map)
+{
+    unsigned i = 0;
+    RMElement *d = NULL;
+    RMElement *found = NULL;
+
+    for(i = map-&gt;end / 2; i &lt; map-&gt;end; i++) {
+        d = &amp;map-&gt;contents[i];
+        found = RadixMap_find(map, d-&gt;data.key);
+        check(found != NULL, "Didn't find %u at %u.", d-&gt;data.key, i);
+        check(found-&gt;data.key == d-&gt;data.key, "Got the wrong result: %p:%u looking for %u at %u",
+                found, found-&gt;data.key, d-&gt;data.key, i);
+    }
+
+    return 1;
+error:
+    return 0;
+}
+
+// test for big number of elements
+static char *test_operations()
+{
+    size_t N = 200;
+
+    RadixMap *map = RadixMap_create(N);
+    mu_assert(map != NULL, "Failed to make the map.");
+    mu_assert(make_random(map), "Didn't make a random fake radix map.");
+
+    RadixMap_sort(map);
+    mu_assert(check_order(map), "Failed to properly sort the RadixMap.");
+
+    mu_assert(test_search(map), "Failed the search test.");
+    mu_assert(check_order(map), "RadixMap didn't stay sorted after search.");
+
+    while(map-&gt;end &gt; 0) {
+        RMElement *el = RadixMap_find(map, map-&gt;contents[map-&gt;end / 2].data.key);
+        mu_assert(el != NULL, "Should get a result.");
+
+        size_t old_end = map-&gt;end;
+
+        mu_assert(RadixMap_delete(map, el) == 0, "Didn't delete it.");
+        mu_assert(old_end - 1 == map-&gt;end, "Wrong size after delete.");
+
+        // test that the end is now the old value, but uint32 max so it trails off
+        mu_assert(check_order(map), "RadixMap didn't stay sorted after delete.");
+    }
+
+    RadixMap_destroy(map);
+
+    return NULL;
+}
+
+
+char *all_tests()
+{
+    mu_suite_start();
+    srand(time(NULL));
+
+    mu_run_test(test_operations);
+
+    return NULL;
+}
+
+RUN_TESTS(all_tests);</code></pre>
+<p>我不应该向你解释关于测试的过多东西，它只是模拟将随机正是放入<code>RadixMap</code>，确保你可以可靠地将其取出。也不是非常有趣。</p>
+<p>在<code>radixmap.c</code>中的大多数操作都易于理解，如果你阅读代码的话。下面是每个基本函数作用及其工作原理的描述：</p>
+<p>RadixMap_create</p>
+<p>像往常一样，我分配了结构体所需的内存，结构体在<code>radixmap.h</code>中定义。当后面涉及到<code>radix_sort</code>时我会使用<code>temp</code>和<code>contents</code>。</p>
+<p>RadixMap_destroy</p>
+<p>同样，销毁我所创建的东西。</p>
+<p>radix_sort</p>
+<p>这个数据结构的灵魂，我会在下一节中解释其作用。</p>
+<p>RadixMap_sort</p>
+<p>它使用了<code>radix_sort</code>函数来实际对<code>contents</code>进行排序。</p>
+<p>RadixMap_find</p>
+<p>使用二分搜索算法来寻找提供的<code>key</code>，我之后会解释它的原理。</p>
+<p>RadixMap_add</p>
+<p>使用<code>RadixMap_sort</code>函数，它会在末尾添加<code>key</code>和<code>value</code>，然后简单地重新排序使一切元素都有序。一旦排序完，<code>RadixMap_find</code>会正确工作，因为它是二分搜索。</p>
+<p>RadixMap_delete</p>
+<p>工作方式类似<code>RadixMap_add</code>，除了“删除”结构中的元素，通过将它们的值设为无符号的32为整数的最大值，也就是<code>UINT32_MAX</code>。这意味着你不能使用这个值作为合法的键，但是它是元素删除变得容易。简单设置它之后排序，它会被移动到末尾，这就算删除了。</p>
+<p>学习我所描述的代码，接下来还剩<code>RadixMap_sort</code>，<code>radix_sort</code>和<code>RadixMap_find</code>需要了解。</p>
+<h2 id="RadixMap_find+%E5%92%8C%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2" name="RadixMap_find+%E5%92%8C%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2">RadixMap_find 和二分搜索</h2>
+<p>我首先以二分搜索如何实现开始。二分搜索是一种简单算法，大多数人都可以直观地理解。实际上，你可以取一叠游戏卡片（或带有数字的卡片）来手动操作。下面是该函数的工作方式，也是二分搜索的原理：</p>
+<ul>
+<li>基于数组大小设置上界和下界。</li>
+<li>获取上下界之间的中间元素。</li>
+<li>如果键小于这个元素的值，就一定在它前面，所以上界设置为中间元素。</li>
+<li>如果键大于这个元素的值，就一定在它后面，所以下界设置为中间元素。</li>
+<li>继续循环直到上界和下界越过了彼此。如果退出了循环则没有找到。</li>
+</ul>
+<p>你实际上所做的事情是，通过挑选中间的值来比较，猜出<code>key</code>可能的位置。由于数据是有序的，你知道<code>key</code>一定会在它前面或者后面，这样就能把搜索区域分成两半。之后你继续搜索知道找到他，或者越过了边界并穷尽了搜索空间。</p>
+<h2 id="RadixMap_sort+%E5%92%8C+radix_sort" name="RadixMap_sort+%E5%92%8C+radix_sort">RadixMap_sort 和 radix_sort</h2>
+<p>如果你事先手动模拟基数排序，它就很易于理解。这个算法利用了一个现象，数字都以十进制字符的序列来表示，按照“不重要”到“重要”的顺序排列。之后它通过十进制字符来选取数字并且将它们储存在桶中，当它处理完所有字符时，数字就排好序了。一开始它看上去像是魔法，浏览代码也的确如此，但是你要尝试手动执行它。</p>
+<p>为了解释这个算法，需要先写下一组三位的十进制数，以随机的顺序，假设就是223、912、275、100、633、120 和 380。</p>
+<ul>
+<li>按照它们的个位，将数字放入桶中：<code>[380, 100, 120], [912], [633, 223], [275]</code>。</li>
+<li>现在遍历每个桶中的数字，接着按十位排序：<code>[100], [912], [120, 223], [633], [275], [380]</code>。</li>
+<li>现在每个桶都包含了按照个位和十位排序后的数字。接着我需要按照这个顺序遍历，并把它们放入最后百位的桶中：<code>[100, 120], [223, 275], [380], [633], [912]</code>。</li>
+<li>到现在为止，每个数字都按照百位、十位和个位排序，并且如果我按照顺序遍历每个桶，我会得到最终排序的结果：<code>100, 120, 223, 275, 380, 633, 912</code>。</li>
+</ul>
+<p>确保你多次重复了这个过程，便于你理解它如何工作。这实在是一种机智的算法，并且最重要的是它对于任何大小的数字都有效。所以你可以用它来排序比较大的数字，因为你一次只是处理一位。</p>
+<p>在我的环境下，“字符”是独立的8位字节，所以我需要256个桶来储存这些数字按照字节的分布结果。我需要一种方法来储存它，并且不需要花费太多的空间。如果你查看<code>radix_sort</code>，首先我会构建<code>count</code>直方图，便于我了解对于给定的<code>offset</code>，每个字节的频率。</p>
+<p>一旦我知道了每一种字节的数量（共有256种），我就可以将目标数组用于存储这些值的分布。比如，如果0x00的数量为10个，我就可以将它们放在目标数组的前10个位置中。这可以让我索引到它们在目标数组中的位置，这就是<code>radix_sort</code>中的第二个<code>for</code>循环。</p>
+<p>最后，当我知道它们在目标数组中储存在哪里，我只是遍历<code>source</code>数组对于当前<code>offset</code>的所有字节，并且将数值按顺序放入它们的位置中。<code>ByteOf</code>宏的使用有助于保持代码整洁，因为它需要一些指针的黑魔法，但是最后当<code>for</code>循环结束之后，所有整数都会按照它们的字节放入桶中。</p>
+<p>我在<code>RadixMap_sort</code>中对这些64位的整数按照它们的前32位进行排序，这非常有意思。还记得我是如何将键和值放入<code>RMElement</code>类型的联合体了吗？这意味着如果要按照键来对这个数组排序，我只需要对每个整数前4个字节（32位/8位每字节）进行排序。</p>
+<p>如果你观察<code>RadixMap_sort</code>，你会看到我获取了<code>contents</code>和<code>temp</code>的便利指针，用于源数组和目标数组，之后我四次调用<code>radix_sort</code>。每次调用我将源数组和目标数组替换为下一字节的情况。当我完成时，<code>radix_sort</code>就完成了任务，并且<code>contents</code>中也有了最后的结果。</p>
+<h2 id="%E5%A6%82%E4%BD%95%E6%94%B9%E8%BF%9B" name="%E5%A6%82%E4%BD%95%E6%94%B9%E8%BF%9B">如何改进</h2>
+<p>这个实现有个很大的缺点，就是它遍历了整个数组四次。它执行地很快，但是如果你通过需要排序的数值大小来限制排序的总量，会更好一些。</p>
+<p>有两个方法可以用于改进这个实现：</p>
+<ul>
+<li>使用二分搜索来寻找新元素的最小位置，只对这个位置到微末之间进行排序。你需要找到它，将新元素放到末尾，之后对它们之间进行排序。大多数情况下这会显著地缩减排序范围。</li>
+<li>跟踪当前所使用的最大的键，之后只对足够的位数进行排序，来处理这个键。你也可以跟踪最小的数值，之后只对范围中必要的字节进行排序。为了这样做，你需要关心CPU的整数存储顺序（大小端序）。</li>
+</ul>
+<h2 id="%E9%99%84%E5%8A%A0%E9%A2%98" name="%E9%99%84%E5%8A%A0%E9%A2%98">附加题</h2>
+<ul>
+<li>实现快速排序、堆排序和归并排序，并且提供一个<code>#define</code>让其他人在二者（标准库和你的实现）当中进行选择，或者创建另一套不同名称的函数。使用我教给你的技巧，阅读维基百科的算法页面，之后参照伪代码来实现它。</li>
+<li>对比你的实现和标准库实现的性能。</li>
+<li>使用这些排序函数创建<code>DArray_sort_add</code>，它可以向<code>DArray</code>添加元素，但是随后对数组排序。</li>
+<li>编写<code>DArray_find</code>，使用<code>RadixMap_find</code>中的二分搜索算法和<code>DArray_compare</code>，来在有序的<code>DArray</code>中寻找元素。</li>
+</ul>                            </section>
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+                                <h1 class="search-results-title">
+                                    关于"<span class='search-query'></span>"的搜索结果共<span class='search-results-count'></span>条
+                                </h1>
+                                <ul class="search-results-list"></ul>
+                            </div>
+                            <div class="no-results">
+                                <h1 class="search-results-title">没有"<span class='search-query'></span>"相关内容</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <a href="https://naka1205.github.io/lcthw/4375976486E9101E.html" class="navigation navigation-prev " aria-label="动态数组">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/lcthw/95C8D9CEC85F55BD.html" class="navigation navigation-next " aria-label="更安全的字符串">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
+    </div>
+<script>
+var gitbook = gitbook || [];
+gitbook.push(function() {
+    gitbook.page.hasChanged({
+        "page": {
+            "title":  "排序和搜索",
+            "next": {
+                "title": "更安全的字符串"
+            },
+            "previous": {
+                "title": "动态数组"
+            }
+        },
+        "config": {
+            "gitbook": "*",
+            "theme": "default",
+            "variables": {},
+            "plugins": ["-lunr", "-search", "-highlight","search-pro"],
+            "pluginsConfig": {
+                "search-pro": {},
+                "highlight": {},
+                "sharing": {},
+                "fontsettings": {},
+                "theme-default": {}
+            },
+            "structure": {},
+            "pdf": {},
+            "styles": {}
+        },
+        "file": {},
+        "gitbook": {},
+        "basePath": "https://naka1205.github.io/lcthw",
+        "book": {}
+    });
+});
+</script>
+</div>
+<script src="https://naka1205.github.io/lcthw/assets/js/gitbook.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/theme.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/jquery.mark.min.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/search.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/buttons.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/fontsettings.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/plugin.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+</body>
+</html>

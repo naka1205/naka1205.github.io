@@ -1,0 +1,340 @@
+<!DOCTYPE HTML>
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>库和链接 · 笨办法学C</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="C语言编程的核心能力之一就是链接OS所提供的库。链接是一种为你的程序添加额外特性的方法，这些特性由其它人在系统中创建并打包。你已经使用了一些自动包含的标准库，但是我打算对库的不同类型和它们的作用做个解释。">
+    <meta name="keywords" content="笨办法学C">
+    <meta name="generator" content="PKBook">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/style.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/search.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/ebook.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/lcthw/assets/css/website.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css" rel="stylesheet">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://naka1205.github.io/lcthw/assets/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://naka1205.github.io/lcthw/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div class="book">
+    <div class="book-summary">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="输入关键词搜索" />
+        </div>
+        <nav role="navigation">
+    <ul class="summary">
+        <li><a href="https://naka1205.github.io/lcthw/index.html" target="blank" class="header">导言：C的笛卡尔之梦</a></li>
+        <li class="divider"></li>
+                <li class="header">练习</li>
+                        <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/lcthw/C3D207FADFAF5841.html"><a href="https://naka1205.github.io/lcthw/C3D207FADFAF5841.html">准备</a></li>
+                        <li class="chapter " data-level="1.2" data-path="https://naka1205.github.io/lcthw/6C82D57E03DDE1F0.html"><a href="https://naka1205.github.io/lcthw/6C82D57E03DDE1F0.html">启用编译器</a></li>
+                        <li class="chapter " data-level="1.3" data-path="https://naka1205.github.io/lcthw/44DB81B8DEDE247B.html"><a href="https://naka1205.github.io/lcthw/44DB81B8DEDE247B.html">用Make来代替Python</a></li>
+                        <li class="chapter " data-level="1.4" data-path="https://naka1205.github.io/lcthw/D3BE6C8A075EF92E.html"><a href="https://naka1205.github.io/lcthw/D3BE6C8A075EF92E.html">格式化输出</a></li>
+                        <li class="chapter " data-level="1.5" data-path="https://naka1205.github.io/lcthw/B9CDA195B24A4F6A.html"><a href="https://naka1205.github.io/lcthw/B9CDA195B24A4F6A.html">Valgrind 介绍</a></li>
+                        <li class="chapter " data-level="1.6" data-path="https://naka1205.github.io/lcthw/624C7D3C62504470.html"><a href="https://naka1205.github.io/lcthw/624C7D3C62504470.html">一个C程序的结构</a></li>
+                        <li class="chapter " data-level="1.7" data-path="https://naka1205.github.io/lcthw/33CC823F6781FDB9.html"><a href="https://naka1205.github.io/lcthw/33CC823F6781FDB9.html">变量类型</a></li>
+                        <li class="chapter " data-level="1.8" data-path="https://naka1205.github.io/lcthw/171C2758259C8DE1.html"><a href="https://naka1205.github.io/lcthw/171C2758259C8DE1.html">更多变量和一些算术</a></li>
+                        <li class="chapter " data-level="1.9" data-path="https://naka1205.github.io/lcthw/C2C3F49A54034E72.html"><a href="https://naka1205.github.io/lcthw/C2C3F49A54034E72.html">大小和数组</a></li>
+                        <li class="chapter " data-level="1.10" data-path="https://naka1205.github.io/lcthw/3046A11FC869E5C2.html"><a href="https://naka1205.github.io/lcthw/3046A11FC869E5C2.html">数组和字符串</a></li>
+                        <li class="chapter " data-level="1.11" data-path="https://naka1205.github.io/lcthw/3018A6B457AE4FF5.html"><a href="https://naka1205.github.io/lcthw/3018A6B457AE4FF5.html">字符串数组和循环</a></li>
+                        <li class="chapter " data-level="1.12" data-path="https://naka1205.github.io/lcthw/F552B2B9C8E36656.html"><a href="https://naka1205.github.io/lcthw/F552B2B9C8E36656.html">While循环和布尔表达式</a></li>
+                        <li class="chapter " data-level="1.13" data-path="https://naka1205.github.io/lcthw/71D0E364C2783A96.html"><a href="https://naka1205.github.io/lcthw/71D0E364C2783A96.html">If，Else If，Else</a></li>
+                        <li class="chapter " data-level="1.14" data-path="https://naka1205.github.io/lcthw/0E9AB6AD5C029EF6.html"><a href="https://naka1205.github.io/lcthw/0E9AB6AD5C029EF6.html">Switch语句</a></li>
+                        <li class="chapter " data-level="1.15" data-path="https://naka1205.github.io/lcthw/5D2945A8677CE165.html"><a href="https://naka1205.github.io/lcthw/5D2945A8677CE165.html">编写并使用函数</a></li>
+                        <li class="chapter " data-level="1.16" data-path="https://naka1205.github.io/lcthw/8B5745CD2156FCC3.html"><a href="https://naka1205.github.io/lcthw/8B5745CD2156FCC3.html">指针，可怕的指针</a></li>
+                        <li class="chapter " data-level="1.17" data-path="https://naka1205.github.io/lcthw/CDCC108031940336.html"><a href="https://naka1205.github.io/lcthw/CDCC108031940336.html">结构体和指向它们的指针</a></li>
+                        <li class="chapter " data-level="1.18" data-path="https://naka1205.github.io/lcthw/178F8DDE733AD0DD.html"><a href="https://naka1205.github.io/lcthw/178F8DDE733AD0DD.html">堆和栈的内存分配</a></li>
+                        <li class="chapter " data-level="1.19" data-path="https://naka1205.github.io/lcthw/DC3B5E7AC8CF3946.html"><a href="https://naka1205.github.io/lcthw/DC3B5E7AC8CF3946.html">函数指针</a></li>
+                        <li class="chapter " data-level="1.20" data-path="https://naka1205.github.io/lcthw/746ADCFC76734882.html"><a href="https://naka1205.github.io/lcthw/746ADCFC76734882.html">一个简单的对象系统</a></li>
+                        <li class="chapter " data-level="1.21" data-path="https://naka1205.github.io/lcthw/8BBFC8E0CA1C348B.html"><a href="https://naka1205.github.io/lcthw/8BBFC8E0CA1C348B.html">Zed的强大的调试宏</a></li>
+                        <li class="chapter " data-level="1.22" data-path="https://naka1205.github.io/lcthw/B67D461964D39489.html"><a href="https://naka1205.github.io/lcthw/B67D461964D39489.html">高级数据类型和控制结构</a></li>
+                        <li class="chapter " data-level="1.23" data-path="https://naka1205.github.io/lcthw/6822F5C25F64C05F.html"><a href="https://naka1205.github.io/lcthw/6822F5C25F64C05F.html">栈、作用域和全局</a></li>
+                        <li class="chapter " data-level="1.24" data-path="https://naka1205.github.io/lcthw/F6AD606057D5DA1A.html"><a href="https://naka1205.github.io/lcthw/F6AD606057D5DA1A.html">认识达夫设备</a></li>
+                        <li class="chapter " data-level="1.25" data-path="https://naka1205.github.io/lcthw/2F13B44DB3CFDC2E.html"><a href="https://naka1205.github.io/lcthw/2F13B44DB3CFDC2E.html">输入输出和文件</a></li>
+                        <li class="chapter " data-level="1.26" data-path="https://naka1205.github.io/lcthw/2852FA26A8BCFAD2.html"><a href="https://naka1205.github.io/lcthw/2852FA26A8BCFAD2.html">变参函数</a></li>
+                        <li class="chapter " data-level="1.27" data-path="https://naka1205.github.io/lcthw/41ABE0D9F5D3164C.html"><a href="https://naka1205.github.io/lcthw/41ABE0D9F5D3164C.html">编写第一个真正的程序</a></li>
+                        <li class="chapter " data-level="1.28" data-path="https://naka1205.github.io/lcthw/FFD032B7FC697307.html"><a href="https://naka1205.github.io/lcthw/FFD032B7FC697307.html">创造性和防御性编程</a></li>
+                        <li class="chapter " data-level="1.29" data-path="https://naka1205.github.io/lcthw/5C8A5BE0B219BE30.html"><a href="https://naka1205.github.io/lcthw/5C8A5BE0B219BE30.html">Makefile 进阶</a></li>
+                        <li class="chapter " data-level="1.30" data-path="https://naka1205.github.io/lcthw/09D69E06B935E885.html"><a href="https://naka1205.github.io/lcthw/09D69E06B935E885.html">库和链接</a></li>
+                        <li class="chapter " data-level="1.31" data-path="https://naka1205.github.io/lcthw/866A23BE27D0D7E6.html"><a href="https://naka1205.github.io/lcthw/866A23BE27D0D7E6.html">自动化测试</a></li>
+                        <li class="chapter " data-level="1.32" data-path="https://naka1205.github.io/lcthw/B6E48A0ED7072528.html"><a href="https://naka1205.github.io/lcthw/B6E48A0ED7072528.html">代码调试</a></li>
+                        <li class="chapter " data-level="1.33" data-path="https://naka1205.github.io/lcthw/364477FB0CED1A03.html"><a href="https://naka1205.github.io/lcthw/364477FB0CED1A03.html">双向链表</a></li>
+                        <li class="chapter " data-level="1.34" data-path="https://naka1205.github.io/lcthw/219AB7A902A81B94.html"><a href="https://naka1205.github.io/lcthw/219AB7A902A81B94.html">链表算法</a></li>
+                        <li class="chapter " data-level="1.35" data-path="https://naka1205.github.io/lcthw/4375976486E9101E.html"><a href="https://naka1205.github.io/lcthw/4375976486E9101E.html">动态数组</a></li>
+                        <li class="chapter " data-level="1.36" data-path="https://naka1205.github.io/lcthw/F674E4CC423F4082.html"><a href="https://naka1205.github.io/lcthw/F674E4CC423F4082.html">排序和搜索</a></li>
+                        <li class="chapter " data-level="1.37" data-path="https://naka1205.github.io/lcthw/95C8D9CEC85F55BD.html"><a href="https://naka1205.github.io/lcthw/95C8D9CEC85F55BD.html">更安全的字符串</a></li>
+                        <li class="chapter " data-level="1.38" data-path="https://naka1205.github.io/lcthw/19B22BBE112EDD42.html"><a href="https://naka1205.github.io/lcthw/19B22BBE112EDD42.html">哈希表</a></li>
+                        <li class="chapter " data-level="1.39" data-path="https://naka1205.github.io/lcthw/8ACDB75ECC6C4448.html"><a href="https://naka1205.github.io/lcthw/8ACDB75ECC6C4448.html">哈希算法</a></li>
+                        <li class="chapter " data-level="1.40" data-path="https://naka1205.github.io/lcthw/1D54A74DB0C212CF.html"><a href="https://naka1205.github.io/lcthw/1D54A74DB0C212CF.html">字符串算法</a></li>
+                        <li class="chapter " data-level="1.41" data-path="https://naka1205.github.io/lcthw/64206F3FDC812F26.html"><a href="https://naka1205.github.io/lcthw/64206F3FDC812F26.html">二叉搜索树</a></li>
+                        <li class="chapter " data-level="1.42" data-path="https://naka1205.github.io/lcthw/35162CDAACDA8825.html"><a href="https://naka1205.github.io/lcthw/35162CDAACDA8825.html">将 Cachegrind 和 Callgrind 用于性能调优</a></li>
+                        <li class="chapter " data-level="1.43" data-path="https://naka1205.github.io/lcthw/288E5C87D0D80787.html"><a href="https://naka1205.github.io/lcthw/288E5C87D0D80787.html">栈和队列</a></li>
+                        <li class="chapter " data-level="1.44" data-path="https://naka1205.github.io/lcthw/EFA4890803FAB6F6.html"><a href="https://naka1205.github.io/lcthw/EFA4890803FAB6F6.html">一个简单的统计引擎</a></li>
+                        <li class="chapter " data-level="1.45" data-path="https://naka1205.github.io/lcthw/E0AFFDAFB6FE468C.html"><a href="https://naka1205.github.io/lcthw/E0AFFDAFB6FE468C.html">环形缓冲区</a></li>
+                        <li class="chapter " data-level="1.46" data-path="https://naka1205.github.io/lcthw/EEC00C835A3D8361.html"><a href="https://naka1205.github.io/lcthw/EEC00C835A3D8361.html">一个简单的TCP/IP客户端</a></li>
+                        <li class="chapter " data-level="1.47" data-path="https://naka1205.github.io/lcthw/51762D35312252D6.html"><a href="https://naka1205.github.io/lcthw/51762D35312252D6.html">三叉搜索树</a></li>
+                        <li class="chapter " data-level="1.48" data-path="https://naka1205.github.io/lcthw/A0F3E9CEEB1897B5.html"><a href="https://naka1205.github.io/lcthw/A0F3E9CEEB1897B5.html">一个快速的URL路由</a></li>
+                    <li class="divider"></li>
+                <li class="header">后记</li>
+                        <li class="chapter " data-level="2.1" data-path="https://naka1205.github.io/lcthw/ACB13F6E3D683928.html"><a href="https://naka1205.github.io/lcthw/ACB13F6E3D683928.html">解构 K&amp;R C&rdquo; 已死</a></li>
+                    <li class="divider"></li>
+                <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
+    </ul>
+</nav>
+    </div>
+    
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/lcthw/09D69E06B935E885.html">库和链接</a></h1>
+            </div>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">
+                                <h1 id="%E5%BA%93%E5%92%8C%E9%93%BE%E6%8E%A5" name="%E5%BA%93%E5%92%8C%E9%93%BE%E6%8E%A5">库和链接</h1>
+<p>C语言编程的核心能力之一就是链接OS所提供的库。链接是一种为你的程序添加额外特性的方法，这些特性由其它人在系统中创建并打包。你已经使用了一些自动包含的标准库，但是我打算对库的不同类型和它们的作用做个解释。</p>
+<p>首先，库在每个语言中都没有良好的设计。我不知道为什么，但是似乎语言的设计者都将链接视为不是特别重要的东西。它们通常令人混乱，难以使用，不能正确进行版本控制，并以不同的方式链接到各种地方。</p>
+<p>C没有什么不同，但是C中的库和链接是Unix操作系统的组件，并且可执行的格式在很多年前就设计好了。学习C如何链接库有助于理解OS如何工作，以及它如何运行你的程序。</p>
+<p>C中的库有两种基本类型：</p>
+<p>静态</p>
+<p>你可以使用<code>ar</code>和<code>ranlib</code>来构建它，就像上个练习中的<code>libYOUR_LIBRARY.a</code>那样（Windows下后缀为<code>.lib</code>）。这种库可以当做一系列<code>.o</code>对象文件和函数的容器，以及当你构建程序时，可以当做是一个大型的<code>.o</code>文件。</p>
+<p>动态</p>
+<p>它们通常以<code>.so</code>（Linux）或<code>.dll</code>（Windows）结尾。在OSX中，差不多有一百万种后缀，取决于版本和编写它的人。严格来讲，OSX中的<code>.dylib</code>，<code>.bundle</code>和<code>framework</code>这三个之间没什么不同。这些文件都被构建好并且放置到指定的地方。当你运行程序时，OS会动态加载这些文件并且“凭空”链接到你的程序中。</p>
+<p>我倾向于对小型或中型项目使用静态的库，因为它们易于使用，并且工作在在更多操作系统上。我也喜欢将所有代码放入静态库中，之后链接它来执行单元测试，或者链接到所需的程序中。</p>
+<p>动态库适用于大型系统，它的空间十分有限，或者其中大量程序都使用相同的功能。这种情况下不应该为每个程序的共同特性静态链接所有代码，而是应该将它放到动态库中，这样它仅仅会为所有程序加载一份。</p>
+<p>在上一个练习中，我讲解了如何构建静态库（<code>.a</code>），我会在本书的剩余部分用到它。这个练习中我打算向你展示如何构建一个简单的<code>.so</code>库，并且如何使用Unix系统的<code>dlopen</code>动态加载它。我会手动执行它，以便你可以理解每件实际发生的事情。之后，附加题这部分会使用c项目框架来创建它。</p>
+<h2 id="%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E5%8A%A8%E6%80%81%E5%BA%93" name="%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E5%8A%A8%E6%80%81%E5%BA%93">动态加载动态库</h2>
+<p>我创建了两个源文件来完成它。一个用于构建<code>libex29.so</code>库，另一个是个叫做<code>ex29</code>的程序，它可以加载这个库并运行其中的程序：</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+#include "dbg.h"
+
+
+int print_a_message(const char *msg)
+{
+    printf("A STRING: %s\n", msg);
+
+    return 0;
+}
+
+
+int uppercase(const char *msg)
+{
+    int i = 0;
+
+    // BUG: \0 termination problems
+    for(i = 0; msg[i] != '\0'; i++) {
+        printf("%c", toupper(msg[i]));
+    }
+
+    printf("\n");
+
+    return 0;
+}
+
+int lowercase(const char *msg)
+{
+    int i = 0;
+
+    // BUG: \0 termination problems
+    for(i = 0; msg[i] != '\0'; i++) {
+        printf("%c", tolower(msg[i]));
+    }
+
+    printf("\n");
+
+    return 0;
+}
+
+int fail_on_purpose(const char *msg)
+{
+    return 1;
+}</code></pre>
+<p>这里面没什么神奇之处。其中故意留了一些bug，看你是否注意到了。你需要在随后修复它们。</p>
+<p>我们将要使用<code>dlopen</code>，<code>dlsym</code>，和<code>dlclose</code>函数来处理上面的函数。</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+#include "dbg.h"
+#include &lt;dlfcn.h&gt;
+
+typedef int (*lib_function)(const char *data);
+
+
+int main(int argc, char *argv[])
+{
+    int rc = 0;
+    check(argc == 4, "USAGE: ex29 libex29.so function data");
+
+    char *lib_file = argv[1];
+    char *func_to_run = argv[2];
+    char *data = argv[3];
+
+    void *lib = dlopen(lib_file, RTLD_NOW);
+    check(lib != NULL, "Failed to open the library %s: %s", lib_file, dlerror());
+
+    lib_function func = dlsym(lib, func_to_run);
+    check(func != NULL, "Did not find %s function in the library %s: %s", func_to_run, lib_file, dlerror());
+
+    rc = func(data);
+    check(rc == 0, "Function %s return %d for data: %s", func_to_run, rc, data);
+
+    rc = dlclose(lib);
+    check(rc == 0, "Failed to close %s", lib_file);
+
+    return 0;
+
+error:
+    return 1;
+}</code></pre>
+<p>我现在会拆分这个程序，便于你理解这一小段代码其中的原理。</p>
+<p>ex29.c:5</p>
+<p>我随后会使用这个函数指针定义，来调用库中的函数。这没什么新东西，确保你理解了它的作用。</p>
+<p>ex29.c:17</p>
+<p>在为一个小型程序做必要的初始化后，我使用了<code>dlopen</code>函数来加载由<code>lib_file</code>表示的库。这个函数返回一个句柄，我们随后会用到它，就像来打开文件那样。</p>
+<p>ex29.c:18</p>
+<p>如果出现错误，我执行了通常的检查并退出，但是要注意最后我使用了<code>dlerror</code>来查明发生了什么错误。</p>
+<p>ex29.c:20</p>
+<p>我使用了<code>dlsym</code>来获取<code>lib</code>中的函数，通过它的字面名称<code>func_to_run</code>。这是最强大的部分，因为我动态获取了一个函数指针，基于我从命令行<code>argv</code>获得的字符串。</p>
+<p>ex29.c:23</p>
+<p>接着我调用<code>func</code>函数，获得返回值并进行检查。</p>
+<p>ex29.c:26</p>
+<p>最后，我像关闭文件那样关闭了库。通常你需要在程序的整个运行期间保证它们打开，所以关闭操作并不非常实用，我只是在这里演示它。</p>
+<blockquote>
+<p>译者注：由于能够使用系统调用加载，动态库可以被多种语言的程序调用，而静态库只能被C及兼容C的程序调用。</p>
+</blockquote>
+<h2 id="%E4%BD%A0%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88" name="%E4%BD%A0%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88">你会看到什么</h2>
+<p>既然你已经知道这些文件做什么了，下面是我的shell会话，用于构建<code>libex29.so</code>和<code>ex29</code>并随后运行它。下面的代码中你可以学到如何手动构建：</p>
+<pre><code class="sh"># compile the lib file and make the .so
+# you may need -fPIC here on some platforms. add that if you get an error
+$ cc -c libex29.c -o libex29.o
+$ cc -shared -o libex29.so libex29.o
+
+# make the loader program
+$ cc -Wall -g -DNDEBUG ex29.c -ldl -o ex29
+
+# try it out with some things that work
+$ ex29 ./libex29.so print_a_message "hello there"
+-bash: ex29: command not found
+$ ./ex29 ./libex29.so print_a_message "hello there"
+A STRING: hello there
+$ ./ex29 ./libex29.so uppercase "hello there"
+HELLO THERE
+$ ./ex29 ./libex29.so lowercase "HELLO tHeRe"
+hello there
+$ ./ex29 ./libex29.so fail_on_purpose "i fail"
+[ERROR] (ex29.c:23: errno: None) Function fail_on_purpose return 1 for data: i fail
+
+# try to give it bad args
+$ ./ex29 ./libex29.so fail_on_purpose
+[ERROR] (ex29.c:11: errno: None) USAGE: ex29 libex29.so function data
+
+# try calling a function that is not there
+$ ./ex29 ./libex29.so adfasfasdf asdfadff
+[ERROR] (ex29.c:20: errno: None) Did not find adfasfasdf
+  function in the library libex29.so: dlsym(0x1076009b0, adfasfasdf): symbol not found
+
+# try loading a .so that is not there
+$ ./ex29 ./libex.so adfasfasdf asdfadfas
+[ERROR] (ex29.c:17: errno: No such file or directory) Failed to open
+    the library libex.so: dlopen(libex.so, 2): image not found
+$</code></pre>
+<p>需要注意，你可能需要在不同OS、不同OS的不同版本，以及不同OS的不同版本的不同编译器上执行构建，则需要修改构建共享库的方式。如果我构建<code>libex29.so</code>的方式在你的平台上不起作用，请告诉我，我会为其它平台添加一些注解。</p>
+<blockquote>
+<p>译者注：到处编写、到处调试、到处编译、到处发布。--vczh</p>
+</blockquote>
+<p>&zwj;</p>
+<blockquote>
+<p>注</p>
+</blockquote>
+<blockquote>
+<p>有时候你像往常一样运行<code>cc -Wall -g -DNDEBUG -ldl ex29.c -o ex29</code>，并且认为它能够正常工作，但是没有。在一些平台上，参数的顺序会影响到它是否生效，这也没什么理由。在Debian或者Ubuntu中你需要执行<code>cc -Wall -g -DNDEBUG ex29.c -ldl -o ex29</code>，这是唯一的方式。所以虽然我在这里使用了OSX，但是以后如果你链接动态库的时候它找不到某个函数，要试着自己解决问题。</p>
+</blockquote>
+<blockquote>
+<p>这里面比较麻烦的事情是，实际平台的不同会影响到命令参数的顺序。将<code>-ldl</code>放到某个位置没有理由与其它位置不同。它只是一个选项，还需要了解这些简直是太气人了。</p>
+</blockquote>
+<h2 id="%E5%A6%82%E4%BD%95%E4%BD%BF%E5%AE%83%E5%B4%A9%E6%BA%83" name="%E5%A6%82%E4%BD%95%E4%BD%BF%E5%AE%83%E5%B4%A9%E6%BA%83">如何使它崩溃</h2>
+<p>打开<code>lbex29.so</code>，并且使用能够处理二进制的编辑器编辑它。修改一些字节，然后关闭。看看你是否能使用<code>dlopen</code>函数来打开它，即使你修改了它。</p>
+<h2 id="%E9%99%84%E5%8A%A0%E9%A2%98" name="%E9%99%84%E5%8A%A0%E9%A2%98">附加题</h2>
+<ul>
+<li>你注意到我在<code>libex29.c</code>中写的不良代码了吗？我使用了一个<code>for</code>循环来检查<code>'\0'</code>的结尾，修改它们使这些函数总是接收字符串长度，并在函数内部使用。</li>
+<li>使用项目框架目录，来为这个练习创建新的项目。将<code>libex29.c</code>放入<code>src/</code>目录，修改<code>Makefile</code>使它能够构建<code>build/libex29.so</code>。</li>
+<li>将<code>ex29.c</code>改为<code>tests/ex29_tests.c</code>，使它做为单元测试执行。使它能够正常工作，意思是你需要修改它让它加载<code>build/libex29.so</code>文件，并且运行上面我手写的测试。</li>
+<li>阅读<code>man dlopen</code>文档，并且查询所有有关函数。尝试<code>dlopen</code>的其它选项，比如<code>RTLD_NOW</code>。</li>
+</ul>                            </section>
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+                                <h1 class="search-results-title">
+                                    关于"<span class='search-query'></span>"的搜索结果共<span class='search-results-count'></span>条
+                                </h1>
+                                <ul class="search-results-list"></ul>
+                            </div>
+                            <div class="no-results">
+                                <h1 class="search-results-title">没有"<span class='search-query'></span>"相关内容</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <a href="https://naka1205.github.io/lcthw/5C8A5BE0B219BE30.html" class="navigation navigation-prev " aria-label="Makefile 进阶">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/lcthw/866A23BE27D0D7E6.html" class="navigation navigation-next " aria-label="自动化测试">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
+    </div>
+<script>
+var gitbook = gitbook || [];
+gitbook.push(function() {
+    gitbook.page.hasChanged({
+        "page": {
+            "title":  "库和链接",
+            "next": {
+                "title": "自动化测试"
+            },
+            "previous": {
+                "title": "Makefile 进阶"
+            }
+        },
+        "config": {
+            "gitbook": "*",
+            "theme": "default",
+            "variables": {},
+            "plugins": ["-lunr", "-search", "-highlight","search-pro"],
+            "pluginsConfig": {
+                "search-pro": {},
+                "highlight": {},
+                "sharing": {},
+                "fontsettings": {},
+                "theme-default": {}
+            },
+            "structure": {},
+            "pdf": {},
+            "styles": {}
+        },
+        "file": {},
+        "gitbook": {},
+        "basePath": "https://naka1205.github.io/lcthw",
+        "book": {}
+    });
+});
+</script>
+</div>
+<script src="https://naka1205.github.io/lcthw/assets/js/gitbook.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/theme.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/jquery.mark.min.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/search.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/buttons.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/fontsettings.js"></script>
+<script src="https://naka1205.github.io/lcthw/assets/js/plugin.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+</body>
+</html>
