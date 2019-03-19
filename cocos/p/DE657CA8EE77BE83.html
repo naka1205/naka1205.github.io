@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>MVC架构 · PKBOOK</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="这一篇将介绍在游戏客户端常用的架构MVC架构。">
+    <meta name="keywords" content="CocosCreator 教程">
+    <meta name="generator" content="PKBook">
+    <link rel="stylesheet" href="https://naka1205.github.io/cocos/assets/css/style.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/cocos/assets/css/search.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/cocos/assets/css/ebook.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/cocos/assets/css/website.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css" rel="stylesheet">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://naka1205.github.io/cocos/assets/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://naka1205.github.io/cocos/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div class="book">
+    <div class="book-summary">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="输入关键词搜索" />
+        </div>
+        <nav role="navigation">
+    <ul class="summary">
+        <li><a href="https://naka1205.github.io/cocos/index.html" target="blank" class="header">关于我们</a></li>
+        <li class="divider"></li>
+                <li class="header">教程</li>
+                        <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/cocos/p/60DA9CE88BF3343E.html"><a href="https://naka1205.github.io/cocos/p/60DA9CE88BF3343E.html">初识creator</a></li>
+                        <li class="chapter " data-level="1.2" data-path="https://naka1205.github.io/cocos/p/30A5A7449E53FF36.html"><a href="https://naka1205.github.io/cocos/p/30A5A7449E53FF36.html">资源管理</a></li>
+                        <li class="chapter " data-level="1.3" data-path="https://naka1205.github.io/cocos/p/11A6F2117472174E.html"><a href="https://naka1205.github.io/cocos/p/11A6F2117472174E.html">弹窗管理</a></li>
+                        <li class="chapter " data-level="1.4" data-path="https://naka1205.github.io/cocos/p/BFFA75863D9BB58A.html"><a href="https://naka1205.github.io/cocos/p/BFFA75863D9BB58A.html">网络通信</a></li>
+                        <li class="chapter " data-level="1.5" data-path="https://naka1205.github.io/cocos/p/37322E7BA0648835.html"><a href="https://naka1205.github.io/cocos/p/37322E7BA0648835.html">日志系统</a></li>
+                        <li class="chapter " data-level="1.6" data-path="https://naka1205.github.io/cocos/p/748D14A6DC9142BB.html"><a href="https://naka1205.github.io/cocos/p/748D14A6DC9142BB.html">消息分发</a></li>
+                        <li class="chapter  active " data-level="1.7" data-path="https://naka1205.github.io/cocos/p/DE657CA8EE77BE83.html"><a href="https://naka1205.github.io/cocos/p/DE657CA8EE77BE83.html">MVC架构</a></li>
+                        <li class="chapter " data-level="1.8" data-path="https://naka1205.github.io/cocos/p/E593CAA756CFDE55.html"><a href="https://naka1205.github.io/cocos/p/E593CAA756CFDE55.html">代码结构</a></li>
+                        <li class="chapter " data-level="1.9" data-path="https://naka1205.github.io/cocos/p/22AC2C263EC626A0.html"><a href="https://naka1205.github.io/cocos/p/22AC2C263EC626A0.html">瓦片地图</a></li>
+                        <li class="chapter " data-level="1.10" data-path="https://naka1205.github.io/cocos/p/D44D258BFB70E858.html"><a href="https://naka1205.github.io/cocos/p/D44D258BFB70E858.html"> A*寻路</a></li>
+                        <li class="chapter " data-level="1.11" data-path="https://naka1205.github.io/cocos/p/FB97038B212BD9C7.html"><a href="https://naka1205.github.io/cocos/p/FB97038B212BD9C7.html">有限状态机和行为树</a></li>
+                    <li class="divider"></li>
+                <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
+    </ul>
+</nav>
+    </div>
+    
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/cocos/p/DE657CA8EE77BE83.html">MVC架构</a></h1>
+            </div>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">
+                                <h2 id="MVC%E6%9E%B6%E6%9E%84" name="MVC%E6%9E%B6%E6%9E%84">MVC架构</h2>
+<p>这一篇将介绍在游戏客户端常用的架构MVC架构。一个游戏的MVC如下划分：</p>
+<ul>
+<li>M：1）单例全局的数据中心<code>World</code>，所有游戏模块的数据在<code>World</code>中有入口，2）各个模块自己的数据结构。</li>
+<li>V：1）通过<code>creator</code>预制体制作的UI界面、场景，2）各个界面显示逻辑的<code>ViewCtrl</code></li>
+<li>C：1）全局的<code>MainCtrl</code>，2）各个模块的业务逻辑类<code>ModuleCtrl</code></li>
+</ul>
+<p>先介绍M部分。由于一个模块的数据，在其他模块也有访问的需求，例如好友模块，在聊天的时候也需要访问，在排行榜里需要访问。数据应该有一个单例全局的数据中心类<code>World</code>，所有游戏模块的数据类在<code>World</code>中有入口。这些数据可以在玩家登录后从服务器获取并设置。</p>
+<pre><code class="javascript">export class World {
+    private static instance: World = null;
+    private _test: TestData = null;
+    //单例模式
+    private constructor() {
+
+    }
+    //获取实例
+    public static get inst(): World {
+        if (!World.instance) {
+            World.instance = new World();
+        }
+        return World.instance;
+    }
+
+    // FOR TEST
+    public set test(val: TestData) {
+        this._test = val;
+    }
+
+    public get test(): TestData {
+        return this._test;
+    }
+}</code></pre>
+<p>这样模块间可以独立设计自己的数据结构，通过发送消息请求对应模块的<code>ModuleCtrl</code>更改，通过<code>World</code>读取。</p>
+<p><img src="http://files.kmei.org/1552027757573.jpg" alt="结构目录" title="结构目录" /></p>
+<pre><code class="javascript">export class TestData {
+    private _text: string = null;
+
+    public constructor() {
+
+    }
+
+    public set text(val: string) {
+        this._text = val;
+    }
+
+    public get text(): string {
+        return this._text;
+    }
+}</code></pre>
+<p>上一章介绍过消息分发。数据的更新时可以派发消息，界面可以监听消息做刷新。</p>
+<p>下面介绍界面和脚本代码的关联。前面篇章中介绍过，<code>cocos creator</code>是基于组件模式。我将每个ui界面都做成一个预制体，每个预制体都可以添加一个脚本组件，用于控制这个界面的显示逻辑。</p>
+<p><img src="http://files.kmei.org/1552027886111.jpg" alt="基于组件模式" title="基于组件模式" /></p>
+<p><img src="http://files.kmei.org/1552027911229.jpg" alt="脚本组件" title="脚本组件" /></p>
+<p>在弹窗管理里提到我设计了一个继承<code>cc.Component</code>的类叫<code>ViewCtrl</code>，所有界面的显示逻辑类都继承<code>ViewCtrl</code>，并添加到对应的界面预制体。前面提到数据更新时会派发消息，<code>ViewCtrl</code>监听数据更新消息，刷新关联的界面。</p>
+<pre><code class="javascript">const {ccclass, property} = cc._decorator;
+
+@ccclass
+export default class TestViewCtrl extends ViewCtrl {
+}</code></pre>
+<p><code>ViewCtrl</code>只处理界面的显示逻辑，不处理数据业务逻辑，模块的数据业务逻辑由该模块的<code>ModuleCtrl</code>处理。<code>ViewCtrl</code>响应用户操作，派发消息，<code>ModuleCtrl</code>监听消息处理。大部分模块的<code>ModuleCtrl</code>主要做网络通信，和对本模块缓存数据的修改。</p>
+<pre><code class="javascript">export class TestCtrl {
+
+    public constructor() {
+
+    }
+
+    public init(): void {}
+
+    public start(): void {
+        NotifyCenter.addListener(MSG_TEST_HTTP, (src: any, data: any) =&gt; {
+            this.testHttp();
+        }, this);
+    }
+
+    public testHttp(): void {
+        let data = {
+            mod: 1, // 模块
+            cmd: 1, // 命令
+        }
+        let params: HttpReq = {
+            path: "",
+            method: HTTP_METHOD_GET
+        }
+        MainCtrl.inst.http.sendData(data, params, (data: NetData) =&gt; {
+            World.inst.test = new TestData();
+            World.inst.test.text = "123";
+        }, (code: number, reason: string) =&gt; {});
+    }
+}</code></pre>
+<p>前面提到，C层还有一个全局单例的<code>MainCtrl</code>。该类主要负责模块注册、提供全局的操作接口（例如界面/场景的显隐）、网络通信处理。</p>
+<p>MVC架构先说到这里，下一篇我们将介绍代码组织。</p>                            </section>
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+                                <h1 class="search-results-title">
+                                    关于"<span class='search-query'></span>"的搜索结果共<span class='search-results-count'></span>条
+                                </h1>
+                                <ul class="search-results-list"></ul>
+                            </div>
+                            <div class="no-results">
+                                <h1 class="search-results-title">没有"<span class='search-query'></span>"相关内容</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <a href="https://naka1205.github.io/cocos/p/748D14A6DC9142BB.html" class="navigation navigation-prev " aria-label="消息分发">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/cocos/p/E593CAA756CFDE55.html" class="navigation navigation-next " aria-label="代码结构">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
+    </div>
+<script>
+var gitbook = gitbook || [];
+gitbook.push(function() {
+    gitbook.page.hasChanged({
+        "page": {
+            "title":  "MVC架构",
+            "next": {
+                "title": "代码结构"
+            },
+            "previous": {
+                "title": "消息分发"
+            }
+        },
+        "config": {
+            "gitbook": "*",
+            "theme": "default",
+            "variables": {},
+            "plugins": ["-lunr", "-search", "-highlight","search-pro"],
+            "pluginsConfig": {
+                "search-pro": {},
+                "highlight": {},
+                "sharing": {},
+                "fontsettings": {},
+                "theme-default": {}
+            },
+            "structure": {},
+            "pdf": {},
+            "styles": {}
+        },
+        "file": {},
+        "gitbook": {},
+        "basePath": "https://naka1205.github.io/cocos",
+        "book": {}
+    });
+});
+</script>
+</div>
+<script src="https://naka1205.github.io/cocos/assets/js/gitbook.js"></script>
+<script src="https://naka1205.github.io/cocos/assets/js/theme.js"></script>
+<script src="https://naka1205.github.io/cocos/assets/js/jquery.mark.min.js"></script>
+<script src="https://naka1205.github.io/cocos/assets/js/search.js"></script>
+<script src="https://naka1205.github.io/cocos/assets/js/buttons.js"></script>
+<script src="https://naka1205.github.io/cocos/assets/js/fontsettings.js"></script>
+<script src="https://naka1205.github.io/cocos/assets/js/plugin.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+</body>
+</html>

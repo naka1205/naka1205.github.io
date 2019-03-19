@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>初识creator · PKBOOK</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="我们在cocoscreator新建一个HelloTypeScript项目，都会有一个assets/Scene/helloworld.fire文件。使用cocoscreator开发游戏时，项目可以只有一个.fire文件。">
+    <meta name="keywords" content="CocosCreator 教程">
+    <meta name="generator" content="PKBook">
+    <link rel="stylesheet" href="https://naka1205.github.io/cocos/assets/css/style.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/cocos/assets/css/search.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/cocos/assets/css/ebook.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/cocos/assets/css/website.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css" rel="stylesheet">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://naka1205.github.io/cocos/assets/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://naka1205.github.io/cocos/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div class="book">
+    <div class="book-summary">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="输入关键词搜索" />
+        </div>
+        <nav role="navigation">
+    <ul class="summary">
+        <li><a href="https://naka1205.github.io/cocos/index.html" target="blank" class="header">关于我们</a></li>
+        <li class="divider"></li>
+                <li class="header">教程</li>
+                        <li class="chapter  active " data-level="1.1" data-path="https://naka1205.github.io/cocos/p/60DA9CE88BF3343E.html"><a href="https://naka1205.github.io/cocos/p/60DA9CE88BF3343E.html">初识creator</a></li>
+                        <li class="chapter " data-level="1.2" data-path="https://naka1205.github.io/cocos/p/30A5A7449E53FF36.html"><a href="https://naka1205.github.io/cocos/p/30A5A7449E53FF36.html">资源管理</a></li>
+                        <li class="chapter " data-level="1.3" data-path="https://naka1205.github.io/cocos/p/11A6F2117472174E.html"><a href="https://naka1205.github.io/cocos/p/11A6F2117472174E.html">弹窗管理</a></li>
+                        <li class="chapter " data-level="1.4" data-path="https://naka1205.github.io/cocos/p/BFFA75863D9BB58A.html"><a href="https://naka1205.github.io/cocos/p/BFFA75863D9BB58A.html">网络通信</a></li>
+                        <li class="chapter " data-level="1.5" data-path="https://naka1205.github.io/cocos/p/37322E7BA0648835.html"><a href="https://naka1205.github.io/cocos/p/37322E7BA0648835.html">日志系统</a></li>
+                        <li class="chapter " data-level="1.6" data-path="https://naka1205.github.io/cocos/p/748D14A6DC9142BB.html"><a href="https://naka1205.github.io/cocos/p/748D14A6DC9142BB.html">消息分发</a></li>
+                        <li class="chapter " data-level="1.7" data-path="https://naka1205.github.io/cocos/p/DE657CA8EE77BE83.html"><a href="https://naka1205.github.io/cocos/p/DE657CA8EE77BE83.html">MVC架构</a></li>
+                        <li class="chapter " data-level="1.8" data-path="https://naka1205.github.io/cocos/p/E593CAA756CFDE55.html"><a href="https://naka1205.github.io/cocos/p/E593CAA756CFDE55.html">代码结构</a></li>
+                        <li class="chapter " data-level="1.9" data-path="https://naka1205.github.io/cocos/p/22AC2C263EC626A0.html"><a href="https://naka1205.github.io/cocos/p/22AC2C263EC626A0.html">瓦片地图</a></li>
+                        <li class="chapter " data-level="1.10" data-path="https://naka1205.github.io/cocos/p/D44D258BFB70E858.html"><a href="https://naka1205.github.io/cocos/p/D44D258BFB70E858.html"> A*寻路</a></li>
+                        <li class="chapter " data-level="1.11" data-path="https://naka1205.github.io/cocos/p/FB97038B212BD9C7.html"><a href="https://naka1205.github.io/cocos/p/FB97038B212BD9C7.html">有限状态机和行为树</a></li>
+                    <li class="divider"></li>
+                <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
+    </ul>
+</nav>
+    </div>
+    
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/cocos/p/60DA9CE88BF3343E.html">初识creator</a></h1>
+            </div>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">
+                                <h2 id="%E5%88%9D%E8%AF%86creator" name="%E5%88%9D%E8%AF%86creator">初识creator</h2>
+<p>我们在<code>cocos creator</code>新建一个<code>Hello TypeScript</code>项目，都会有一个<code>assets/Scene/helloworld.fire</code>文件。使用<code>cocos creator</code>开发游戏时，项目可以只有一个<code>.fire</code>文件。一般地，我会把这个文件夹改名为<code>assets/scene</code>，下面只有<code>main.fire</code>文件：<code>assets/scene/main.fire</code>。</p>
+<p><img src="http://files.kmei.org/1551862524267.jpg" alt="main.fire文件" title="资源管理" /></p>
+<p>双击<code>main.fire</code>文件，在层级管理器可以看到它的结构</p>
+<p><img src="http://files.kmei.org/1551862599115.jpg" alt="层级管理器" title="层级管理" /></p>
+<p>根节点是一个Canvas，点击Canvas节点，在右边的属性面板可以看到Canvas组件有<code>Design Resolution</code>属性，作为屏幕适配的尺寸。例如设置为<code>1334x750</code>，那么美术出资源时一屏界面的大小就是这个尺寸。不同的手机屏幕引擎自动做等比例缩放，具体缩放倍数，当勾选<code>Fix Width</code>表示界面的宽缩放到跟实际屏幕一样，当勾选<code>Fix Height</code>表示界面的高缩放到跟实际屏幕一样。另外一边相应等比例缩放，可能小于屏幕大小而出现黑边，也可能大于屏幕而被裁剪，这些可能都不是我们想要的，后面会说怎么解决。</p>
+<p><img src="http://files.kmei.org/1551862667905.jpg" alt="属性面板" title="属性面板" /></p>
+<p><code>cocos creator</code> 2.1.0版本默认Canvas下面有<code>Main Camera</code>子节点，其他子节点是模版示例，直接删除。一般我还会给Canvas添加两个子节点，一个<code>sceneLayer</code>作为场景根节点，一个<code>popupLayer</code>作为弹窗根节点。因为场景我们宁愿超框被裁剪，也不希望看到黑底，弹窗则希望能完整显示，但引擎本身是统一处理的。分开两个不同的根节点，在加载后根据屏幕大小单独调整场景根节点<code>sceneLayer</code>的缩放让他铺满屏幕。对于微信小游戏之类，单独调整下移弹窗根节点<code>popupLayer</code>，避免与微信小游戏的关闭按钮重合。</p>
+<p><img src="http://files.kmei.org/1551862803050.jpg" alt="层级管理器" title="层级管理" /></p>
+<p>然后，就可以开始写入口脚本，把它挂到Canvas节点。<code>cocos creator</code>采用组件模式，每个节点都可以挂载不同的组件，包括自己开发的脚本组件。新建一个<code>StartCtrl.ts</code>，所有跟界面节点关联的脚本类都继承自<code>cc.Component</code>，由于<code>creator</code>是使用装饰器语法来检查属性的，所以要用到<code>@property</code>和<code>@class</code>装饰器，其中<code>@property</code>用于声明编辑器可以检查到的属性，我们可以声明两个属性，<code>sceneLayer</code>和<code>popupLayer</code>属性，用于关联界面的场景根节点和弹窗根节点，<code>@class</code>用于声明编辑器可以挂到节点的类。<code>cc.Component</code>定义了一系列生命周期方法，在节点不同生命周期会调用。下面是入口脚本的简单实现。</p>
+<pre><code class="javascript">//游戏入口
+const {ccclass, property} = cc._decorator;
+
+@ccclass
+export default class StartCtrl extends cc.Component {
+
+    @property(cc.Node)
+    popupLayer: cc.Node = null;
+
+    @property(cc.Node)
+    sceneLayer: cc.Node = null;
+
+    start () {
+　　　　// TODO Add Start Code
+    }
+}</code></pre>
+<p>在编辑器选择Canvas节点，在属性面板点击“添加组件”，选择用户脚本组件，选择<code>StartCtrl</code>，拖<code>sceneLayer</code>和<code>popupLayer</code>两个节点到属性面板对应属性，这样就关联好入口脚本。启动游戏后，Canvas的生命周期就会触发<code>StartCtrl</code>里对应的方法，<code>StartCtrl</code>里的<code>sceneLayer</code>和<code>popupLayer</code>属性已被赋值为Canvas对应的子节点。后面我们会继续讲解如何使用这两个属性对界面进行分层管理。</p>
+<p><img src="http://files.kmei.org/1551862937755.jpg" alt="添加组件" title="添加组件" /></p>
+<p>现在，我们先看看怎样制作界面。我们可以把每一个界面都做成一个<code>prefab</code>预制体。同样在<code>assets</code>目录下，会看到一个叫<code>Texture</code>的目录，先把它改成<code>resources</code>，因为<code>cocos</code>加载资源时对<code>resources</code>有特殊处理，后面会讲解。在这个目录下再建一个目录叫<code>prefabs</code>，<code>assets/resources/prefabs</code>专门用来存放界面的预制体。</p>
+<p><img src="http://files.kmei.org/1551863001453.jpg" alt="资源管理" title="资源管理" /></p>
+<p>制作预制体的方法很简单。先双击<code>scene/main.fire</code>打开，在Canvas节点右键新建空白节点，属性面板将新节点名字改为<code>TestView</code>，拖动该节点到资源管理器面板的<code>assets/resources/prefabs</code>目录。这样一个预制体<code>TestView</code>就生成了，这时可以在<code>main.fire</code>的Canvas节点中删除<code>TestView</code>这个子节点，我们已经不需要这个子节点。</p>
+<p><img src="http://files.kmei.org/1551863118962.jpg" alt="预制资源" title="预制资源" /></p>
+<p>在资源管理器目录找到<code>assets/resources/prefabs</code>目录，双击<code>TestView.prefab</code>打开这个预制体，可以看到里面是空的，可以先设置根节点的Size，这就是这个界面的设计大小。然后可以开始用<code>cocos</code>的ui组件、渲染组件布局界面，<code>cocos</code>的ui组件、渲染组件使用参看<code>cocos</code>官方文档。</p>
+<p><img src="http://files.kmei.org/1551863224871.jpg" alt="预制资源" title="预制资源" /></p>
+<p><img src="http://files.kmei.org/1551863248759.jpg" alt="布局界面" title="布局界面" /></p>
+<p>然后，同样我们可以开始写这个界面的脚本<code>TestViewCtrl.ts</code>，控制界面逻辑和刷新。这个脚本还是继承<code>cc.Component</code>，定义对应的<code>cc.Label</code>等类型的属性，这样就可以把界面的元素关联到脚本，通过脚本来刷新。</p>
+<pre><code class="javascript">//测试界面
+const {ccclass, property} = cc._decorator;
+
+@ccclass
+export default class TestViewCtrl extends cc.Component {
+
+    @property(cc.Label)
+    label: cc.Label = null;// LIFE-CYCLE CALLBACKS:
+
+    // onLoad () {}
+
+    start () {
+　　　　this.label.string = "hello";
+    }
+
+    // update (dt) {}
+}</code></pre>
+<p>打开回刚才那个预制体，选择根节点，在属性面板选择添加组件<code>TestViewCtrl</code>，并将对应ui组件拖到脚本组件的属性上进行关联，这样我们就可以通过<code>TestViewCtrl</code>控制这个界面了。</p>
+<p><img src="http://files.kmei.org/1551863337041.jpg" alt="添加组件" title="添加组件" /></p>
+<p>要显示这个界面，首先要加载<code>prefab</code>。<code>cocos</code>提供了<code>cc.loader.loadRes</code>接口，类型传<code>cc.Prefab</code>，加载成功后通过<code>cc.instantiate</code>接口把预制体实例出一个<code>cc.Node</code>，<code>cocos</code>的界面布局是基于组合模式的一棵树，<code>cc.Node</code>通过<code>addChild</code>把其他<code>cc.Node</code>添加到界面。所以，我们通过<code>popupLayer.addChild</code>把这个界面放到屏幕，这些代码可以写在入口脚本<code>StartCtrl</code>的<code>start</code>方法里。可以通过<code>cc.Node.getComponent</code>获取<code>TestViewCtrl</code>的实例来操作界面。不过，我一般是通过<code>cc.Component</code>的生命周期和消息来实现界面更新，降低耦合，后面会详细介绍这种方式。</p>
+<pre><code class="javascript">//游戏入口
+const {ccclass, property} = cc._decorator;
+
+@ccclass
+export default class StartCtrl extends cc.Component {
+
+    @property(cc.Node)
+    popupLayer: cc.Node = null;
+
+    @property(cc.Node)
+    sceneLayer: cc.Node = null;
+
+    start () {
+　　　　cc.loader.loadRes("prefabs/TestView", cc.Prefab, (err, result) =&gt; {
+                if (!err) {
+                    return;
+                }
+
+                let prefab = result as cc.Prefab;
+                let view = cc.instantiate(prefab);
+　　　　　　　　　 // let ctrl = view.getComponent(TestViewCtrl);
+　　　　　　　　　 this.popupLayer.addChild(view);
+            });
+    }
+}</code></pre>
+<p>现在我们已经知道怎样建立游戏入口，怎样制作、加载、显示界面，下一章将讲解怎样对弹窗分层管理。</p>                            </section>
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+                                <h1 class="search-results-title">
+                                    关于"<span class='search-query'></span>"的搜索结果共<span class='search-results-count'></span>条
+                                </h1>
+                                <ul class="search-results-list"></ul>
+                            </div>
+                            <div class="no-results">
+                                <h1 class="search-results-title">没有"<span class='search-query'></span>"相关内容</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <a href="https://naka1205.github.io/cocos/p/30A5A7449E53FF36.html" class="navigation navigation-next " aria-label="资源管理">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
+    </div>
+<script>
+var gitbook = gitbook || [];
+gitbook.push(function() {
+    gitbook.page.hasChanged({
+        "page": {
+            "title":  "初识creator",
+            "next": {
+                "title": "资源管理"
+            },
+            "previous": {
+                "title": ""
+            }
+        },
+        "config": {
+            "gitbook": "*",
+            "theme": "default",
+            "variables": {},
+            "plugins": ["-lunr", "-search", "-highlight","search-pro"],
+            "pluginsConfig": {
+                "search-pro": {},
+                "highlight": {},
+                "sharing": {},
+                "fontsettings": {},
+                "theme-default": {}
+            },
+            "structure": {},
+            "pdf": {},
+            "styles": {}
+        },
+        "file": {},
+        "gitbook": {},
+        "basePath": "https://naka1205.github.io/cocos",
+        "book": {}
+    });
+});
+</script>
+</div>
+<script src="https://naka1205.github.io/cocos/assets/js/gitbook.js"></script>
+<script src="https://naka1205.github.io/cocos/assets/js/theme.js"></script>
+<script src="https://naka1205.github.io/cocos/assets/js/jquery.mark.min.js"></script>
+<script src="https://naka1205.github.io/cocos/assets/js/search.js"></script>
+<script src="https://naka1205.github.io/cocos/assets/js/buttons.js"></script>
+<script src="https://naka1205.github.io/cocos/assets/js/fontsettings.js"></script>
+<script src="https://naka1205.github.io/cocos/assets/js/plugin.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>瓦片地图 · PKBOOK</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="这一篇介绍瓦片地图，在开发模拟经营类游戏、SLG类游戏、RPG游戏，都会使用到瓦片地图。瓦片地图地面是通过一个个地砖拼起来的，又分为45度角和90度角两种。45度角俗称2.5D，每个格子都是菱形，而90度角每个格子都是正方形。">
+    <meta name="keywords" content="CocosCreator 教程">
+    <meta name="generator" content="PKBook">
+    <link rel="stylesheet" href="https://naka1205.github.io/cocos/assets/css/style.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/cocos/assets/css/search.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/cocos/assets/css/ebook.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/cocos/assets/css/website.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css" rel="stylesheet">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://naka1205.github.io/cocos/assets/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://naka1205.github.io/cocos/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div class="book">
+    <div class="book-summary">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="输入关键词搜索" />
+        </div>
+        <nav role="navigation">
+    <ul class="summary">
+        <li><a href="https://naka1205.github.io/cocos/index.html" target="blank" class="header">关于我们</a></li>
+        <li class="divider"></li>
+                <li class="header">教程</li>
+                        <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/cocos/p/60DA9CE88BF3343E.html"><a href="https://naka1205.github.io/cocos/p/60DA9CE88BF3343E.html">初识creator</a></li>
+                        <li class="chapter " data-level="1.2" data-path="https://naka1205.github.io/cocos/p/30A5A7449E53FF36.html"><a href="https://naka1205.github.io/cocos/p/30A5A7449E53FF36.html">资源管理</a></li>
+                        <li class="chapter " data-level="1.3" data-path="https://naka1205.github.io/cocos/p/11A6F2117472174E.html"><a href="https://naka1205.github.io/cocos/p/11A6F2117472174E.html">弹窗管理</a></li>
+                        <li class="chapter " data-level="1.4" data-path="https://naka1205.github.io/cocos/p/BFFA75863D9BB58A.html"><a href="https://naka1205.github.io/cocos/p/BFFA75863D9BB58A.html">网络通信</a></li>
+                        <li class="chapter " data-level="1.5" data-path="https://naka1205.github.io/cocos/p/37322E7BA0648835.html"><a href="https://naka1205.github.io/cocos/p/37322E7BA0648835.html">日志系统</a></li>
+                        <li class="chapter " data-level="1.6" data-path="https://naka1205.github.io/cocos/p/748D14A6DC9142BB.html"><a href="https://naka1205.github.io/cocos/p/748D14A6DC9142BB.html">消息分发</a></li>
+                        <li class="chapter " data-level="1.7" data-path="https://naka1205.github.io/cocos/p/DE657CA8EE77BE83.html"><a href="https://naka1205.github.io/cocos/p/DE657CA8EE77BE83.html">MVC架构</a></li>
+                        <li class="chapter " data-level="1.8" data-path="https://naka1205.github.io/cocos/p/E593CAA756CFDE55.html"><a href="https://naka1205.github.io/cocos/p/E593CAA756CFDE55.html">代码结构</a></li>
+                        <li class="chapter  active " data-level="1.9" data-path="https://naka1205.github.io/cocos/p/22AC2C263EC626A0.html"><a href="https://naka1205.github.io/cocos/p/22AC2C263EC626A0.html">瓦片地图</a></li>
+                        <li class="chapter " data-level="1.10" data-path="https://naka1205.github.io/cocos/p/D44D258BFB70E858.html"><a href="https://naka1205.github.io/cocos/p/D44D258BFB70E858.html"> A*寻路</a></li>
+                        <li class="chapter " data-level="1.11" data-path="https://naka1205.github.io/cocos/p/FB97038B212BD9C7.html"><a href="https://naka1205.github.io/cocos/p/FB97038B212BD9C7.html">有限状态机和行为树</a></li>
+                    <li class="divider"></li>
+                <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
+    </ul>
+</nav>
+    </div>
+    
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/cocos/p/22AC2C263EC626A0.html">瓦片地图</a></h1>
+            </div>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">
+                                <h2 id="%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE" name="%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE">瓦片地图</h2>
+<p>这一篇介绍瓦片地图，在开发模拟经营类游戏、SLG类游戏、RPG游戏，都会使用到瓦片地图。瓦片地图地面是通过一个个地砖拼起来的，又分为45度角和90度角两种。45度角俗称2.5D，每个格子都是菱形，而90度角每个格子都是正方形。
+瓦片地图一般包括以下图层（不一定同时存在，例如一般RPG游戏没有背景和自由装饰层）：</p>
+<ol>
+<li>背景层（大图拼接的背景）</li>
+<li>地形层（瓦片格子拼接的地形）</li>
+<li>建筑层（按瓦片格子摆放的建筑、地面物品、角色）</li>
+<li>自由装饰层（云朵、烟雾）
+除此以外，还需要提供隐藏的层用于编辑数据，控制游戏逻辑，例如阻挡、摆放区域等，称为数据层。其中需要瓦片布局的有3种图层：地形层、建筑层、数据层。</li>
+</ol>
+<p>先来说说背景层<code>BgLayer</code>，背景层在美术设计里是张完整的大图，为了避免连续内存太大导致加载失败，把大图打碎成等大小的小图拼接。一般出于性能考虑，小图长宽选择为1024、512、256、128。</p>
+<p>设置背景需要提供背景的小图数组，列数，每张小图的宽高</p>
+<pre><code class="javascript">public setPieces(fileArr: Array&lt;string&gt;, colCount: number, pieceW: number, pieceH: number, loadAtOnce: boolean = true): void {}</code></pre>
+<p>如果是在H5平台，要考虑资源的逐步加载。所以在H5平台该方法最好只是做占位，提供方法进行资源加载</p>
+<pre><code class="javascript">public loadPiece(file: string) {}</code></pre>
+<p>除了加载外，由于玩家在移动地图时只看到背景的一部分，不在视窗内的应该裁剪掉，所以还要提供方法对背景进行裁剪</p>
+<pre><code class="javascript">public setViewPort(x: number, y: number, w: number, h: number): void {}</code></pre>
+<p>完全不在视窗的小图，通过<code>removeFromParent</code>从渲染列表移除。</p>
+<p>接下来说说基于瓦片布局的图层。基于瓦片的图片我们会摆放一些物品，例如地形层的地形块、建筑层的建筑、地面物品、角色。所以在介绍瓦片布局的图层前，先介绍下地图里的物品。一般包括：</p>
+<ol>
+<li>地形块</li>
+<li>建筑、地面物品</li>
+<li>角色</li>
+<li>编辑数据</li>
+</ol>
+<p>先设计一个基类<code>MapItem</code>，定义物品的基本属性：格子位置、宽高占格子数、是否可穿越、可否编辑</p>
+<pre><code class="javascript">export class MapItem extends cc.Component {
+    protected mGridX: number = 0;
+    protected mGridY: number = 0;
+    protected mRow: number = 1;
+    protected mCol: number = 1;
+    protected mCanPass: boolean = true;
+    private mEditable: boolean = true;
+    private mIsLock: boolean = false;
+}</code></pre>
+<p>地形块主要是显示一张一格大小的图片，一般会先把这些地形图片合成一张大图，按照格子大小等分。设计一个<code>TileSet</code>类定义这张合图的结构</p>
+<pre><code class="javascript">export class TileSet {
+    private mId: number = -1;
+    private resPath: string = null;
+    private tex: cc.Texture2D = null;
+    private gridW: number = 0;
+    private gridH: number = 0;
+    private row: number = 0;
+    private col: number = 0;
+}</code></pre>
+<p>每个地形块Tile引用<code>TileSet</code>里的资源</p>
+<pre><code class="javascript">export class Tile extends MapItem {
+    private mSpr: cc.Sprite = null;
+    private mId: number = 0;
+    private mTileSetId: number = 0;
+    private mIdx: number = 0;
+}</code></pre>
+<p>当然，如果希望地面有帧动画，也可以让<code>Tile</code>保存一个帧系列，按顺序切换mSpr的<code>spriteFrame</code>属性。</p>
+<p>建筑要考虑建筑、地面物品的方向和操作</p>
+<pre><code class="javascript">export class MapBuilding extends MapItem {
+    protected mId: number = 0;
+    protected mType: number = 0;
+    protected mResType: number = 0; // 0 image, 1 spine
+    protected mResPath: string = null;
+    protected mDir: number = 0;
+    protected mReverse: boolean = false;
+}</code></pre>
+<p>为了区分摆放和旋转点，我会给<code>MapBuilding</code>添加两个子节点，因为在45角地图摆放建筑时，一般以右下角格子做摆放参考点，但是旋转是以左上角格子为参考。</p>
+<p>需要注意，在H5平台，建筑的图片资源应该是动态加载的，在地图移动时逐渐加载显示。所以要提供接口对资源进行加载。</p>
+<pre><code class="javascript">public loadRes(): void {}</code></pre>
+<p>还有点击范围，图片是矩形的，点击的时候可能是点到了图片的空白区域，这时后玩家看到的是点击了后面的建筑，如果没有处理透明区域剔除，实际判断却是点击了前面的建筑。对于图片资源的建筑在H5平台，可以通过使用该图片相同位置，截取点击区的一个像素，模拟画在屏幕该地方，如果<code>getImageData</code>获取的<code>data[3]</code>不是0，说明点击到了该建筑，否则是点击了空白区。</p>
+<p>角色都是<code>spine</code>动画，是可以运动的物体，需要路径、速度相关的属性</p>
+<pre><code class="javascript">export class MapActor extends cc.Component {
+    protected mActorId: number = 0;
+    protected mResPath: string = null;
+    protected mRoadGrids: Array&lt;cc.Vec2&gt; = []; // 路径
+    protected mCurRoadIdx: number = 0;
+    protected mSpeed: number = 0; // 设置的行走速度, 跟x方向速度绝对值一样
+    protected mSpeedX: number = 0; // 实时行走X速度
+    protected mSpeedY: number = 0; // 实时行走Y速度
+    protected mTestActor: boolean = false;
+    protected mIsKeepRoad: boolean = false;
+    protected mIsPauseWalk: boolean = false;
+}</code></pre>
+<p>编辑数据是不可见的，只有基本的位置信息和相应数据</p>
+<pre><code class="javascript">export class MapDataItem extends MapItem {
+    private data: any = null;
+}</code></pre>
+<p>瓦片布局的图层有一个基类，负责物品<code>MapItem</code>的添加、删除、查询等操作</p>
+<pre><code class="javascript">//基于地砖的图层基类
+//定义基于地砖图层基本数据和接口
+export abstract class TileBaseLayer extends cc.Component implements GestureListener {
+    protected mRow: number = 0;
+    protected mCol: number = 0;
+    protected mGridW: number = 0;
+    protected mGridH: number = 0;
+    protected mMapItems: Array&lt;MapItem&gt; = [];
+
+    protected mOriX: number = 0;
+    protected mOriY: number = 0;
+}</code></pre>
+<p>对于90度角的地图，没有太多复杂的地方需要处理。点击点到格子的映射是简单除以宽、高。遮挡是从左往右，从上到下设定<code>zorder</code>。</p>
+<p>对于45度角的地图，点击点到格子的映射需要用到解析几何</p>
+<p><img src="http://files.kmei.org/1552030332457.jpg" alt="格子映射" title="格子映射" /></p>
+<p><img src="http://files.kmei.org/1552030381765.jpg" alt="格子映射" title="格子映射" /></p>
+<p>每个点击点，按照格子宽高比的斜率经过该点作直线，到经过点（<code>oriX</code>，<code>oriY</code>）平行于x轴的直线都有交点，而且交点的距离等于格子的宽度。所以，交点相对于点（<code>oriX</code>，<code>oriY</code>）的距离（<code>x</code> - <code>oriX</code>）可以判断该点属于哪行或哪列。对于行，交点可以通过（<code>oriY</code> - <code>touchY</code>）<em> （<code>gridW</code> / <code>gridH</code>） - （<code>touchX</code> - <code>oriX</code>）。对于列，交点可以通过（<code>touchX</code> -  <code>oriX</code>） + （<code>oriY</code> - <code>touchY</code>）</em> （<code>gridW</code> / <code>gridH</code>）。（平行、三角形中同样大小的角的对边比邻边比例一样）</p>
+<p>角色起始在格子中心点，行走的时候，按照格子的宽高比，把速度分解为x、y两个方向，这样角色就能沿着格子走下去。每次走到格子中心时才做站立、继续行走的处理。</p>
+<p>遮挡方面，45度角依然是从上到下遮挡</p>
+<p><img src="http://files.kmei.org/1552030415632.jpg" alt="瓦片地图" title="瓦片地图" /></p>
+<p>要注意的是，建筑占多格，而设置遮挡时只能设置<code>zorder</code>，所以采用的是中心位置方式，把建筑中心格子作为<code>zorder</code>的参照。角色在地图中行走的时候，按上图的规则修改角色的<code>zorder</code>，建筑的<code>zorder</code>一直不变。</p>
+<p>自由装饰层没有摆放限制，可以放置云朵、雾等动画，增加层次感。</p>
+<p>瓦片地图先说到这里，下一篇我们将介绍A*寻路算法。</p>                            </section>
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+                                <h1 class="search-results-title">
+                                    关于"<span class='search-query'></span>"的搜索结果共<span class='search-results-count'></span>条
+                                </h1>
+                                <ul class="search-results-list"></ul>
+                            </div>
+                            <div class="no-results">
+                                <h1 class="search-results-title">没有"<span class='search-query'></span>"相关内容</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <a href="https://naka1205.github.io/cocos/p/E593CAA756CFDE55.html" class="navigation navigation-prev " aria-label="代码结构">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/cocos/p/D44D258BFB70E858.html" class="navigation navigation-next " aria-label=" A*寻路">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
+    </div>
+<script>
+var gitbook = gitbook || [];
+gitbook.push(function() {
+    gitbook.page.hasChanged({
+        "page": {
+            "title":  "瓦片地图",
+            "next": {
+                "title": " A*寻路"
+            },
+            "previous": {
+                "title": "代码结构"
+            }
+        },
+        "config": {
+            "gitbook": "*",
+            "theme": "default",
+            "variables": {},
+            "plugins": ["-lunr", "-search", "-highlight","search-pro"],
+            "pluginsConfig": {
+                "search-pro": {},
+                "highlight": {},
+                "sharing": {},
+                "fontsettings": {},
+                "theme-default": {}
+            },
+            "structure": {},
+            "pdf": {},
+            "styles": {}
+        },
+        "file": {},
+        "gitbook": {},
+        "basePath": "https://naka1205.github.io/cocos",
+        "book": {}
+    });
+});
+</script>
+</div>
+<script src="https://naka1205.github.io/cocos/assets/js/gitbook.js"></script>
+<script src="https://naka1205.github.io/cocos/assets/js/theme.js"></script>
+<script src="https://naka1205.github.io/cocos/assets/js/jquery.mark.min.js"></script>
+<script src="https://naka1205.github.io/cocos/assets/js/search.js"></script>
+<script src="https://naka1205.github.io/cocos/assets/js/buttons.js"></script>
+<script src="https://naka1205.github.io/cocos/assets/js/fontsettings.js"></script>
+<script src="https://naka1205.github.io/cocos/assets/js/plugin.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+</body>
+</html>
