@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <title>isupper() · C 标准库</title>
+    <title><float.h> · C 标准库</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="ctype.h>">
+    <meta name="description" content="float.h">
     <meta name="keywords" content="C 标准库">
     <meta name="generator" content="PKBook">
     <link rel="stylesheet" href="https://naka1205.github.io/c_library/assets/css/style.css">
@@ -45,7 +45,7 @@
                         <li class="chapter " data-level="2.8" data-path="https://naka1205.github.io/c_library/p/CD07F377B3938D28.html"><a href="https://naka1205.github.io/c_library/p/CD07F377B3938D28.html">isprint()</a></li>
                         <li class="chapter " data-level="2.9" data-path="https://naka1205.github.io/c_library/p/D2414F70E33A225E.html"><a href="https://naka1205.github.io/c_library/p/D2414F70E33A225E.html">ispunct()</a></li>
                         <li class="chapter " data-level="2.10" data-path="https://naka1205.github.io/c_library/p/D8520B4532B3F643.html"><a href="https://naka1205.github.io/c_library/p/D8520B4532B3F643.html">isspace()</a></li>
-                        <li class="chapter  active " data-level="2.11" data-path="https://naka1205.github.io/c_library/p/317D15DAC09845DE.html"><a href="https://naka1205.github.io/c_library/p/317D15DAC09845DE.html">isupper()</a></li>
+                        <li class="chapter " data-level="2.11" data-path="https://naka1205.github.io/c_library/p/317D15DAC09845DE.html"><a href="https://naka1205.github.io/c_library/p/317D15DAC09845DE.html">isupper()</a></li>
                         <li class="chapter " data-level="2.12" data-path="https://naka1205.github.io/c_library/p/C7982B122577DD7F.html"><a href="https://naka1205.github.io/c_library/p/C7982B122577DD7F.html">isxdigit()</a></li>
                         <li class="chapter " data-level="2.13" data-path="https://naka1205.github.io/c_library/p/B34018869E89BB6B.html"><a href="https://naka1205.github.io/c_library/p/B34018869E89BB6B.html">tolower()</a></li>
                         <li class="chapter " data-level="2.14" data-path="https://naka1205.github.io/c_library/p/BB7E503B20CBB191.html"><a href="https://naka1205.github.io/c_library/p/BB7E503B20CBB191.html">toupper()</a></li>
@@ -57,7 +57,7 @@
                         <li class="chapter " data-level="3.4" data-path="https://naka1205.github.io/c_library/p/B6BC0CF81C1FD3FB.html"><a href="https://naka1205.github.io/c_library/p/B6BC0CF81C1FD3FB.html">ERANGE</a></li>
                     <li class="divider"></li>
                 <li class="header">float.h</li>
-                        <li class="chapter " data-level="4.1" data-path="https://naka1205.github.io/c_library/p/DE8C5D73E2166C68.html"><a href="https://naka1205.github.io/c_library/p/DE8C5D73E2166C68.html">&lt;float.h&gt;</a></li>
+                        <li class="chapter  active " data-level="4.1" data-path="https://naka1205.github.io/c_library/p/DE8C5D73E2166C68.html"><a href="https://naka1205.github.io/c_library/p/DE8C5D73E2166C68.html">&lt;float.h&gt;</a></li>
                     <li class="divider"></li>
                 <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
     </ul>
@@ -67,67 +67,118 @@
     <div class="book-body">
         <div class="body-inner">
             <div class="book-header" role="navigation">
-                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/c_library/p/317D15DAC09845DE.html">isupper()</a></h1>
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/c_library/p/DE8C5D73E2166C68.html">&lt;float.h&gt;</a></h1>
             </div>
             <div class="page-wrapper" tabindex="-1" role="main">
                 <div class="page-inner">
                     <div id="book-search-results">
                         <div class="search-noresults">
                             <section class="normal markdown-section">
-                                <h3 id="isupper%28%29" name="isupper%28%29">isupper()</h3>
-<h4 id="%E6%8F%8F%E8%BF%B0" name="%E6%8F%8F%E8%BF%B0">描述</h4>
-<p>C 库函数 <code>int isupper(int c)</code> 检查所传的字符是否是大写字母。</p>
-<h4 id="%E5%A3%B0%E6%98%8E" name="%E5%A3%B0%E6%98%8E">声明</h4>
-<p>下面是 <code>isupper()</code> 函数的声明。</p>
-<pre><code class="C">int isupper(int c);</code></pre>
-<h4 id="%E5%8F%82%E6%95%B0" name="%E5%8F%82%E6%95%B0">参数</h4>
-<ul>
-<li>c -- 这是要检查的字符。</li>
-</ul>
-<h4 id="%E8%BF%94%E5%9B%9E%E5%80%BC" name="%E8%BF%94%E5%9B%9E%E5%80%BC">返回值</h4>
-<p>如果 c 是一个大写字母，则该函数返回非零值（true），否则返回 0（false）。</p>
+                                <h3 id="%26lt%3Bfloat.h%26gt%3B" name="%26lt%3Bfloat.h%26gt%3B">&lt;float.h&gt;</h3>
+<h4 id="%E7%AE%80%E4%BB%8B" name="%E7%AE%80%E4%BB%8B">简介</h4>
+<p>C 标准库的 <code>float.h</code> 头文件包含了一组与浮点值相关的依赖于平台的常量。这些常量是由 <code>ANSI</code> C 提出的，这让程序更具有可移植性。在讲解这些常量之前，最好先弄清楚浮点数是由下面四个元素组成的：</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>组件描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>符号 ( +/- )</td>
+</tr>
+<tr>
+<td>b</td>
+<td>指数表示的基数，2 表示二进制，10 表示十进制，16 表示十六进制，等等...</td>
+</tr>
+<tr>
+<td>e</td>
+<td>指数，一个介于最小值 emin 和最大值 emax 之间的整数。</td>
+</tr>
+<tr>
+<td>p</td>
+<td>精度，基数 b 的有效位数</td>
+</tr>
+</tbody>
+</table>
+<p>基于以上 4 个组成部分，一个浮点数的值如下：
+floating-point = ( S ) p x be
+或
+floating-point = (+/-) precision x baseexponent</p>
+<h4 id="%E5%BA%93%E5%AE%8F" name="%E5%BA%93%E5%AE%8F">库宏</h4>
+<p>下面的值是特定实现的，且是通过 #define 指令来定义的，这些值都不得低于下边所给出的值。请注意，所有的实例 FLT 是指类型 float，DBL 是指类型 double，LDBL 是指类型 long double。</p>
+<table>
+<thead>
+<tr>
+<th>宏</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FLT_ROUNDS</td>
+<td>定义浮点加法的舍入模式，它可以是下列任何一个值： <br> -1 - 无法确定 <br>  0 - 趋向于零 <br> 1 - 去最近的值 <br> 2 - 趋向于正无穷 <br> 3 - 趋向于负无穷</td>
+</tr>
+<tr>
+<td>FLT_RADIX 2</td>
+<td>这个宏定义了指数表示的基数。基数 2 表示二进制，基数 10 表示十进制，基数 16 表示十六进制</td>
+</tr>
+<tr>
+<td>FLT_MANT_DIG<br> DBL_MANT_DIG<br> LDBL_MANT_DIG</td>
+<td>这些宏定义了 FLT_RADIX 基数中的位数</td>
+</tr>
+<tr>
+<td>FLT_DIG 6 <br> DBL_DIG 10 <br> LDBL_DIG 10</td>
+<td>这些宏定义了舍入后不会改变表示的十进制数字的最大值（基数 10）</td>
+</tr>
+<tr>
+<td>FLT_MIN_EXP <br> DBL_MIN_EXP <br> LDBL_MIN_EXP</td>
+<td>这些宏定义了基数为 FLT_RADIX 时的指数的最小负整数值</td>
+</tr>
+<tr>
+<td>FLT_MIN_10_EXP -37 <br> DBL_MIN_10_EXP -37 <br> LDBL_MIN_10_EXP -37</td>
+<td>这些宏定义了基数为 10 时的指数的最小负整数值</td>
+</tr>
+<tr>
+<td>FLT_MAX_EXP <br> DBL_MAX_EXP <br> LDBL_MAX_EXP</td>
+<td>这些宏定义了基数为 FLT_RADIX 时的指数的最大整数值</td>
+</tr>
+<tr>
+<td>FLT_MAX_10_EXP +37 <br> DBL_MAX_10_EXP +37 <br> LDBL_MAX_10_EXP +37</td>
+<td>这些宏定义了基数为 10 时的指数的最大整数值</td>
+</tr>
+<tr>
+<td>FLT_MAX 1E+37 <br> DBL_MAX 1E+37 <br> LDBL_MAX 1E+37</td>
+<td>这些宏定义最大的有限浮点值</td>
+</tr>
+<tr>
+<td>FLT_EPSILON 1E-5 <br> DBL_EPSILON 1E-9 <br> LDBL_EPSILON 1E-9</td>
+<td>这些宏定义了可表示的最小有效数字</td>
+</tr>
+<tr>
+<td>FLT_MIN 1E-37 <br> DBL_MIN 1E-37 <br> LDBL_MIN 1E-37</td>
+<td>这些宏定义了最小的浮点值</td>
+</tr>
+</tbody>
+</table>
 <h4 id="%E5%AE%9E%E4%BE%8B" name="%E5%AE%9E%E4%BE%8B">实例</h4>
-<p>下面的实例演示了 <code>isupper()</code> 函数的用法。</p>
+<p>下面的实例演示了 float.h 文件中定义的一些常量的使用。</p>
 <pre><code class="C">#include &lt;stdio.h&gt;
-#include &lt;ctype.h&gt;
+#include &lt;float.h&gt;
 
 int main()
 {
-   int var1 = 'M';
-   int var2 = 'm';
-   int var3 = '3';
+   printf("The maximum value of float = %.10e\n", FLT_MAX);
+   printf("The minimum value of float = %.10e\n", FLT_MIN);
 
-   if( isupper(var1) )
-   {
-      printf("var1 = |%c| 是大写字母\n", var1 );
-   }
-   else
-   {
-      printf("var1 = |%c| 不是大写字母\n", var1 );
-   }
-   if( isupper(var2) )
-   {
-      printf("var2 = |%c| 是大写字母\n", var2 );
-   }
-   else
-   {
-      printf("var2 = |%c| 不是大写字母\n", var2 );
-   }
-   if( isupper(var3) )
-   {
-      printf("var3 = |%c| 是大写字母\n", var3 );
-   }
-   else
-   {
-      printf("var3 = |%c| 不是大写字母\n", var3 );
-   }
-
-   return(0);
+   printf("The number of digits in the number = %.10e\n", FLT_MANT_DIG);
 }</code></pre>
-<p>让我们编译并运行上面的程序，这将产生以下结果：</p>
-<pre><code>var1 = |M| 是大写字母
-var2 = |m| 不是大写字母
-var3 = |3| 不是大写字母</code></pre>                            </section>
+<p>让我们编译和运行上面的程序，这将产生下列结果：</p>
+<pre><code>The maximum value of float = 3.4028234664e+38
+The minimum value of float = 1.1754943508e-38
+The number of digits in the number = 7.2996655210e-312</code></pre>                            </section>
                         </div>
                         <div class="search-results">
                             <div class="has-results">
@@ -144,11 +195,8 @@ var3 = |3| 不是大写字母</code></pre>                            </section>
                 </div>
             </div>
         </div>
-                <a href="https://naka1205.github.io/c_library/p/D8520B4532B3F643.html" class="navigation navigation-prev " aria-label="isspace()">
+                <a href="https://naka1205.github.io/c_library/p/B6BC0CF81C1FD3FB.html" class="navigation navigation-prev " aria-label="ERANGE">
             <i class="fa fa-angle-left"></i>
-        </a>
-                <a href="https://naka1205.github.io/c_library/p/C7982B122577DD7F.html" class="navigation navigation-next " aria-label="isxdigit()">
-            <i class="fa fa-angle-right"></i>
         </a>
                
     </div>
@@ -157,12 +205,12 @@ var gitbook = gitbook || [];
 gitbook.push(function() {
     gitbook.page.hasChanged({
         "page": {
-            "title":  "isupper()",
+            "title":  "&lt;float.h&gt;",
             "next": {
-                "title": "isxdigit()"
+                "title": ""
             },
             "previous": {
-                "title": "isspace()"
+                "title": "ERANGE"
             }
         },
         "config": {

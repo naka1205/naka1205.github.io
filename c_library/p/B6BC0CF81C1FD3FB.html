@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <title>isupper() · C 标准库</title>
+    <title>ERANGE · C 标准库</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="ctype.h>">
+    <meta name="description" content="errno.h">
     <meta name="keywords" content="C 标准库">
     <meta name="generator" content="PKBook">
     <link rel="stylesheet" href="https://naka1205.github.io/c_library/assets/css/style.css">
@@ -45,7 +45,7 @@
                         <li class="chapter " data-level="2.8" data-path="https://naka1205.github.io/c_library/p/CD07F377B3938D28.html"><a href="https://naka1205.github.io/c_library/p/CD07F377B3938D28.html">isprint()</a></li>
                         <li class="chapter " data-level="2.9" data-path="https://naka1205.github.io/c_library/p/D2414F70E33A225E.html"><a href="https://naka1205.github.io/c_library/p/D2414F70E33A225E.html">ispunct()</a></li>
                         <li class="chapter " data-level="2.10" data-path="https://naka1205.github.io/c_library/p/D8520B4532B3F643.html"><a href="https://naka1205.github.io/c_library/p/D8520B4532B3F643.html">isspace()</a></li>
-                        <li class="chapter  active " data-level="2.11" data-path="https://naka1205.github.io/c_library/p/317D15DAC09845DE.html"><a href="https://naka1205.github.io/c_library/p/317D15DAC09845DE.html">isupper()</a></li>
+                        <li class="chapter " data-level="2.11" data-path="https://naka1205.github.io/c_library/p/317D15DAC09845DE.html"><a href="https://naka1205.github.io/c_library/p/317D15DAC09845DE.html">isupper()</a></li>
                         <li class="chapter " data-level="2.12" data-path="https://naka1205.github.io/c_library/p/C7982B122577DD7F.html"><a href="https://naka1205.github.io/c_library/p/C7982B122577DD7F.html">isxdigit()</a></li>
                         <li class="chapter " data-level="2.13" data-path="https://naka1205.github.io/c_library/p/B34018869E89BB6B.html"><a href="https://naka1205.github.io/c_library/p/B34018869E89BB6B.html">tolower()</a></li>
                         <li class="chapter " data-level="2.14" data-path="https://naka1205.github.io/c_library/p/BB7E503B20CBB191.html"><a href="https://naka1205.github.io/c_library/p/BB7E503B20CBB191.html">toupper()</a></li>
@@ -54,7 +54,7 @@
                         <li class="chapter " data-level="3.1" data-path="https://naka1205.github.io/c_library/p/21A96174B0F1E26F.html"><a href="https://naka1205.github.io/c_library/p/21A96174B0F1E26F.html">&lt;errno.h&gt;</a></li>
                         <li class="chapter " data-level="3.2" data-path="https://naka1205.github.io/c_library/p/54942E9A6CF5E3FC.html"><a href="https://naka1205.github.io/c_library/p/54942E9A6CF5E3FC.html">errno</a></li>
                         <li class="chapter " data-level="3.3" data-path="https://naka1205.github.io/c_library/p/3B78000D99D5027A.html"><a href="https://naka1205.github.io/c_library/p/3B78000D99D5027A.html">EDOM</a></li>
-                        <li class="chapter " data-level="3.4" data-path="https://naka1205.github.io/c_library/p/B6BC0CF81C1FD3FB.html"><a href="https://naka1205.github.io/c_library/p/B6BC0CF81C1FD3FB.html">ERANGE</a></li>
+                        <li class="chapter  active " data-level="3.4" data-path="https://naka1205.github.io/c_library/p/B6BC0CF81C1FD3FB.html"><a href="https://naka1205.github.io/c_library/p/B6BC0CF81C1FD3FB.html">ERANGE</a></li>
                     <li class="divider"></li>
                 <li class="header">float.h</li>
                         <li class="chapter " data-level="4.1" data-path="https://naka1205.github.io/c_library/p/DE8C5D73E2166C68.html"><a href="https://naka1205.github.io/c_library/p/DE8C5D73E2166C68.html">&lt;float.h&gt;</a></li>
@@ -67,67 +67,80 @@
     <div class="book-body">
         <div class="body-inner">
             <div class="book-header" role="navigation">
-                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/c_library/p/317D15DAC09845DE.html">isupper()</a></h1>
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/c_library/p/B6BC0CF81C1FD3FB.html">ERANGE</a></h1>
             </div>
             <div class="page-wrapper" tabindex="-1" role="main">
                 <div class="page-inner">
                     <div id="book-search-results">
                         <div class="search-noresults">
                             <section class="normal markdown-section">
-                                <h3 id="isupper%28%29" name="isupper%28%29">isupper()</h3>
+                                <h3 id="ERANGE" name="ERANGE">ERANGE</h3>
 <h4 id="%E6%8F%8F%E8%BF%B0" name="%E6%8F%8F%E8%BF%B0">描述</h4>
-<p>C 库函数 <code>int isupper(int c)</code> 检查所传的字符是否是大写字母。</p>
+<p>C 库宏 <code>ERANGE</code> 表示一个范围错误，它在输入参数超出数学函数定义的范围时发生，<code>errno</code> 被设置为 <code>ERANGE</code>。</p>
 <h4 id="%E5%A3%B0%E6%98%8E" name="%E5%A3%B0%E6%98%8E">声明</h4>
-<p>下面是 <code>isupper()</code> 函数的声明。</p>
-<pre><code class="C">int isupper(int c);</code></pre>
+<p>下面是 <code>ERANGE</code> 宏的声明。</p>
+<pre><code class="C">#define ERANGE some_value</code></pre>
 <h4 id="%E5%8F%82%E6%95%B0" name="%E5%8F%82%E6%95%B0">参数</h4>
 <ul>
-<li>c -- 这是要检查的字符。</li>
+<li>NA</li>
 </ul>
 <h4 id="%E8%BF%94%E5%9B%9E%E5%80%BC" name="%E8%BF%94%E5%9B%9E%E5%80%BC">返回值</h4>
-<p>如果 c 是一个大写字母，则该函数返回非零值（true），否则返回 0（false）。</p>
+<ul>
+<li>NA</li>
+</ul>
 <h4 id="%E5%AE%9E%E4%BE%8B" name="%E5%AE%9E%E4%BE%8B">实例</h4>
-<p>下面的实例演示了 <code>isupper()</code> 函数的用法。</p>
+<p>下面的实例演示了 <code>ERANGE</code> 宏的用法。</p>
 <pre><code class="C">#include &lt;stdio.h&gt;
-#include &lt;ctype.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;math.h&gt;
 
 int main()
 {
-   int var1 = 'M';
-   int var2 = 'm';
-   int var3 = '3';
+   double x;
+   double value;
 
-   if( isupper(var1) )
+   x = 2.000000;
+   value = log(x);
+
+   if( errno == ERANGE ) 
    {
-      printf("var1 = |%c| 是大写字母\n", var1 );
+      printf("Log(%f) is out of range\n", x);
    }
    else
    {
-      printf("var1 = |%c| 不是大写字母\n", var1 );
-   }
-   if( isupper(var2) )
-   {
-      printf("var2 = |%c| 是大写字母\n", var2 );
-   }
-   else
-   {
-      printf("var2 = |%c| 不是大写字母\n", var2 );
-   }
-   if( isupper(var3) )
-   {
-      printf("var3 = |%c| 是大写字母\n", var3 );
-   }
-   else
-   {
-      printf("var3 = |%c| 不是大写字母\n", var3 );
+      printf("Log(%f) = %f\n", x, value);
    }
 
-   return(0);
+   x = 1.000000;
+   value = log(x);
+
+   if( errno == ERANGE ) 
+   {
+      printf("Log(%f) is out of range\n", x);
+   }
+   else
+   {
+      printf("Log(%f) = %f\n", x, value);
+   }
+
+   x = 0.000000;
+   value = log(x);
+
+   if( errno == ERANGE ) 
+   {
+      printf("Log(%f) is out of range\n", x);
+   }
+   else
+   {
+      printf("Log(%f) = %f\n", x, value);
+   }
+
+   return 0;
 }</code></pre>
 <p>让我们编译并运行上面的程序，这将产生以下结果：</p>
-<pre><code>var1 = |M| 是大写字母
-var2 = |m| 不是大写字母
-var3 = |3| 不是大写字母</code></pre>                            </section>
+<pre><code>Log(2.000000) = 0.693147
+Log(1.000000) = 0.000000
+Log(0.000000) = -inf</code></pre>                            </section>
                         </div>
                         <div class="search-results">
                             <div class="has-results">
@@ -144,10 +157,10 @@ var3 = |3| 不是大写字母</code></pre>                            </section>
                 </div>
             </div>
         </div>
-                <a href="https://naka1205.github.io/c_library/p/D8520B4532B3F643.html" class="navigation navigation-prev " aria-label="isspace()">
+                <a href="https://naka1205.github.io/c_library/p/3B78000D99D5027A.html" class="navigation navigation-prev " aria-label="EDOM">
             <i class="fa fa-angle-left"></i>
         </a>
-                <a href="https://naka1205.github.io/c_library/p/C7982B122577DD7F.html" class="navigation navigation-next " aria-label="isxdigit()">
+                <a href="https://naka1205.github.io/c_library/p/DE8C5D73E2166C68.html" class="navigation navigation-next " aria-label="&lt;float.h&gt;">
             <i class="fa fa-angle-right"></i>
         </a>
                
@@ -157,12 +170,12 @@ var gitbook = gitbook || [];
 gitbook.push(function() {
     gitbook.page.hasChanged({
         "page": {
-            "title":  "isupper()",
+            "title":  "ERANGE",
             "next": {
-                "title": "isxdigit()"
+                "title": "&lt;float.h&gt;"
             },
             "previous": {
-                "title": "isspace()"
+                "title": "EDOM"
             }
         },
         "config": {

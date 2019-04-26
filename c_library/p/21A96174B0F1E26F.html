@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <title>isupper() · C 标准库</title>
+    <title><errno.h> · C 标准库</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="ctype.h>">
+    <meta name="description" content="errno.h">
     <meta name="keywords" content="C 标准库">
     <meta name="generator" content="PKBook">
     <link rel="stylesheet" href="https://naka1205.github.io/c_library/assets/css/style.css">
@@ -45,13 +45,13 @@
                         <li class="chapter " data-level="2.8" data-path="https://naka1205.github.io/c_library/p/CD07F377B3938D28.html"><a href="https://naka1205.github.io/c_library/p/CD07F377B3938D28.html">isprint()</a></li>
                         <li class="chapter " data-level="2.9" data-path="https://naka1205.github.io/c_library/p/D2414F70E33A225E.html"><a href="https://naka1205.github.io/c_library/p/D2414F70E33A225E.html">ispunct()</a></li>
                         <li class="chapter " data-level="2.10" data-path="https://naka1205.github.io/c_library/p/D8520B4532B3F643.html"><a href="https://naka1205.github.io/c_library/p/D8520B4532B3F643.html">isspace()</a></li>
-                        <li class="chapter  active " data-level="2.11" data-path="https://naka1205.github.io/c_library/p/317D15DAC09845DE.html"><a href="https://naka1205.github.io/c_library/p/317D15DAC09845DE.html">isupper()</a></li>
+                        <li class="chapter " data-level="2.11" data-path="https://naka1205.github.io/c_library/p/317D15DAC09845DE.html"><a href="https://naka1205.github.io/c_library/p/317D15DAC09845DE.html">isupper()</a></li>
                         <li class="chapter " data-level="2.12" data-path="https://naka1205.github.io/c_library/p/C7982B122577DD7F.html"><a href="https://naka1205.github.io/c_library/p/C7982B122577DD7F.html">isxdigit()</a></li>
                         <li class="chapter " data-level="2.13" data-path="https://naka1205.github.io/c_library/p/B34018869E89BB6B.html"><a href="https://naka1205.github.io/c_library/p/B34018869E89BB6B.html">tolower()</a></li>
                         <li class="chapter " data-level="2.14" data-path="https://naka1205.github.io/c_library/p/BB7E503B20CBB191.html"><a href="https://naka1205.github.io/c_library/p/BB7E503B20CBB191.html">toupper()</a></li>
                     <li class="divider"></li>
                 <li class="header">errno.h</li>
-                        <li class="chapter " data-level="3.1" data-path="https://naka1205.github.io/c_library/p/21A96174B0F1E26F.html"><a href="https://naka1205.github.io/c_library/p/21A96174B0F1E26F.html">&lt;errno.h&gt;</a></li>
+                        <li class="chapter  active " data-level="3.1" data-path="https://naka1205.github.io/c_library/p/21A96174B0F1E26F.html"><a href="https://naka1205.github.io/c_library/p/21A96174B0F1E26F.html">&lt;errno.h&gt;</a></li>
                         <li class="chapter " data-level="3.2" data-path="https://naka1205.github.io/c_library/p/54942E9A6CF5E3FC.html"><a href="https://naka1205.github.io/c_library/p/54942E9A6CF5E3FC.html">errno</a></li>
                         <li class="chapter " data-level="3.3" data-path="https://naka1205.github.io/c_library/p/3B78000D99D5027A.html"><a href="https://naka1205.github.io/c_library/p/3B78000D99D5027A.html">EDOM</a></li>
                         <li class="chapter " data-level="3.4" data-path="https://naka1205.github.io/c_library/p/B6BC0CF81C1FD3FB.html"><a href="https://naka1205.github.io/c_library/p/B6BC0CF81C1FD3FB.html">ERANGE</a></li>
@@ -67,67 +67,42 @@
     <div class="book-body">
         <div class="body-inner">
             <div class="book-header" role="navigation">
-                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/c_library/p/317D15DAC09845DE.html">isupper()</a></h1>
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/c_library/p/21A96174B0F1E26F.html">&lt;errno.h&gt;</a></h1>
             </div>
             <div class="page-wrapper" tabindex="-1" role="main">
                 <div class="page-inner">
                     <div id="book-search-results">
                         <div class="search-noresults">
                             <section class="normal markdown-section">
-                                <h3 id="isupper%28%29" name="isupper%28%29">isupper()</h3>
-<h4 id="%E6%8F%8F%E8%BF%B0" name="%E6%8F%8F%E8%BF%B0">描述</h4>
-<p>C 库函数 <code>int isupper(int c)</code> 检查所传的字符是否是大写字母。</p>
-<h4 id="%E5%A3%B0%E6%98%8E" name="%E5%A3%B0%E6%98%8E">声明</h4>
-<p>下面是 <code>isupper()</code> 函数的声明。</p>
-<pre><code class="C">int isupper(int c);</code></pre>
-<h4 id="%E5%8F%82%E6%95%B0" name="%E5%8F%82%E6%95%B0">参数</h4>
-<ul>
-<li>c -- 这是要检查的字符。</li>
-</ul>
-<h4 id="%E8%BF%94%E5%9B%9E%E5%80%BC" name="%E8%BF%94%E5%9B%9E%E5%80%BC">返回值</h4>
-<p>如果 c 是一个大写字母，则该函数返回非零值（true），否则返回 0（false）。</p>
-<h4 id="%E5%AE%9E%E4%BE%8B" name="%E5%AE%9E%E4%BE%8B">实例</h4>
-<p>下面的实例演示了 <code>isupper()</code> 函数的用法。</p>
-<pre><code class="C">#include &lt;stdio.h&gt;
-#include &lt;ctype.h&gt;
-
-int main()
-{
-   int var1 = 'M';
-   int var2 = 'm';
-   int var3 = '3';
-
-   if( isupper(var1) )
-   {
-      printf("var1 = |%c| 是大写字母\n", var1 );
-   }
-   else
-   {
-      printf("var1 = |%c| 不是大写字母\n", var1 );
-   }
-   if( isupper(var2) )
-   {
-      printf("var2 = |%c| 是大写字母\n", var2 );
-   }
-   else
-   {
-      printf("var2 = |%c| 不是大写字母\n", var2 );
-   }
-   if( isupper(var3) )
-   {
-      printf("var3 = |%c| 是大写字母\n", var3 );
-   }
-   else
-   {
-      printf("var3 = |%c| 不是大写字母\n", var3 );
-   }
-
-   return(0);
-}</code></pre>
-<p>让我们编译并运行上面的程序，这将产生以下结果：</p>
-<pre><code>var1 = |M| 是大写字母
-var2 = |m| 不是大写字母
-var3 = |3| 不是大写字母</code></pre>                            </section>
+                                <h3 id="%26lt%3Berrno.h%26gt%3B" name="%26lt%3Berrno.h%26gt%3B">&lt;errno.h&gt;</h3>
+<h4 id="%E7%AE%80%E4%BB%8B" name="%E7%AE%80%E4%BB%8B">简介</h4>
+<p>C 标准库的 <code>errno.h</code> 头文件定义了整数变量 <code>errno</code>，它是通过系统调用设置的，在错误事件中的某些库函数表明了什么发生了错误。该宏扩展为类型为 <code>int</code> 的可更改的左值，因此它可以被一个程序读取和修改。</p>
+<p>在程序启动时，<code>errno</code> 设置为零，C 标准库中的特定函数修改它的值为一些非零值以表示某些类型的错误。您也可以在适当的时候修改它的值或重置为零。</p>
+<p><code>errno.h</code> 头文件定义了一系列表示不同错误代码的宏，这些宏应扩展为类型为 <code>int</code> 的整数常量表达式。</p>
+<h4 id="%E5%BA%93%E5%AE%8F" name="%E5%BA%93%E5%AE%8F">库宏</h4>
+<p>下面列出了头文件 errno.h 中定义的宏：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>函数 &amp; 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>extern int errno 这是通过系统调用设置的宏，在错误事件中的某些库函数表明了什么发生了错误。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>EDOM Domain Error 这个宏表示一个域错误，它在输入参数超出数学函数定义的域时发生，errno 被设置为 EDOM。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>ERANGE Range Error 这个宏表示一个范围错误，它在输入参数超出数学函数定义的范围时发生，errno 被设置为 ERANGE。</td>
+</tr>
+</tbody>
+</table>                            </section>
                         </div>
                         <div class="search-results">
                             <div class="has-results">
@@ -144,10 +119,10 @@ var3 = |3| 不是大写字母</code></pre>                            </section>
                 </div>
             </div>
         </div>
-                <a href="https://naka1205.github.io/c_library/p/D8520B4532B3F643.html" class="navigation navigation-prev " aria-label="isspace()">
+                <a href="https://naka1205.github.io/c_library/p/BB7E503B20CBB191.html" class="navigation navigation-prev " aria-label="toupper()">
             <i class="fa fa-angle-left"></i>
         </a>
-                <a href="https://naka1205.github.io/c_library/p/C7982B122577DD7F.html" class="navigation navigation-next " aria-label="isxdigit()">
+                <a href="https://naka1205.github.io/c_library/p/54942E9A6CF5E3FC.html" class="navigation navigation-next " aria-label="errno">
             <i class="fa fa-angle-right"></i>
         </a>
                
@@ -157,12 +132,12 @@ var gitbook = gitbook || [];
 gitbook.push(function() {
     gitbook.page.hasChanged({
         "page": {
-            "title":  "isupper()",
+            "title":  "&lt;errno.h&gt;",
             "next": {
-                "title": "isxdigit()"
+                "title": "errno"
             },
             "previous": {
-                "title": "isspace()"
+                "title": "toupper()"
             }
         },
         "config": {
