@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <title>RPG分类 · C++实例教程</title>
+    <title>Sprite的显示 · C++实例教程</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="由于“创作RPG”如果只用“有故事性、有战斗的游戏”来定义,显得太过笼统不够严谨,所以还要再进一步分成几个小类。">
+    <meta name="description" content="正示前一章已经说明过,sprite只是利用程序把CG重叠起来而已。不过,“地图坐标”也要加入到成员变量,才好方便处理地图上的sprite。">
     <meta name="keywords" content="角色扮演 教程">
     <meta name="generator" content="PKBook">
     <link rel="stylesheet" href="https://naka1205.github.io/rpgsample/assets/css/style.css">
@@ -32,7 +32,7 @@
         <li class="divider"></li>
                 <li class="header">写一个角色扮演游戏</li>
                         <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/rpgsample/p/FEEC8D8FB78C0C58.html"><a href="https://naka1205.github.io/rpgsample/p/FEEC8D8FB78C0C58.html">何谓角色扮演游戏（RPG）</a></li>
-                        <li class="chapter  active " data-level="1.2" data-path="https://naka1205.github.io/rpgsample/p/BC79B4D3134C347C.html"><a href="https://naka1205.github.io/rpgsample/p/BC79B4D3134C347C.html">RPG分类</a></li>
+                        <li class="chapter " data-level="1.2" data-path="https://naka1205.github.io/rpgsample/p/BC79B4D3134C347C.html"><a href="https://naka1205.github.io/rpgsample/p/BC79B4D3134C347C.html">RPG分类</a></li>
                         <li class="chapter " data-level="1.3" data-path="https://naka1205.github.io/rpgsample/p/F20DC96FA50A49C7.html"><a href="https://naka1205.github.io/rpgsample/p/F20DC96FA50A49C7.html">写RPG时的软硬件需求</a></li>
                     <li class="divider"></li>
                 <li class="header">游戏系统的设计</li>
@@ -49,7 +49,7 @@
                     <li class="divider"></li>
                 <li class="header">显示地图和人物</li>
                         <li class="chapter " data-level="4.1" data-path="https://naka1205.github.io/rpgsample/p/D669497E6697FA89.html"><a href="https://naka1205.github.io/rpgsample/p/D669497E6697FA89.html">地图坐标系</a></li>
-                        <li class="chapter " data-level="4.2" data-path="https://naka1205.github.io/rpgsample/p/CB9C77BD644B1669.html"><a href="https://naka1205.github.io/rpgsample/p/CB9C77BD644B1669.html">Sprite的显示</a></li>
+                        <li class="chapter  active " data-level="4.2" data-path="https://naka1205.github.io/rpgsample/p/CB9C77BD644B1669.html"><a href="https://naka1205.github.io/rpgsample/p/CB9C77BD644B1669.html">Sprite的显示</a></li>
                         <li class="chapter " data-level="4.3" data-path="https://naka1205.github.io/rpgsample/p/D4F60F30B7F0944A.html"><a href="https://naka1205.github.io/rpgsample/p/D4F60F30B7F0944A.html">显示的程序实例</a></li>
                     <li class="divider"></li>
                 <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
@@ -60,49 +60,31 @@
     <div class="book-body">
         <div class="body-inner">
             <div class="book-header" role="navigation">
-                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/rpgsample/p/BC79B4D3134C347C.html">RPG分类</a></h1>
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/rpgsample/p/CB9C77BD644B1669.html">Sprite的显示</a></h1>
             </div>
             <div class="page-wrapper" tabindex="-1" role="main">
                 <div class="page-inner">
                     <div id="book-search-results">
                         <div class="search-noresults">
                             <section class="normal markdown-section">
-                                <h3 id="RPG%E5%88%86%E7%B1%BB" name="RPG%E5%88%86%E7%B1%BB">RPG分类</h3>
-<p>由于“创作RPG”如果只用“有故事性、有战斗的游戏”来定义,显得太过笼统不够严谨,所以还要再进一步分成几个小类。
-角色扮演游戏可根据下列几项来细分:</p>
+                                <h3 id="Sprite%E6%98%BE%E7%A4%BA" name="Sprite%E6%98%BE%E7%A4%BA">Sprite显示</h3>
+<p>正示前一章已经说明过,sprite只是利用程序把CG重叠起来而已。不过,“地图坐标”也要加入到成员变量,才好方便处理地图上的sprite。</p>
+<h4 id="Sprite%E7%9A%84%E6%98%BE%E7%A4%BA%E9%A1%BA%E5%BA%8F" name="Sprite%E7%9A%84%E6%98%BE%E7%A4%BA%E9%A1%BA%E5%BA%8F">Sprite的显示顺序</h4>
+<p>画面显示时可能会有sprite重叠的情形,此时必须由下而上依序重叠sprite,显示结果才会正确,如图4-7所示。</p>
+<p>所以sprite之间的前后位置关系就很重要了。人物显示在地图上时,位置越偏画面上方则越接近底层,所以前后位置关系只要掌握画面上的高低顺序即可。</p>
+<p>有时在同一个方格也需要显示2个以上的sprite,因此可新增1个变量来决定显示顺序。</p>
+<p>多了这个处理动作,即使同一个方格位置上有1个以上的sprite,也能由下而上依序显示出来。例如,先显示代表移动范围等的sprite,然后才是人物,就能正确完成sprite重叠,如图4-8和图4-9所示。</p>
+<p>在此稍微整理一下,sprite的显示顺序应为:</p>
 <ul>
-<li>故事性</li>
-<li>移动</li>
-<li>战斗</li>
+<li>①由上而下(画面位置)</li>
+<li>②由左而右(画面位置)</li>
 </ul>
-<p>以下就各项分别说明。</p>
-<h4 id="%E6%95%85%E4%BA%8B%E6%80%A7" name="%E6%95%85%E4%BA%8B%E6%80%A7">故事性</h4>
-<p>故事的设定方式不限,可以是只确定故事背景和最后结局,其他部分则不着墨太多,当然也可以是整个流程(故事)几乎都固定下来,发展路线就是一条到底。我们先从故事内容的预设比例来分类RPG。</p>
-<p>给游戏玩家的选择空间越大,故事性就相对偏低。</p>
-<p>以类似“勇者斗恶龙”的故事为例,游戏一开始就会发生一件意外要你去消灭恶龙,当恶龙被消灭后就是大结局。在前往杀死恶龙的路上会出现各种事件和战斗场面。</p>
-<p>游戏是设计成根据游戏玩家的行动的改变而改变路上所发生的事件,还是所有事件不受影响只会依序发生,当然也会产生不同的游戏内容,不过基本上这类游戏只要有开头(opening)和结局(ending)就是一个故事,如图1-1所示。</p>
-<p>例如:
-“勇者奉国王之命去除掉恶龙。经过无数次的冒险犯难后,终于杀死恶龙,国家也恢复和平”。
-要是像这样光看故事“骨架”的话,其实不管路上“无数次的冒险犯难”是哪些、发生顺序如何,都可以算是同样的故事结构。不过话说回来,就算故事内容相同,事件的内容安排如果巧妙得当就能增加游戏的趣味性,反之则会让游戏索然无味,如图1-2所示。</p>
-<p>虽然说让事件多些变化可以增加游戏玩家的兴趣,不过以现阶段电脑游戏的程度来看,要像tabletalk那样能配合游戏进行,让游戏玩家任意“产生事件”还是心有余而力不足,所以目前的做法仍然是根据游戏玩家的行动内容,选择几个预设的事件。</p>
-<h4 id="%E7%A7%BB%E5%8A%A8" name="%E7%A7%BB%E5%8A%A8">移动</h4>
-<p>移动的方法有能在整个地图上游走自如的移动方式,也有只限从几个固定地点中择一移动过去的方式。当然,有些移动动作甚至不允许游戏玩家自行选择移动位置。</p>
-<p>利用移动的方法也可以来分类RPG,如图1-3所示。</p>
-<p>通常多半是在要发生事件的时候就会有移动。</p>
-<p>你可以要求游戏玩家选择要移动到A地还是B地,再要求他选择移动结果所引发的事件。还是举个例子来说明好了。</p>
-<p>假设当人物手上有一个道具时,就有“到酒店,发生事件”和“到道具店,高价卖出”这两种选择。如果发生事件,就不会拿到钱,但如果卖掉道具,就不会发生事件。这里所发生的事件不仅是这个时间点的行动而已,它还会影响到后面的发展,所以选择移动位置这个动作车看之下似乎无关紧要,其实会让整个故事发展有很大的变化,如图1-4所示。</p>
-<p>游戏玩家手上如果没有说明这个岔路的信息,“先到哪里”的决定就会影响后面的故事发展。也有可能是游戏玩家没有注意到自己做了选择(有时没有注意到会让故事更有趣,反过来也可能会让自己找不到路走出来)。要是事先就有这类信息,如果有“现在需要增加财富”的问题,就可以选择适当的行动。至于哪种设计方法比较好,就得看游戏的重点在哪里了。</p>
-<p>有些移动当然跟故事发展没有关系(例如到武器店、道具店),不过移动的主要目的还是在抉择故事发展方向或推动游戏向前发展。</p>
-<h4 id="%E6%88%98%E6%96%97" name="%E6%88%98%E6%96%97">战斗</h4>
-<p>战斗次数,所需时间和战斗方法等也是RPG分类的重点。
-如果游戏的主要目的是移动和冒险,单次战斗通常都会被简化,很快就结束。如果整个游戏的战斗次数不多,则多半是需要花时间思考的策略型战斗。</p>
-<p>简单版的战斗方式很少会在战斗中移动,大部分是“面对面互相攻击”的形式。而花时间思考的战斗方式通常有点类似版图游戏,会有特定人物的移动或攻击(本书的程序实例就是采用版图式的战斗形式),如图1-5所示。</p>
-<p>另外,有些游在战斗时会切换到战斗专用画面,有些则无。</p>
-<p>单次战斗时间×总战斗次数十事件等所用时间=总游戏时间</p>
-<p>由于上面的计算式成立,所以战斗次数越多当然就越偏向简单版,战斗次数越少则选择边思考边玩的游戏方法。</p>
-<h4 id="%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%A6%81" name="%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%A6%81">系统概要</h4>
-<p>根据故事性、移动和战斗这三个要素的比例组合,即可决定RPG的系统概要。而若再加上系统和游戏视觉效果(2D或3D等)的差异,则可再细分下去。游戏视觉效果有由上往下正视的方形图示法、45°斜视角(俯墩)或利用3D任意转动视角等几种差别,如图1-6所示。如果游戏设计有配合不同的时地采用2D或3D视觉效果,还可继续分类列举。</p>
-<p>既然外在的视觉效果和内部系统设计属于分别独立进行的个体,因此交叉搭配不同的设计方式就会产生各式各样的游戏种类。</p>                            </section>
+<p>如果是同一方格上显示多个sprite,则显示顺序为:</p>
+<ul>
+<li>③范围</li>
+<li>④光标</li>
+<li>⑤人物</li>
+</ul>                            </section>
                         </div>
                         <div class="search-results">
                             <div class="has-results">
@@ -119,10 +101,10 @@
                 </div>
             </div>
         </div>
-                <a href="https://naka1205.github.io/rpgsample/p/FEEC8D8FB78C0C58.html" class="navigation navigation-prev " aria-label="何谓角色扮演游戏（RPG）">
+                <a href="https://naka1205.github.io/rpgsample/p/D669497E6697FA89.html" class="navigation navigation-prev " aria-label="地图坐标系">
             <i class="fa fa-angle-left"></i>
         </a>
-                <a href="https://naka1205.github.io/rpgsample/p/F20DC96FA50A49C7.html" class="navigation navigation-next " aria-label="写RPG时的软硬件需求">
+                <a href="https://naka1205.github.io/rpgsample/p/D4F60F30B7F0944A.html" class="navigation navigation-next " aria-label="显示的程序实例">
             <i class="fa fa-angle-right"></i>
         </a>
                
@@ -132,12 +114,12 @@ var gitbook = gitbook || [];
 gitbook.push(function() {
     gitbook.page.hasChanged({
         "page": {
-            "title":  "RPG分类",
+            "title":  "Sprite的显示",
             "next": {
-                "title": "写RPG时的软硬件需求"
+                "title": "显示的程序实例"
             },
             "previous": {
-                "title": "何谓角色扮演游戏（RPG）"
+                "title": "地图坐标系"
             }
         },
         "config": {

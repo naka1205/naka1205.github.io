@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <title>RPG分类 · C++实例教程</title>
+    <title>贴图零件(sprite)显示 · C++实例教程</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="由于“创作RPG”如果只用“有故事性、有战斗的游戏”来定义,显得太过笼统不够严谨,所以还要再进一步分成几个小类。">
+    <meta name="description" content="本书在说明上是把管理CG显示位置等部分的类称为“sprite(贴图零件)”而“softwaresprite(软件的贴图零件)”有时也是指从程序端处理的方法不等,当然另外还有“hardwaresprite(硬件的贴图零件)”,不过在Windows系统只要考虑softwaresprite的部分就好了。">
     <meta name="keywords" content="角色扮演 教程">
     <meta name="generator" content="PKBook">
     <link rel="stylesheet" href="https://naka1205.github.io/rpgsample/assets/css/style.css">
@@ -32,7 +32,7 @@
         <li class="divider"></li>
                 <li class="header">写一个角色扮演游戏</li>
                         <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/rpgsample/p/FEEC8D8FB78C0C58.html"><a href="https://naka1205.github.io/rpgsample/p/FEEC8D8FB78C0C58.html">何谓角色扮演游戏（RPG）</a></li>
-                        <li class="chapter  active " data-level="1.2" data-path="https://naka1205.github.io/rpgsample/p/BC79B4D3134C347C.html"><a href="https://naka1205.github.io/rpgsample/p/BC79B4D3134C347C.html">RPG分类</a></li>
+                        <li class="chapter " data-level="1.2" data-path="https://naka1205.github.io/rpgsample/p/BC79B4D3134C347C.html"><a href="https://naka1205.github.io/rpgsample/p/BC79B4D3134C347C.html">RPG分类</a></li>
                         <li class="chapter " data-level="1.3" data-path="https://naka1205.github.io/rpgsample/p/F20DC96FA50A49C7.html"><a href="https://naka1205.github.io/rpgsample/p/F20DC96FA50A49C7.html">写RPG时的软硬件需求</a></li>
                     <li class="divider"></li>
                 <li class="header">游戏系统的设计</li>
@@ -45,7 +45,7 @@
                         <li class="chapter " data-level="3.3" data-path="https://naka1205.github.io/rpgsample/p/7FA5E0693CC56877.html"><a href="https://naka1205.github.io/rpgsample/p/7FA5E0693CC56877.html">显示CG</a></li>
                         <li class="chapter " data-level="3.4" data-path="https://naka1205.github.io/rpgsample/p/FF11E655570F0335.html"><a href="https://naka1205.github.io/rpgsample/p/FF11E655570F0335.html">显示CG的应用软件</a></li>
                         <li class="chapter " data-level="3.5" data-path="https://naka1205.github.io/rpgsample/p/FD772D011D420B30.html"><a href="https://naka1205.github.io/rpgsample/p/FD772D011D420B30.html">CG/Sprite的重叠显示</a></li>
-                        <li class="chapter " data-level="3.6" data-path="https://naka1205.github.io/rpgsample/p/9505172717587147.html"><a href="https://naka1205.github.io/rpgsample/p/9505172717587147.html">贴图零件(sprite)显示</a></li>
+                        <li class="chapter  active " data-level="3.6" data-path="https://naka1205.github.io/rpgsample/p/9505172717587147.html"><a href="https://naka1205.github.io/rpgsample/p/9505172717587147.html">贴图零件(sprite)显示</a></li>
                     <li class="divider"></li>
                 <li class="header">显示地图和人物</li>
                         <li class="chapter " data-level="4.1" data-path="https://naka1205.github.io/rpgsample/p/D669497E6697FA89.html"><a href="https://naka1205.github.io/rpgsample/p/D669497E6697FA89.html">地图坐标系</a></li>
@@ -60,49 +60,84 @@
     <div class="book-body">
         <div class="body-inner">
             <div class="book-header" role="navigation">
-                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/rpgsample/p/BC79B4D3134C347C.html">RPG分类</a></h1>
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/rpgsample/p/9505172717587147.html">贴图零件(sprite)显示</a></h1>
             </div>
             <div class="page-wrapper" tabindex="-1" role="main">
                 <div class="page-inner">
                     <div id="book-search-results">
                         <div class="search-noresults">
                             <section class="normal markdown-section">
-                                <h3 id="RPG%E5%88%86%E7%B1%BB" name="RPG%E5%88%86%E7%B1%BB">RPG分类</h3>
-<p>由于“创作RPG”如果只用“有故事性、有战斗的游戏”来定义,显得太过笼统不够严谨,所以还要再进一步分成几个小类。
-角色扮演游戏可根据下列几项来细分:</p>
-<ul>
-<li>故事性</li>
-<li>移动</li>
-<li>战斗</li>
-</ul>
-<p>以下就各项分别说明。</p>
-<h4 id="%E6%95%85%E4%BA%8B%E6%80%A7" name="%E6%95%85%E4%BA%8B%E6%80%A7">故事性</h4>
-<p>故事的设定方式不限,可以是只确定故事背景和最后结局,其他部分则不着墨太多,当然也可以是整个流程(故事)几乎都固定下来,发展路线就是一条到底。我们先从故事内容的预设比例来分类RPG。</p>
-<p>给游戏玩家的选择空间越大,故事性就相对偏低。</p>
-<p>以类似“勇者斗恶龙”的故事为例,游戏一开始就会发生一件意外要你去消灭恶龙,当恶龙被消灭后就是大结局。在前往杀死恶龙的路上会出现各种事件和战斗场面。</p>
-<p>游戏是设计成根据游戏玩家的行动的改变而改变路上所发生的事件,还是所有事件不受影响只会依序发生,当然也会产生不同的游戏内容,不过基本上这类游戏只要有开头(opening)和结局(ending)就是一个故事,如图1-1所示。</p>
-<p>例如:
-“勇者奉国王之命去除掉恶龙。经过无数次的冒险犯难后,终于杀死恶龙,国家也恢复和平”。
-要是像这样光看故事“骨架”的话,其实不管路上“无数次的冒险犯难”是哪些、发生顺序如何,都可以算是同样的故事结构。不过话说回来,就算故事内容相同,事件的内容安排如果巧妙得当就能增加游戏的趣味性,反之则会让游戏索然无味,如图1-2所示。</p>
-<p>虽然说让事件多些变化可以增加游戏玩家的兴趣,不过以现阶段电脑游戏的程度来看,要像tabletalk那样能配合游戏进行,让游戏玩家任意“产生事件”还是心有余而力不足,所以目前的做法仍然是根据游戏玩家的行动内容,选择几个预设的事件。</p>
-<h4 id="%E7%A7%BB%E5%8A%A8" name="%E7%A7%BB%E5%8A%A8">移动</h4>
-<p>移动的方法有能在整个地图上游走自如的移动方式,也有只限从几个固定地点中择一移动过去的方式。当然,有些移动动作甚至不允许游戏玩家自行选择移动位置。</p>
-<p>利用移动的方法也可以来分类RPG,如图1-3所示。</p>
-<p>通常多半是在要发生事件的时候就会有移动。</p>
-<p>你可以要求游戏玩家选择要移动到A地还是B地,再要求他选择移动结果所引发的事件。还是举个例子来说明好了。</p>
-<p>假设当人物手上有一个道具时,就有“到酒店,发生事件”和“到道具店,高价卖出”这两种选择。如果发生事件,就不会拿到钱,但如果卖掉道具,就不会发生事件。这里所发生的事件不仅是这个时间点的行动而已,它还会影响到后面的发展,所以选择移动位置这个动作车看之下似乎无关紧要,其实会让整个故事发展有很大的变化,如图1-4所示。</p>
-<p>游戏玩家手上如果没有说明这个岔路的信息,“先到哪里”的决定就会影响后面的故事发展。也有可能是游戏玩家没有注意到自己做了选择(有时没有注意到会让故事更有趣,反过来也可能会让自己找不到路走出来)。要是事先就有这类信息,如果有“现在需要增加财富”的问题,就可以选择适当的行动。至于哪种设计方法比较好,就得看游戏的重点在哪里了。</p>
-<p>有些移动当然跟故事发展没有关系(例如到武器店、道具店),不过移动的主要目的还是在抉择故事发展方向或推动游戏向前发展。</p>
-<h4 id="%E6%88%98%E6%96%97" name="%E6%88%98%E6%96%97">战斗</h4>
-<p>战斗次数,所需时间和战斗方法等也是RPG分类的重点。
-如果游戏的主要目的是移动和冒险,单次战斗通常都会被简化,很快就结束。如果整个游戏的战斗次数不多,则多半是需要花时间思考的策略型战斗。</p>
-<p>简单版的战斗方式很少会在战斗中移动,大部分是“面对面互相攻击”的形式。而花时间思考的战斗方式通常有点类似版图游戏,会有特定人物的移动或攻击(本书的程序实例就是采用版图式的战斗形式),如图1-5所示。</p>
-<p>另外,有些游在战斗时会切换到战斗专用画面,有些则无。</p>
-<p>单次战斗时间×总战斗次数十事件等所用时间=总游戏时间</p>
-<p>由于上面的计算式成立,所以战斗次数越多当然就越偏向简单版,战斗次数越少则选择边思考边玩的游戏方法。</p>
-<h4 id="%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%A6%81" name="%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%A6%81">系统概要</h4>
-<p>根据故事性、移动和战斗这三个要素的比例组合,即可决定RPG的系统概要。而若再加上系统和游戏视觉效果(2D或3D等)的差异,则可再细分下去。游戏视觉效果有由上往下正视的方形图示法、45°斜视角(俯墩)或利用3D任意转动视角等几种差别,如图1-6所示。如果游戏设计有配合不同的时地采用2D或3D视觉效果,还可继续分类列举。</p>
-<p>既然外在的视觉效果和内部系统设计属于分别独立进行的个体,因此交叉搭配不同的设计方式就会产生各式各样的游戏种类。</p>                            </section>
+                                <h3 id="%E8%B4%B4%E5%9B%BE%E9%9B%B6%E4%BB%B6%28sprite%29%E6%98%BE%E7%A4%BA" name="%E8%B4%B4%E5%9B%BE%E9%9B%B6%E4%BB%B6%28sprite%29%E6%98%BE%E7%A4%BA">贴图零件(sprite)显示</h3>
+<p>本书在说明上是把管理CG显示位置等部分的类称为“sprite(贴图零件)”而“softwaresprite(软件的贴图零件)”有时也是指从程序端处理的方法不等,当然另外还有“hardwaresprite(硬件的贴图零件)”,不过在Windows系统只要考虑softwaresprite的部分就好了。</p>
+<p>利用跟CG合成同样的处理方式就能显示贴图零件,下面例子是针对人物主角进行拼合贴图的动作。</p>
+<p>如果需要合成的CG不多,而且位置差不多都是几个固定的地方,需要合成显示时再处理会比较省事,不过如果画面显示要合成一大堆小小的CG,最好是先写一个类似有“管理”作用的架构会比较好。</p>
+<p>Sprite有时会出现在不同位置显示同一CG的状况(如图3-9所示),因此sprite本身不要有CG数据(即图像),只要去“参照”CG数据就好。</p>
+<p>显示在地图上的人物所需要的CG不多,大概就是“方向”和“动作模式”的数量而已。所以若能把一部分蓝本用的CG设成可开放利用的话,就可以把各个不同方向、动作模式的CG整合成1张后存储起来。</p>
+<p>制作sprite的CG数据时,所有sprite的尺寸大小都要统一。以图3-10的CG为例,只要CG宽幅除以“3”、长度除以“4”即可求出1张sprite的实际尺寸。图3-10的CG是移动的动作而已,如欲变化成攻击或其他模式时,宽幅就要重新计算(长度所对应的是人物方向,如果移动方向只有上下左右,则可直接用“4”除)。</p>
+<p>当然也有将所有sprite设为固定大小的做法,不过考虑到怪兽等特殊造型的体型跟普通人物差很多,所以sprite大小最好不要固定。</p>
+<p>Sprite类(CSprite)即如下所示:</p>
+<pre><code class="C++">class CSprite {
+  public:
+
+  protected:
+    CPoint  draw_pos;   //绘制位置
+    CPoint  src_pos;    //CG显示位置的坐标
+    CSize   size;       //显示的尺寸大小
+    CImage *image;      //CG数据的指针
+} ;</code></pre>
+<p>由于这里必须要提供把哪个图像、从A地点显示到B地点、以及显示尺寸大小等信息,所以把这几个部分设成变量。当然还要有操作变量的成员函数或构造函数,另外“绘制”动作也要记得写进去。</p>
+<pre><code class="C++">void CSprite::Draw(CImage *_image)
+{
+    CRect rect;
+    GetRect(&amp;rect);
+    _image-&gt;MixImage(image, rect, src_pos);
+}</code></pre>
+<p>绘制动作只要调用<code>Clmage:MixImage</code>即可,MixImage需要有RECT,因此还要再做一个把绘制位置设定到RECT变量的函数。</p>
+<pre><code class="C++">inline void CSprite::GetRect(CRect *r) const
+{
+    r-&gt;left = draw_pos.x;
+    r-&gt;top = draw_pos.y;
+    r-&gt;right = draw_pos.x + size.cx;
+    r-&gt;bottom = draw_pos.y + size.cy;
+}</code></pre>
+<p>Sprite类的测试用实例是直接借用前面的CG合成程序实例,像是CG读入、显示等功能就不必另外重写了。</p>
+<p>Sprite的测试(MainWin.cpp)</p>
+<pre><code class="C++">//
+// WM_CREATE 的处理
+//
+BOOL CMainWin::OnCreate(CREATESTRUCT *cs)
+{
+    {
+        CFile   file("sprite.bmp"); // 开启要重叠贴图的CG图档
+        if (!file || !SpriteImage.LoadBMP(file)) {
+            MessageBox("无法读取要用来重叠贴图的CG图档。");
+            return FALSE;
+        }
+    }
+
+    CSize size = SpriteImage.Size();
+    Sprite[0].Set(&amp;SpriteImage, CPoint(100, 100), size);
+    Sprite[1].Set(&amp;SpriteImage, CPoint(150, 100), size);
+    Sprite[2].Set(&amp;SpriteImage, CPoint(100, 150), size);
+    Sprite[3].Set(&amp;SpriteImage, CPoint(150, 150), size);
+
+    // 背景复制
+    ViewImage.Copy(&amp;Back);
+    // 重叠
+    for (int i=0; i&lt;4; i++)
+        Sprite[i].Draw(&amp;ViewImage);
+
+    return TRUE;
+}</code></pre>
+<p>执行实例时,即可确认有成功显示出sprite。程序实例放在附赠光盘的文件夹“chapter3.3”下,执行画面如图3-11所示。</p>
+<p>同一个CG显示在4个不同的位置。各位从原始程序代码就可以知道。CG的数据只有1个,所以画面所显示的不但是“同一图形”,还是“同一数据”。</p>
+<hr />
+<p>程序实例</p>
+<hr />
+<p>本书所提及的所有程序实例均按章节排列,收录于本书附赠光盘内。各章的原始文件虽使用同一文件名,但会随着章节发展而逐步增加内容。完整的源文件则以文件夹“chapter9”下的原始文件为准。</p>
+<p>每一章节的文件夹中,除了原始文件之外还有执行文件(Sample.exe)。以鼠标左键双击执行文件,即可自动执行程序实例。当然,各个文件夹内都有必要的CG文件和音效用声音文件(Wave文件)等。</p>
+<p>在build或执行程序实例时,须将光盘上的文件夹整个复制到本机硬盘。因为在光盘上的文件夹是只读的禁止写入,此外如果从复制到电脑中,还请记得要清除文件属性“只读”的均选符号。</p>
+<p>另外,在建立或执行实例程序时,要将CD-ROM中的文件夹直接复制到本地磁盘中。如果是从“文件管理器”将数据复制下来时,数据会被设定为只读,请将只读的属性取消。</p>                            </section>
                         </div>
                         <div class="search-results">
                             <div class="has-results">
@@ -119,10 +154,10 @@
                 </div>
             </div>
         </div>
-                <a href="https://naka1205.github.io/rpgsample/p/FEEC8D8FB78C0C58.html" class="navigation navigation-prev " aria-label="何谓角色扮演游戏（RPG）">
+                <a href="https://naka1205.github.io/rpgsample/p/FD772D011D420B30.html" class="navigation navigation-prev " aria-label="CG/Sprite的重叠显示">
             <i class="fa fa-angle-left"></i>
         </a>
-                <a href="https://naka1205.github.io/rpgsample/p/F20DC96FA50A49C7.html" class="navigation navigation-next " aria-label="写RPG时的软硬件需求">
+                <a href="https://naka1205.github.io/rpgsample/p/D669497E6697FA89.html" class="navigation navigation-next " aria-label="地图坐标系">
             <i class="fa fa-angle-right"></i>
         </a>
                
@@ -132,12 +167,12 @@ var gitbook = gitbook || [];
 gitbook.push(function() {
     gitbook.page.hasChanged({
         "page": {
-            "title":  "RPG分类",
+            "title":  "贴图零件(sprite)显示",
             "next": {
-                "title": "写RPG时的软硬件需求"
+                "title": "地图坐标系"
             },
             "previous": {
-                "title": "何谓角色扮演游戏（RPG）"
+                "title": "CG/Sprite的重叠显示"
             }
         },
         "config": {
