@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <title>何谓角色扮演游戏（RPG） · C++实例教程</title>
+    <title>移动的动画 · C++实例教程</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="角色扮演游戏(RPG,RolePlayingGame的缩写)究竟是指什么样的游戏内容?">
+    <meta name="description" content="在处理人物的移动时,要是转瞬间就突然出现在移动位置,好像太单调了一点。一般人物造型可以让它“走过去”,而怪兽、机器人造型也可以边做什么动作、边移动过去,这样不是很有趣吗?">
     <meta name="keywords" content="角色扮演 教程">
     <meta name="generator" content="PKBook">
     <link rel="stylesheet" href="https://naka1205.github.io/rpgsample/assets/css/style.css">
@@ -31,7 +31,7 @@
         <li><a href="https://naka1205.github.io/rpgsample/index.html" target="blank" class="header">说明</a></li>
         <li class="divider"></li>
                 <li class="header">写一个角色扮演游戏</li>
-                        <li class="chapter  active " data-level="1.1" data-path="https://naka1205.github.io/rpgsample/p/FEEC8D8FB78C0C58.html"><a href="https://naka1205.github.io/rpgsample/p/FEEC8D8FB78C0C58.html">何谓角色扮演游戏（RPG）</a></li>
+                        <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/rpgsample/p/FEEC8D8FB78C0C58.html"><a href="https://naka1205.github.io/rpgsample/p/FEEC8D8FB78C0C58.html">何谓角色扮演游戏（RPG）</a></li>
                         <li class="chapter " data-level="1.2" data-path="https://naka1205.github.io/rpgsample/p/BC79B4D3134C347C.html"><a href="https://naka1205.github.io/rpgsample/p/BC79B4D3134C347C.html">RPG分类</a></li>
                         <li class="chapter " data-level="1.3" data-path="https://naka1205.github.io/rpgsample/p/F20DC96FA50A49C7.html"><a href="https://naka1205.github.io/rpgsample/p/F20DC96FA50A49C7.html">写RPG时的软硬件需求</a></li>
                     <li class="divider"></li>
@@ -54,7 +54,7 @@
                     <li class="divider"></li>
                 <li class="header">人物移动</li>
                         <li class="chapter " data-level="5.1" data-path="https://naka1205.github.io/rpgsample/p/9BDC29F23C108FCD.html"><a href="https://naka1205.github.io/rpgsample/p/9BDC29F23C108FCD.html">移动的思维方式</a></li>
-                        <li class="chapter " data-level="5.2" data-path="https://naka1205.github.io/rpgsample/p/294F9E27361163C8.html"><a href="https://naka1205.github.io/rpgsample/p/294F9E27361163C8.html">移动的动画</a></li>
+                        <li class="chapter  active " data-level="5.2" data-path="https://naka1205.github.io/rpgsample/p/294F9E27361163C8.html"><a href="https://naka1205.github.io/rpgsample/p/294F9E27361163C8.html">移动的动画</a></li>
                         <li class="chapter " data-level="5.3" data-path="https://naka1205.github.io/rpgsample/p/850A8F5D7D49913A.html"><a href="https://naka1205.github.io/rpgsample/p/850A8F5D7D49913A.html">移动的程序实例</a></li>
                     <li class="divider"></li>
                 <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
@@ -65,25 +65,81 @@
     <div class="book-body">
         <div class="body-inner">
             <div class="book-header" role="navigation">
-                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/rpgsample/p/FEEC8D8FB78C0C58.html">何谓角色扮演游戏（RPG）</a></h1>
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/rpgsample/p/294F9E27361163C8.html">移动的动画</a></h1>
             </div>
             <div class="page-wrapper" tabindex="-1" role="main">
                 <div class="page-inner">
                     <div id="book-search-results">
                         <div class="search-noresults">
                             <section class="normal markdown-section">
-                                <h3 id="%E4%BD%95%E8%B0%93%E8%A7%92%E8%89%B2%E6%89%AE%E6%BC%94%E6%B8%B8%E6%88%8F%EF%BC%88RPG%EF%BC%89" name="%E4%BD%95%E8%B0%93%E8%A7%92%E8%89%B2%E6%89%AE%E6%BC%94%E6%B8%B8%E6%88%8F%EF%BC%88RPG%EF%BC%89">何谓角色扮演游戏（RPG）</h3>
-<p>角色扮演游戏(RPG,RolePlayingGame的缩写)究竟是指什么样的游戏内容?</p>
-<p>如果游戏过程没有电脑参与的话(如tabletalk*i1-1、版图游戏(boardgame)等),角色扮演(RolePlaying)就如同字面上的意义,它其实是一种由游戏玩家自己扮演角色的游戏。在遵守既定规则的前提下,游戏玩家摇身一变成为某个角色(即若选择勇者的角色,自己就是勇者),自己决定采取哪些行动、让游戏发展下去。因此,这类游戏的可能发展层面很广,可任由游戏玩家自由发挥。</p>
-<p>不过如果你的游戏对手是电脑,就不会有太大的选择空间,顶多也只是死板的“选A?选B?”而已。</p>
-<p>那么,电脑游戏中有一个称为RPG的分类,它又代表什么意思?</p>
-<h4 id="%E7%94%B5%E8%84%91%E6%B8%B8%E6%88%8F%E7%9A%84RPG" name="%E7%94%B5%E8%84%91%E6%B8%B8%E6%88%8F%E7%9A%84RPG">电脑游戏的RPG</h4>
-<p>电脑游戏分类中被列为RPG的部分可再细分成几个种类。
-当你跟三五好友在谈论到RPG的时候,相信对一些从游戏代表作流传出来的名词都已经耳熟能详,例如“创世纪(Ultimate)”、“水(Wizardry)”。不过毕竟这些经典游戏都属于元老级,可能很多人都没有玩过,所以本书在形容时会避免引用早期游戏的名词,像是“OO形式”、“XX风格”等。
-即使RPG游戏可细分成几种不同的形式,但它们还是有共同的部分。即:</p>
-<h4 id="%E6%9C%89%E6%95%85%E4%BA%8B%E6%80%A7%E3%80%81%E6%9C%89%E6%88%98%E6%96%97%E6%80%A7%E7%9A%84%E6%B8%B8%E6%88%8F" name="%E6%9C%89%E6%95%85%E4%BA%8B%E6%80%A7%E3%80%81%E6%9C%89%E6%88%98%E6%96%97%E6%80%A7%E7%9A%84%E6%B8%B8%E6%88%8F">有故事性、有战斗性的游戏</h4>
-<p>也许这种分类方法有点极端,不过一般把缺乏故事性的游戏划为“战略战争模拟游戏”,而不着重在战斗攻击方面的游戏则称为“冒险游戏”或“模拟系列(visualnovel)”。其实市面上的游戏杂志也多半采取同样的分类方式。</p>
-<p>因此,本书也是设定为“PG是指有战斗、而且有故事性的电脑游戏”。</p>                            </section>
+                                <h3 id="%E7%A7%BB%E5%8A%A8%E7%9A%84%E5%8A%A8%E7%94%BB" name="%E7%A7%BB%E5%8A%A8%E7%9A%84%E5%8A%A8%E7%94%BB">移动的动画</h3>
+<p>在处理人物的移动时,要是转瞬间就突然出现在移动位置,好像太单调了一点。一般人物造型可以让它“走过去”,而怪兽、机器人造型也可以边做什么动作、边移动过去,这样不是很有趣吗?</p>
+<p>试试看吧,做个动画格式让人物大摇大摆的走过去。</p>
+<h4 id="%E5%8A%A8%E7%94%BB%E6%A0%BC%E5%BC%8F" name="%E5%8A%A8%E7%94%BB%E6%A0%BC%E5%BC%8F">动画格式</h4>
+<p>有脚的人物前进时,是两脚一左一右往前踏出去。</p>
+<p>也就是说,只要不断切换右脚向前和左脚向前的CG,就能产生行走的视觉效果。但是两个动作之间总是要有其他动作帮忙串场,所以还要有一张两脚在同样位置的CG插在中间才会自然。动画格式的CG其实不需要太细微的小动作,中间衔接的CG只要拿站立静止姿势的CG就很好用了。</p>
+<p>如图5-11不断重复“右一中间一左-中间-右……”,同时配合移动人物位置,步行的姿态就很自然了。</p>
+<p>这个模式是所需CG图数量最少的步行模式。虽然说数量已经很少,但如图5-12所示,光一个移动的动作就需要12个不同模式的CG图。</p>
+<p>当然如果你坚持慢工出细活,也没什么错,不过请先考虑一下每个出现的人物都要有4个方向的模式,制作得太精致反而会加重作业的负荷喔!</p>
+<h4 id="%E7%99%BB%E5%BD%95%E5%8A%A8%E7%94%BB" name="%E7%99%BB%E5%BD%95%E5%8A%A8%E7%94%BB">登录动画</h4>
+<p>移动是利用前面4个模式,按照“中间”一“右脚前”+“中间”一“左脚前”的顺序不断循环。因此把1个方格内的移动设成1个循环的话,以后只要用同一个模式即可,而且循环的结束动作若设为“中间CG”,停下来的时候就不需要特别做处理。</p>
+<p>请根据这几个原则,想一想要如何寻找移动路线和登录动画。</p>
+<pre><code class="C++">void MoveCharacter(int x, int y, int 步数)
+{
+    if(回到起点){
+        return;         //结束
+    }
+    步数++;
+    if(上一格的步数 == 步数){
+        MoveCharacter(x, y-1, 步数);
+        登录动画(下);
+    }
+    else if(下一格的步数 == 步数)){
+        MoveCharacter(x, y+1, 步数);
+        登录动画(上);
+    }
+    else if(左一格的步数 == 步数)){
+        MoveCharacter(x-1, y, 步数);
+        登录动画(右);
+    }
+    else if(右一格的步数 == 步数)){
+        MoveCharacter(x+1, y, 步数);
+        登录动画(左);
+    }
+}</code></pre>
+<p>寻找路线是先找到“目前步数(脚印)+1”的步数的方格并移动过去,再回到起点后才算结束。寻找的顺序是“上一下一右一左”,往条件符合的方向前进。</p>
+<p>这个部分也使用了递归。等到从MoveCharacter成员函数的调用返回之后,再把符合移动方向的动画登录到内存。</p>
+<p>我们按照动作顺序走走看,假设抵达位置的坐标是(3,4),出发点坐标是(2,2),如图5-13所示。</p>
+<p>整个寻找路线的处理可整理如下:</p>
+<ul>
+<li>先调用一开始的MoveCharacter(3,4,1)</li>
+<li>因为“上一格”符合条件,故调用MoveCharacter(3,3,2)</li>
+<li>因为“上一格”符合条件,故调用MoveCharacter(3,2,3)</li>
+<li>因为“左一格”符合条件,故调用MoveCharacter(2,4)</li>
+<li>此时,已经回到起点,故“return”</li>
+<li>从MoveCharacter(2,2,4)返回,登录“动画(右)”</li>
+<li>从MoveCharacter(3,2,3)返回,登录“动画(下)”</li>
+<li>从MoveCharacter(3,3,2)返回,登录“动画(下)”</li>
+<li>最后,从一开始的MoveCharacter(3,4,1)返回并结束</li>
+</ul>
+<p>我们得到的动画登录顺序是“右+一下”,照这样移动看看!从图5-13的④(坐标2,2)依照这个移动顺序出发,就会抵达①(坐标3,4)。原来“反序”登录是这个意思。</p>
+<p>最后一个动作,利用计时器依序让已登录的动画模式在画面上跑,设定的人物就会开始步行移动。</p>
+<hr />
+<p>递归调用(recursivecall)</p>
+<hr />
+<p>有些人认为逆归调用是最难搞懂的部分之一,其实递归调用本身并没那么难,比较难懂的应该是使用时机。</p>
+<p>“不知道怎么用,所以没用过”,“没用过,所以也没想过要去了解”,“没1下过功夫,所以还是一头家水”,怎样,听起来很熟悉吧?</p>
+<p>递归调用中最常出现的就是“阶乘”,即“n!=n*(n-1)1(但n为1时,其值为1)”,写成程序则为:</p>
+<pre><code class="C++">int factortal(int n)
+{
+    if(n == 1)
+        return 1;
+    return n * factortal(n-1);
+}</code></pre>
+<p>有时候利用循环可能还比递归调用更有效率,而且很多时候就算使用递归调用也不见得有什么好处,也许这就是一般人不太熟悉递归调用用法的最大理由。</p>
+<p>就拿本书的程序实例来说,寻我移动范围(FindDistance)时利用递归调用会比较好写,但寻找移动顺序(MoveCharacter)若想用循环也是三两下就搞定。</p>
+<p>先考虑用循环去写,若发现用循环结构可能会变得很复杂时,不妨改用逃归的概念反而可以化繁为简。觉得先考虑递归结构,遇到“尾端递归(tailrecursion)”时再改成循环当然也通喔!</p>
+<p>尾端递归是指在处理的“尾端”做递归。</p>                            </section>
                         </div>
                         <div class="search-results">
                             <div class="has-results">
@@ -100,7 +156,10 @@
                 </div>
             </div>
         </div>
-                <a href="https://naka1205.github.io/rpgsample/p/BC79B4D3134C347C.html" class="navigation navigation-next " aria-label="RPG分类">
+                <a href="https://naka1205.github.io/rpgsample/p/9BDC29F23C108FCD.html" class="navigation navigation-prev " aria-label="移动的思维方式">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/rpgsample/p/850A8F5D7D49913A.html" class="navigation navigation-next " aria-label="移动的程序实例">
             <i class="fa fa-angle-right"></i>
         </a>
                
@@ -110,12 +169,12 @@ var gitbook = gitbook || [];
 gitbook.push(function() {
     gitbook.page.hasChanged({
         "page": {
-            "title":  "何谓角色扮演游戏（RPG）",
+            "title":  "移动的动画",
             "next": {
-                "title": "RPG分类"
+                "title": "移动的程序实例"
             },
             "previous": {
-                "title": ""
+                "title": "移动的思维方式"
             }
         },
         "config": {
