@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <title>写RPG时的软硬件需求 · C++实例教程</title>
+    <title>战斗规则 · C++实例教程</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="如欲动手写RPG时,在软硬件上有那些条件需求?首先,既然是写程序,当然就要有适合程序设计的软件环境。另外也要有可设计地图、造型人物等的软硬件环境、软硬件环境的高低标准也会受到前述“系统概要”的影响。">
+    <meta name="description" content="战斗这个部分在进入程序逻辑之前,还是要先想一想“规则”。游戏规则可能在主体设计时就已经决定好,但通常只是拟出大致上的规范准则,很少连细节都规定得一清二楚,所以开始动手做的时候就会出现一些问题,也许是忘了规定、或者是定义太笼统含糊等等。">
     <meta name="keywords" content="角色扮演 教程">
     <meta name="generator" content="PKBook">
     <link rel="stylesheet" href="https://naka1205.github.io/rpgsample/assets/css/style.css">
@@ -33,7 +33,7 @@
                 <li class="header">写一个角色扮演游戏</li>
                         <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/rpgsample/p/FEEC8D8FB78C0C58.html"><a href="https://naka1205.github.io/rpgsample/p/FEEC8D8FB78C0C58.html">何谓角色扮演游戏（RPG）</a></li>
                         <li class="chapter " data-level="1.2" data-path="https://naka1205.github.io/rpgsample/p/BC79B4D3134C347C.html"><a href="https://naka1205.github.io/rpgsample/p/BC79B4D3134C347C.html">RPG分类</a></li>
-                        <li class="chapter  active " data-level="1.3" data-path="https://naka1205.github.io/rpgsample/p/F20DC96FA50A49C7.html"><a href="https://naka1205.github.io/rpgsample/p/F20DC96FA50A49C7.html">写RPG时的软硬件需求</a></li>
+                        <li class="chapter " data-level="1.3" data-path="https://naka1205.github.io/rpgsample/p/F20DC96FA50A49C7.html"><a href="https://naka1205.github.io/rpgsample/p/F20DC96FA50A49C7.html">写RPG时的软硬件需求</a></li>
                     <li class="divider"></li>
                 <li class="header">游戏系统的设计</li>
                         <li class="chapter " data-level="2.1" data-path="https://naka1205.github.io/rpgsample/p/057DE479BA15F0C2.html"><a href="https://naka1205.github.io/rpgsample/p/057DE479BA15F0C2.html">RPG系统</a></li>
@@ -59,7 +59,7 @@
                     <li class="divider"></li>
                 <li class="header">战斗</li>
                         <li class="chapter " data-level="6.1" data-path="https://naka1205.github.io/rpgsample/p/714FCCE62BEAE7EF.html"><a href="https://naka1205.github.io/rpgsample/p/714FCCE62BEAE7EF.html">读入地图数据</a></li>
-                        <li class="chapter " data-level="6.2" data-path="https://naka1205.github.io/rpgsample/p/DE18A13DD466BCF5.html"><a href="https://naka1205.github.io/rpgsample/p/DE18A13DD466BCF5.html">战斗规则</a></li>
+                        <li class="chapter  active " data-level="6.2" data-path="https://naka1205.github.io/rpgsample/p/DE18A13DD466BCF5.html"><a href="https://naka1205.github.io/rpgsample/p/DE18A13DD466BCF5.html">战斗规则</a></li>
                         <li class="chapter " data-level="6.3" data-path="https://naka1205.github.io/rpgsample/p/372F73F2A1CBD002.html"><a href="https://naka1205.github.io/rpgsample/p/372F73F2A1CBD002.html">攻击时的动画</a></li>
                         <li class="chapter " data-level="6.4" data-path="https://naka1205.github.io/rpgsample/p/D6377D95C3DAE065.html"><a href="https://naka1205.github.io/rpgsample/p/D6377D95C3DAE065.html">魔法攻击的处理</a></li>
                         <li class="chapter " data-level="6.5" data-path="https://naka1205.github.io/rpgsample/p/84AF096B75C4D0F4.html"><a href="https://naka1205.github.io/rpgsample/p/84AF096B75C4D0F4.html">CPU端的思维模式</a></li>
@@ -74,39 +74,73 @@
     <div class="book-body">
         <div class="body-inner">
             <div class="book-header" role="navigation">
-                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/rpgsample/p/F20DC96FA50A49C7.html">写RPG时的软硬件需求</a></h1>
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/rpgsample/p/DE18A13DD466BCF5.html">战斗规则</a></h1>
             </div>
             <div class="page-wrapper" tabindex="-1" role="main">
                 <div class="page-inner">
                     <div id="book-search-results">
                         <div class="search-noresults">
                             <section class="normal markdown-section">
-                                <h3 id="%E5%86%99RPG%E6%97%B6%E7%9A%84%E8%BD%AF%E7%A1%AC%E4%BB%B6%E9%9C%80%E6%B1%82" name="%E5%86%99RPG%E6%97%B6%E7%9A%84%E8%BD%AF%E7%A1%AC%E4%BB%B6%E9%9C%80%E6%B1%82">写RPG时的软硬件需求</h3>
-<p>如欲动手写RPG时,在软硬件上有那些条件需求?
-首先,既然是写程序,当然就要有适合程序设计的软件环境。另外也要有可设计地图、造型人物等的软硬件环境、软硬件环境的高低标准也会受到前述“系统概要”的影响。</p>
-<h4 id="%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%9A%84%E8%BD%AF%E7%A1%AC%E4%BB%B6%E9%9C%80%E6%B1%82" name="%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%9A%84%E8%BD%AF%E7%A1%AC%E4%BB%B6%E9%9C%80%E6%B1%82">程序设计的软硬件需求</h4>
-<p>本书的相关说明仅锁定在Windows平台上的RPG设计,既然游戏软件的使用平台是Windows操作系统,当然就要有一台运行Windows操作系统的电脑。因为程序设计也是在Windows操作系统下进行的,所以程序开发和测试可以用同一台电脑操作就好。跟开发初期需投入大量资本(如专用的设计开发环境等)的游戏机(consumermachine)或电玩机(arcademachine)相较之下,Windows的门槛算是比较低的了。利用Windows系统所能取得的数据量较多、而且取得容易,这也是Windows系统的优势之一。</p>
-<p>如果你是个人想尝试写游戏软件,要再准备一台电脑专门用来做程序设计的话,未免太浪费,平常惯用的电脑就可以“直接”用来写程序了。就算电脑配备不是现在的最高等级,应该也没有程序运行不了的问题,只要注意可用硬盘空间不能太少就行了。</p>
-<p>书中所介绍的程序实例已经在MicrosoftVisualC++6.0(ServicePack5)环境下确认过编译和执行都没问题,所以读者的硬件环境要升级到能运行VisualC++呢(编译注:书中随附实例也作了中文化,放在光盘Chinese文件夹内与原书日文版本有区分,并在Windows2000中文版和VisualC++6.0中编译执行过)。</p>
-<h4 id="C%2FC%2B%2B%E7%BC%96%E5%BE%8B%E5%99%A8" name="C%2FC%2B%2B%E7%BC%96%E5%BE%8B%E5%99%A8">C/C++编律器</h4>
-<p>要写Windows应用软件,当然要有支持Windows系统的程序设计用软件。目前市面上可见的程序设计软件所提供的是“集成程序开发环境-IDE(IntegratedDevelopmentEnvironment)”,不会只有编译器而已。C/C++语言已经有ANSI规格来规范和约束,所以版本间的差异不大,比较有问题的是程序开发软件的操作使用界面和附加的函数库,不同厂商所提供的内容都不尽相同。</p>
-<p>本书所使用的VisualC++6.0也有几种不同的版本。如果目的是要写游戏程序,就不需要用到“企业版EnterpriseEdition”版本,“标准版StandardEdition”或“专业版ProfessionalEdition”版就很够用了。不过标准版版比专业版版少了“程序码最佳化”、“Profiler”和“MFC函数库静态链接”这三种功能,而且也没有“InstallShield(安装程序制作工具)”。基于上述理由,建议各位使用专业版(其他详细说明可参见微软网站等。特别是版本更新时,组织结构、内容都可能会随之变动)。</p>
-<p>微软公司所推出的综合性程序开发软件“VisualStudio”(内含VisualC++),基于因应程序修改(bugfix)和该产品销售后所推出之新操作系统的考虑,会多次利用“ServicePack”提供版本更新的服务。</p>
-<p>程序开发软件里的bug会让人防不胜防,所以建议各位尽量使用最新版本的开发环境、搭配最新版的ServicePack。不过,有时候使用新版的ServicePack反而会多比新bug,因此要事先备份以便随时能还原到前一次的版本。相关的最新信息请参见微软网站。</p>
-<h4 id="%E7%A1%AC%E4%BB%B6%E7%8E%AF%E5%A2%83" name="%E7%A1%AC%E4%BB%B6%E7%8E%AF%E5%A2%83">硬件环境</h4>
-<p>运行VisualC++的电脑硬件规格如表1-1所示,但这份数据是VisualC++推出时(1998个9月)的硬件需求,相信用户目前使用的电脑硬件条件都已经远超过它所建议的最低需求。</p>
-<p>即使你打算另外买一台电脑专门用来写程序,现在最基本的“入门机种”也都比表中所列硬件规格更高文件,所以硬件规格应该不太需要另外花时间。</p>
-<h4 id="%E5%85%B6%E4%BB%96%E7%A1%AC%E4%BB%B6%E9%9C%80%E6%B1%82" name="%E5%85%B6%E4%BB%96%E7%A1%AC%E4%BB%B6%E9%9C%80%E6%B1%82">其他硬件需求</h4>
-<p>一般电脑的标准“外部存储媒体”是指磁盘或光驱。如果想要存储现在的游戏内容,1.44磁盘显然有容量不足的问题,考虑到数据内容分享或数据备份的可能需求,刻录机会是比较好的选择。</p>
-<p>以CG和背景音乐为例,这么大的文件根本很难用软盘做备份(不知道要使用几十张、儿百张软盘),而且软盘备份的动作又慢,万一备份还没做好就发生软盘损坏的问题,实际损失更是难以估计。当你计划“要写某个程序”时,一定要先考虑到备份问题。</p>
-<p>另外,由于要处理彩色的CG,所以最好能准备彩色打印机。整个游戏的制作往往不单只出于一人之手,而是由一组人共同制作出来的,一组人共有一台其实也很够了。进行讨论的地点不一定会有电脑,所以能用彩色打印机印出CG将对整个制作制作有很大的帮助。RPG设计的使用情况如图1-7所示。</p>
-<h4 id="%E6%94%B6%E9%9B%86%E6%95%B0%E6%8D%AE" name="%E6%94%B6%E9%9B%86%E6%95%B0%E6%8D%AE">收集数据</h4>
-<p>前面在C/C++编译器的章节也有提过,VisualC++会随产品附赠MSDN,大部分有关Win32.API等的必要信息都可以在这里找到。不过,MSDN毕竞只是提供参考而已,建议还是有一本其他的程序设计书籍或入门介绍等会比较方便。</p>
-<p>其实,各位手边现成的游戏软件也是一种数据。如果·字不漏地全盘照抄,当然会失去游戏本身的原创性,但话说回来,RPG在使用操作和特殊用语方面都相当复杂,所以需要有·定程度的“规范*注1-4”。如果程序设计者在白已设计的游戏软件上沿用其他现成游戏软件的基本规范,游戏玩家不需要翻阅使用手册就能马上上手(相信想要动手写软件的朋友都是身经百战的电玩高于,讲这个可能太画蛇添足了)。</p>
-<h4 id="RPG%E8%AE%BE%E8%AE%A1%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6%2C%E5%A6%82%E5%9C%B0%E5%9B%BE%E7%BC%96%E8%BE%91%E5%99%A8%28MapEditor%29%E7%AD%89" name="RPG%E8%AE%BE%E8%AE%A1%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6%2C%E5%A6%82%E5%9C%B0%E5%9B%BE%E7%BC%96%E8%BE%91%E5%99%A8%28MapEditor%29%E7%AD%89">RPG设计相关工具软件,如地图编辑器(MapEditor)等</h4>
-<p>当然利用Adobe Photoshop等图形编辑软件也可以制作地图或主角人物造型(指显示在地图上的人物),不过如果有专门的工具软件将会大大提高工作效率。一旦要制作的CG数量增多,工作效率的高低就会有很大的差别。</p>
-<p>通常RPG的工具软件都是“自制软件”,因为同一个工具软件不一定适用于所有游戏软件,必须配合设计适当的工具软件。但如果只需要·些基本功能就好,到“Vector”等一些软件下载相关网站应该能找到可用的现成工具软件。</p>
-<p>Freeware(免费软件)没有使用版权的问题,就算是Shareware(共享软件)也通常都有免费的试用期间,在这段期间内可以确认它是否顺手好用。决定自己写工具软件之前,不妨先试试!也算是自己动手写的一个经验参考。</p>                            </section>
+                                <h3 id="%E6%88%98%E6%96%97%E8%A7%84%E5%88%99" name="%E6%88%98%E6%96%97%E8%A7%84%E5%88%99">战斗规则</h3>
+<p>战斗这个部分在进入程序逻辑之前,还是要先想一想“规则”。游戏规则可能在主体设计时就已经决定好,但通常只是拟出大致上的规范准则,很少连细节都规定得一清二楚,所以开始动手做的时候就会出现一些问题,也许是忘了规定、或者是定义太笼统含糊等等。</p>
+<h4 id="%E5%86%B3%E5%AE%9A%E5%88%A4%E6%96%AD%E4%BE%8B%E7%A8%8B%28Routine%29" name="%E5%86%B3%E5%AE%9A%E5%88%A4%E6%96%AD%E4%BE%8B%E7%A8%8B%28Routine%29">决定判断例程(Routine)</h4>
+<p>第一个要确定的就是“判断例程”,这部分相当于“审理判断”。
+根据“攻击力”、“防御力”等参数,决定要给对方多大的破坏力,如果把随机数都算进来的话,“命中率”和“临界值”之类的也会有影响。从这些数据指数,利用计算式求出破坏力。破坏力的公式不会强制“一定要怎么做”,游戏玩家可以自由决定,不过既然用公式求出结果,当然还是要参考结果去选择罗!</p>
+<h4 id="%E8%AE%A1%E7%AE%97%E6%97%B6%E6%89%80%E9%9C%80%E7%9A%84%E5%8F%82%E6%95%B0" name="%E8%AE%A1%E7%AE%97%E6%97%B6%E6%89%80%E9%9C%80%E7%9A%84%E5%8F%82%E6%95%B0">计算时所需的参数</h4>
+<p>在决定计算公式之前,再回顾--下必要参数的意义吧!</p>
+<ul>
+<li>攻击力:提高破坏力</li>
+<li>防御力:降低破坏力</li>
+<li>命中率:攻击的成功率</li>
+<li>临界值:临界爆发(更多攻击)的比率</li>
+</ul>
+<p>这里的数值是加计能力等级和小道具效果后的数值。没有其他外力的“原始”数值就姑且称为“基本攻击力”或“基本防御力”。</p>
+<p>举例来说,若攻击力跟基本攻击力两者间的关系为:</p>
+<p><strong>攻击力=(基本攻击力+小道具效果)×等级</strong></p>
+<p>若设为直接乘以等级,则当等级从1提升到2时,攻击力就会变成2倍,不过若等级从10提升到11时,则攻击力只提高1/10而已,如果想解决这个问题,也可以设定成每个等级都有相对应的常数(或者改用其他计算方式)。</p>
+<p>状态画面上所显示的攻击力可能是指“攻击力”,也可能是“基本攻击力”,要看游戏是如何定义。通常基本攻击力是根据武器等级而定时,则代表“基本攻击力”,若是指游戏玩家的目前状态时,则代表“攻击力”。</p>
+<p>道具效果可依字面解释,指因拥有该道具而增加(或减少)的数值,例如“提高攻击力的魔戒”等。</p>
+<h4 id="%E8%AE%A1%E7%AE%97%E7%A0%B4%E5%9D%8F%E5%8A%9B" name="%E8%AE%A1%E7%AE%97%E7%A0%B4%E5%9D%8F%E5%8A%9B">计算破坏力</h4>
+<p>为了简化说明起见,计算“破坏力”时的前提要件是不受随机数影响。这样就可以只考虑攻击力和防御力的参数。</p>
+<p>因为攻击力的作用是“提高”,而防御力的作用是“抵销”,按照这个简单的逻辑可推算出如下的计算公式:</p>
+<p><strong>破坏力=攻击力一防御力</strong></p>
+<p>如果使用这个公式,当防御力大于攻击力时破坏力会变成负数,显然有漏洞。当然你也可以设成若此公式计算结果为负数时,则为“0”或“1”,但再怎么处理,这个公式中的防御力效果还是太好。</p>
+<p>下面这个公式可以降低防御力的影响程度:</p>
+<p><strong>破坏力=攻击力 × A 一 防御力 × B</strong></p>
+<p>A、B均为常数。若A之值大于B,则能降低防御力的效果,但这不是根本的解决之道。</p>
+<p>发现了吗?对,不能用“减算”去求。那么,改成除算看看好了。</p>
+<p><strong>破坏力=攻击力 / 防御力 × A</strong></p>
+<p>直接用攻击力除以防御力时,若攻击力和防御力两者相当,则破坏力之值会接近“1”。为了避免破坏力之值有太多计算结果接近“1”,因此再乘以常数A。不过,这里又出现另外一个问题。当你遇到等级提高,而攻击力和防御力均变大时,所求出的破坏力就一成不变。</p>
+<p><strong>破坏力= 攻击力 × 攻击力 / 防御力</strong></p>
+<p>若计算公式修改如上,则当攻击力和防御力两者相等时,你的“攻击力”就是破坏力,这样看起来比较好。所以,这里就决定采用最后的计算公式。我们的最终目的还是在“能有比较好的结果”,因此多想一些不同的计算公式比较看看会很有用的。</p>
+<p>除了上述的计算公式之外,还有很多方法可以求出破坏力。各位只要上网打入关键字“RPG”、“计算破坏力”进行搜寻,就会跳出一大堆,从现有游戏的公式说明、到自制游戏的破坏力计算方法都有(要简单型、还是复杂型,任君选择)。</p>
+<h4 id="%E9%9A%8F%E6%9C%BA%E6%95%B0" name="%E9%9A%8F%E6%9C%BA%E6%95%B0">随机数</h4>
+<p>如果只有数值计算,CPU会老是出现同一个动作,而且两边的破坏力也没什么变化。更糟的是,只要某个打法赢过一次就永远都不会输了。</p>
+<p>这就是为什么要利用随机数的理由。如果计算公式含有随机数,同一套游戏就很难用“必胜方程序”打赢。版图式游戏的随机数有点像是“掷散子”。</p>
+<p>在什么情形之下要用到随机数?例如,发生“临界爆发”、“攻击失败”时,或是增减破坏力等的计算值。请注意,如果两种方法混用可能会不知所所以应适时、适当使用即可。</p>
+<p>随机数除了可以增加游戏的“偶发性”、提高游戏的趣味性,也可能让人烦躁,产生“哇,怎么会这样!”的负面感觉,最好不要设计太多负面走向,否则消费者玩起来很难兴致高昂。</p>
+<p>请各位注意一下,“临界爆发的出现比例为10%”并不等于“10次出现1次”,它的真正意思是每次攻击时有10%的概率会变成临界爆发。</p>
+<p>如果概率设为10%,连续出手2~3次就出现一次临界爆发的话也说得过去(考虑一下实际玩游戏时的攻击次数,连续出手3次时好像就会有)。如此来,若敌方被连续3次临界爆发攻击,很有可能就玩完了。反过来,这道理也可以应用在连续3次攻击失败的情况。</p>
+<p>随机数影响力太高时,策略反而就英雄无用武之地,所以别越写越高兴而弄了太多随机数喔!</p>
+<h5 id="%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%9A%84%E4%B8%B4%E7%95%8C%E7%88%86%E5%8F%91%E6%94%BB%E5%87%BB" name="%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%9A%84%E4%B8%B4%E7%95%8C%E7%88%86%E5%8F%91%E6%94%BB%E5%87%BB">随机数的临界爆发攻击</h5>
+<p>如欲利用随机数产生临界爆发攻击时,只要写成:</p>
+<pre><code class="C++">attack = ...; //
+if( rand % 100 &lt; 10 ){
+    attack += 2;
+}</code></pre>
+<p>rand是产生虚拟随机数的函数。由于rand值除以100的余数小于10的概率为10%,故设计成当余数小于10则破坏力增为2倍,那么破坏力增为2倍的概率就有10%。严格说来,除数为100时所得的余数并不平均,不过这里只是举例说明,就别那么斤斤计较啦!</p>
+<p>既然游戏设计是要“审理判断”攻击的结果,随机数就不应该用在判断不到的地方(即游戏玩家视野范围之外)。随机数必须用在“有显示出来”的数值。要是“审理判断”只是随便敷衍了事,这个游戏根本就不必再玩下去了(游戏在“掷散子”时,一定要在所有人看得见的地方掷)。</p>
+<h4 id="%E6%B1%82%E5%87%BA%E5%B0%84%E7%A8%8B%E8%B7%9D%E7%A6%BB" name="%E6%B1%82%E5%87%BA%E5%B0%84%E7%A8%8B%E8%B7%9D%E7%A6%BB">求出射程距离</h4>
+<p>攻击范围(射程距离)的求法同移动范围。近距离攻击(使剑或空手对打等)和远距离攻击(如弓箭)的计算方式看起来好像不同,不过范围的求法是递进性适应“范围1”,所以可以使用同一个逻辑。</p>
+<p>近距离攻击跟远距离攻击两边对于障碍物的看法或许不太一样,但是在范围1时并不能越过障碍物攻击,因此不会有问题。</p>
+<p>移动时会用“MapData:ChkMove”判断障碍物,但攻击时的判断还要另外写一个“MapData:ChkAttavck”。</p>
+<p><code>MapData:ChkAttavck</code>函数会忽略方格上的敌人或障碍物,所以只要用前面移动距离说明过的“脚印”做判断即可(这里并不是移动,用“脚印”来形容有点不伦不类,不过硬要改称“标记”也太矫杆过正,因此照旧称为“脚印”)。</p>
+<pre><code class="C++">// 是否可以攻击
+bool ChkAttack(int _dist)
+{
+    return attack_dist &lt; _dist;
+}</code></pre>
+<p>判断完成后,再利用sprite显示射程距离,如图6-1所示。</p>                            </section>
                         </div>
                         <div class="search-results">
                             <div class="has-results">
@@ -123,10 +157,10 @@
                 </div>
             </div>
         </div>
-                <a href="https://naka1205.github.io/rpgsample/p/BC79B4D3134C347C.html" class="navigation navigation-prev " aria-label="RPG分类">
+                <a href="https://naka1205.github.io/rpgsample/p/714FCCE62BEAE7EF.html" class="navigation navigation-prev " aria-label="读入地图数据">
             <i class="fa fa-angle-left"></i>
         </a>
-                <a href="https://naka1205.github.io/rpgsample/p/057DE479BA15F0C2.html" class="navigation navigation-next " aria-label="RPG系统">
+                <a href="https://naka1205.github.io/rpgsample/p/372F73F2A1CBD002.html" class="navigation navigation-next " aria-label="攻击时的动画">
             <i class="fa fa-angle-right"></i>
         </a>
                
@@ -136,12 +170,12 @@ var gitbook = gitbook || [];
 gitbook.push(function() {
     gitbook.page.hasChanged({
         "page": {
-            "title":  "写RPG时的软硬件需求",
+            "title":  "战斗规则",
             "next": {
-                "title": "RPG系统"
+                "title": "攻击时的动画"
             },
             "previous": {
-                "title": "RPG分类"
+                "title": "读入地图数据"
             }
         },
         "config": {
