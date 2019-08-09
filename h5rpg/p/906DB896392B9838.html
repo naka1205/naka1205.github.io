@@ -1,0 +1,470 @@
+<!DOCTYPE HTML>
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>游戏界面设计（二） · HTML5开发RPG游戏</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="除了上面的这些界面外，还有存档界面，商店界面等。至此，学习HTML5开发RPG游戏就结束了，这些博文只是让大家有个大概了解，具体请看源码。">
+    <meta name="keywords" content="HTML5开发RPG游戏">
+    <meta name="generator" content="PKBook">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/style.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/search.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/ebook.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/website.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css" rel="stylesheet">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://naka1205.github.io/h5rpg/assets/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://naka1205.github.io/h5rpg/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div class="book">
+    <div class="book-summary">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="输入关键词搜索" />
+        </div>
+        <nav role="navigation">
+    <ul class="summary">
+        <li><a href="https://naka1205.github.io/h5rpg/index.html" target="blank" class="header">概序</a></li>
+        <li class="divider"></li>
+                <li class="header">第一步</li>
+                        <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/h5rpg/p/C3D207FADFAF5841.html"><a href="https://naka1205.github.io/h5rpg/p/C3D207FADFAF5841.html">准备</a></li>
+                    <li class="divider"></li>
+                <li class="header">第二步</li>
+                        <li class="chapter " data-level="2.1" data-path="https://naka1205.github.io/h5rpg/p/9C30FBE79FB13821.html"><a href="https://naka1205.github.io/h5rpg/p/9C30FBE79FB13821.html">资源预加载</a></li>
+                    <li class="divider"></li>
+                <li class="header">第三步</li>
+                        <li class="chapter " data-level="3.1" data-path="https://naka1205.github.io/h5rpg/p/D76025B918B5C635.html"><a href="https://naka1205.github.io/h5rpg/p/D76025B918B5C635.html">基本对象设计（一）</a></li>
+                        <li class="chapter " data-level="3.2" data-path="https://naka1205.github.io/h5rpg/p/4D5F3CA0A1A7C8C7.html"><a href="https://naka1205.github.io/h5rpg/p/4D5F3CA0A1A7C8C7.html">基本对象设计（二）</a></li>
+                        <li class="chapter " data-level="3.3" data-path="https://naka1205.github.io/h5rpg/p/49224D56030C9863.html"><a href="https://naka1205.github.io/h5rpg/p/49224D56030C9863.html">基本对象设计（三）</a></li>
+                        <li class="chapter " data-level="3.4" data-path="https://naka1205.github.io/h5rpg/p/A43AAAD554420BE4.html"><a href="https://naka1205.github.io/h5rpg/p/A43AAAD554420BE4.html">基本对象设计（四）</a></li>
+                    <li class="divider"></li>
+                <li class="header">第四步</li>
+                        <li class="chapter " data-level="4.1" data-path="https://naka1205.github.io/h5rpg/p/7B45EBEA4E81B2F1.html"><a href="https://naka1205.github.io/h5rpg/p/7B45EBEA4E81B2F1.html">游戏对象设计</a></li>
+                    <li class="divider"></li>
+                <li class="header">第五步</li>
+                        <li class="chapter " data-level="5.1" data-path="https://naka1205.github.io/h5rpg/p/3F05B0A70B69E895.html"><a href="https://naka1205.github.io/h5rpg/p/3F05B0A70B69E895.html">游戏界面设计（一）</a></li>
+                        <li class="chapter  active " data-level="5.2" data-path="https://naka1205.github.io/h5rpg/p/906DB896392B9838.html"><a href="https://naka1205.github.io/h5rpg/p/906DB896392B9838.html">游戏界面设计（二）</a></li>
+                    <li class="divider"></li>
+                <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
+    </ul>
+</nav>
+    </div>
+    
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/h5rpg/p/906DB896392B9838.html">游戏界面设计（二）</a></h1>
+            </div>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">
+                                <h3 id="%E6%B8%B8%E6%88%8F%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1%EF%BC%88%E4%BA%8C%EF%BC%89" name="%E6%B8%B8%E6%88%8F%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1%EF%BC%88%E4%BA%8C%EF%BC%89">游戏界面设计（二）</h3>
+<p>3、战斗界面
+战斗界面是经典的回合制战斗界面，其代码如下：</p>
+<pre><code class="js">GFunction.loadBattlePanel=function(){//加载战斗界面
+    GMain.BattlePanel.clearControls();
+    var battlePanel=new JControls.Panel({x:0,y:0},GMain.Size);
+    battlePanel.setBGImage(ResourceData.Images.battleBG1);
+    battlePanel.loadData=function(){//加载角色到战斗界面
+        this.clearControls();
+        if(GMain.BattlesGameRole[1].length==1){
+            GMain.BattlesGameRole[1][0].setRelativePosition({x:150,y:70});
+        }else if(GMain.BattlesGameRole[1].length==2){
+            GMain.BattlesGameRole[1][0].setRelativePosition({x:80,y:120});
+            GMain.BattlesGameRole[1][1].setRelativePosition({x:280,y:20});
+        }else if(GMain.BattlesGameRole[1].length==3){
+            GMain.BattlesGameRole[1][0].setRelativePosition({x:80,y:230});
+            GMain.BattlesGameRole[1][1].setRelativePosition({x:280,y:130});
+            GMain.BattlesGameRole[1][2].setRelativePosition({x:480,y:30});
+        }else if(GMain.BattlesGameRole[1].length==4){
+            GMain.BattlesGameRole[1][0].setRelativePosition({x:40,y:120});
+            GMain.BattlesGameRole[1][1].setRelativePosition({x:240,y:20});
+            GMain.BattlesGameRole[1][2].setRelativePosition({x:180,y:180});
+            GMain.BattlesGameRole[1][3].setRelativePosition({x:380,y:80});
+        }else if(GMain.BattlesGameRole[1].length==5){
+            GMain.BattlesGameRole[1][0].setRelativePosition({x:80,y:100});
+            GMain.BattlesGameRole[1][1].setRelativePosition({x:280,y:0});
+            GMain.BattlesGameRole[1][2].setRelativePosition({x:80,y:230});
+            GMain.BattlesGameRole[1][3].setRelativePosition({x:280,y:130});
+            GMain.BattlesGameRole[1][4].setRelativePosition({x:480,y:30});
+        }
+        this.addControlInLast(GMain.BattlesGameRole[1]);
+        var size1={x:400,y:380};
+        if(GMain.BattlesGameRole[0].length==1){
+            GMain.BattlesGameRole[0][0].setRelativePosition({x:size1.x+180,y:size1.y-120});
+        }else if(GMain.BattlesGameRole[0].length==2){
+            GMain.BattlesGameRole[0][0].setRelativePosition({x:size1.x+120,y:size1.y-80});
+            GMain.BattlesGameRole[0][1].setRelativePosition({x:size1.x+240,y:size1.y-160});
+        }else if(GMain.BattlesGameRole[0].length==3){
+            GMain.BattlesGameRole[0][0].setRelativePosition({x:size1.x+60,y:size1.y-40});
+            GMain.BattlesGameRole[0][1].setRelativePosition({x:size1.x+180,y:size1.y-120});
+            GMain.BattlesGameRole[0][2].setRelativePosition({x:size1.x+300,y:size1.y-200});
+        }else if(GMain.BattlesGameRole[0].length==4){
+            GMain.BattlesGameRole[0][0].setRelativePosition({x:size1.x,y:size1.y});
+            GMain.BattlesGameRole[0][1].setRelativePosition({x:size1.x+80,y:size1.y-50});
+            GMain.BattlesGameRole[0][2].setRelativePosition({x:size1.x+160,y:size1.y-100});
+            GMain.BattlesGameRole[0][3].setRelativePosition({x:size1.x+240,y:size1.y-150});
+        }
+        this.addControlInLast(GMain.BattlesGameRole[0]);
+    };
+
+    //加载战斗控制面板
+    GMain.BattleControlPanel=new JControls.Panel({x:GMain.Size.width-80, y:120},{width:80,height:200});
+    GMain.BattleControlPanel.loadData=function(){
+        this.clearControls();
+        var btnAttack=new JControls.Button({x:0,y:0},{width:80,height:40});
+        btnAttack.buttonLabel.setText("攻击").setFontType("bold").setFontSize(22).setTextPos({x:15,y:5});
+        btnAttack.BGColor=JColor.white;
+        btnAttack.onClick=function(){
+            GMain.FromAttackSelect=true;
+            JMain.JForm.canvas.style.cursor="pointer"
+            GMain.BattlesGameRole[0][GMain.SelectLeaderNum].usedSkillName="attack1";
+        }
+        var btnSkill=new JControls.Button({x:0,y:40},{width:80,height:40});
+        btnSkill.buttonLabel.setText("技能").setFontType("bold").setFontSize(22).setTextPos({x:15,y:5});
+        btnSkill.BGColor=JColor.white;
+        btnSkill.onClick=function(){
+            JMain.JForm.canvas.style.cursor="default"
+            GMain.SkillSelectPanel.loadSkill();
+        }
+        var btnDefense=new JControls.Button({x:0,y:80},{width:80,height:40});
+        btnDefense.buttonLabel.setText("防御").setFontType("bold").setFontSize(22).setTextPos({x:15,y:5});
+        btnDefense.BGColor=JColor.white;
+        btnDefense.onClick=function(){
+            JMain.JForm.canvas.style.cursor="default"
+            GMain.BattlesGameRole[0][GMain.SelectLeaderNum].bodyState.defend=true;
+            GMain.BattlesGameRole[0][GMain.SelectLeaderNum].clearControls();
+            GFunction.nextAttackSelect();
+        }
+        var btnDrug=new JControls.Button({x:0,y:120},{width:80,height:40});
+        btnDrug.buttonLabel.setText("物品").setFontType("bold").setFontSize(22).setTextPos({x:15,y:5});
+        btnDrug.BGColor=JColor.white;
+        btnDrug.onClick=function(){
+            JMain.JForm.canvas.style.cursor="default"
+            GMain.DrugUsePanel.loadDrug();
+        }
+        GMain.BattleBtnRunAway=new JControls.Button({x:0,y:160},{width:80,height:40});
+        GMain.BattleBtnRunAway.buttonLabel.setText("逃跑").setFontSize(22).setFontType("bold").setTextPos({x:15,y:5});
+        GMain.BattleBtnRunAway.BGColor=JColor.white;
+        GMain.BattleBtnRunAway.onClick=function(){
+            JMain.JForm.canvas.style.cursor="default"
+            if(JFunction.Random(1,100)&lt;=95){
+                GFunction.showMapPanel();
+            }else{
+                new JControls.MessageBox({width:200,height:0},["逃跑失败！"]);
+                this.enabled=false;
+            }
+        }
+        this.addControlInLast([btnAttack,btnSkill,btnDefense,btnDrug, GMain.BattleBtnRunAway]);
+    };
+    GMain.SkillSelectPanel=new JControls.Panel({x:200,y:80},{width:400,height:240});
+    GMain.SkillSelectPanel.BGColor=JColor.gray;
+    GMain.SkillSelectPanel.visible=false;
+    GMain.SkillSelectPanel.loadSkill=function(){//加载技能使用面板
+        this.clearControls();
+        this.visible=true;
+        this.isShowTitle=false;
+        this.showTitle("技能");
+        var skillName=GMain.BattlesGameRole[0][GMain.SelectLeaderNum].gameRoleData.skills.split(",");
+        var skillsButtons=[];
+        for(var i=0;i&lt;skillName.length;i++){
+            if(GMain.BattlesGameRole[0][GMain.SelectLeaderNum].level&gt;=ResourceData.Skill[skillName[i]].fromGameRole.level){
+                var l=skillsButtons.length;
+                var wNum= 8,cWidth=200,cHeight=40;
+                skillsButtons[l]=new JControls.Button({x:(i%wNum)*cWidth,y:parseInt(i/2)*cHeight+40},{width:cWidth,height:cHeight});
+                skillsButtons[l].buttonLabel.setText(ResourceData.Skill[skillName[i]].showName).setFontType("bold").setFontSize(22).setTextPos({x:15,y:5});
+                skillsButtons[l].skillName=skillName[i];
+                skillsButtons[l].onClick=function(){
+                    GMain.BattlesGameRole[0][GMain.SelectLeaderNum].usedSkillName=this.skillName;
+                    GMain.SkillSelectPanel.visible=false;
+                    if(ResourceData.Skill[this.skillName].toGameRole.num==1){
+                        GMain.BattleControlPanel.visible=false;
+                        JMain.JForm.canvas.style.cursor="pointer"
+                    }else{
+                        GFunction.nextAttackSelect();
+                    }
+                }
+            }
+        }
+        this.addControlInLast(skillsButtons);
+        this.closeButton.visible=true;
+        this.onCloseButtonClick=function(){
+            GMain.BattleControlPanel.visible=true;
+        };
+    }
+    GMain.DrugUsePanel=new JControls.Panel({x:200,y:80},{width:400,height:240});
+    GMain.DrugUsePanel.BGColor=JColor.gray;
+    GMain.DrugUsePanel.visible=false;
+    GMain.DrugUsePanel.loadDrug=function(){//加载物品使用面板
+        this.clearControls();
+        this.isShowTitle=false;
+        this.showTitle("物品");
+        this.visible=true;
+        GMain.SelectedGoods=null;
+        //var level=GMain.BattlesGameRole[0][GMain.SelectLeaderNum].level;
+        var drugs=[];
+        for(var i=0;i&lt;GMain.Goods.length;i++){
+            var l=drugs.length;
+            var wNum= 8,cWidth=50,cHeight=50;
+            if(GMain.Goods[i].goodsData.goodsType=="drug"){
+                drugs[l]=GMain.Goods[i].setRelativePosition({x:(i%wNum)*cWidth,y:parseInt(i/wNum)*cHeight+40}).setSize({width:cWidth,height:cHeight});
+                drugs[l].onClick=function(){
+                    GMain.BattlesGameRole[0][GMain.SelectLeaderNum].usedSkillName="useDrug";
+                    GMain.BattlesGameRole[0][GMain.SelectLeaderNum].usedGoods=this;
+                    GMain.DrugUsePanel.visible=false;
+                    if(ResourceData.Goods[this.goodsData.showName].toGameRole.num==1){
+                        GMain.BattleControlPanel.visible=false;
+                        JMain.JForm.canvas.style.cursor="pointer";
+                    }else{
+                        GFunction.nextAttackSelect();
+                    }
+                }
+            }
+        }
+        this.addControlInLast(drugs);
+        this.onCloseButtonClick=function(){
+            GMain.BattleControlPanel.visible=true;
+        }
+    }
+    GMain.BattlePanel.addControlInLast([battlePanel, GMain.BattleControlPanel,GMain.SkillSelectPanel,GMain.DrugUsePanel]);
+};</code></pre>
+<p>4、数据界面
+数据界面，用于查看和使用物品、查看主角数据等。</p>
+<pre><code class="js">GFunction.loadDataPanel=function(){//加载数据界面
+    GMain.DataPanel.clearControls();
+    GMain.DataPanel.loadData=function(){
+        for(var i=0;i&lt;GMain.DataPanel.controls.length;i++){
+            GMain.DataPanel.controls[i].loadData&amp;&amp;GMain.DataPanel.controls[i].loadData();
+        }
+    };
+    var w1=150;
+    var w2=450;
+    var w3=200;
+    var GameRoleHeadPanel=new JControls.Panel({x:0,y:0},{width:w1,height:120});   ////////////////////
+    GameRoleHeadPanel.loadData=function(){//加载主角头像
+        this.clearControls();
+        var GameRoleHeadPic=new JControls.PictureBox({x:2,y:2},{width:w1-4,height:116});
+        GameRoleHeadPic.setPicture(ResourceData.Images[GMain.BattlesGameRole[0][GMain.SelectLeaderNum].getHeadImageName()]);
+        this.addControlInLast([GameRoleHeadPic]);
+    }
+
+    var LeadersPanel=new JControls.Panel({x:0,y:120},{width:w1,height:96});///////////////////////
+    LeadersPanel.loadData=function(){//加载主角，点击可查看其数据
+        this.clearControls();
+        var ls=[];
+        for(var i=0;i&lt;GMain.BattlesGameRole[0].length;i++){
+            ls[i]=new JControls.Label({x:0,y:i*24},GMain.BattlesGameRole[0][i].getShowName()+"("+GMain.BattlesGameRole[0][i].getJobsName()+")")
+                .setFontType("Bold").setSize({width:w1,height:24}).setTextPos({x:5,y:2});
+            ls[i].num=i;
+            if(i== GMain.SelectLeaderNum)ls[i].isSelect=true;
+            else ls[i].isSelect=false;
+            ls[i].onClick=function(){
+                GMain.SelectLeaderNum=this.num;
+                GMain.DataPanel.loadData();
+                return true;
+            }
+        }
+        this.addControlInLast(ls);
+    }
+
+    var EquipmentPanel=new JControls.Panel({x:w1,y:0},{width:w2,height:300});///////////////////
+    EquipmentPanel.loadData=function(){//加载当前选中主角身上装备
+        this.clearControls();
+        var bodySlotsSize={width:80,height:80};
+        var jg={x:55,y:15};
+        for(var bodySlots in GMain.BattlesGameRole[0][GMain.SelectLeaderNum].bodySlots){
+            if(GMain.BattlesGameRole[0][GMain.SelectLeaderNum].bodySlots[bodySlots]){
+                var p={x:0,y:0};
+                switch (bodySlots){
+                    case "handR":
+                        p={x:jg.x,y:bodySlotsSize.height+jg.y*2};
+                        break;
+                    case "fingerR":
+                        p={x:jg.x,y:bodySlotsSize.height*2+jg.y*3};
+                        break;
+                    case "head":
+                        p={x:bodySlotsSize.width+jg.x*2,y:jg.y};
+                        break;
+                    case "body":
+                        p={x:bodySlotsSize.width+jg.x*2,y:bodySlotsSize.height+jg.y*2};
+                        break;
+                    case "foot":
+                        p={x:bodySlotsSize.width+jg.x*2,y:bodySlotsSize.height*2+jg.y*3};
+                        break;
+                    case "neck":
+                        p={x:bodySlotsSize.width*2+jg.x*3,y:jg.y};
+                        break;
+                    case "handL":
+                        p={x:bodySlotsSize.width*2+jg.x*3,y:bodySlotsSize.height+jg.y*2};
+                        break;
+                    case "fingerL":
+                        p={x:bodySlotsSize.width*2+jg.x*3,y:bodySlotsSize.height*2+jg.y*3};
+                        break;
+                }
+                GMain.BattlesGameRole[0][GMain.SelectLeaderNum].bodySlots[bodySlots].setRelativePosition(p).setSize(bodySlotsSize);
+                this.addControlInLast([GMain.BattlesGameRole[0][GMain.SelectLeaderNum].bodySlots[bodySlots]]);
+            }
+        }
+    };
+
+    var GoodsPanel=new JControls.Panel({x:w1,y:300},{width:w2,height:180});//////////////////
+    GoodsPanel.loadData=function(){//加载物品栏
+        this.clearControls();
+        for(var i=0;i&lt;GMain.Goods.length;i++){
+            if(!GMain.Goods[i].isUsed){
+                this.addControlInLast([GMain.Goods[i]]);
+            }
+        }
+        var wNum=10,cWidth=45,cHeight=45;
+        for(var i=0;i&lt;this.controls.length;i++){
+            this.controls[i].setRelativePosition({x:(i%wNum)*cWidth,y:parseInt(i/wNum)*cHeight}).setSize({width:cWidth,height:cHeight});
+        }
+        this.goldLabel=new JControls.Label({x:50,y:155}).setFontType("Bold");
+        this.goldLabel.setText("金币:"+GMain.GoldNum);
+        this.addControlInLast([this.goldLabel]);
+    };
+
+    var GoodsStatsPanel=new JControls.Panel({x:w1+w2,y:0},{width:w3,height:450});////////////////////
+    GoodsStatsPanel.loadData=function(){//加载选中物品的属性数据
+        this.clearControls();
+        if(GMain.SelectedGoods){
+            var goodsName=GMain.SelectedGoods.goodsData.showName;
+            var btnZBSY=new JControls.Label({x:20,y:3}).setFontType("Bold")
+                .setFontColor(JColor.blue).setSize({width:80,height:24}).setBGColor(JColor.red).setTextPos({x:15,y:4});
+            if(GMain.SelectedGoods.isUsed){
+                btnZBSY.setText("移除装备");
+            }else{
+                btnZBSY.setText("使用道具");
+            }
+            btnZBSY.onClick=function(){
+                if(GMain.SelectedGoods.isUsed)GMain.BattlesGameRole[0][GMain.SelectLeaderNum].deleteCombatGear(GMain.SelectedGoods);
+                else GMain.BattlesGameRole[0][GMain.SelectLeaderNum].useGoods(GMain.SelectedGoods);
+                GMain.DataPanel.loadData();
+                return true;
+            }
+            this.addControlInLast([btnZBSY]);
+            var i=0;
+            var h=18, ls=5,th=30;
+            this.addControlInLast([new JControls.Label({x:ls,y:h*(i++)+th},goodsName).setFontType("Bold").setFontColor(JColor.gray)]);
+            this.addControlInLast([new JControls.Label({x:ls,y:h*(i++)+th},
+                "级别："+ResourceData.Evaluation[parseInt(GMain.SelectedGoods.goodsData.goodsLevel)])]);
+            this.addControlInLast([new JControls.Label({x:ls,y:h*(i++)+th},
+                "类型："+ResourceData.GoodsType[GMain.SelectedGoods.goodsData.goodsType])]);
+            for(var attribute in GMain.SelectedGoods.goodsData.attributes){
+                this.addControlInLast([new JControls.Label({x:ls,y:h*(i++)+th},ResourceData.AttributesName[attribute]+"："+ GMain.SelectedGoods.goodsData.attributes[attribute])]);
+            }
+
+        }
+    };
+    var ButtonPanel=new JControls.Panel({x:w1+w2,y:450},{width:w3,height:30});//////////////////
+    ButtonPanel.loadData=function(){//继续游戏按钮
+        this.clearControls();
+        var btnGoBack=new JControls.Button({x:20,y:0},{width:110,height:30}).setBGColor(JColor.gray).setText("继续游戏");
+        btnGoBack.onClick=function(){
+            GFunction.showMapPanel();
+            return true;
+        }
+        this.addControlInLast([btnGoBack]);
+    }
+    var BaseStatsPanel=new JControls.Panel({x:0,y:216},{width:w1,height:336});/////////////////////
+    BaseStatsPanel.loadData=function(){//加载选中主角的各项数据
+        this.clearControls();
+        var bh=20;
+        var i=0
+        var SelectLeader=GMain.BattlesGameRole[0][GMain.SelectLeaderNum];
+        var baseStatsItem=[
+            new JControls.Label({x:2,y:2+bh*i++},ResourceData.AttributesName.Level+":"+SelectLeader.level)
+            ,new JControls.Label({x:2,y:2+bh*i++},ResourceData.AttributesName.EXP+":"+SelectLeader.EXP+"/"+SelectLeader.getLevelExp())
+            ,new JControls.Label({x:2,y:2+bh*i++},ResourceData.AttributesName.HP+":"+SelectLeader.HP+"/"+SelectLeader.getMaxHP())
+            ,new JControls.Label({x:2,y:2+bh*i++},ResourceData.AttributesName.MP+":"+SelectLeader.MP+"/"+SelectLeader.getMaxMP())
+            ,new JControls.Label({x:2,y:2+bh*i++},ResourceData.AttributesName.STR+":"+SelectLeader.getSTR())
+            ,new JControls.Label({x:2,y:2+bh*i++},ResourceData.AttributesName.VIT+":"+SelectLeader.getVIT())
+            ,new JControls.Label({x:2,y:2+bh*i++},ResourceData.AttributesName.DEX+":"+SelectLeader.getDEX())
+            ,new JControls.Label({x:2,y:2+bh*i++},ResourceData.AttributesName.INT+":"+SelectLeader.getINT())
+            ,new JControls.Label({x:2,y:2+bh*i++},ResourceData.AttributesName.ATK+":"+SelectLeader.getATK())
+            ,new JControls.Label({x:2,y:2+bh*i++},ResourceData.AttributesName.DEF+":"+SelectLeader.getDEF())
+            ,new JControls.Label({x:2,y:2+bh*i++},ResourceData.AttributesName.MATK+":"+SelectLeader.getMATK())
+            ,new JControls.Label({x:2,y:2+bh*i++},ResourceData.AttributesName.MDEF+":"+SelectLeader.getMDEF())
+            ,new JControls.Label({x:2,y:2+bh*i++},ResourceData.AttributesName.SPD+":"+SelectLeader.getSpeed())
+        ];
+        for(var i=0;i&lt;baseStatsItem.length;i++)baseStatsItem[i].setFontType("Bold")
+        this.addControlInLast(baseStatsItem);
+    };
+    GMain.DataPanel.addControlInLast([GameRoleHeadPanel,LeadersPanel,BaseStatsPanel,EquipmentPanel,GoodsPanel,GoodsStatsPanel,ButtonPanel]);
+};</code></pre>
+<p>除了上面的这些界面外，还有存档界面，商店界面等。
+至此，学习HTML5开发RPG游戏就结束了，这些博文只是让大家有个大概了解，具体请看源码。</p>                            </section>
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+                                <h1 class="search-results-title">
+                                    关于"<span class='search-query'></span>"的搜索结果共<span class='search-results-count'></span>条
+                                </h1>
+                                <ul class="search-results-list"></ul>
+                            </div>
+                            <div class="no-results">
+                                <h1 class="search-results-title">没有"<span class='search-query'></span>"相关内容</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <a href="https://naka1205.github.io/h5rpg/p/3F05B0A70B69E895.html" class="navigation navigation-prev " aria-label="游戏界面设计（一）">
+            <i class="fa fa-angle-left"></i>
+        </a>
+               
+    </div>
+<script>
+var gitbook = gitbook || [];
+gitbook.push(function() {
+    gitbook.page.hasChanged({
+        "page": {
+            "title":  "游戏界面设计（二）",
+            "next": {
+                "title": ""
+            },
+            "previous": {
+                "title": "游戏界面设计（一）"
+            }
+        },
+        "config": {
+            "gitbook": "*",
+            "theme": "default",
+            "variables": {},
+            "plugins": ["-lunr", "-search", "-highlight","search-pro"],
+            "pluginsConfig": {
+                "search-pro": {},
+                "highlight": {},
+                "sharing": {},
+                "fontsettings": {},
+                "theme-default": {}
+            },
+            "structure": {},
+            "pdf": {},
+            "styles": {}
+        },
+        "file": {},
+        "gitbook": {},
+        "basePath": "https://naka1205.github.io/h5rpg",
+        "book": {}
+    });
+});
+</script>
+</div>
+<script src="https://naka1205.github.io/h5rpg/assets/js/gitbook.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/theme.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/jquery.mark.min.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/search.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/buttons.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/fontsettings.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/plugin.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+</body>
+</html>

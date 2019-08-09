@@ -1,0 +1,787 @@
+<!DOCTYPE HTML>
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>游戏对象设计 · HTML5开发RPG游戏</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="游戏对象主要分为以下几类：1、地图单元；地图单元是组成地图的单元格，地图单元中可以放置触发器，主角行走在单元格上会触发放置的触发器事件。2、触发器；触发器只是一个统称，它具体之后可以是宝箱、传送阵等，可以控制游戏的进度。3、物品；物品包括装备、药品等。4、游戏角色；游戏角色可分为主角和NPC。">
+    <meta name="keywords" content="HTML5开发RPG游戏">
+    <meta name="generator" content="PKBook">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/style.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/search.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/ebook.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/website.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css" rel="stylesheet">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://naka1205.github.io/h5rpg/assets/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://naka1205.github.io/h5rpg/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div class="book">
+    <div class="book-summary">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="输入关键词搜索" />
+        </div>
+        <nav role="navigation">
+    <ul class="summary">
+        <li><a href="https://naka1205.github.io/h5rpg/index.html" target="blank" class="header">概序</a></li>
+        <li class="divider"></li>
+                <li class="header">第一步</li>
+                        <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/h5rpg/p/C3D207FADFAF5841.html"><a href="https://naka1205.github.io/h5rpg/p/C3D207FADFAF5841.html">准备</a></li>
+                    <li class="divider"></li>
+                <li class="header">第二步</li>
+                        <li class="chapter " data-level="2.1" data-path="https://naka1205.github.io/h5rpg/p/9C30FBE79FB13821.html"><a href="https://naka1205.github.io/h5rpg/p/9C30FBE79FB13821.html">资源预加载</a></li>
+                    <li class="divider"></li>
+                <li class="header">第三步</li>
+                        <li class="chapter " data-level="3.1" data-path="https://naka1205.github.io/h5rpg/p/D76025B918B5C635.html"><a href="https://naka1205.github.io/h5rpg/p/D76025B918B5C635.html">基本对象设计（一）</a></li>
+                        <li class="chapter " data-level="3.2" data-path="https://naka1205.github.io/h5rpg/p/4D5F3CA0A1A7C8C7.html"><a href="https://naka1205.github.io/h5rpg/p/4D5F3CA0A1A7C8C7.html">基本对象设计（二）</a></li>
+                        <li class="chapter " data-level="3.3" data-path="https://naka1205.github.io/h5rpg/p/49224D56030C9863.html"><a href="https://naka1205.github.io/h5rpg/p/49224D56030C9863.html">基本对象设计（三）</a></li>
+                        <li class="chapter " data-level="3.4" data-path="https://naka1205.github.io/h5rpg/p/A43AAAD554420BE4.html"><a href="https://naka1205.github.io/h5rpg/p/A43AAAD554420BE4.html">基本对象设计（四）</a></li>
+                    <li class="divider"></li>
+                <li class="header">第四步</li>
+                        <li class="chapter  active " data-level="4.1" data-path="https://naka1205.github.io/h5rpg/p/7B45EBEA4E81B2F1.html"><a href="https://naka1205.github.io/h5rpg/p/7B45EBEA4E81B2F1.html">游戏对象设计</a></li>
+                    <li class="divider"></li>
+                <li class="header">第五步</li>
+                        <li class="chapter " data-level="5.1" data-path="https://naka1205.github.io/h5rpg/p/3F05B0A70B69E895.html"><a href="https://naka1205.github.io/h5rpg/p/3F05B0A70B69E895.html">游戏界面设计（一）</a></li>
+                        <li class="chapter " data-level="5.2" data-path="https://naka1205.github.io/h5rpg/p/906DB896392B9838.html"><a href="https://naka1205.github.io/h5rpg/p/906DB896392B9838.html">游戏界面设计（二）</a></li>
+                    <li class="divider"></li>
+                <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
+    </ul>
+</nav>
+    </div>
+    
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/h5rpg/p/7B45EBEA4E81B2F1.html">游戏对象设计</a></h1>
+            </div>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">
+                                <h3 id="%E6%B8%B8%E6%88%8F%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1" name="%E6%B8%B8%E6%88%8F%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1">游戏对象设计</h3>
+<p>游戏对象主要分为以下几类：</p>
+<p>1、地图单元
+地图单元是组成地图的单元格，地图单元中可以放置触发器，主角行走在单元格上会触发放置的触发器事件。
+2、触发器
+触发器只是一个统称，它具体之后可以是宝箱、传送阵等，可以控制游戏的进度。
+3、物品
+物品包括装备、药品等。
+4、游戏角色
+游戏角色可分为主角和NPC。</p>
+<p>1、地图单元
+地图单元可设置游戏角色是否可以通行，代码如下：</p>
+<pre><code class="js">var GControls={};
+GControls.MapCell = Class.create(JControls.PictureBox, {
+    walk:null,//是否可以行走
+    initialize:function ($super,  argP, argWH, argPicName) {
+        $super( argP, argWH);
+        if(argPicName)this.setMapPic(argPicName);
+    },
+    setMapPic:function(mapPicName){
+        if(mapPicName){
+            this.setPicture(ResourceData.Images[ResourceData.MainPic[mapPicName].imageName]
+                ,ResourceData.MainPic[mapPicName].picPosition);
+            if(ResourceData.MainPic[mapPicName].walk)this.walk=true;
+            else this.walk=false;
+        }
+        return this;
+    }
+});</code></pre>
+<p>其中ResourceData.MainPic如下：</p>
+<pre><code class="js">
+var ResourceData= {
+    MainPic:{
+        //imageName：资源ResourceData.Images中的图片名称，picPosition：从图片的那个位置开始显示，walk：是否可以通行
+        Move_0_0:{"imageName":"move","picPosition":{"x":0,"y":0},"walk":true}
+    }
+}</code></pre>
+<p>2、触发器
+代码如下：</p>
+<pre><code class="js">GControls.Trigger = Class.create(JControls.PictureBox, {//触发装置，适用如宝箱（Treasure），传送阵（JumpToMap）等
+    open:false,//是否可以触发
+    eventData:null,//触发装置数据
+    triggerType:null,
+    initialize:function ($super,  argP, argWH, argTriggerPicName,triggerType) {
+        $super( argP, argWH, ResourceData.Images[ResourceData.MainPic[argTriggerPicName].imageName]);
+        if(triggerType)this.triggerType=triggerType;
+        else this.triggerType="Treasure";//默认为宝箱
+        this.setPicture(ResourceData.Images[ResourceData.MainPic[argTriggerPicName].imageName]
+            ,ResourceData.MainPic[argTriggerPicName].picPosition);
+    },
+    onTrigger:function(){//触发
+        switch(this.triggerType){
+            case "Treasure":
+                var a=[], b=[];
+                if(this.eventData.goods)b=this.eventData.goods.split(",");
+                if(this.eventData.goldNum){
+                    a[0]="获得"+this.eventData.goldNum+"金币.";
+                    GMain.GoldNum+=parseInt(this.eventData.goldNum);
+                }
+                GFunction.gainGoods(b);
+                for(var i=0;i&lt; b.length;i++){
+                    a[a.length]="获得"+ResourceData.Goods[b[i]].showName+".";
+                }
+                var msgBox=new JControls.MessageBox({width:200,height:0},a);
+                msgBox.onClick=function(){
+                    this.remove.call(this);
+                    GMain.MapPanel.saveShowImageData();//更新地图缓存数据
+                    return true;
+                }
+                this.open=true;
+                this.picPosition.x+= this.picSize.width;
+                break;
+            case "JumpToMap":
+                GMain.FloorsNum=this.eventData.goToFloorNum;
+                GMain.MapData=GFunction.createMap();
+                GMain.loadMapPanel();
+                GMain.showMapPanel();
+                break;
+            default: break;
+        }
+    }
+});</code></pre>
+<p>可以通过重写onTrigger方法来实现不同触发事件。</p>
+<p>3、物品
+代码如下：</p>
+<pre><code class="js">GControls.Goods = Class.create(JControls.PictureBox, {
+    num:null,//数量
+    goodsData:null,//物品数据
+    isUsed:null,//是否装备在身上
+    initialize:function ($super,goodsName) {
+        $super();
+        this.num=1;
+        this.isUsed=false;
+        var goodsLabel=new JControls.Label({x:0,y:0}, this.num)
+            .setTextPos({x:2, y:2}).setFontSize(15).setFontColor(JColor.red);
+        this.addControlInLast([goodsLabel]);
+        this.BGColor=JColor.white;
+        this.setGoodsName(goodsName);
+    },
+    setNum:function(num){
+        this.num=num;
+        return this;
+    },
+    setSize:function($super,size){
+        $super(size);
+        this.controls[0].setSize(size);
+    },
+    setGoodsName:function(goodsName){
+        if(goodsName){
+            this.setPicture(ResourceData.Images[ResourceData.Goods[goodsName].imageName]
+                ,ResourceData.Goods[goodsName].picPosition);
+            this.goodsData=ResourceData.Goods[goodsName];
+        }
+        return this;
+    },
+    getSaveData:function(){
+        var saveData={};
+        saveData.goodsData=this.goodsData;
+        saveData.num=this.num;
+        saveData.isUsed=this.isUsed;
+    },
+    beginShow:function($super){
+        if(this.num&gt;1){
+            this.controls[0].setText(this.num);
+            this.controls[0].visible=true;
+        }
+        else  this.controls[0].visible=false;
+        $super();
+    },
+    onClick:function(){
+        if(GMain.SelectedGoods){
+            GMain.SelectedGoods.selected=false;
+        }
+        GMain.SelectedGoods=this;
+        GMain.SelectedGoods.selected=true;
+        GMain.DataPanel.loadData();
+        return true;
+    }
+});</code></pre>
+<p>其中ResourceData.Goods如下：</p>
+<pre><code class="js">var ResourceData= {
+    Goods:{
+        //showName:物品名称，goodsLevel：物品级别，useStandards：使用要求，goodsType：物品类型，imageName：图片名称，picPosition：图片中得显示位置，attributes：物品属性
+        "ZB1_0_0":{"showName":"长剑",goodsLevel:1,useStandards:{level:1,jobsName:"Soldier"},"goodsType":"handR","imageName":"ZB1",
+            "picPosition":{"x":0,"y":0},attributes:{"ATK":"10"}}
+    }
+}</code></pre>
+<p>4、游戏角色4、游戏角色
+代码如下：</p>
+<pre><code class="js">GControls.GameRole=Class.create(JControls.AnimationBox,{
+    GameRoleData:null,//GameRole键值
+    mStep:4,//行走步伐数值
+    moveDirection:GMain.Direction.down,//移动方向，37:左， 38:上，39:右，40:下
+    level:1,//等级
+    EXP:0,//经验值
+    base:null,//基础能力
+    HP:0,//剩余血值
+    MP:0,//剩余魔力值
+    bodySlots:null,//穿戴的装备
+    ///////////
+    basePosition:null,//战斗时站立的位置
+    toGameRoleArray:null,//要攻击对象数组
+    usedSkillName:null,//要释放的技能
+    attackTime:null,//攻击计时
+    isAttacking:null,//攻击或施法中
+    bodyState:null,//附加状态
+    /////
+    GameRoleSign:1,//敌对GameRole
+    isControl:false,
+    usedGoods:null,
+
+    initialize :function ($super,argGameRoleName,GameRoleSign) {
+        $super();
+        //this.canMove=false;
+        this.bodyState={defend:false,died:false};
+        this.base={STR:0,VIT:0,DEX:0,INT:0,HP:0,MP:0};
+        this.bodySlots={head:null,body:null,foot:null,handL:null,handR:null,neck:null,fingerL:null,fingerR:null,glove:null};
+        this.setGameRoleName(argGameRoleName,GameRoleSign);
+    },
+    setGameRoleName:function(GameRoleName,GameRoleSign){
+        if(GameRoleName){
+            this.GameRoleData=ResourceData.GameRole[GameRoleName];
+            this.HP=this.getMaxHP();
+            this.MP=this.getMaxMP();
+        }
+        if(GameRoleSign==1){
+            this.initBattle();
+            this.GameRoleSign=1;
+        }
+        else{
+            this.initMove();
+            this.GameRoleSign=0;
+        }
+        return this;
+    },
+    setRelativePosition:function ($super,relativePosition) {
+        $super(relativePosition);
+        if(GMain.IsBattle)this.basePosition={x:relativePosition.x,y:relativePosition.y};
+        return this;
+    },
+    selectAttackBegin:function(){
+        GMain.FromAttackSelect=false;
+        GMain.BattleControlPanel.visible=true;
+        this.isHighLight=true;
+        this.usedSkillName=null;
+        this.clearControls();
+        this.addControlInLast([
+            new JControls.Label({x:0,y:-60},"LV"+this.level+" "+this.getShowName()).setFontType("bold")
+            ,new JControls.Label({x:0,y:-40}).setFontColor(JColor.red).setFontType("bold")
+            ,new JControls.Label({x:0,y:-20}).setFontColor(JColor.blue).setFontType("bold")
+        ]);
+    },
+    setBattleState:function(state){
+        this.animationTime = 0;
+        this.animationPlayNum = 0;
+        this.blockInvert=false;
+        switch (state){
+            case ResourceData.BattleState.stand:
+                this.animationOffset={WNum:0,HNum:1};
+                break;
+            case ResourceData.BattleState.moveTo:
+                this.animationOffset={WNum:0,HNum:0};
+                break;
+            case ResourceData.BattleState.moveBack:
+                this.animationOffset={WNum:0,HNum:0};
+                this.blockInvert=true;
+                break;
+            case ResourceData.BattleState.underFire:
+                this.animationOffset={WNum:0,HNum:3};
+                break;
+            case ResourceData.BattleState.attack:
+                this.animationOffset={WNum:0,HNum:4};
+                break;
+            case ResourceData.BattleState.die:
+                this.animationOffset={WNum:0,HNum:6};
+                break;
+        }
+        return this;
+    },
+    getHP:function(){
+        return this.HP;
+    },
+    getMP:function(){
+        return this.MP;
+    },
+    attack:function(toGameRoleArray,usedSkillName){
+        this.toGameRoleArray=toGameRoleArray;
+        this.isHighLight=false;
+        this.attackTime=0;
+        if(usedSkillName)this.usedSkillName=usedSkillName;
+    },
+    playEffects:function (animationName,playPosition,size){
+        var effects=new JControls.AnimationBox(playPosition,size,animationName);
+        effects.loop=false;
+        this.parent.addControlInLast([effects]);
+    },
+    onClick:function(){
+        if(GMain.BattlesGameRole[0][GMain.SelectLeaderNum].usedSkillName){
+            JMain.JForm.canvas.style.cursor="default";
+            GMain.BattlesGameRole[0][GMain.SelectLeaderNum].attack([this]);
+            GMain.BattlesGameRole[0][GMain.SelectLeaderNum].clearControls();
+            GFunction.nextAttackSelect();
+        }
+        return true;
+    },
+
+    getHeadImageName:function(){
+        return this.GameRoleData.headImageName;
+    },
+    getShowName:function(){
+        return ResourceData.Professions[this.GameRoleData.jobsName].showName;
+    },
+    getJobsName:function(){
+        return this.GameRoleData.jobsName;
+    },
+    getLevelExp:function(){
+        var num1=0;
+        for(var i=this.level;i&gt;0;i--)num1+=100*i;
+        return num1;
+    },
+    getSTR:function(){
+        var n=this.GameRoleData.growUp.STR*this.level+this.base.STR;
+        for(var bs in this.bodySlots){
+            if(this.bodySlots[bs]&amp;&amp;this.bodySlots[bs].goodsData.attributes.STR)n+=parseInt(this.bodySlots[bs].goodsData.attributes.STR);
+        }
+        return n;
+    },
+    getVIT:function(){
+        var n=this.GameRoleData.growUp.VIT*this.level+this.base.VIT;
+        for(var bs in this.bodySlots){
+            if(this.bodySlots[bs]&amp;&amp;this.bodySlots[bs].goodsData.attributes.VIT){
+                n+=parseInt(this.bodySlots[bs].goodsData.attributes.VIT);
+            }
+        }
+        return n;
+    },
+    getDEX:function(){
+        var n=this.GameRoleData.growUp.DEX*this.level+this.base.DEX;
+        for(var bs in this.bodySlots){
+            if(this.bodySlots[bs]&amp;&amp;this.bodySlots[bs].goodsData.attributes.DEX)n+=parseInt(this.bodySlots[bs].goodsData.attributes.DEX);
+        }
+        return n;
+    },
+    getINT:function(){
+        var n=this.GameRoleData.growUp.INT*this.level+this.base.INT;
+        for(var bs in this.bodySlots)
+            if(this.bodySlots[bs]&amp;&amp;this.bodySlots[bs].goodsData.attributes.INT)n+=parseInt(this.bodySlots[bs].goodsData.attributes.INT);
+        return n;
+    },
+    getATK:function(){
+        var n=this.getSTR()*2+this.getDEX();
+        for(var bs in this.bodySlots)
+            if(this.bodySlots[bs]&amp;&amp;this.bodySlots[bs].goodsData.attributes.ATK)n+=parseInt(this.bodySlots[bs].goodsData.attributes.ATK);
+        return n;
+    },
+    getDEF:function(){
+        var n=this.getVIT();
+        for(var bs in this.bodySlots)
+            if(this.bodySlots[bs]&amp;&amp;this.bodySlots[bs].goodsData.attributes.DEF)n+=parseInt(this.bodySlots[bs].goodsData.attributes.DEF);
+        return n;
+    },
+    getMATK:function(){
+        var n=this.getINT()*2;
+        for(var bs in this.bodySlots)
+            if(this.bodySlots[bs]&amp;&amp;this.bodySlots[bs].goodsData.attributes.MATK)n+=parseInt(this.bodySlots[bs].goodsData.attributes.MATK);
+        return n;
+    },
+    getMDEF:function(){
+        var n=this.getINT();
+        for(var bs in this.bodySlots)
+            if(this.bodySlots[bs]&amp;&amp;this.bodySlots[bs].goodsData.attributes.MDEF)n+=parseInt(this.bodySlots[bs].goodsData.attributes.MDEF);
+        return n;
+    },
+    getMaxHP:function(){
+        var n=this.base.HP+this.getVIT()*5+this.GameRoleData.growUp.HP*this.level;
+        for(var bs in this.bodySlots)
+            if(this.bodySlots[bs]&amp;&amp;this.bodySlots[bs].goodsData.attributes.HP)n+=parseInt(this.bodySlots[bs].goodsData.attributes.HP);
+        return n;
+    },
+    getMaxMP:function(){
+        var n=this.base.MP+this.getINT()*5+this.GameRoleData.growUp.MP*this.level;
+        for(var bs in this.bodySlots)
+            if(this.bodySlots[bs]&amp;&amp;this.bodySlots[bs].goodsData.attributes.MP)n+=parseInt(this.bodySlots[bs].goodsData.attributes.MP);
+        return n;
+    },
+    getSpeed:function(){
+        var n=this.getDEX();
+        for(var bs in this.bodySlots)
+            if(this.bodySlots[bs]&amp;&amp;this.bodySlots[bs].goodsData.attributes.SPD)n+=parseInt(this.bodySlots[bs].goodsData.attributes.SPD);
+        return n;
+    },
+    addEXP:function(exp){
+        this.EXP+=exp;
+        var levelExp=this.getLevelExp();
+        if(this.EXP&gt;=levelExp){
+            this.level++;
+            this.EXP=this.EXP-levelExp;
+            this.HP=this.getMaxHP();
+            this.MP=this.getMaxMP();
+        }
+    },
+    useGoods:function(goods){//使用物品
+        //{head:null,body:null,foot:null,handL:null,handR:null,neck:null,fingerL:null,fingerR:null,glove:null};
+        //"0"&gt;武器,"1"&gt;护甲,"2"&gt;头盔,"3"&gt;靴子,"4"&gt;戒子,"5"&gt;项链,"6"&gt;盾牌,"7"&gt;药品
+        switch (goods.goodsData.goodsType){
+            case "drug":
+                if(goods.goodsData.attributes.HP){
+                    this.HP+=parseInt(goods.goodsData.attributes.HP);
+                    if( this.HP&gt;this.getMaxHP())this.HP=this.getMaxHP();
+                }
+                if(goods.goodsData.attributes.MP){
+                    this.MP+=parseInt(goods.goodsData.attributes.MP);
+                    if( this.MP&gt;this.getMaxMP())this.HP=this.getMaxMP();
+                }
+                if(goods.goodsData.attributes.MaxHP){
+                    this.base.HP+=parseInt(goods.goodsData.attributes.MaxHP);
+                }
+                if(goods.goodsData.attributes.MaxMP){
+                    this.base.MP+=parseInt(goods.goodsData.attributes.MaxMP);
+                }
+                if(goods.goodsData.attributes.STR){
+                    this.base.STR+=parseInt(goods.goodsData.attributes.STR);
+                }
+                if(goods.goodsData.attributes.VIT){
+                    this.base.VIT+=parseInt(goods.goodsData.attributes.VIT);
+                }
+                if(goods.goodsData.attributes.DEX){
+                    this.base.DEX+=parseInt(goods.goodsData.attributes.DEX);
+                }
+                if(goods.goodsData.attributes.INT){
+                    this.base.INT+=parseInt(goods.goodsData.attributes.INT);
+                }
+                goods.num--;
+                for (var i = 0; i &lt; GMain.Goods.length; i++) {
+                    if(GMain.Goods[i].num==0){
+                        for (var j = i; j &lt; GMain.Goods.length-1; j++) {
+                            GMain.Goods[j]=GMain.Goods[j+1];
+                        }
+                        GMain.Goods.length-=1;
+                    }
+                }
+                GMain.SelectedGoods=null;
+                break;
+            default:
+                if(this.bodySlots[goods.goodsData.goodsType])this.bodySlots[goods.goodsData.goodsType].isUsed=false;
+                this.bodySlots[goods.goodsData.goodsType]=goods;
+                this.bodySlots[goods.goodsData.goodsType].isUsed=true;
+                break;
+        }
+
+    },
+    deleteCombatGear:function(goods){//卸下装备
+        if(goods){
+            goods.isUsed=false;
+            this.bodySlots[goods.goodsData.goodsType]=null;
+        }
+
+    },
+    setMoveDirection:function(direction){//设置行走方向
+        this.moveDirection=direction;
+        this.animationTime=0;
+        switch (this.moveDirection){
+            case GMain.Direction.left:
+                this.animationOffset={WNum:0,HNum:1};
+                GMain.MapPanel.moveStep={x:this.mStep,y:0};
+                break;
+            case GMain.Direction.up:
+                this.animationOffset={WNum:0,HNum:3};
+                GMain.MapPanel.moveStep={x:0,y:this.mStep};
+                break;
+            case GMain.Direction.right:
+                this.animationOffset={WNum:0,HNum:2};
+                GMain.MapPanel.moveStep={x:this.mStep*-1,y:0};
+                break;
+            case GMain.Direction.down:
+                this.animationOffset={WNum:0,HNum:0};
+                GMain.MapPanel.moveStep={x:0,y:this.mStep*-1};
+                break;
+        }
+
+    },
+    initMove:function(){
+        this.setRelativePosition({x:GMain.CellSize.width*GMain.InPoint.x,y:GMain.CellSize.height*(GMain.InPoint.y-0.5)});
+        this.setSize({width:GMain.CellSize.width,height:GMain.CellSize.height*1.5});
+        this.setAnimation(this.GameRoleData.animation.move);
+        this.setMoveDirection(this.moveDirection);
+        this.canMove=false;
+        GMain.MapPanel.moveStep=null;
+        this.stopPlayAnimation=true;
+    },
+    initBattle:function(){
+        this.setSize({width:80,height:80});
+        this.setAnimation(this.GameRoleData.animation.battle);
+        this.setBattleState(ResourceData.BattleState.stand);
+        this.usedSkillName=null;
+        this.usedGoods=null;
+        GMain.MapPanel.moveStep=null;
+        this.canMove=true;
+    },
+    beginShow:function($super){
+        $super();
+        if(GMain.IsBattle){
+            this.toBattle();
+        }else {
+            if(this.isControl){
+                this.toMove();
+            }
+        }
+    },
+    toMove:function(){
+        if (GMain.MapPanel.canMove&amp;&amp;GMain.MapPanel.moveStep&amp;&amp;(GMain.MapPanel.moveStep.x||GMain.MapPanel.moveStep.y)) {
+            var x=this.position.x-GMain.MapPanel.moveStep.x;
+            var y=this.position.y-GMain.MapPanel.moveStep.y;
+            var c=parseInt((x-GMain.MapPanel.position.x+GMain.CellSize.width/2)/GMain.CellSize.width);
+            var r=parseInt((y-GMain.MapPanel.position.y+GMain.CellSize.width)/GMain.CellSize.width);
+            var toMove;
+            if(this.pointInBlock({x:x,y:y+parseInt(GMain.CellSize.height/2)},GMain.MapPanel)
+                &amp;&amp;this.pointInBlock({x:x+this.size.width,y:y+parseInt(GMain.CellSize.height/2)},GMain.MapPanel)
+                &amp;&amp;this.pointInBlock({x:x,y:y+this.size.height},GMain.MapPanel)
+                &amp;&amp;this.pointInBlock({x:x+this.size.width,y:y+this.size.height},GMain.MapPanel)){
+                toMove=GMain.MapCells[r][c].walk;
+                if(GMain.MapCells[r][c].controls.length&gt;0){
+                    toMove=GMain.MapCells[r][c].controls[0].open;
+                }
+            }else{
+                toMove=false;
+            }
+            if(toMove){
+                var n=JFunction.Random(1,100);
+                if(n&lt;GMain.BattleProbability){
+                    GMain.MapPanel.moveStep=null;
+                    GMain.BattlesGameRole[0][0].stopPlayAnimation=true;
+                    var n1=JFunction.Random(1,5);
+                    GMain.BattlesGameRole[1]=[];
+                    for(var i=0;i&lt;n1;i++){
+                        GMain.BattlesGameRole[1][i]=new GControls.GameRole("Lang",1).setSize({width:160,height:160});
+                    }
+                    GFunction.showBattlePanel();
+                }
+            }else{
+                GMain.MapPanel.relativePosition.x -=  GMain.MapPanel.moveStep.x;
+                GMain.MapPanel.relativePosition.y -=  GMain.MapPanel.moveStep.y;
+            }
+        }
+    },
+    toBattle:function(){
+        if(this.controls[1])this.controls[1].setText("HP:"+this.HP+"/"+this.getMaxHP());
+        if(this.controls[2])this.controls[2].setText("MP:"+this.MP+"/"+this.getMaxMP());
+        var MTime=15,ATime=10;
+        if(this.isAttacking&amp;&amp;this.usedSkillName){
+            if(ResourceData.Skill[this.usedSkillName].toMove){
+                if(this.attackTime==0){//移动
+                    this.moveStep={x:(this.toGameRoleArray[0].position.x+this.toGameRoleArray[0].size.width-this.size.width-this.position.x)*1.0/MTime,
+                        y:(this.toGameRoleArray[0].position.y+this.toGameRoleArray[0].size.height-this.size.height-this.position.y)*1.0/MTime};
+                    this.setBattleState(ResourceData.BattleState.moveTo);
+                }else if(this.attackTime==MTime){//攻击
+                    this.moveStep={x:0,y:0};
+                    if(ResourceData.Skill[this.usedSkillName].effect.fromShow)this.playEffects(ResourceData.Skill[this.usedSkillName].effect.fromShow,
+                        {x:this.relativePosition.x-16,y:this.relativePosition.y-16},{width:96,height:96});
+                    if(ResourceData.Skill[this.usedSkillName].effect.toShow)this.playEffects(ResourceData.Skill[this.usedSkillName].effect.toShow,
+                        {x:this.toGameRoleArray[0].relativePosition.x-32,y:this.toGameRoleArray[0].relativePosition.y-32},{width:192,height:192});
+                    this.setBattleState(ResourceData.BattleState.attack);
+
+                    var DHP=getDHP(this,this.toGameRoleArray[0])
+                    this.toGameRoleArray[0].showNumber({x:40,y:40},DHP);
+                    if(DHP&lt;0)this.toGameRoleArray[0].setBattleState(ResourceData.BattleState.underFire);
+                    this.toGameRoleArray[0].HP+=DHP;
+                    if(this.toGameRoleArray[0].HP&lt;=0)this.toGameRoleArray[0].HP=0;
+                }else if(this.attackTime==(MTime+ATime)){//返回
+                    this.moveStep={x:(this.basePosition.x-this.relativePosition.x)*1.0/MTime,
+                        y:(this.basePosition.y-this.relativePosition.y)*1.0/MTime};
+                    this.setBattleState(ResourceData.BattleState.moveBack);
+                    if(this.toGameRoleArray[0].HP&lt;=0){
+                        this.toGameRoleArray[0].setBattleState(ResourceData.BattleState.die);
+                        this.toGameRoleArray[0].bodyState.died=true;
+                    }
+                    else {
+                        this.toGameRoleArray[0].setBattleState(ResourceData.BattleState.stand);
+                    }
+                }else if(this.attackTime==(MTime*2+ATime)){//攻击完成
+                    this.moveStep={x:0,y:0};
+                    this.setBattleState(ResourceData.BattleState.stand);
+                    this.isAttacking=false;
+                    GFunction.nextBattle();
+                }
+            }else{
+                if(this.attackTime==0){//吟唱
+                    this.playEffects(ResourceData.Skill[this.usedSkillName].effect.fromShow,
+                        {x:this.relativePosition.x-16,y:this.relativePosition.y-16},{width:96,height:96});
+                    this.setBattleState(ResourceData.BattleState.stand);
+                }else if(this.attackTime==MTime){//施放
+                    for(var i1=0;i1&lt;this.toGameRoleArray.length;i1++){
+                        this.playEffects(ResourceData.Skill[this.usedSkillName].effect.toShow,
+                            {x:this.toGameRoleArray[i1].relativePosition.x-32,y:this.toGameRoleArray[i1].relativePosition.y-32},{width:192,height:192});
+                        if(this.usedGoods){
+                            this.toGameRoleArray[i1].useGoods(this.usedGoods);
+                        }else{
+                            var DHP=getDHP(this,this.toGameRoleArray[i1])
+                            this.toGameRoleArray[i1].showNumber({x:40,y:40},DHP);
+                            if(DHP&lt;0)this.toGameRoleArray[i1].setBattleState(ResourceData.BattleState.underFire);
+                            this.toGameRoleArray[i1].HP+=DHP;
+                            if(this.toGameRoleArray[i1].HP&lt;=0){
+                                this.toGameRoleArray[i1].HP=0;
+                            }
+                        }
+                    }
+                }else if(this.attackTime==(MTime+ATime)){
+                    for(var i1=0;i1&lt;this.toGameRoleArray.length;i1++){
+                        if(this.toGameRoleArray[i1].HP&lt;=0){
+                            this.toGameRoleArray[i1].setBattleState(ResourceData.BattleState.die);
+                            this.toGameRoleArray[i1].bodyState.died=true;
+                        }
+                        else  this.toGameRoleArray[i1].setBattleState(ResourceData.BattleState.stand);
+                    }
+                }else if(this.attackTime==(MTime*2+ATime)){
+                    this.setBattleState(ResourceData.BattleState.stand);
+                    this.isAttacking=false;
+                    GFunction.nextBattle();
+                }
+            }
+            this.attackTime++;
+        }
+        function getDHP(_this,toGameRole){
+            var data={};
+            if(ResourceData.Skill[_this.usedSkillName].damageType=="attack")data.ATK=_this.getATK();
+            else if(ResourceData.Skill[ _this.usedSkillName].damageType=="magic")data.MTK=_this.getMATK();
+            var toDEF=toGameRole.getDEF();
+            var toMDEF=toGameRole.getMDEF();
+            if(toGameRole.bodyState.defend){
+                toDEF=toDEF*2;
+                toMDEF=toMDEF*2;
+            }
+            var DHP1=0;
+            if(data.ATK)DHP1+=toDEF/5.0-data.ATK;
+            if(data.MATK)DHP1+=toMDEF/5.0-data.MATK;
+            if(DHP1&gt;0)DHP1=0;
+            return parseInt(DHP1);
+        }
+    },
+    getSaveData:function(){
+        var saveData={};
+        saveData.GameRoleData=this.GameRoleData;
+        saveData.base=this.base;
+        saveData.HP=this.HP;
+        saveData.MP=this.MP;
+        saveData.level=this.level;
+        saveData.bodySlots=this.bodySlots;
+        return saveData;
+    },
+    showNumber:function(p,num){//用于显示增加和减少生命值和魔法值
+        var strNum=Math.abs(num).toString();
+        var numSize=ResourceData.Images.DamageNumber.cellSize;
+        var w=strNum.length*numSize.width;
+        var showNumberObj=new JControls.Object({x:p.x-w/2,y:p.y}, {width:w,height:numSize.height});
+        showNumberObj.moveStep={x:0,y:-4};
+        showNumberObj.endShow=function(){
+            if (this.canMove &amp;&amp; this.moveStep) {
+                this.relativePosition.x += this.moveStep.x;
+                this.relativePosition.y += this.moveStep.y;
+            }
+            this.alpha-=0.05;
+            if(this.alpha&lt;=0){
+                this.remove();
+            }
+        }
+        var n=[]
+        for(var i=0;i&lt;strNum.length;i++){
+            n[i]=new JControls.PictureBox({x:i*numSize.width,y:0},numSize)
+                .setPicture(ResourceData.Images.DamageNumber,{x:parseInt(strNum[i])*numSize.width,y:num&gt;=0?numSize.height:0});
+        }
+        showNumberObj.addControlInLast(n);
+    }
+});</code></pre>
+<p>其中ResourceData.GameRole如下：</p>
+<pre><code class="js">var ResourceData= {
+    GameRole:{
+        Leader0:{headImageName:"ZSTX",jobsName:"Soldier", growUp:{STR:8,VIT:8,DEX:5,INT:4,HP:20,MP:5},
+            animation:{ move:"ZS1_move",battle:"ZS1_battle"},
+            skills:"attack1"
+        }
+    }
+}</code></pre>
+<p>ResourceData.Skill如下：</p>
+<pre><code class="js">var ResourceData= {
+    Skill:{
+        //showName:技能名称，skillLevel：技能级别，toMove:是否要近身,damageType：技能伤害类型(attack,magic)
+        attack:{showName:"普通攻击",toMove:true,damageType:"attack",toRival:true,fromGameRole:{level:1},toGameRole:{num:1},effect:{num:1}}
+    }
+}</code></pre>
+<p>把所有对象都设计好之后，就是设计游戏界面了。</p>                            </section>
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+                                <h1 class="search-results-title">
+                                    关于"<span class='search-query'></span>"的搜索结果共<span class='search-results-count'></span>条
+                                </h1>
+                                <ul class="search-results-list"></ul>
+                            </div>
+                            <div class="no-results">
+                                <h1 class="search-results-title">没有"<span class='search-query'></span>"相关内容</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <a href="https://naka1205.github.io/h5rpg/p/A43AAAD554420BE4.html" class="navigation navigation-prev " aria-label="基本对象设计（四）">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/h5rpg/p/3F05B0A70B69E895.html" class="navigation navigation-next " aria-label="游戏界面设计（一）">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
+    </div>
+<script>
+var gitbook = gitbook || [];
+gitbook.push(function() {
+    gitbook.page.hasChanged({
+        "page": {
+            "title":  "游戏对象设计",
+            "next": {
+                "title": "游戏界面设计（一）"
+            },
+            "previous": {
+                "title": "基本对象设计（四）"
+            }
+        },
+        "config": {
+            "gitbook": "*",
+            "theme": "default",
+            "variables": {},
+            "plugins": ["-lunr", "-search", "-highlight","search-pro"],
+            "pluginsConfig": {
+                "search-pro": {},
+                "highlight": {},
+                "sharing": {},
+                "fontsettings": {},
+                "theme-default": {}
+            },
+            "structure": {},
+            "pdf": {},
+            "styles": {}
+        },
+        "file": {},
+        "gitbook": {},
+        "basePath": "https://naka1205.github.io/h5rpg",
+        "book": {}
+    });
+});
+</script>
+</div>
+<script src="https://naka1205.github.io/h5rpg/assets/js/gitbook.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/theme.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/jquery.mark.min.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/search.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/buttons.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/fontsettings.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/plugin.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE HTML>
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>基本对象设计（四） · HTML5开发RPG游戏</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="至此，基本对象已经设计完成，下篇开始就要设计游戏中的具体对象了。">
+    <meta name="keywords" content="HTML5开发RPG游戏">
+    <meta name="generator" content="PKBook">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/style.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/search.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/ebook.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/website.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css" rel="stylesheet">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://naka1205.github.io/h5rpg/assets/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://naka1205.github.io/h5rpg/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div class="book">
+    <div class="book-summary">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="输入关键词搜索" />
+        </div>
+        <nav role="navigation">
+    <ul class="summary">
+        <li><a href="https://naka1205.github.io/h5rpg/index.html" target="blank" class="header">概序</a></li>
+        <li class="divider"></li>
+                <li class="header">第一步</li>
+                        <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/h5rpg/p/C3D207FADFAF5841.html"><a href="https://naka1205.github.io/h5rpg/p/C3D207FADFAF5841.html">准备</a></li>
+                    <li class="divider"></li>
+                <li class="header">第二步</li>
+                        <li class="chapter " data-level="2.1" data-path="https://naka1205.github.io/h5rpg/p/9C30FBE79FB13821.html"><a href="https://naka1205.github.io/h5rpg/p/9C30FBE79FB13821.html">资源预加载</a></li>
+                    <li class="divider"></li>
+                <li class="header">第三步</li>
+                        <li class="chapter " data-level="3.1" data-path="https://naka1205.github.io/h5rpg/p/D76025B918B5C635.html"><a href="https://naka1205.github.io/h5rpg/p/D76025B918B5C635.html">基本对象设计（一）</a></li>
+                        <li class="chapter " data-level="3.2" data-path="https://naka1205.github.io/h5rpg/p/4D5F3CA0A1A7C8C7.html"><a href="https://naka1205.github.io/h5rpg/p/4D5F3CA0A1A7C8C7.html">基本对象设计（二）</a></li>
+                        <li class="chapter " data-level="3.3" data-path="https://naka1205.github.io/h5rpg/p/49224D56030C9863.html"><a href="https://naka1205.github.io/h5rpg/p/49224D56030C9863.html">基本对象设计（三）</a></li>
+                        <li class="chapter  active " data-level="3.4" data-path="https://naka1205.github.io/h5rpg/p/A43AAAD554420BE4.html"><a href="https://naka1205.github.io/h5rpg/p/A43AAAD554420BE4.html">基本对象设计（四）</a></li>
+                    <li class="divider"></li>
+                <li class="header">第四步</li>
+                        <li class="chapter " data-level="4.1" data-path="https://naka1205.github.io/h5rpg/p/7B45EBEA4E81B2F1.html"><a href="https://naka1205.github.io/h5rpg/p/7B45EBEA4E81B2F1.html">游戏对象设计</a></li>
+                    <li class="divider"></li>
+                <li class="header">第五步</li>
+                        <li class="chapter " data-level="5.1" data-path="https://naka1205.github.io/h5rpg/p/3F05B0A70B69E895.html"><a href="https://naka1205.github.io/h5rpg/p/3F05B0A70B69E895.html">游戏界面设计（一）</a></li>
+                        <li class="chapter " data-level="5.2" data-path="https://naka1205.github.io/h5rpg/p/906DB896392B9838.html"><a href="https://naka1205.github.io/h5rpg/p/906DB896392B9838.html">游戏界面设计（二）</a></li>
+                    <li class="divider"></li>
+                <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
+    </ul>
+</nav>
+    </div>
+    
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/h5rpg/p/A43AAAD554420BE4.html">基本对象设计（四）</a></h1>
+            </div>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">
+                                <h3 id="%E5%9F%BA%E6%9C%AC%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%EF%BC%88%E5%9B%9B%EF%BC%89" name="%E5%9F%BA%E6%9C%AC%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%EF%BC%88%E5%9B%9B%EF%BC%89">基本对象设计（四）</h3>
+<p>7、对话框
+用于显示信息。</p>
+<pre><code class="js">JControls.MessageBox = Class.create(JControls.Object, {
+    initialize:function ($super, argname, argWH, argAString,argP) {
+        //如果没有指定显示位置，则居中显示
+        if(!argP)argP={x:parseInt((JForm.size.width - argWH.width) / 2), y:parseInt((JForm.size.height - argWH.height) / 2)};
+        $super(argname,argP, argWH);
+        this.BGColor = JColor.white;
+        JForm.addControlInLast([this]);//把消息框添加到主窗体内
+        var messageTitle = new JControls.Label(argname + "lbT", {x:0, y:0}, "系统提示");
+        messageTitle.BGColor = JColor.blue;
+        messageTitle.fontColor = JColor.red;
+        messageTitle.size.width = argWH.width;
+        messageTitle.size.height = 25;
+        messageTitle.fontSize = 20;
+        messageTitle.fontType = "bold";
+        this.addControlInLast([messageTitle]);//添加消息标题栏
+        var h = messageTitle.size.height;
+        for (var i = 0; i &lt; argAString.length; i++) {//添加消息内容
+            var m = new JControls.Label(argname + "lbM" + i, {x:0, y:h}, argAString[i]);
+            m.size.width = argWH.width;
+            m.textPos.x = 10;
+            h += m.size.height;
+            this.addControlInLast([m]);
+        }
+        this.size.height = h+20;
+    },
+    onClick:function () {//点击后，删除对象
+        this.remove.call(this);
+        JForm.show.call(JForm);
+    }
+});</code></pre>
+<p>8、声音
+这里写的比较简单。</p>
+<pre><code class="js">JControls.Audio = Class.create({
+    audioData:null,//Audio数据
+    initialize:function (audio,loop) {
+        this.setAudio(audio,loop);
+    },
+    setAudio:function(audio,loop){
+        if(audio){
+            this.audioData = audio.data;
+            if(loop)this.audioData.loop=true;
+        }
+    },
+    play:function () {
+        if (this.audioData)this.audioData.play();
+    },
+    pause:function () {
+        if (this.audioData)this.audioData.pause();
+    }
+});</code></pre>
+<p>9、时钟
+时钟只有一个，所有的动画和移动，都是由它来驱动的。</p>
+<pre><code class="js">var JTick=null;
+JControls.Tick = Class.create({
+    time:40,//间隔时间
+    fun:[],//要循环显示的对象数组
+    handle:null,//句柄
+    initialize:function(time){
+        this.time=time;
+        this.fun=[];
+        this.handle=null;
+        JTick=this;
+    },
+    begin:function(){
+        this.handle=setTimeout(this.runOneTime, this.time);
+    },
+    end:function(){
+        if(this.handle)clearTimeout(this.handle);
+    },
+    add:function(aObj){
+        if(aObj){
+            for (var i = 0; i &lt; aObj.length; i++) {
+                this.fun[this.fun.length]=aObj[i];
+            }
+        }
+    },
+    delete:function(obj){
+        if(obj){
+            for(var i=0;i&lt;this.fun.length;i++){
+                if(this.fun[i].name==obj.name){
+                    for(var j=i;j&lt;this.fun.length-1;j++){
+                        this.fun[j]=this.fun[j+1];
+                    }
+                    this.fun.length--;
+                }
+            }
+        }
+    },
+    runOneTime:function(){
+        JTick.end();
+        for(var i=0;i&lt;JTick.fun.length;i++){
+            if(JTick.fun[i])JTick.fun[i].show.call(JTick.fun[i]);
+        }
+        JTick.handle=setTimeout(JTick.runOneTime, JTick.time);
+    }
+});</code></pre>
+<p>至此，基本对象已经设计完成，下篇开始就要设计游戏中的具体对象了。</p>                            </section>
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+                                <h1 class="search-results-title">
+                                    关于"<span class='search-query'></span>"的搜索结果共<span class='search-results-count'></span>条
+                                </h1>
+                                <ul class="search-results-list"></ul>
+                            </div>
+                            <div class="no-results">
+                                <h1 class="search-results-title">没有"<span class='search-query'></span>"相关内容</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <a href="https://naka1205.github.io/h5rpg/p/49224D56030C9863.html" class="navigation navigation-prev " aria-label="基本对象设计（三）">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/h5rpg/p/7B45EBEA4E81B2F1.html" class="navigation navigation-next " aria-label="游戏对象设计">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
+    </div>
+<script>
+var gitbook = gitbook || [];
+gitbook.push(function() {
+    gitbook.page.hasChanged({
+        "page": {
+            "title":  "基本对象设计（四）",
+            "next": {
+                "title": "游戏对象设计"
+            },
+            "previous": {
+                "title": "基本对象设计（三）"
+            }
+        },
+        "config": {
+            "gitbook": "*",
+            "theme": "default",
+            "variables": {},
+            "plugins": ["-lunr", "-search", "-highlight","search-pro"],
+            "pluginsConfig": {
+                "search-pro": {},
+                "highlight": {},
+                "sharing": {},
+                "fontsettings": {},
+                "theme-default": {}
+            },
+            "structure": {},
+            "pdf": {},
+            "styles": {}
+        },
+        "file": {},
+        "gitbook": {},
+        "basePath": "https://naka1205.github.io/h5rpg",
+        "book": {}
+    });
+});
+</script>
+</div>
+<script src="https://naka1205.github.io/h5rpg/assets/js/gitbook.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/theme.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/jquery.mark.min.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/search.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/buttons.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/fontsettings.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/plugin.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+</body>
+</html>

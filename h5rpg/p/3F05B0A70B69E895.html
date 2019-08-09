@@ -1,0 +1,453 @@
+<!DOCTYPE HTML>
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>游戏界面设计（一） · HTML5开发RPG游戏</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="游戏界面包括地图、主角、操作界面、战斗界面、数据界面等。">
+    <meta name="keywords" content="HTML5开发RPG游戏">
+    <meta name="generator" content="PKBook">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/style.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/search.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/ebook.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/website.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css" rel="stylesheet">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://naka1205.github.io/h5rpg/assets/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://naka1205.github.io/h5rpg/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div class="book">
+    <div class="book-summary">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="输入关键词搜索" />
+        </div>
+        <nav role="navigation">
+    <ul class="summary">
+        <li><a href="https://naka1205.github.io/h5rpg/index.html" target="blank" class="header">概序</a></li>
+        <li class="divider"></li>
+                <li class="header">第一步</li>
+                        <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/h5rpg/p/C3D207FADFAF5841.html"><a href="https://naka1205.github.io/h5rpg/p/C3D207FADFAF5841.html">准备</a></li>
+                    <li class="divider"></li>
+                <li class="header">第二步</li>
+                        <li class="chapter " data-level="2.1" data-path="https://naka1205.github.io/h5rpg/p/9C30FBE79FB13821.html"><a href="https://naka1205.github.io/h5rpg/p/9C30FBE79FB13821.html">资源预加载</a></li>
+                    <li class="divider"></li>
+                <li class="header">第三步</li>
+                        <li class="chapter " data-level="3.1" data-path="https://naka1205.github.io/h5rpg/p/D76025B918B5C635.html"><a href="https://naka1205.github.io/h5rpg/p/D76025B918B5C635.html">基本对象设计（一）</a></li>
+                        <li class="chapter " data-level="3.2" data-path="https://naka1205.github.io/h5rpg/p/4D5F3CA0A1A7C8C7.html"><a href="https://naka1205.github.io/h5rpg/p/4D5F3CA0A1A7C8C7.html">基本对象设计（二）</a></li>
+                        <li class="chapter " data-level="3.3" data-path="https://naka1205.github.io/h5rpg/p/49224D56030C9863.html"><a href="https://naka1205.github.io/h5rpg/p/49224D56030C9863.html">基本对象设计（三）</a></li>
+                        <li class="chapter " data-level="3.4" data-path="https://naka1205.github.io/h5rpg/p/A43AAAD554420BE4.html"><a href="https://naka1205.github.io/h5rpg/p/A43AAAD554420BE4.html">基本对象设计（四）</a></li>
+                    <li class="divider"></li>
+                <li class="header">第四步</li>
+                        <li class="chapter " data-level="4.1" data-path="https://naka1205.github.io/h5rpg/p/7B45EBEA4E81B2F1.html"><a href="https://naka1205.github.io/h5rpg/p/7B45EBEA4E81B2F1.html">游戏对象设计</a></li>
+                    <li class="divider"></li>
+                <li class="header">第五步</li>
+                        <li class="chapter  active " data-level="5.1" data-path="https://naka1205.github.io/h5rpg/p/3F05B0A70B69E895.html"><a href="https://naka1205.github.io/h5rpg/p/3F05B0A70B69E895.html">游戏界面设计（一）</a></li>
+                        <li class="chapter " data-level="5.2" data-path="https://naka1205.github.io/h5rpg/p/906DB896392B9838.html"><a href="https://naka1205.github.io/h5rpg/p/906DB896392B9838.html">游戏界面设计（二）</a></li>
+                    <li class="divider"></li>
+                <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
+    </ul>
+</nav>
+    </div>
+    
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/h5rpg/p/3F05B0A70B69E895.html">游戏界面设计（一）</a></h1>
+            </div>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">
+                                <h3 id="%E6%B8%B8%E6%88%8F%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1%EF%BC%88%E4%B8%80%EF%BC%89" name="%E6%B8%B8%E6%88%8F%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1%EF%BC%88%E4%B8%80%EF%BC%89">游戏界面设计（一）</h3>
+<p>游戏界面包括地图、主角、操作界面、战斗界面、数据界面等。</p>
+<p>1、地图
+要显示地图，首先我们要有地图数据，为了方便编辑，需要一个地图编辑器，这里我就随机生成迷宫地图来获取地图数据。
+随机生成迷宫地图方法如下：</p>
+<pre><code class="js">
+GFunction.createMap=function(){//自动生成迷宫地图
+    var autoMapNum=0;//使用的迷宫地图图片编号
+    var cells=[];//记录地图数据，（true为可通行，false为不可通行）
+    var minNum=40;//地图行和列最小单元数
+    var maxNum=100;//地图行和列最大单元数
+    var minLengthNum=19;//入口和出口相隔的最小单元数
+    var sizeNum={x:JFunction.Random(minNum,maxNum),y:JFunction.Random(minNum,maxNum)};//随机生成行和列单元数
+    for(var i=0;i&lt;sizeNum.y;i++){
+        cells[i]=[];
+    }
+    var inPoint={x:JFunction.Random(0,sizeNum.x-1),y:JFunction.Random(0,sizeNum.y-1)};//随机生成入口
+    cells[inPoint.y][inPoint.x]=true;
+    var outPoint={x:JFunction.Random(0,sizeNum.x-1),y:JFunction.Random(0,sizeNum.y-1)};//随机生成出口
+    while(Math.abs(outPoint.x-inPoint.x)&lt;minLengthNum&amp;&amp;Math.abs(outPoint.y-inPoint.y)&lt;minLengthNum){//不满足要求，重新生成出口
+        outPoint={x:JFunction.Random(0,sizeNum.x-1),y:JFunction.Random(0,sizeNum.y-1)};
+    }
+    cells[outPoint.y][outPoint.x]=true;
+    var blockPoint,blockSizeNum={},num=20;
+    while(num&gt;0||!isLink()){//生成地图可通行单元
+        var n=JFunction.Random(0,1);
+        blockPoint={x:JFunction.Random(0,sizeNum.x-1),y:JFunction.Random(0,sizeNum.y-1)};
+        if(n){
+            blockSizeNum.x=JFunction.Random(5,10);
+            blockSizeNum.y=JFunction.Random(1,2);
+        }else{
+            blockSizeNum.x=JFunction.Random(1,2);
+            blockSizeNum.y=JFunction.Random(5,10);
+        }
+        for(var r=blockPoint.y;r&lt;blockPoint.y+blockSizeNum.y&amp;&amp;r&lt;sizeNum.y;r++){
+            for(var c=blockPoint.x;c&lt;blockPoint.x+blockSizeNum.x&amp;&amp;c&lt;sizeNum.x;c++){
+                cells[r][c]=true;
+            }
+        }
+        num--;
+    }
+    var AM = {widthNum:sizeNum.x, heightNum:sizeNum.y,inPoint:inPoint,outPoint:outPoint, BGPicName:ResourceData.AutoMap[autoMapNum].BGPicName,BGWalk:false};
+    for(var r=0;r&lt;sizeNum.y;r++){
+        for(var c=0;c&lt;sizeNum.x;c++){
+            if(cells[r][c]){//设置可通行单元的地图数据
+                if (!AM[r]) AM[r] = {};
+                AM[r][c] = {};
+                AM[r][c]["mapPicName"] = ResourceData.AutoMap[autoMapNum].roadName;
+                AM[r][c]["walk"] = true;
+            }else if(r&gt;0&amp;&amp;cells[r-1][c]){//设置可通行区域地图边界数据
+                if (!AM[r]) AM[r] = {};
+                AM[r][c] = {};
+                AM[r][c]["mapPicName"] = ResourceData.AutoMap[autoMapNum].railName;
+                AM[r][c]["walk"] = false;
+            }
+        }
+    }
+    var TreasureNum=JFunction.Random(10,50);//随机生成宝箱数量
+    for(var n=0;n&lt;TreasureNum;n++){//生成宝箱数据
+        var TreasurePointX=JFunction.Random(0,sizeNum.x-1);
+        var TreasurePointY=JFunction.Random(0,sizeNum.y-1);
+        while(!cells[TreasurePointY][TreasurePointX]||(TreasurePointX==inPoint.x&amp;&amp;TreasurePointY==inPoint.y)||(TreasurePointX==outPoint.x&amp;&amp;TreasurePointY==outPoint.y)){
+            TreasurePointX=JFunction.Random(0,sizeNum.x-1);
+            TreasurePointY=JFunction.Random(0,sizeNum.y-1);
+        }
+        AM[TreasurePointY][TreasurePointX].Treasure={};
+        AM[TreasurePointY][TreasurePointX].Treasure.walk=false;
+        AM[TreasurePointY][TreasurePointX].Treasure.eventData={};
+        var n1=JFunction.Random(1,100);
+        var gn=0
+        if(n1&lt;=50){
+            AM[TreasurePointY][TreasurePointX].Treasure.TreasureName="Treasure_1";
+            AM[TreasurePointY][TreasurePointX].Treasure.eventData.goldNum=JFunction.Random(20,50);
+            gn=JFunction.Random(0,1);
+        }else if(n1&lt;=80){
+            AM[TreasurePointY][TreasurePointX].Treasure.TreasureName="Treasure_2";
+            AM[TreasurePointY][TreasurePointX].Treasure.eventData.goldNum=JFunction.Random(50,100);
+            gn=JFunction.Random(0,2);
+        }else if(n1&lt;=90){
+            AM[TreasurePointY][TreasurePointX].Treasure.TreasureName="Treasure_3";
+            AM[TreasurePointY][TreasurePointX].Treasure.eventData.goldNum=JFunction.Random(100,200);
+            gn=JFunction.Random(0,3);
+        }else if(n1&lt;=95){
+            AM[TreasurePointY][TreasurePointX].Treasure.TreasureName="Treasure_4";
+            AM[TreasurePointY][TreasurePointX].Treasure.eventData.goldNum=JFunction.Random(200,500);
+            gn=JFunction.Random(0,4);
+        }else if(n1&lt;=98){
+            AM[TreasurePointY][TreasurePointX].Treasure.TreasureName="Treasure_5";
+            AM[TreasurePointY][TreasurePointX].Treasure.eventData.goldNum=JFunction.Random(500,1000);
+            gn=JFunction.Random(0,5);
+        }else if(n1&lt;=100){
+            AM[TreasurePointY][TreasurePointX].Treasure.eventData.goldNum=JFunction.Random(1000,2000);
+            AM[TreasurePointY][TreasurePointX].Treasure.TreasureName="Treasure_6";
+            gn=JFunction.Random(0,6);
+        }
+        var str="";
+        for(var i=0;i&lt;gn;i++){
+            var n2=JFunction.Random(1,100);
+            str+=(i&gt;0?",":"")+getGoods(n2);
+        }
+        AM[TreasurePointY][TreasurePointX].Treasure.eventData.goods=str;
+    }
+
+    //设置传送阵数据
+    if(GMain.FloorsNum&gt;1){
+        AM[inPoint.y][inPoint.x].JumpToMap={PicName:ResourceData.AutoMap[autoMapNum].inPointName,eventData:{goToFloorNum:GMain.FloorsNum-1}};
+    }
+    AM[outPoint.y][outPoint.x].JumpToMap={PicName:ResourceData.AutoMap[autoMapNum].outPointName,eventData:{goToFloorNum:GMain.FloorsNum+1}};
+    return AM;
+    function isLink(){//检查生成的地图入口和出口是否相连
+        var cellsA=[inPoint];
+        var cellsB=[];
+        for(var i=0;i&lt;sizeNum.y;i++){
+            cellsB[i]=[];
+        }
+        cellsB[cellsA[0].y][cellsA[0].x]=true;
+        for(var l=0;l&lt;cellsA.length;l++){
+            if((cellsA[l].x-1&gt;=0)&amp;&amp;cells[cellsA[l].y][cellsA[l].x-1]&amp;&amp;!cellsB[cellsA[l].y][cellsA[l].x-1]){
+                cellsB[cellsA[l].y][cellsA[l].x-1]=true;
+                cellsA[cellsA.length]={x:cellsA[l].x-1,y:cellsA[l].y};
+            }
+            if((cellsA[l].y-1&gt;=0)&amp;&amp;cells[cellsA[l].y-1][cellsA[l].x]&amp;&amp;!cellsB[cellsA[l].y-1][cellsA[l].x]){
+                cellsB[cellsA[l].y-1][cellsA[l].x]=true;
+                cellsA[cellsA.length]={x:cellsA[l].x,y:cellsA[l].y-1};
+            }
+            if((cellsA[l].x+1&lt;sizeNum.x)&amp;&amp;cells[cellsA[l].y][cellsA[l].x+1]&amp;&amp;!cellsB[cellsA[l].y][cellsA[l].x+1]){
+                cellsB[cellsA[l].y][cellsA[l].x+1]=true;
+                cellsA[cellsA.length]={x:cellsA[l].x+1,y:cellsA[l].y};
+            }
+            if((cellsA[l].y+1&lt;sizeNum.y)&amp;&amp;cells[cellsA[l].y+1][cellsA[l].x]&amp;&amp;!cellsB[cellsA[l].y+1][cellsA[l].x]){
+                cellsB[cellsA[l].y+1][cellsA[l].x]=true;
+                cellsA[cellsA.length]={x:cellsA[l].x,y:cellsA[l].y+1};
+            }
+            if(cellsB[outPoint.y][outPoint.x])return true;
+        }
+        return false;
+    }
+    function getGoods(n2){//随机生成宝箱及宝箱物品
+        var goods=[];
+        var goodsLevel;
+        if(n2&lt;=50){
+            goodsLevel=1;
+        }else if(n2&lt;=80){
+            goodsLevel=JFunction.Random(1,2);
+        }else if(n2&lt;=90){
+            goodsLevel=JFunction.Random(1,3);
+        }else if(n2&lt;=95){
+            goodsLevel=JFunction.Random(1,4);
+        }else if(n2&lt;=98){
+            goodsLevel=JFunction.Random(1,5);
+        }else if(n2&lt;=100){
+            goodsLevel=JFunction.Random(1,6);
+        }
+        goodsLevel+=parseInt(GMain.FloorsNum/10);
+        if(goodsLevel&gt;6)goodsLevel=6;
+        for(var g in ResourceData.Goods){
+            if(ResourceData.Goods[g].goodsLevel==goodsLevel){
+                goods[goods.length]=g;
+            }
+        }
+        var n=JFunction.Random(0,goods.length-1);
+        return goods[n];
+    }
+};</code></pre>
+<p>有了地图数据，下面我就要加载地图了：</p>
+<pre><code class="js">
+GFunction.loadMapPanel=function() {//加载地图
+    //GMain.MapData为地图数据
+    GMain.MapPanel.size={width:GMain.MapData.widthNum*GMain.CellSize.width,height:GMain.MapData.heightNum*GMain.CellSize.height};
+    GMain.MapCells=[];//保存地图单元数据
+    GMain.MapPanel.clearControls();//清空地图界面
+    for (var r = 0; r &lt; GMain.MapData.heightNum; r++) {
+        GMain.MapCells[r] = [];
+        for (var c = 0; c &lt; GMain.MapData.widthNum; c++) {
+            //生成地图单元，并加入到地图界面
+            GMain.MapCells[r][c] = new GControls.MapCell( {x:c * GMain.CellSize.width, y:r * GMain.CellSize.height}, GMain.CellSize);
+            GMain.MapPanel.addControlInLast([GMain.MapCells[r][c]]);
+            if (GMain.MapData[r] &amp;&amp; GMain.MapData[r][c]) {
+                if(GMain.MapData[r][c]["mapPicName"]){//设置地图单元的图片
+                    GMain.MapCells[r][c].setMapPic(GMain.MapData[r][c]["mapPicName"]);
+                }else if(GMain.MapData.BGPicName){
+                    GMain.MapCells[r][c].setMapPic(GMain.MapData.BGPicName);
+                }
+                if(GMain.MapData[r][c]["JumpToMap"]){//地图单元添加传送阵
+                    var JumpToMap = new GControls.Trigger({x:0, y:0},
+                        GMain.CellSize, GMain.MapData[r][c]["JumpToMap"].PicName,"JumpToMap");
+                    JumpToMap.eventData=GMain.MapData[r][c]["JumpToMap"].eventData;
+                    GMain.MapCells[r][c].addControlInLast([JumpToMap]);
+                }else if(GMain.MapData[r][c]["Treasure"]){//地图单元添加宝箱
+                    var Treasure = new GControls.Trigger({x:0, y:0},
+                        GMain.CellSize, GMain.MapData[r][c]["Treasure"].TreasureName);
+                    Treasure.eventData=GMain.MapData[r][c]["Treasure"].eventData;
+                    GMain.MapCells[r][c].addControlInLast([Treasure]);
+                }
+            } else {
+                if (GMain.MapData.BGPicName) {
+                    GMain.MapCells[r][c].setMapPic(GMain.MapData.BGPicName);//设置地图不可通行单元图片
+                }
+            }
+        }
+    }
+    var x=GMain.MapData.inPoint.x;
+    var y=GMain.MapData.inPoint.y;
+    if(GMain.MapPanelRelPos){
+        GMain.MapPanel.setRelativePosition({x:GMain.MapPanelRelPos.x,y:GMain.MapPanelRelPos.y});
+        GMain.MapPanelRelPos=null;
+    }else{
+        //通过设置地图相对位置，使屏幕中心处于入口附近
+        if((y+1)&lt;GMain.MapData.heightNum &amp;&amp;GMain.MapCells[y+1][x].walk){
+            GMain.MapPanel.setRelativePosition({x:GMain.CellSize.width*(GMain.InPoint.x-x), y:GMain.CellSize.height*(GMain.InPoint.y-y-1)});
+        }else if((x+1)&lt;GMain.MapData.widthNum &amp;&amp;GMain.MapCells[y][x+1].walk){
+            GMain.MapPanel.setRelativePosition({x:GMain.CellSize.width*(GMain.InPoint.x-x-1), y:GMain.CellSize.height*(GMain.InPoint.y-y)});
+        }else if((y-1)&gt;=0 &amp;&amp;GMain.MapCells[y-1][x].walk){
+            GMain.MapPanel.setRelativePosition({x:GMain.CellSize.width*(GMain.InPoint.x-x), y:GMain.CellSize.height*(GMain.InPoint.y-y+1)});
+        }else if((x-1)&gt;=0 &amp;&amp;GMain.MapCells[y][x-1].walk){
+            GMain.MapPanel.setRelativePosition({x:GMain.CellSize.width*(GMain.InPoint.x-x+1), y:GMain.CellSize.height*(GMain.InPoint.y-y)});
+        }
+    }
+    GMain.MapPanel.saveShowImageData();//缓存地图，以提高速度
+};</code></pre>
+<p>2、主角</p>
+<p>这里我们只显示一个主角，直接把主角固定在屏幕中间。</p>
+<pre><code class="js">GMain.BattlesGameRole[0][0]=new GControls.GameRole("Leader0");
+GMain.BattlesGameRole[0][0].initMove();//初始化行走</code></pre>
+<p>3、操作界面
+操作界面包括方向按钮、确定取消按钮以及其他界面切换按钮。
+代码如下：</p>
+<pre><code class="js">GFunction.loadButtonPanel=function(){
+    //加载操作界面
+    var btnOpenData=new JControls.Button({x:10,y:0},{width:80,height:30}).setBGColor(JColor.gray).setText("物品");
+    btnOpenData.onClick=function(){
+        GFunction.showDataPanel();//显示人物数据和使用物品
+        return true;
+    }
+    var btnShowShop=new JControls.Button({x:100,y:0},{width:80,height:30}).setBGColor(JColor.gray).setText("商店");
+    btnShowShop.onClick=function(){
+        //GFunction.showShop();
+        return true;
+    }
+    var btnSaveData=new JControls.Button({x:190,y:0},{width:80,height:30}).setBGColor(JColor.gray).setText("保存");
+    btnSaveData.onClick=function(){
+        GFunction.showSavePanel();//保存游戏
+        return true;
+    }
+    var btnMainMenu=new JControls.Button({x:280,y:0},{width:80,height:30}).setBGColor(JColor.gray).setText("退出");
+    btnMainMenu.onClick=function(){
+        GFunction.showMainMenu();//退出游戏到主菜单
+        return true;
+    }
+
+    var BtnKeyDown=function(keyCode){
+        if(keyCode==this.keyCode){
+            if(keyCode&gt;=37&amp;&amp;keyCode&lt;=40){
+                GMain.BattlesGameRole[0][0].setMoveDirection(keyCode);
+                GMain.BattlesGameRole[0][0].stopPlayAnimation=false;
+            }
+            var x=GMain.BattlesGameRole[0][0].position.x;
+            var y=GMain.BattlesGameRole[0][0].position.y;
+            var c=parseInt((x-GMain.MapPanel.position.x+GMain.CellSize.width/2)/GMain.CellSize.width);
+            var r=parseInt((y-GMain.MapPanel.position.y+GMain.CellSize.width)/GMain.CellSize.width);
+            switch (GMain.BattlesGameRole[0][0].moveDirection){
+                case GMain.Direction.left:c-=1;break;//左
+                case GMain.Direction.up:r-=1;break;//上
+                case GMain.Direction.right:c+=1; break;//右
+                case GMain.Direction.down:r+=1;break;//下
+            }
+            if(GMain.MapCells[r][c]){
+                if(GMain.MapCells[r][c].controls.length&gt;0){
+                    if(!GMain.MapCells[r][c].controls[0].open){
+                        GMain.MapCells[r][c].controls[0].onTrigger();//触发
+                    }
+                }
+            }
+            return true;
+        }else return false;
+    };
+    var btnKeyUp=function(keyCode){
+        if(keyCode==this.keyCode){
+            if(keyCode&gt;=37&amp;&amp;keyCode&lt;=40){
+                GMain.MapPanel.moveStep=null;
+                GMain.BattlesGameRole[0][0].stopPlayAnimation=true;
+            }
+            return true;
+        }else return false;
+    };
+
+    var btnW=80,btnH=80,jl=10;
+    var btnLeft=new JControls.Button({x:0,y:GMain.Size.height-btnH-btnW-jl},{width:btnH,height:btnW},null)
+        .setKeyCode(37);
+    btnLeft.onKeyDown=BtnKeyDown;
+    btnLeft.onKeyUp=btnKeyUp;
+    var btnTop=new JControls.Button({x:btnH+jl,y:GMain.Size.height-btnH*2-btnW-jl*2},{width:btnW,height:btnH},null)
+        .setKeyCode(38);
+    btnTop.onKeyDown=BtnKeyDown;
+    btnTop.onKeyUp=btnKeyUp
+    var btnRight=new JControls.Button({x:btnH+btnW+jl*2,y:GMain.Size.height-btnH-btnW-jl},{width:btnH,height:btnW},null)
+        .setKeyCode(39);
+    btnRight.onKeyDown=BtnKeyDown;
+    btnRight.onKeyUp=btnKeyUp;
+    var btnBottom=new JControls.Button({x:btnH+jl,y:GMain.Size.height-btnH},{width:btnW,height:btnH},null)
+        .setKeyCode(40);
+    btnBottom.onKeyDown=BtnKeyDown;
+    btnBottom.onKeyUp=btnKeyUp;
+    var btnOK=new JControls.Button({x:GMain.Size.width-100,y:GMain.Size.height-110},{width:100,height:100},null)
+        .setKeyCode(13);
+    btnOK.onKeyDown=BtnKeyDown;
+    btnOK.onKeyUp=btnKeyUp;
+    var btnCancel=new JControls.Button({x:GMain.Size.width-100,y:GMain.Size.height-250},{width:100,height:100},null)
+        .setKeyCode(27);
+    btnCancel.onKeyDown=BtnKeyDown;
+    btnCancel.onKeyUp=btnKeyUp;
+    GMain.ButtonPanel.addControlInLast([btnOpenData,btnSaveData,btnMainMenu,btnShowShop,btnLeft,btnTop,btnRight,btnBottom,btnOK,btnCancel]);
+};</code></pre>
+<p>最后要显示这些界面，还需要把他们加入到屏幕上来。</p>
+<pre><code class="js">JMain.JForm.addControlInLast([GMain.MapPanel,GMain.BattlesGameRole[0][0],GMain.BattlePanel,GMain.DataPanel,GMain.SavePanel ,GMain.ButtonPanel])</code></pre>
+<p>后面将介绍战斗界面和数据界面。</p>                            </section>
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+                                <h1 class="search-results-title">
+                                    关于"<span class='search-query'></span>"的搜索结果共<span class='search-results-count'></span>条
+                                </h1>
+                                <ul class="search-results-list"></ul>
+                            </div>
+                            <div class="no-results">
+                                <h1 class="search-results-title">没有"<span class='search-query'></span>"相关内容</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <a href="https://naka1205.github.io/h5rpg/p/7B45EBEA4E81B2F1.html" class="navigation navigation-prev " aria-label="游戏对象设计">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/h5rpg/p/906DB896392B9838.html" class="navigation navigation-next " aria-label="游戏界面设计（二）">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
+    </div>
+<script>
+var gitbook = gitbook || [];
+gitbook.push(function() {
+    gitbook.page.hasChanged({
+        "page": {
+            "title":  "游戏界面设计（一）",
+            "next": {
+                "title": "游戏界面设计（二）"
+            },
+            "previous": {
+                "title": "游戏对象设计"
+            }
+        },
+        "config": {
+            "gitbook": "*",
+            "theme": "default",
+            "variables": {},
+            "plugins": ["-lunr", "-search", "-highlight","search-pro"],
+            "pluginsConfig": {
+                "search-pro": {},
+                "highlight": {},
+                "sharing": {},
+                "fontsettings": {},
+                "theme-default": {}
+            },
+            "structure": {},
+            "pdf": {},
+            "styles": {}
+        },
+        "file": {},
+        "gitbook": {},
+        "basePath": "https://naka1205.github.io/h5rpg",
+        "book": {}
+    });
+});
+</script>
+</div>
+<script src="https://naka1205.github.io/h5rpg/assets/js/gitbook.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/theme.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/jquery.mark.min.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/search.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/buttons.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/fontsettings.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/plugin.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+</body>
+</html>

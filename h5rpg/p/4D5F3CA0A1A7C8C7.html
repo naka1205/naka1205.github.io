@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>基本对象设计（二） · HTML5开发RPG游戏</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="前面我们已经完成了父对象的编写，现在我们可以通过继承来实现各对象了。">
+    <meta name="keywords" content="HTML5开发RPG游戏">
+    <meta name="generator" content="PKBook">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/style.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/search.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/ebook.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/website.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css" rel="stylesheet">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://naka1205.github.io/h5rpg/assets/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://naka1205.github.io/h5rpg/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div class="book">
+    <div class="book-summary">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="输入关键词搜索" />
+        </div>
+        <nav role="navigation">
+    <ul class="summary">
+        <li><a href="https://naka1205.github.io/h5rpg/index.html" target="blank" class="header">概序</a></li>
+        <li class="divider"></li>
+                <li class="header">第一步</li>
+                        <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/h5rpg/p/C3D207FADFAF5841.html"><a href="https://naka1205.github.io/h5rpg/p/C3D207FADFAF5841.html">准备</a></li>
+                    <li class="divider"></li>
+                <li class="header">第二步</li>
+                        <li class="chapter " data-level="2.1" data-path="https://naka1205.github.io/h5rpg/p/9C30FBE79FB13821.html"><a href="https://naka1205.github.io/h5rpg/p/9C30FBE79FB13821.html">资源预加载</a></li>
+                    <li class="divider"></li>
+                <li class="header">第三步</li>
+                        <li class="chapter " data-level="3.1" data-path="https://naka1205.github.io/h5rpg/p/D76025B918B5C635.html"><a href="https://naka1205.github.io/h5rpg/p/D76025B918B5C635.html">基本对象设计（一）</a></li>
+                        <li class="chapter  active " data-level="3.2" data-path="https://naka1205.github.io/h5rpg/p/4D5F3CA0A1A7C8C7.html"><a href="https://naka1205.github.io/h5rpg/p/4D5F3CA0A1A7C8C7.html">基本对象设计（二）</a></li>
+                        <li class="chapter " data-level="3.3" data-path="https://naka1205.github.io/h5rpg/p/49224D56030C9863.html"><a href="https://naka1205.github.io/h5rpg/p/49224D56030C9863.html">基本对象设计（三）</a></li>
+                        <li class="chapter " data-level="3.4" data-path="https://naka1205.github.io/h5rpg/p/A43AAAD554420BE4.html"><a href="https://naka1205.github.io/h5rpg/p/A43AAAD554420BE4.html">基本对象设计（四）</a></li>
+                    <li class="divider"></li>
+                <li class="header">第四步</li>
+                        <li class="chapter " data-level="4.1" data-path="https://naka1205.github.io/h5rpg/p/7B45EBEA4E81B2F1.html"><a href="https://naka1205.github.io/h5rpg/p/7B45EBEA4E81B2F1.html">游戏对象设计</a></li>
+                    <li class="divider"></li>
+                <li class="header">第五步</li>
+                        <li class="chapter " data-level="5.1" data-path="https://naka1205.github.io/h5rpg/p/3F05B0A70B69E895.html"><a href="https://naka1205.github.io/h5rpg/p/3F05B0A70B69E895.html">游戏界面设计（一）</a></li>
+                        <li class="chapter " data-level="5.2" data-path="https://naka1205.github.io/h5rpg/p/906DB896392B9838.html"><a href="https://naka1205.github.io/h5rpg/p/906DB896392B9838.html">游戏界面设计（二）</a></li>
+                    <li class="divider"></li>
+                <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
+    </ul>
+</nav>
+    </div>
+    
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/h5rpg/p/4D5F3CA0A1A7C8C7.html">基本对象设计（二）</a></h1>
+            </div>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">
+                                <h3 id="%E5%9F%BA%E6%9C%AC%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%EF%BC%88%E4%BA%8C%EF%BC%89" name="%E5%9F%BA%E6%9C%AC%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%EF%BC%88%E4%BA%8C%EF%BC%89">基本对象设计（二）</h3>
+<p>前面我们已经完成了父对象的编写，现在我们可以通过继承来实现各对象了。</p>
+<p>1、游戏主窗体。
+游戏主窗体只有一个，游戏中的对象显示都是在主窗体的画布上绘制的，代码如下：</p>
+<pre><code class="js">
+var JForm = null;
+JControls.Form = Class.create(JControls.Object, {//从父类继承
+    context:null,//画布环境
+    canvas:null,//画布
+    webPosition:null,//主窗体在Web页面中得位置
+    mousePosition:null,//鼠标在主窗体中得相对坐标
+    initialize:function ($super, argname, argP, argWH) {
+        $super(argname, {x:0, y:0}, argWH);
+        this.webPosition = argP;
+        JForm = this;
+        this.setFocus();//默认主窗体获得焦点
+        //创建画布对象
+        var f = document.getElementById(this.name);
+        if (f)  f.parentNode.removeChild(f);
+        this.canvas = document.createElement("canvas");
+        this.canvas.id = this.name;
+        this.canvas.style.position = "absolute";
+        this.canvas.style.left = this.webPosition.x + "px";
+        this.canvas.style.top = this.webPosition.y + "px";
+        this.canvas.style.backgroundColor = "black";
+        this.canvas.width = parseInt(this.size.width * JZoom.x);
+        this.canvas.height = parseInt(this.size.height * JZoom.y);
+        //为画布添加事件
+        this.canvas.onclick = function (event) {
+            JForm.mousePosition = {x:parseInt((event.pageX - JForm.webPosition.x) / JZoom.x), y:parseInt((event.pageY - JForm.webPosition.y) / JZoom.y)};
+            JForm.onControlClick.call(JForm);
+        };
+        this.canvas.onmousedown = function (event) {
+            JForm.mousePosition = {x:parseInt((event.pageX - JForm.webPosition.x) / JZoom.x), y:parseInt((event.pageY - JForm.webPosition.y) / JZoom.y)};
+            JForm.onControlMouseDown.call(JForm);
+        };
+        this.canvas.onmouseup = function (event) {
+            JForm.mousePosition = {x:parseInt((event.pageX - JForm.webPosition.x) / JZoom.x), y:parseInt((event.pageY - JForm.webPosition.y) / JZoom.y)};
+            JForm.onControlMouseUp.call(JForm);
+        };
+        this.canvas.ontouchdown = function (event) {
+            JForm.mousePosition = {x:parseInt((event.pageX - JForm.webPosition.x) / JZoom.x), y:parseInt((event.pageY - JForm.webPosition.y) / JZoom.y)};
+            JForm.onControlMouseDown.call(JForm);
+        };
+        this.canvas.ontouchup = function (event) {
+            JForm.mousePosition = {x:parseInt((event.pageX - JForm.webPosition.x) / JZoom.x), y:parseInt((event.pageY - JForm.webPosition.y) / JZoom.y)};
+            JForm.onControlMouseUp.call(JForm);
+        };
+        document.onkeydown = function (event) {
+            event = window.event || event;
+            JKeyCode = event.keyCode || event.which;
+            JForm.onControlKeyDown.call(JForm);
+        };
+        document.onkeyup = function (event) {
+            event = window.event || event;
+            JKeyCode = event.keyCode || event.which;
+            JForm.onControlKeyUp.call(JForm);
+        };
+        document.body.appendChild(this.canvas);//画布添加到web页面
+        this.context = this.canvas.getContext('2d');
+    }
+});</code></pre>
+<p>2、文字
+显示文字类代码如下：</p>
+<pre><code class="js">JControls.Label = Class.create(JControls.Object, {//从父类继承
+    text:"",//显示文本
+    textPos:null,//用于调整文字在Label中得位置
+    fontType:"normal", //文字属性,如:"normal","bold"等
+    fontColor:null,//字体颜色
+    textAlign:"left",//水平对齐：left，center，right
+    textBaseline:"top", //竖直对齐：top，middle，bottom
+    fontSize:10,//字体大小
+    setText:function (text) {
+        this.text = text;
+        return this;
+    },
+    setTextPos:function (textPos) {
+        this.textPos = textPos;
+        return this;
+    },
+    setFontType:function (type) {
+        this.fontType = type;
+        return this;
+    },
+    setFontColor:function (color) {
+        this.fontColor = color;
+        return this;
+    },
+    setTextAlign:function(textAlign){
+        this.textAlign=textAlign;
+        return this;
+    },
+    setTextBaseline:function(textBaseline){
+        this.textBaseline=textBaseline;
+        return this;
+    },
+    setFontSize:function(fontSize){
+        this.fontSize=fontSize;
+        return this;
+    },
+    showing:function($super,x, y, w, h){//覆盖父类中showing方法
+        $super();//执行父类中showing方法
+        var _context = JForm.context;
+        if (this.text) {
+            _context.fillStyle = this.fontColor.data;
+            _context.font = this.fontType + " " + parseInt(this.fontSize * (JZoom.y + JZoom.x) / 2) + "px serif";
+            _context.textBaseline = this.textBaseline;
+            _context.textAlign = this.textAlign;
+            var x1,y1;
+            if(_context.textAlign=="left"){
+                x1= x + parseInt(this.textPos.x * JZoom.x);
+            }else if(_context.textAlign=="center"){
+                x1= x + parseInt(w/2);
+            }else if(_context.textAlign=="right"){
+                x1= x + w- parseInt(this.textPos.x * JZoom.x);
+            }
+            if(_context.textBaseline=="top"){
+                y1=y + parseInt(this.textPos.y * JZoom.y);
+            }else if(_context.textBaseline=="middle"){
+                y1=y + parseInt(h/2);
+            }else if(_context.textBaseline=="bottom"){
+                y1=y +h- parseInt(this.textPos.y * JZoom.y);
+            }
+            _context.fillText(this.text,x1,y1, this.size.width);
+        }
+    },
+    initialize:function ($super, argname, argP, argtext) {//覆盖父类中构造函数
+        $super(argname, argP, {width:100, height:20});//执行父类中构造函数
+        this.text = argtext;
+        this.textPos = {x:2, y:2};
+        this.fontSize = 15;
+        this.fontColor = JColor.black;
+    }
+});</code></pre>
+<p>3、按钮
+按钮类代码如下：</p>
+<pre><code class="js">
+JControls.Button = Class.create(JControls.Object, {
+    buttonLabel:null,//Label对象，用于显示按钮上的文字
+    setText:function(text){
+    this.buttonLabel.setText(text);
+    },
+    setSize:function($super,size){
+        $super(size);
+        if(size)this.buttonLabel.setSize({width:size.width,height:size.height});
+    },
+    initialize:function ($super, argname, argP, argWH, argimage) {
+        $super(argname, argP, argWH);
+        if (argimage)this.BGImage = argimage.data;//argimage.data就是预加载的图片数据
+        this.buttonLabel=new JControls.Label(this.name+"_Label",{x:0,y:0})//创建了一个Label对象
+            .setSize(argWH)  .setTextBaseline("middle").setTextAlign("center").setFontType("bold");
+        this.addControlInLast([this.buttonLabel]);//添加到当前按钮子对象数组中
+    }
+});</code></pre>                            </section>
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+                                <h1 class="search-results-title">
+                                    关于"<span class='search-query'></span>"的搜索结果共<span class='search-results-count'></span>条
+                                </h1>
+                                <ul class="search-results-list"></ul>
+                            </div>
+                            <div class="no-results">
+                                <h1 class="search-results-title">没有"<span class='search-query'></span>"相关内容</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <a href="https://naka1205.github.io/h5rpg/p/D76025B918B5C635.html" class="navigation navigation-prev " aria-label="基本对象设计（一）">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/h5rpg/p/49224D56030C9863.html" class="navigation navigation-next " aria-label="基本对象设计（三）">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
+    </div>
+<script>
+var gitbook = gitbook || [];
+gitbook.push(function() {
+    gitbook.page.hasChanged({
+        "page": {
+            "title":  "基本对象设计（二）",
+            "next": {
+                "title": "基本对象设计（三）"
+            },
+            "previous": {
+                "title": "基本对象设计（一）"
+            }
+        },
+        "config": {
+            "gitbook": "*",
+            "theme": "default",
+            "variables": {},
+            "plugins": ["-lunr", "-search", "-highlight","search-pro"],
+            "pluginsConfig": {
+                "search-pro": {},
+                "highlight": {},
+                "sharing": {},
+                "fontsettings": {},
+                "theme-default": {}
+            },
+            "structure": {},
+            "pdf": {},
+            "styles": {}
+        },
+        "file": {},
+        "gitbook": {},
+        "basePath": "https://naka1205.github.io/h5rpg",
+        "book": {}
+    });
+});
+</script>
+</div>
+<script src="https://naka1205.github.io/h5rpg/assets/js/gitbook.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/theme.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/jquery.mark.min.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/search.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/buttons.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/fontsettings.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/plugin.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+</body>
+</html>

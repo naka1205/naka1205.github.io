@@ -1,0 +1,418 @@
+<!DOCTYPE HTML>
+<html lang=""> 
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>基本对象设计（一） · HTML5开发RPG游戏</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="通过分析基本对象主要分为以下几类：1、游戏主窗体;2、文字;3、按钮;4、图片;5、动画;6、容器;7、对话框;8、声音;9、时钟前面七种都是可视的。所以为他们写一个父类，通过继承以提高代码利用率。后两种没有什么共同点，只能单独写了。">
+    <meta name="keywords" content="HTML5开发RPG游戏">
+    <meta name="generator" content="PKBook">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/style.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/search.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/ebook.css">
+    <link rel="stylesheet" href="https://naka1205.github.io/h5rpg/assets/css/website.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css" rel="stylesheet">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://naka1205.github.io/h5rpg/assets/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://naka1205.github.io/h5rpg/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div class="book">
+    <div class="book-summary">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="输入关键词搜索" />
+        </div>
+        <nav role="navigation">
+    <ul class="summary">
+        <li><a href="https://naka1205.github.io/h5rpg/index.html" target="blank" class="header">概序</a></li>
+        <li class="divider"></li>
+                <li class="header">第一步</li>
+                        <li class="chapter " data-level="1.1" data-path="https://naka1205.github.io/h5rpg/p/C3D207FADFAF5841.html"><a href="https://naka1205.github.io/h5rpg/p/C3D207FADFAF5841.html">准备</a></li>
+                    <li class="divider"></li>
+                <li class="header">第二步</li>
+                        <li class="chapter " data-level="2.1" data-path="https://naka1205.github.io/h5rpg/p/9C30FBE79FB13821.html"><a href="https://naka1205.github.io/h5rpg/p/9C30FBE79FB13821.html">资源预加载</a></li>
+                    <li class="divider"></li>
+                <li class="header">第三步</li>
+                        <li class="chapter  active " data-level="3.1" data-path="https://naka1205.github.io/h5rpg/p/D76025B918B5C635.html"><a href="https://naka1205.github.io/h5rpg/p/D76025B918B5C635.html">基本对象设计（一）</a></li>
+                        <li class="chapter " data-level="3.2" data-path="https://naka1205.github.io/h5rpg/p/4D5F3CA0A1A7C8C7.html"><a href="https://naka1205.github.io/h5rpg/p/4D5F3CA0A1A7C8C7.html">基本对象设计（二）</a></li>
+                        <li class="chapter " data-level="3.3" data-path="https://naka1205.github.io/h5rpg/p/49224D56030C9863.html"><a href="https://naka1205.github.io/h5rpg/p/49224D56030C9863.html">基本对象设计（三）</a></li>
+                        <li class="chapter " data-level="3.4" data-path="https://naka1205.github.io/h5rpg/p/A43AAAD554420BE4.html"><a href="https://naka1205.github.io/h5rpg/p/A43AAAD554420BE4.html">基本对象设计（四）</a></li>
+                    <li class="divider"></li>
+                <li class="header">第四步</li>
+                        <li class="chapter " data-level="4.1" data-path="https://naka1205.github.io/h5rpg/p/7B45EBEA4E81B2F1.html"><a href="https://naka1205.github.io/h5rpg/p/7B45EBEA4E81B2F1.html">游戏对象设计</a></li>
+                    <li class="divider"></li>
+                <li class="header">第五步</li>
+                        <li class="chapter " data-level="5.1" data-path="https://naka1205.github.io/h5rpg/p/3F05B0A70B69E895.html"><a href="https://naka1205.github.io/h5rpg/p/3F05B0A70B69E895.html">游戏界面设计（一）</a></li>
+                        <li class="chapter " data-level="5.2" data-path="https://naka1205.github.io/h5rpg/p/906DB896392B9838.html"><a href="https://naka1205.github.io/h5rpg/p/906DB896392B9838.html">游戏界面设计（二）</a></li>
+                    <li class="divider"></li>
+                <li><a href="https://github.com/naka1205/pkbook" target="blank" class="gitbook-link">Published with PKBook</a></li>
+    </ul>
+</nav>
+    </div>
+    
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+                <h1><i class="fa fa-circle-o-notch fa-spin"></i><a href="https://naka1205.github.io/h5rpg/p/D76025B918B5C635.html">基本对象设计（一）</a></h1>
+            </div>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">
+                                <h3 id="%E5%9F%BA%E6%9C%AC%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%EF%BC%88%E4%B8%80%EF%BC%89" name="%E5%9F%BA%E6%9C%AC%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%EF%BC%88%E4%B8%80%EF%BC%89">基本对象设计（一）</h3>
+<p>通过分析基本对象主要分为以下几类：</p>
+<p>1、游戏主窗体
+2、文字
+3、按钮
+4、图片
+5、动画
+6、容器
+7、对话框
+8、声音
+9、时钟</p>
+<p>前面七种都是可视的。所以为他们写一个父类，通过继承以提高代码利用率。
+后两种没有什么共同点，只能单独写了。
+父类代码如下：</p>
+<pre><code class="js">var JControls = {};
+JControls.Object= Class.create({
+    name:null,//对象名称，需唯一
+    position:null, //绝对位置{x:0,y:0}
+    alpha:null,//透明度
+    moveStep:null, //移动步伐{x:0,y:0}
+    canMove:true, //是否可移动
+    size:null, //对象长宽{width:0,height:0}
+    blockAngle:null, //旋转角度
+    rotationStep:null, //旋转步伐
+    blockInvert:null,//是否反转
+    bgColor:null,//背景颜色
+    BGColorAlpha:null,//背景颜色透明度
+    BGImage:null,//背景图片
+    BGImageAlpha:null,//背景透明度
+    BGImagePosition:null,//背景图片开始显示位置
+    BGImageSize:null,//背景图片显示的长宽
+    focus:null,//是否为焦点
+    controls:null,//子对象数组
+    parent:null,//父对象
+    relativePosition:null, //与父对象的相对位置
+    enabled:null,//是否为激活状态
+    visible:null,//是否显示
+    showImageData:null,//该对象以及其子对象的缓存图片数据
+    isHighLight:null,//是否高亮
+    setSize:function (size) {//设置宽高
+        this.size = size;
+        return this;
+    },
+    setBGColor:function (bgColor) {//设置背景颜色
+        this.BGColor = bgColor;
+        return this;
+    },
+    setBGImage:function (image) {//设置背景图片
+        this.BGImage = image.data;
+        this.BGImagePosition={x:0,y:0};
+        this.BGImageSize={width:image.cellSize.width,height:image.cellSize.height};
+        return this;
+    },
+    setRelativePosition:function (relativePosition) {//设置与父对象的相对位置
+        this.relativePosition = relativePosition;
+        return this;
+    },
+    setFocus:function(fun){//获取焦点
+        if(fun)fun();
+        if(JFocusControl)JFocusControl.lostFocus();
+        this.focus=true;
+        JFocusControl=this;
+    },
+    lostFocus:function(){//失去焦点
+        this.focus=false;
+        JFocusControl=null;
+    },
+    pointInBlock:function (e, _this) {//判断_this对象是否包含坐标e
+        if (!_this)_this = this;
+        if (e.x &gt;= _this.position.x &amp;&amp; e.x &lt; _this.position.x + _this.size.width &amp;&amp; e.y &gt;= _this.position.y &amp;&amp; e.y &lt; _this.position.y + _this.size.height) return true;
+        else return false;
+    },
+    onControlClick:function () {//点击对象时，会调用该函数
+        if (!this.visible || !this.enabled)return false;
+        for (var i = this.controls.length - 1; i &gt;= 0; i--) {
+            if (this.controls[i].pointInBlock(JForm.mousePosition, this.controls[i])
+                &amp;&amp; this.controls[i].onControlClick.call(this.controls[i])) return true;
+        }
+        if (this.onClick &amp;&amp; this.onClick())return true;//如果有自定义点击事件并且执行后返回true，则返回true停止递归，结束点击事件
+        else return false;//返回false继续遍历
+    },
+    onControlMouseDown:function () {//点击对象时，鼠标键按下会调用该函数
+        if (!this.visible || !this.enabled)return false;
+        for (var i = this.controls.length - 1; i &gt;= 0; i--) {
+            if (this.controls[i].pointInBlock(JForm.mousePosition, this.controls[i])
+                &amp;&amp; this.controls[i].onControlMouseDown.call(this.controls[i])) return true;
+        }
+        if (this.onMouseDown &amp;&amp; this.onMouseDown())return true;
+        else return false;
+    },
+    onControlMouseUp:function () {//点击对象时，鼠标键弹起会调用该函数
+        if (!this.visible || !this.enabled)return false;
+        for (var i = this.controls.length - 1; i &gt;= 0; i--) {
+            if (this.controls[i].pointInBlock(JForm.mousePosition, this.controls[i])
+                &amp;&amp; this.controls[i].onControlMouseUp.call(this.controls[i])) return true;
+        }
+        if (this.onMouseUp &amp;&amp; this.onMouseUp())return true;
+        return false;
+    },
+    onControlKeyDown:function () {//键盘按下时，会调用该函数
+        if (!this.visible || !this.enabled)return false;
+        for (var i = this.controls.length - 1; i &gt;= 0; i--) {
+            if (this.controls[i].onControlKeyDown.call(this.controls[i])) return true;
+        }
+        if (this.onKeyDown &amp;&amp; this.onKeyDown())return true;
+        else return false;
+    },
+    onControlKeyUp:function () {//键盘弹起时，会调用该函数
+        if (!this.visible || !this.enabled)return false;
+        for (var i = this.controls.length - 1; i &gt;= 0; i--) {
+            if (this.controls[i].onControlKeyUp.call(this.controls[i])) return true;
+        }
+        if (this.onKeyUp &amp;&amp; this.onKeyUp())return true;
+        else return false;
+    },
+    onClick:null,//自定义点击事件
+    onMouseDown:null,//自定义鼠标键按下事件
+    onMouseUp:null,//自定义鼠标键弹起事件
+    onKeyDown:null,//自定义键盘按下事件
+    onKeyUp:null,//自定义键盘弹起事件
+    addControlInLast:function (aObj) {//把对象数组aObj加在子对象数组后面
+        for (var i = 0; i &lt; aObj.length; i++) {
+            if (aObj[i]) {
+                var length = this.controls.length;
+                this.controls[length] = aObj[i];
+                this.controls[length].parent = this;
+                this.controls[length].position = {x:this.position.x + this.controls[length].relativePosition.x,
+                    y:this.position.y + this.controls[length].relativePosition.y};
+            }
+        }
+    },
+    removeControl:function (objName) {//根据对象名称删除子对象数组中的对象
+        for (var i = 0; i &lt; this.controls.length; i++) {
+            if (objName == this.controls[i].name) {
+                this.controls[i] = null;
+                for (var j = i; j &lt; this.controls.length; j++) {
+                    this.controls[j] = this.controls[j + 1];
+                }
+                this.controls.length = this.controls.length - 1;
+                break;
+            }
+        }
+    },
+    remove:function () {//删除当前对象
+        if (this.parent) {
+            this.parent.removeControl.call(this.parent, this.name);
+        } else {
+            this.name = null;
+        }
+    },
+    clearControls:function () {//清空子对象数组
+        this.controls = [];
+    },
+    saveShowImageData:function () {//保存该对象以及其子对象的缓存图片数据
+        var w = parseInt(this.size.width * JZoom.x), h = parseInt(this.size.height * JZoom.y);
+        var relativePosition = this.relativePosition;
+        var parent = this.parent;
+        this.parent = null;
+        this.relativePosition = {x:0, y:0};
+        JForm.canvas.width = w;
+        JForm.canvas.height = h;
+        this.showImageData = null;
+        this.show();
+        this.showImageData = JFunction.getImageData(JForm.context, this.relativePosition, {width:w, height:h});
+        this.parent = parent;
+        this.relativePosition = relativePosition;
+        JForm.canvas.width = parseInt(JForm.size.width * JZoom.x);
+        JForm.canvas.height = parseInt(JForm.size.height * JZoom.y);
+    },
+    beginShow:function () {//显示该对象前执行
+        this.position.x = this.relativePosition.x;
+        this.position.y = this.relativePosition.y;
+        if (this.parent) {
+            this.position.x += this.parent.position.x;
+            this.position.y += this.parent.position.y;
+        }
+    },
+    showing:function(x, y, w, h){//显示该对象时执行
+        for (var member = 0; member &lt; this.controls.length; member++) {
+            this.controls[member].show.call(this.controls[member]);
+        }
+        if (!this.enabled) {
+            var imageData = JFunction.getImageData(JForm.context, {x:x, y:y},{width:w, height:h});
+            JFunction.drawImageData(JForm.context, JFunction.changeToGray(imageData), {x:x, y:y});
+        }
+    },
+    endShow:function () {//显示该对象后执行
+        if (this.rotationStep) {
+            this.blockAngle += this.rotationStep;
+            this.blockAngle = this.blockAngle % 360;
+        }
+        if (this.canMove &amp;&amp; this.moveStep) {
+            this.relativePosition.x += this.moveStep.x;
+            this.relativePosition.y += this.moveStep.y;
+        }
+    },
+    show:function () {//显示该对象
+        this.beginShow();
+        if (this.visible) {
+            if (this.showImageData) {//如果有缓存数据，直接绘图
+                JFunction.drawImageData(JForm.context, this.showImageData,
+                    {x:parseInt(this.position.x * JZoom.x), y:parseInt(this.position.y * JZoom.y)});
+            } else {
+                var _context = JForm.context;
+                if (this.name == null)return;
+                var x = parseInt(this.position.x * JZoom.x);
+                var y = parseInt(this.position.y * JZoom.y);
+                var w = parseInt(this.size.width * JZoom.x);
+                var h = parseInt(this.size.height * JZoom.y);
+                if (_context) {
+                    if(this.alpha&lt;1){//设置画布透明度
+                        _context.save();
+                        _context.globalAlpha=this.alpha;
+                    }
+                    if(this.blockInvert){//翻转画布
+                        _context.save();
+                        _context.translate(x + parseInt(w / 2),0);
+                        _context.scale(-1, 1);
+                        _context.translate((x + parseInt(w / 2))*-1,0);
+                    }
+                    if(this.blockAngle){//旋转画布
+                        _context.save();
+                        _context.translate(x + parseInt(w / 2), y + parseInt(h / 2));
+                        x = -parseInt(w / 2);
+                        y = -parseInt(h / 2);
+                        _context.rotate(this.blockAngle * Math.PI / 180);
+                    }
+                    if (this.BGColor) {//绘制背景颜色
+                        _context.save();
+                        _context.globalAlpha=this.alpha*this.BGColorAlpha;
+                        _context.fillStyle = this.BGColor.data;
+                        _context.fillRect(x, y, w, h);
+                        _context.restore();
+                    }
+                    if (this.BGImage) {//绘制背景图片
+                        _context.save();
+                        _context.globalAlpha=this.alpha*this.BGImageAlpha;
+                        _context.drawImage(this.BGImage, this.BGImagePosition.x, this.BGImagePosition.y, this.BGImageSize.width,
+                            this.BGImageSize.height, x, y, w, h);
+                        _context.restore();
+                    }
+                    this.showing&amp;&amp;this.showing(x, y, w, h);//如果有showing事件，则执行该事件
+                    if(this.blockAngle) _context.restore();//如果画布有旋转则恢复到旋转前状态
+                    if(this.blockInvert){//如果画布有翻转则恢复到翻转前状态
+                        _context.translate(JForm.size.width-x - parseInt(w / 2),0);
+                        _context.scale(-1, 1);
+                        _context.translate((JForm.size.width-x - parseInt(w / 2))*-1,0);
+                        _context.restore();
+                    }
+                    if(this.alpha&lt;1)_context.restore();//恢复画布透明度
+                }
+            }
+        }
+        this.endShow();
+    },
+    initialize:function ( argname, argP, argWH) {//类构造函数，初始化数据
+        this.name = argname;
+        this.position = argP;
+        this.size = argWH;
+        this.BGColorAlpha = 1.0;
+        this.BGImageAlpha = 1.0;
+        this.moveStep = {x:0, y:0};
+        this.fontColor=JColor.black;
+        this.textPos={x:0, y:0};
+        this.alpha=1.0;
+        this.relativePosition = argP;
+        this.controls = [];
+        this.parent = null;
+        this.enabled = true;
+        this.visible = true;
+    }
+});</code></pre>
+<p>其中JColor定义如下：</p>
+<pre><code class="js">var JColor = {
+    white:{data:"#FFFFFF", r:255, g:255, b:255},
+    black:{data:"#000000", r:0, g:0, b:0},
+    red:{data:"#FF0000", r:255, g:0, b:0},
+    green:{data:"#00FF00", r:0, g:255, b:0},
+    blue:{data:"#0000FF", r:0, g:0, b:255},
+    gray:{data:"#999999", r:144, g:144, b:144}
+};</code></pre>                            </section>
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+                                <h1 class="search-results-title">
+                                    关于"<span class='search-query'></span>"的搜索结果共<span class='search-results-count'></span>条
+                                </h1>
+                                <ul class="search-results-list"></ul>
+                            </div>
+                            <div class="no-results">
+                                <h1 class="search-results-title">没有"<span class='search-query'></span>"相关内容</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <a href="https://naka1205.github.io/h5rpg/p/9C30FBE79FB13821.html" class="navigation navigation-prev " aria-label="资源预加载">
+            <i class="fa fa-angle-left"></i>
+        </a>
+                <a href="https://naka1205.github.io/h5rpg/p/4D5F3CA0A1A7C8C7.html" class="navigation navigation-next " aria-label="基本对象设计（二）">
+            <i class="fa fa-angle-right"></i>
+        </a>
+               
+    </div>
+<script>
+var gitbook = gitbook || [];
+gitbook.push(function() {
+    gitbook.page.hasChanged({
+        "page": {
+            "title":  "基本对象设计（一）",
+            "next": {
+                "title": "基本对象设计（二）"
+            },
+            "previous": {
+                "title": "资源预加载"
+            }
+        },
+        "config": {
+            "gitbook": "*",
+            "theme": "default",
+            "variables": {},
+            "plugins": ["-lunr", "-search", "-highlight","search-pro"],
+            "pluginsConfig": {
+                "search-pro": {},
+                "highlight": {},
+                "sharing": {},
+                "fontsettings": {},
+                "theme-default": {}
+            },
+            "structure": {},
+            "pdf": {},
+            "styles": {}
+        },
+        "file": {},
+        "gitbook": {},
+        "basePath": "https://naka1205.github.io/h5rpg",
+        "book": {}
+    });
+});
+</script>
+</div>
+<script src="https://naka1205.github.io/h5rpg/assets/js/gitbook.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/theme.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/jquery.mark.min.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/search.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/buttons.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/fontsettings.js"></script>
+<script src="https://naka1205.github.io/h5rpg/assets/js/plugin.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+</body>
+</html>
