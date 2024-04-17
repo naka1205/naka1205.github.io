@@ -22,25 +22,15 @@
       printErr: console.error,
     };
 
-    // // 单击事件处理函数
-    // function handleClick(event) {
-    //   console.log(window.Module)
-    // }
+    function saveLocalStorage(key, value) {
+      localStorage.setItem(key, value)
+      return 'true'
+    }
 
-    // // 双击事件处理函数
-    // function handleDblClick(event) {
-    //   window.Module.ccall('MyCPPFunctionWithReturnValue',
-    //     null,
-    //     ['number'],
-    //     [2]
-    //   );
-    // }
+    function getLocalStorage(key) {
+      return localStorage.getItem(key)
+    }
 
-    // // 为元素添加单击事件监听
-    // window.addEventListener('click', handleClick);
-
-    // // 为元素添加双击事件监听
-    // window.addEventListener('dblclick', handleDblClick);
   </script>
 
   <script async src="Farm.js"></script>
