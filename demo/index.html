@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ED_Demo</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+        height: 100vh;
+        width: 100vw;
+        position: relative;
+      }
+
+      #canvas {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+      }
+
+      #app {
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+        margin-top: 0px;
+        top: 0px;
+      }
+
+      .container {
+        margin: 100px auto;
+        width: 500px;
+        text-align: center;
+      }
+
+      .progress {
+        padding: 6px;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.25);
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25),
+          0 1px rgba(255, 255, 255, 0.08);
+        position: relative;
+      }
+
+      .progress-bar {
+        height: 18px;
+        border-radius: 30px;
+        background-image: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.3),
+          rgba(255, 255, 255, 0.05)
+        );
+        transition: 0.4s linear;
+        transition-property: width, background-color;
+      }
+
+      .progress-moved .progress-bar {
+        width: 0%;
+        background-image: linear-gradient(
+          to bottom,
+          rgba(127, 199, 241, 0.849),
+          rgba(10, 154, 238, 0.993)
+        );
+        transition: 0.4s linear;
+        transition-property: width, background-color;
+      }
+
+      .progress-moved .progress-status {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        color: aliceblue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+    <div class="container">
+      <div class="progress progress-moved">
+        <div id="status" class="progress-status"></div>
+        <div id="progress" class="progress-bar"></div>
+      </div>
+    </div>
+    <script>
+      var canvas = document.getElementById('canvas')
+      var progressElement = document.getElementById('progress')
+      var statusElement = document.getElementById('status')
+
+      function setStatus(text) {
+        console.log('setStatus' ,text)
+        if (!Module.setStatus.last)
+          Module.setStatus.last = { time: Date.now(), text: '' }
+        if (text === Module.setStatus.last.text) return
+
+        var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/)
+        var now = Date.now()
+        if (m && now - Module.setStatus.last.time < 30) return
+        Module.setStatus.last.time = now
+        Module.setStatus.last.text = text
+        console.log('m' ,m)
+        if (m) {
+          text = m[1]
+          var value = parseInt(m[2]) * 100
+          var max = parseInt(m[4]) * 100
+          console.log('value', value)
+          console.log('max', max)
+          console.log(value/ max)
+          
+
+          // progressElement.style.width = max / value
+        } else {
+        }
+        statusElement.innerHTML = text
+      }
+
+      function monitorRunDependencies(left) {
+
+        this.totalDependencies = Math.max(this.totalDependencies, left)
+        Module.setStatus(
+          left
+            ? 'Preparing... (' +
+                (this.totalDependencies - left) +
+                '/' +
+                this.totalDependencies +
+                ')'
+            : 'All downloads complete.'
+        )
+      }
+
+      function beforeRun() {
+        console.log('beforeRun')
+      }
+
+      window.Module = {
+        preRun: [],
+        postRun: [],
+        canvas: canvas,
+        print: console.log,
+        printErr: console.error,
+        setStatus: setStatus,
+        totalDependencies: 0,
+        monitorRunDependencies: monitorRunDependencies
+      }
+
+      window.Module.preRun.push(beforeRun)
+
+      Module.onRuntimeInitialized = function () {
+        console.log('onRuntimeInitialized')
+      }
+
+      Module.setStatus('Downloading...')
+      window.onerror = function () {
+        Module.setStatus('Exception thrown, see JavaScript console')
+        Module.setStatus = function (text) {
+          if (text) Module.printErr('[post-exception status] ' + text)
+        }
+      }
+    </script>
+
+    <script async src="app.js"></script>
+  </body>
+</html>
