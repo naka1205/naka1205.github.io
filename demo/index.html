@@ -116,11 +116,6 @@
           progressElement.value = parseInt(m[2]) * 100
           progressElement.max = parseInt(m[4]) * 100
           progressElement.hidden = false
-        } else {
-          progressElement.value = null
-          progressElement.max = null
-          progressElement.hidden = true
-          containerElement.style.display = 'none'
         }
         statusElement.innerHTML = text
       }
@@ -156,7 +151,7 @@
       window.Module.preRun.push(beforeRun)
 
       Module.onRuntimeInitialized = function () {
-        
+        containerElement.style.display = 'none'
         canvasElement.style.display = 'block'
       }
 
