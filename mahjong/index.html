@@ -62,7 +62,6 @@
         width: 100%;
         position: fixed;
         z-index: 2;
-        display: none;
       }
 
       .container {
@@ -156,7 +155,7 @@
       }
 
       Module.onRuntimeInitialized = function () {
-        containerElement.style.display = 'none'
+        maskingElement.style.display = 'none'
         canvasElement.style.display = 'block'
       }
 
@@ -168,9 +167,6 @@
         }
       }
 
-      maskingElement.addEventListener('click', function () {
-        maskingElement.style.display = 'none'
-      })
     </script>
 
     <script async src="app.js"></script>
