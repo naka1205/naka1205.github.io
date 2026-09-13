@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 由 tools/extract 生成，不要手工编辑 -->
+<!-- 来源: fire.mkf — 战斗特效 -->
+<TextureAtlas imagePath="fire_1.bin" width="1955" height="2010" format="indexed8" paletteIndex="0">
+    <sprite n="fire_9_0" x="652" y="1502" w="228" h="168" chunk="9" frame="0"/>
+    <sprite n="fire_9_1" x="113" y="1673" w="221" h="167" oX="1" oY="0" oW="228" oH="168" chunk="9" frame="1"/>
+    <sprite n="fire_9_4" x="335" y="1673" w="202" h="167" oX="11" oY="0" oW="228" oH="168" chunk="9" frame="4"/>
+    <sprite n="fire_9_5" x="881" y="1502" w="211" h="168" oX="17" oY="0" oW="228" oH="168" chunk="9" frame="5"/>
+    <sprite n="fire_15_1" x="1268" y="199" w="318" h="195" oX="2" oY="4" oW="320" oH="200" chunk="15" frame="1"/>
+    <sprite n="fire_15_4" x="1593" y="1" w="320" h="196" oX="0" oY="1" oW="320" oH="200" chunk="15" frame="4"/>
+    <sprite n="fire_15_6" x="1" y="592" w="320" h="193" oX="0" oY="6" oW="320" oH="200" chunk="15" frame="6"/>
+    <sprite n="fire_15_9" x="1587" y="199" w="318" h="195" oX="2" oY="4" oW="320" oH="200" chunk="15" frame="9"/>
+    <sprite n="fire_15_12" x="1" y="199" w="320" h="196" oX="0" oY="1" oW="320" oH="200" chunk="15" frame="12"/>
+    <sprite n="fire_15_14" x="322" y="592" w="320" h="193" oX="0" oY="6" oW="320" oH="200" chunk="15" frame="14"/>
+    <sprite n="fire_16_0" x="538" y="1673" w="316" h="167" oX="4" oY="4" oW="320" oH="200" chunk="16" frame="0"/>
+    <sprite n="fire_16_1" x="1620" y="1673" w="320" h="166" oX="0" oY="5" oW="320" oH="200" chunk="16" frame="1"/>
+    <sprite n="fire_16_2" x="752" y="1842" w="316" h="165" oX="0" oY="8" oW="320" oH="200" chunk="16" frame="2"/>
+    <sprite n="fire_16_5" x="1069" y="1842" w="320" h="165" oX="0" oY="0" oW="320" oH="200" chunk="16" frame="5"/>
+    <sprite n="fire_16_6" x="1093" y="1502" w="318" h="168" oX="0" oY="0" oW="320" oH="200" chunk="16" frame="6"/>
+    <sprite n="fire_16_7" x="1412" y="1502" w="320" h="168" oX="0" oY="1" oW="320" oH="200" chunk="16" frame="7"/>
+    <sprite n="fire_18_1" x="322" y="199" w="303" h="196" oX="12" oY="4" oW="320" oH="200" chunk="18" frame="1"/>
+    <sprite n="fire_18_2" x="1285" y="592" w="303" h="192" oX="13" oY="8" oW="320" oH="200" chunk="18" frame="2"/>
+    <sprite n="fire_18_4" x="1" y="396" w="301" h="195" oX="18" oY="5" oW="320" oH="200" chunk="18" frame="4"/>
+    <sprite n="fire_18_7" x="1240" y="396" w="297" h="194" oX="15" oY="0" oW="320" oH="200" chunk="18" frame="7"/>
+    <sprite n="fire_20_2" x="384" y="1502" w="144" h="169" oX="9" oY="0" oW="157" oH="171" chunk="20" frame="2"/>
+    <sprite n="fire_20_3" x="1611" y="1154" w="157" h="171" chunk="20" frame="3"/>
+    <sprite n="fire_20_4" x="1769" y="1154" w="157" h="171" chunk="20" frame="4"/>
+    <sprite n="fire_26_11" x="1390" y="1842" w="280" h="165" oX="32" oY="33" oW="320" oH="200" chunk="26" frame="11"/>
+    <sprite n="fire_26_12" x="1368" y="972" w="265" h="176" oX="40" oY="24" oW="320" oH="200" chunk="26" frame="12"/>
+    <sprite n="fire_26_13" x="257" y="972" w="269" h="180" oX="47" oY="15" oW="320" oH="200" chunk="26" frame="13"/>
+    <sprite n="fire_26_14" x="1051" y="972" w="316" h="177" oX="0" oY="10" oW="320" oH="200" chunk="26" frame="14"/>
+    <sprite n="fire_26_15" x="303" y="396" w="298" h="195" oX="17" oY="0" oW="320" oH="200" chunk="26" frame="15"/>
+    <sprite n="fire_26_16" x="1671" y="1842" w="283" h="165" oX="30" oY="20" oW="320" oH="200" chunk="26" frame="16"/>
+    <sprite n="fire_26_17" x="769" y="972" w="281" h="178" oX="39" oY="19" oW="320" oH="200" chunk="26" frame="17"/>
+    <sprite n="fire_26_18" x="611" y="1154" w="318" h="173" oX="0" oY="18" oW="320" oH="200" chunk="26" frame="18"/>
+    <sprite n="fire_26_19" x="1" y="1842" w="304" h="166" oX="10" oY="18" oW="320" oH="200" chunk="26" frame="19"/>
+    <sprite n="fire_26_24" x="1" y="972" w="255" h="181" oX="65" oY="19" oW="320" oH="200" chunk="26" frame="24"/>
+    <sprite n="fire_26_25" x="527" y="972" w="241" h="179" oX="76" oY="16" oW="320" oH="200" chunk="26" frame="25"/>
+    <sprite n="fire_26_26" x="1634" y="972" w="222" h="176" oX="90" oY="14" oW="320" oH="200" chunk="26" frame="26"/>
+    <sprite n="fire_33_29" x="188" y="786" w="189" h="184" oX="0" oY="0" oW="219" oH="186" chunk="33" frame="29"/>
+    <sprite n="fire_33_31" x="1" y="786" w="186" h="185" oX="0" oY="1" oW="219" oH="186" chunk="33" frame="31"/>
+    <sprite n="fire_33_32" x="1661" y="786" w="158" h="182" oX="8" oY="1" oW="219" oH="186" chunk="33" frame="32"/>
+    <sprite n="fire_34_5" x="306" y="1842" w="298" h="166" oX="22" oY="2" oW="320" oH="168" chunk="34" frame="5"/>
+    <sprite n="fire_34_6" x="1" y="1154" w="314" h="175" oX="6" oY="9" oW="320" oH="184" chunk="34" frame="6"/>
+    <sprite n="fire_34_7" x="1340" y="786" w="320" h="183" oX="0" oY="1" oW="320" oH="184" chunk="34" frame="7"/>
+    <sprite n="fire_34_8" x="378" y="786" w="320" h="184" chunk="34" frame="8"/>
+    <sprite n="fire_34_9" x="699" y="786" w="320" h="184" chunk="34" frame="9"/>
+    <sprite n="fire_34_10" x="1020" y="786" w="319" h="184" oX="0" oY="0" oW="320" oH="184" chunk="34" frame="10"/>
+    <sprite n="fire_35_1" x="930" y="1154" w="88" h="173" oX="59" oY="0" oW="147" oH="174" chunk="35" frame="1"/>
+    <sprite n="fire_35_2" x="316" y="1154" w="146" h="174" oX="1" oY="0" oW="147" oH="174" chunk="35" frame="2"/>
+    <sprite n="fire_35_3" x="463" y="1154" w="147" h="174" chunk="35" frame="3"/>
+    <sprite n="fire_35_4" x="1019" y="1154" w="147" h="173" oX="0" oY="0" oW="147" oH="174" chunk="35" frame="4"/>
+    <sprite n="fire_35_5" x="1167" y="1154" w="147" h="173" oX="0" oY="0" oW="147" oH="174" chunk="35" frame="5"/>
+    <sprite n="fire_35_6" x="1315" y="1154" w="147" h="173" oX="0" oY="0" oW="147" oH="174" chunk="35" frame="6"/>
+    <sprite n="fire_35_7" x="1463" y="1154" w="147" h="172" oX="0" oY="0" oW="147" oH="174" chunk="35" frame="7"/>
+    <sprite n="fire_35_8" x="855" y="1673" w="147" h="167" oX="0" oY="0" oW="147" oH="174" chunk="35" frame="8"/>
+    <sprite n="fire_35_9" x="605" y="1842" w="146" h="166" oX="1" oY="0" oW="147" oH="174" chunk="35" frame="9"/>
+    <sprite n="fire_36_9" x="1" y="1330" w="121" h="171" oX="11" oY="1" oW="133" oH="172" chunk="36" frame="9"/>
+    <sprite n="fire_36_10" x="123" y="1330" w="122" h="171" oX="11" oY="0" oW="133" oH="172" chunk="36" frame="10"/>
+    <sprite n="fire_36_11" x="529" y="1502" w="122" h="169" oX="11" oY="0" oW="133" oH="172" chunk="36" frame="11"/>
+    <sprite n="fire_36_12" x="1003" y="1673" w="124" h="167" oX="9" oY="0" oW="133" oH="172" chunk="36" frame="12"/>
+    <sprite n="fire_36_13" x="1128" y="1673" w="125" h="167" oX="7" oY="0" oW="133" oH="172" chunk="36" frame="13"/>
+    <sprite n="fire_36_14" x="1254" y="1673" w="124" h="167" oX="6" oY="0" oW="133" oH="172" chunk="36" frame="14"/>
+    <sprite n="fire_36_15" x="1379" y="1673" w="121" h="167" oX="6" oY="1" oW="133" oH="172" chunk="36" frame="15"/>
+    <sprite n="fire_36_16" x="1733" y="1502" w="103" h="168" oX="6" oY="0" oW="133" oH="172" chunk="36" frame="16"/>
+    <sprite n="fire_36_17" x="1837" y="1502" w="106" h="168" oX="6" oY="0" oW="133" oH="172" chunk="36" frame="17"/>
+    <sprite n="fire_36_18" x="1" y="1673" w="111" h="168" oX="5" oY="0" oW="133" oH="172" chunk="36" frame="18"/>
+    <sprite n="fire_36_19" x="1501" y="1673" w="118" h="167" oX="2" oY="0" oW="133" oH="172" chunk="36" frame="19"/>
+    <sprite n="fire_38_7" x="246" y="1330" w="143" h="171" oX="0" oY="0" oW="169" oH="178" chunk="38" frame="7"/>
+    <sprite n="fire_46_0" x="390" y="1330" w="192" h="170" chunk="46" frame="0"/>
+    <sprite n="fire_46_1" x="583" y="1330" w="192" h="170" chunk="46" frame="1"/>
+    <sprite n="fire_46_2" x="776" y="1330" w="192" h="170" chunk="46" frame="2"/>
+    <sprite n="fire_46_3" x="969" y="1330" w="192" h="170" chunk="46" frame="3"/>
+    <sprite n="fire_46_4" x="1162" y="1330" w="192" h="170" chunk="46" frame="4"/>
+    <sprite n="fire_46_5" x="1355" y="1330" w="192" h="170" chunk="46" frame="5"/>
+    <sprite n="fire_46_6" x="1548" y="1330" w="192" h="170" chunk="46" frame="6"/>
+    <sprite n="fire_46_7" x="1741" y="1330" w="192" h="170" chunk="46" frame="7"/>
+    <sprite n="fire_46_8" x="1" y="1502" w="190" h="170" oX="1" oY="0" oW="192" oH="170" chunk="46" frame="8"/>
+    <sprite n="fire_46_9" x="192" y="1502" w="191" h="170" oX="1" oY="0" oW="192" oH="170" chunk="46" frame="9"/>
+    <sprite n="fire_52_0" x="1589" y="592" w="320" h="191" oX="0" oY="9" oW="320" oH="200" chunk="52" frame="0"/>
+    <sprite n="fire_52_7" x="1538" y="396" w="320" h="194" oX="0" oY="0" oW="320" oH="200" chunk="52" frame="7"/>
+    <sprite n="fire_53_1" x="602" y="396" w="318" h="195" oX="0" oY="1" oW="320" oH="200" chunk="53" frame="1"/>
+    <sprite n="fire_53_2" x="1" y="1" w="320" h="197" oX="0" oY="3" oW="320" oH="200" chunk="53" frame="2"/>
+    <sprite n="fire_53_4" x="626" y="199" w="320" h="196" oX="0" oY="3" oW="320" oH="200" chunk="53" frame="4"/>
+    <sprite n="fire_53_6" x="643" y="592" w="320" h="193" oX="0" oY="1" oW="320" oH="200" chunk="53" frame="6"/>
+    <sprite n="fire_53_7" x="322" y="1" w="314" h="197" oX="6" oY="1" oW="320" oH="200" chunk="53" frame="7"/>
+    <sprite n="fire_53_9" x="921" y="396" w="318" h="195" oX="0" oY="1" oW="320" oH="200" chunk="53" frame="9"/>
+    <sprite n="fire_53_10" x="637" y="1" w="320" h="197" oX="0" oY="3" oW="320" oH="200" chunk="53" frame="10"/>
+    <sprite n="fire_53_12" x="947" y="199" w="320" h="196" oX="0" oY="3" oW="320" oH="200" chunk="53" frame="12"/>
+    <sprite n="fire_53_14" x="964" y="592" w="320" h="193" oX="0" oY="1" oW="320" oH="200" chunk="53" frame="14"/>
+    <sprite n="fire_53_15" x="958" y="1" w="314" h="197" oX="5" oY="1" oW="320" oH="200" chunk="53" frame="15"/>
+    <sprite n="fire_54_8" x="1273" y="1" w="319" h="197" oX="1" oY="0" oW="320" oH="200" chunk="54" frame="8"/>
+</TextureAtlas>

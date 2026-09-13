@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 由 tools/extract 生成，不要手工编辑 -->
+<!-- 来源: fbp.mkf — 320x200 战斗背景 -->
+<TextureAtlas imagePath="fbp_1.bin" width="1927" height="403" format="indexed8" paletteIndex="0">
+    <sprite n="fbp_60" x="1" y="1" w="320" h="200" chunk="60"/>
+    <sprite n="fbp_61" x="322" y="1" w="320" h="200" chunk="61"/>
+    <sprite n="fbp_62" x="643" y="1" w="320" h="200" chunk="62"/>
+    <sprite n="fbp_63" x="964" y="1" w="320" h="200" chunk="63"/>
+    <sprite n="fbp_64" x="1285" y="1" w="320" h="200" chunk="64"/>
+    <sprite n="fbp_65" x="1606" y="1" w="320" h="200" chunk="65"/>
+    <sprite n="fbp_66" x="1" y="202" w="320" h="200" chunk="66"/>
+    <sprite n="fbp_67" x="322" y="202" w="320" h="200" chunk="67"/>
+    <sprite n="fbp_68" x="643" y="202" w="320" h="200" chunk="68"/>
+    <sprite n="fbp_69" x="964" y="202" w="320" h="200" chunk="69"/>
+    <sprite n="fbp_70" x="1285" y="202" w="320" h="200" chunk="70"/>
+    <sprite n="fbp_71" x="1606" y="202" w="320" h="200" chunk="71"/>
+</TextureAtlas>

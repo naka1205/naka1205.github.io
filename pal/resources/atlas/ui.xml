@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 由 tools/extract 生成，不要手工编辑 -->
+<!-- 来源: data.mkf — UI 精灵，ui.h:27 的 CHUNKNUM_SPRITEUI -->
+<TextureAtlas imagePath="ui.bin" width="1140" height="66" format="indexed8" paletteIndex="0">
+    <sprite n="ui_9_0" x="532" y="1" w="22" h="20" chunk="9" frame="0"/>
+    <sprite n="ui_9_1" x="555" y="1" w="16" h="20" chunk="9" frame="1"/>
+    <sprite n="ui_9_2" x="572" y="1" w="33" h="20" chunk="9" frame="2"/>
+    <sprite n="ui_9_3" x="741" y="1" w="22" h="18" chunk="9" frame="3"/>
+    <sprite n="ui_9_4" x="764" y="1" w="16" h="18" chunk="9" frame="4"/>
+    <sprite n="ui_9_5" x="781" y="1" w="23" h="18" chunk="9" frame="5"/>
+    <sprite n="ui_9_6" x="606" y="1" w="22" h="20" chunk="9" frame="6"/>
+    <sprite n="ui_9_7" x="629" y="1" w="16" h="20" chunk="9" frame="7"/>
+    <sprite n="ui_9_8" x="646" y="1" w="31" h="20" chunk="9" frame="8"/>
+    <sprite n="ui_9_9" x="678" y="1" w="22" h="20" chunk="9" frame="9"/>
+    <sprite n="ui_9_10" x="701" y="1" w="16" h="20" chunk="9" frame="10"/>
+    <sprite n="ui_9_11" x="718" y="1" w="22" h="20" chunk="9" frame="11"/>
+    <sprite n="ui_9_12" x="805" y="1" w="22" h="18" chunk="9" frame="12"/>
+    <sprite n="ui_9_13" x="828" y="1" w="16" h="18" chunk="9" frame="13"/>
+    <sprite n="ui_9_14" x="845" y="1" w="22" h="18" chunk="9" frame="14"/>
+    <sprite n="ui_9_15" x="469" y="1" w="22" h="22" chunk="9" frame="15"/>
+    <sprite n="ui_9_16" x="492" y="1" w="16" h="22" chunk="9" frame="16"/>
+    <sprite n="ui_9_17" x="509" y="1" w="22" h="22" chunk="9" frame="17"/>
+    <sprite n="ui_9_18" x="66" y="1" w="75" h="35" chunk="9" frame="18"/>
+    <sprite n="ui_9_19" x="868" y="1" w="6" h="8" chunk="9" frame="19"/>
+    <sprite n="ui_9_20" x="875" y="1" w="5" h="8" chunk="9" frame="20"/>
+    <sprite n="ui_9_21" x="881" y="1" w="6" h="8" chunk="9" frame="21"/>
+    <sprite n="ui_9_22" x="888" y="1" w="6" h="8" chunk="9" frame="22"/>
+    <sprite n="ui_9_23" x="895" y="1" w="6" h="8" chunk="9" frame="23"/>
+    <sprite n="ui_9_24" x="902" y="1" w="6" h="8" chunk="9" frame="24"/>
+    <sprite n="ui_9_25" x="909" y="1" w="6" h="8" chunk="9" frame="25"/>
+    <sprite n="ui_9_26" x="916" y="1" w="6" h="8" chunk="9" frame="26"/>
+    <sprite n="ui_9_27" x="923" y="1" w="6" h="8" chunk="9" frame="27"/>
+    <sprite n="ui_9_28" x="930" y="1" w="6" h="8" chunk="9" frame="28"/>
+    <sprite n="ui_9_29" x="937" y="1" w="6" h="8" chunk="9" frame="29"/>
+    <sprite n="ui_9_30" x="944" y="1" w="5" h="8" chunk="9" frame="30"/>
+    <sprite n="ui_9_31" x="950" y="1" w="6" h="8" chunk="9" frame="31"/>
+    <sprite n="ui_9_32" x="957" y="1" w="6" h="8" chunk="9" frame="32"/>
+    <sprite n="ui_9_33" x="964" y="1" w="6" h="8" chunk="9" frame="33"/>
+    <sprite n="ui_9_34" x="971" y="1" w="6" h="8" chunk="9" frame="34"/>
+    <sprite n="ui_9_35" x="978" y="1" w="6" h="8" chunk="9" frame="35"/>
+    <sprite n="ui_9_36" x="985" y="1" w="6" h="8" chunk="9" frame="36"/>
+    <sprite n="ui_9_37" x="992" y="1" w="6" h="8" chunk="9" frame="37"/>
+    <sprite n="ui_9_38" x="999" y="1" w="6" h="8" chunk="9" frame="38"/>
+    <sprite n="ui_9_39" x="1006" y="1" w="5" h="8" chunk="9" frame="39"/>
+    <sprite n="ui_9_40" x="345" y="1" w="30" h="30" chunk="9" frame="40"/>
+    <sprite n="ui_9_41" x="376" y="1" w="30" h="30" chunk="9" frame="41"/>
+    <sprite n="ui_9_42" x="407" y="1" w="30" h="30" chunk="9" frame="42"/>
+    <sprite n="ui_9_43" x="438" y="1" w="30" h="30" chunk="9" frame="43"/>
+    <sprite n="ui_9_44" x="174" y="1" w="8" h="34" chunk="9" frame="44"/>
+    <sprite n="ui_9_45" x="260" y="1" w="16" h="32" oX="0" oY="1" oW="16" oH="34" chunk="9" frame="45"/>
+    <sprite n="ui_9_46" x="183" y="1" w="8" h="34" chunk="9" frame="46"/>
+    <sprite n="ui_9_47" x="1081" y="1" w="12" h="6" chunk="9" frame="47"/>
+    <sprite n="ui_9_48" x="142" y="1" w="31" h="35" oX="0" oY="0" oW="36" oH="35" chunk="9" frame="48"/>
+    <sprite n="ui_9_49" x="308" y="1" w="36" h="31" oX="0" oY="2" oW="36" oH="35" chunk="9" frame="49"/>
+    <sprite n="ui_9_50" x="227" y="1" w="32" h="33" oX="1" oY="1" oW="36" oH="35" chunk="9" frame="50"/>
+    <sprite n="ui_9_51" x="277" y="1" w="30" h="32" oX="2" oY="0" oW="32" oH="32" chunk="9" frame="51"/>
+    <sprite n="ui_9_52" x="192" y="1" w="34" h="34" oX="0" oY="0" oW="36" oH="35" chunk="9" frame="52"/>
+    <sprite n="ui_9_53" x="1134" y="1" w="1" h="1" oX="0" oY="0" oW="3" oH="4" chunk="9" frame="53"/>
+    <sprite n="ui_9_54" x="1136" y="1" w="1" h="1" oX="0" oY="0" oW="3" oH="4" chunk="9" frame="54"/>
+    <sprite n="ui_9_55" x="1138" y="1" w="1" h="1" oX="0" oY="0" oW="3" oH="4" chunk="9" frame="55"/>
+    <sprite n="ui_9_56" x="1012" y="1" w="6" h="8" chunk="9" frame="56"/>
+    <sprite n="ui_9_57" x="1019" y="1" w="5" h="8" oX="0" oY="0" oW="6" oH="8" chunk="9" frame="57"/>
+    <sprite n="ui_9_58" x="1025" y="1" w="6" h="8" chunk="9" frame="58"/>
+    <sprite n="ui_9_59" x="1032" y="1" w="6" h="8" chunk="9" frame="59"/>
+    <sprite n="ui_9_60" x="1039" y="1" w="6" h="8" chunk="9" frame="60"/>
+    <sprite n="ui_9_61" x="1046" y="1" w="6" h="8" chunk="9" frame="61"/>
+    <sprite n="ui_9_62" x="1053" y="1" w="6" h="8" chunk="9" frame="62"/>
+    <sprite n="ui_9_63" x="1060" y="1" w="6" h="8" chunk="9" frame="63"/>
+    <sprite n="ui_9_64" x="1067" y="1" w="6" h="8" chunk="9" frame="64"/>
+    <sprite n="ui_9_65" x="1074" y="1" w="6" h="8" chunk="9" frame="65"/>
+    <sprite n="ui_9_66" x="1094" y="1" w="9" h="6" chunk="9" frame="66"/>
+    <sprite n="ui_9_67" x="1104" y="1" w="9" h="6" chunk="9" frame="67"/>
+    <sprite n="ui_9_68" x="1114" y="1" w="9" h="6" chunk="9" frame="68"/>
+    <sprite n="ui_9_69" x="1124" y="1" w="9" h="6" chunk="9" frame="69"/>
+    <sprite n="ui_9_70" x="1" y="1" w="64" h="64" chunk="9" frame="70"/>
+</TextureAtlas>

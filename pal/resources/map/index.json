@@ -1,0 +1,1127 @@
+{
+  "source": "map.mkf",
+  "width": 64,
+  "height": 128,
+  "layers": 2,
+  "tileWidth": 32,
+  "tileHeight": 16,
+  "tileBitmapHeight": 15,
+  "count": 223,
+  "maps": [
+    {
+      "map": 1,
+      "file": "001.bin",
+      "tiles": "gop_1"
+    },
+    {
+      "map": 2,
+      "file": "002.bin",
+      "tiles": "gop_2"
+    },
+    {
+      "map": 3,
+      "file": "003.bin",
+      "tiles": "gop_3"
+    },
+    {
+      "map": 4,
+      "file": "004.bin",
+      "tiles": "gop_4"
+    },
+    {
+      "map": 5,
+      "file": "005.bin",
+      "tiles": "gop_5"
+    },
+    {
+      "map": 6,
+      "file": "006.bin",
+      "tiles": "gop_6"
+    },
+    {
+      "map": 7,
+      "file": "007.bin",
+      "tiles": "gop_7"
+    },
+    {
+      "map": 8,
+      "file": "008.bin",
+      "tiles": "gop_8"
+    },
+    {
+      "map": 9,
+      "file": "009.bin",
+      "tiles": "gop_9"
+    },
+    {
+      "map": 10,
+      "file": "010.bin",
+      "tiles": "gop_10"
+    },
+    {
+      "map": 11,
+      "file": "011.bin",
+      "tiles": "gop_11"
+    },
+    {
+      "map": 12,
+      "file": "012.bin",
+      "tiles": "gop_12"
+    },
+    {
+      "map": 13,
+      "file": "013.bin",
+      "tiles": "gop_13"
+    },
+    {
+      "map": 14,
+      "file": "014.bin",
+      "tiles": "gop_14"
+    },
+    {
+      "map": 15,
+      "file": "015.bin",
+      "tiles": "gop_15"
+    },
+    {
+      "map": 16,
+      "file": "016.bin",
+      "tiles": "gop_16"
+    },
+    {
+      "map": 17,
+      "file": "017.bin",
+      "tiles": "gop_17"
+    },
+    {
+      "map": 18,
+      "file": "018.bin",
+      "tiles": "gop_18"
+    },
+    {
+      "map": 19,
+      "file": "019.bin",
+      "tiles": "gop_19"
+    },
+    {
+      "map": 20,
+      "file": "020.bin",
+      "tiles": "gop_20"
+    },
+    {
+      "map": 21,
+      "file": "021.bin",
+      "tiles": "gop_21"
+    },
+    {
+      "map": 22,
+      "file": "022.bin",
+      "tiles": "gop_22"
+    },
+    {
+      "map": 23,
+      "file": "023.bin",
+      "tiles": "gop_23"
+    },
+    {
+      "map": 24,
+      "file": "024.bin",
+      "tiles": "gop_24"
+    },
+    {
+      "map": 25,
+      "file": "025.bin",
+      "tiles": "gop_25"
+    },
+    {
+      "map": 26,
+      "file": "026.bin",
+      "tiles": "gop_26"
+    },
+    {
+      "map": 27,
+      "file": "027.bin",
+      "tiles": "gop_27"
+    },
+    {
+      "map": 28,
+      "file": "028.bin",
+      "tiles": "gop_28"
+    },
+    {
+      "map": 29,
+      "file": "029.bin",
+      "tiles": "gop_29"
+    },
+    {
+      "map": 30,
+      "file": "030.bin",
+      "tiles": "gop_30"
+    },
+    {
+      "map": 31,
+      "file": "031.bin",
+      "tiles": "gop_31"
+    },
+    {
+      "map": 32,
+      "file": "032.bin",
+      "tiles": "gop_32"
+    },
+    {
+      "map": 33,
+      "file": "033.bin",
+      "tiles": "gop_33"
+    },
+    {
+      "map": 34,
+      "file": "034.bin",
+      "tiles": "gop_34"
+    },
+    {
+      "map": 35,
+      "file": "035.bin",
+      "tiles": "gop_35"
+    },
+    {
+      "map": 36,
+      "file": "036.bin",
+      "tiles": "gop_36"
+    },
+    {
+      "map": 37,
+      "file": "037.bin",
+      "tiles": "gop_37"
+    },
+    {
+      "map": 38,
+      "file": "038.bin",
+      "tiles": "gop_38"
+    },
+    {
+      "map": 39,
+      "file": "039.bin",
+      "tiles": "gop_39"
+    },
+    {
+      "map": 40,
+      "file": "040.bin",
+      "tiles": "gop_40"
+    },
+    {
+      "map": 41,
+      "file": "041.bin",
+      "tiles": "gop_41"
+    },
+    {
+      "map": 42,
+      "file": "042.bin",
+      "tiles": "gop_42"
+    },
+    {
+      "map": 43,
+      "file": "043.bin",
+      "tiles": "gop_43"
+    },
+    {
+      "map": 44,
+      "file": "044.bin",
+      "tiles": "gop_44"
+    },
+    {
+      "map": 45,
+      "file": "045.bin",
+      "tiles": "gop_45"
+    },
+    {
+      "map": 46,
+      "file": "046.bin",
+      "tiles": "gop_46"
+    },
+    {
+      "map": 47,
+      "file": "047.bin",
+      "tiles": "gop_47"
+    },
+    {
+      "map": 48,
+      "file": "048.bin",
+      "tiles": "gop_48"
+    },
+    {
+      "map": 49,
+      "file": "049.bin",
+      "tiles": "gop_49"
+    },
+    {
+      "map": 50,
+      "file": "050.bin",
+      "tiles": "gop_50"
+    },
+    {
+      "map": 51,
+      "file": "051.bin",
+      "tiles": "gop_51"
+    },
+    {
+      "map": 52,
+      "file": "052.bin",
+      "tiles": "gop_52"
+    },
+    {
+      "map": 53,
+      "file": "053.bin",
+      "tiles": "gop_53"
+    },
+    {
+      "map": 54,
+      "file": "054.bin",
+      "tiles": "gop_54"
+    },
+    {
+      "map": 55,
+      "file": "055.bin",
+      "tiles": "gop_55"
+    },
+    {
+      "map": 56,
+      "file": "056.bin",
+      "tiles": "gop_56"
+    },
+    {
+      "map": 57,
+      "file": "057.bin",
+      "tiles": "gop_57"
+    },
+    {
+      "map": 58,
+      "file": "058.bin",
+      "tiles": "gop_58"
+    },
+    {
+      "map": 59,
+      "file": "059.bin",
+      "tiles": "gop_59"
+    },
+    {
+      "map": 60,
+      "file": "060.bin",
+      "tiles": "gop_60"
+    },
+    {
+      "map": 61,
+      "file": "061.bin",
+      "tiles": "gop_61"
+    },
+    {
+      "map": 62,
+      "file": "062.bin",
+      "tiles": "gop_62"
+    },
+    {
+      "map": 63,
+      "file": "063.bin",
+      "tiles": "gop_63"
+    },
+    {
+      "map": 64,
+      "file": "064.bin",
+      "tiles": "gop_64"
+    },
+    {
+      "map": 65,
+      "file": "065.bin",
+      "tiles": "gop_65"
+    },
+    {
+      "map": 66,
+      "file": "066.bin",
+      "tiles": "gop_66"
+    },
+    {
+      "map": 67,
+      "file": "067.bin",
+      "tiles": "gop_67"
+    },
+    {
+      "map": 68,
+      "file": "068.bin",
+      "tiles": "gop_68"
+    },
+    {
+      "map": 69,
+      "file": "069.bin",
+      "tiles": "gop_69"
+    },
+    {
+      "map": 70,
+      "file": "070.bin",
+      "tiles": "gop_70"
+    },
+    {
+      "map": 71,
+      "file": "071.bin",
+      "tiles": "gop_71"
+    },
+    {
+      "map": 72,
+      "file": "072.bin",
+      "tiles": "gop_72"
+    },
+    {
+      "map": 73,
+      "file": "073.bin",
+      "tiles": "gop_73"
+    },
+    {
+      "map": 74,
+      "file": "074.bin",
+      "tiles": "gop_74"
+    },
+    {
+      "map": 75,
+      "file": "075.bin",
+      "tiles": "gop_75"
+    },
+    {
+      "map": 76,
+      "file": "076.bin",
+      "tiles": "gop_76"
+    },
+    {
+      "map": 77,
+      "file": "077.bin",
+      "tiles": "gop_77"
+    },
+    {
+      "map": 78,
+      "file": "078.bin",
+      "tiles": "gop_78"
+    },
+    {
+      "map": 79,
+      "file": "079.bin",
+      "tiles": "gop_79"
+    },
+    {
+      "map": 80,
+      "file": "080.bin",
+      "tiles": "gop_80"
+    },
+    {
+      "map": 81,
+      "file": "081.bin",
+      "tiles": "gop_81"
+    },
+    {
+      "map": 82,
+      "file": "082.bin",
+      "tiles": "gop_82"
+    },
+    {
+      "map": 83,
+      "file": "083.bin",
+      "tiles": "gop_83"
+    },
+    {
+      "map": 84,
+      "file": "084.bin",
+      "tiles": "gop_84"
+    },
+    {
+      "map": 85,
+      "file": "085.bin",
+      "tiles": "gop_85"
+    },
+    {
+      "map": 86,
+      "file": "086.bin",
+      "tiles": "gop_86"
+    },
+    {
+      "map": 87,
+      "file": "087.bin",
+      "tiles": "gop_87"
+    },
+    {
+      "map": 88,
+      "file": "088.bin",
+      "tiles": "gop_88"
+    },
+    {
+      "map": 89,
+      "file": "089.bin",
+      "tiles": "gop_89"
+    },
+    {
+      "map": 90,
+      "file": "090.bin",
+      "tiles": "gop_90"
+    },
+    {
+      "map": 91,
+      "file": "091.bin",
+      "tiles": "gop_91"
+    },
+    {
+      "map": 92,
+      "file": "092.bin",
+      "tiles": "gop_92"
+    },
+    {
+      "map": 93,
+      "file": "093.bin",
+      "tiles": "gop_93"
+    },
+    {
+      "map": 94,
+      "file": "094.bin",
+      "tiles": "gop_94"
+    },
+    {
+      "map": 95,
+      "file": "095.bin",
+      "tiles": "gop_95"
+    },
+    {
+      "map": 96,
+      "file": "096.bin",
+      "tiles": "gop_96"
+    },
+    {
+      "map": 97,
+      "file": "097.bin",
+      "tiles": "gop_97"
+    },
+    {
+      "map": 98,
+      "file": "098.bin",
+      "tiles": "gop_98"
+    },
+    {
+      "map": 99,
+      "file": "099.bin",
+      "tiles": "gop_99"
+    },
+    {
+      "map": 100,
+      "file": "100.bin",
+      "tiles": "gop_100"
+    },
+    {
+      "map": 101,
+      "file": "101.bin",
+      "tiles": "gop_101"
+    },
+    {
+      "map": 102,
+      "file": "102.bin",
+      "tiles": "gop_102"
+    },
+    {
+      "map": 103,
+      "file": "103.bin",
+      "tiles": "gop_103"
+    },
+    {
+      "map": 104,
+      "file": "104.bin",
+      "tiles": "gop_104"
+    },
+    {
+      "map": 105,
+      "file": "105.bin",
+      "tiles": "gop_105"
+    },
+    {
+      "map": 106,
+      "file": "106.bin",
+      "tiles": "gop_106"
+    },
+    {
+      "map": 107,
+      "file": "107.bin",
+      "tiles": "gop_107"
+    },
+    {
+      "map": 108,
+      "file": "108.bin",
+      "tiles": "gop_108"
+    },
+    {
+      "map": 109,
+      "file": "109.bin",
+      "tiles": "gop_109"
+    },
+    {
+      "map": 110,
+      "file": "110.bin",
+      "tiles": "gop_110"
+    },
+    {
+      "map": 111,
+      "file": "111.bin",
+      "tiles": "gop_111"
+    },
+    {
+      "map": 112,
+      "file": "112.bin",
+      "tiles": "gop_112"
+    },
+    {
+      "map": 113,
+      "file": "113.bin",
+      "tiles": "gop_113"
+    },
+    {
+      "map": 114,
+      "file": "114.bin",
+      "tiles": "gop_114"
+    },
+    {
+      "map": 115,
+      "file": "115.bin",
+      "tiles": "gop_115"
+    },
+    {
+      "map": 116,
+      "file": "116.bin",
+      "tiles": "gop_116"
+    },
+    {
+      "map": 117,
+      "file": "117.bin",
+      "tiles": "gop_117"
+    },
+    {
+      "map": 118,
+      "file": "118.bin",
+      "tiles": "gop_118"
+    },
+    {
+      "map": 119,
+      "file": "119.bin",
+      "tiles": "gop_119"
+    },
+    {
+      "map": 120,
+      "file": "120.bin",
+      "tiles": "gop_120"
+    },
+    {
+      "map": 121,
+      "file": "121.bin",
+      "tiles": "gop_121"
+    },
+    {
+      "map": 122,
+      "file": "122.bin",
+      "tiles": "gop_122"
+    },
+    {
+      "map": 123,
+      "file": "123.bin",
+      "tiles": "gop_123"
+    },
+    {
+      "map": 124,
+      "file": "124.bin",
+      "tiles": "gop_124"
+    },
+    {
+      "map": 125,
+      "file": "125.bin",
+      "tiles": "gop_125"
+    },
+    {
+      "map": 126,
+      "file": "126.bin",
+      "tiles": "gop_126"
+    },
+    {
+      "map": 127,
+      "file": "127.bin",
+      "tiles": "gop_127"
+    },
+    {
+      "map": 128,
+      "file": "128.bin",
+      "tiles": "gop_128"
+    },
+    {
+      "map": 129,
+      "file": "129.bin",
+      "tiles": "gop_129"
+    },
+    {
+      "map": 130,
+      "file": "130.bin",
+      "tiles": "gop_130"
+    },
+    {
+      "map": 131,
+      "file": "131.bin",
+      "tiles": "gop_131"
+    },
+    {
+      "map": 132,
+      "file": "132.bin",
+      "tiles": "gop_132"
+    },
+    {
+      "map": 133,
+      "file": "133.bin",
+      "tiles": "gop_133"
+    },
+    {
+      "map": 134,
+      "file": "134.bin",
+      "tiles": "gop_134"
+    },
+    {
+      "map": 135,
+      "file": "135.bin",
+      "tiles": "gop_135"
+    },
+    {
+      "map": 136,
+      "file": "136.bin",
+      "tiles": "gop_136"
+    },
+    {
+      "map": 137,
+      "file": "137.bin",
+      "tiles": "gop_137"
+    },
+    {
+      "map": 138,
+      "file": "138.bin",
+      "tiles": "gop_138"
+    },
+    {
+      "map": 139,
+      "file": "139.bin",
+      "tiles": "gop_139"
+    },
+    {
+      "map": 140,
+      "file": "140.bin",
+      "tiles": "gop_140"
+    },
+    {
+      "map": 141,
+      "file": "141.bin",
+      "tiles": "gop_141"
+    },
+    {
+      "map": 142,
+      "file": "142.bin",
+      "tiles": "gop_142"
+    },
+    {
+      "map": 143,
+      "file": "143.bin",
+      "tiles": "gop_143"
+    },
+    {
+      "map": 144,
+      "file": "144.bin",
+      "tiles": "gop_144"
+    },
+    {
+      "map": 145,
+      "file": "145.bin",
+      "tiles": "gop_145"
+    },
+    {
+      "map": 146,
+      "file": "146.bin",
+      "tiles": "gop_146"
+    },
+    {
+      "map": 147,
+      "file": "147.bin",
+      "tiles": "gop_147"
+    },
+    {
+      "map": 148,
+      "file": "148.bin",
+      "tiles": "gop_148"
+    },
+    {
+      "map": 149,
+      "file": "149.bin",
+      "tiles": "gop_149"
+    },
+    {
+      "map": 150,
+      "file": "150.bin",
+      "tiles": "gop_150"
+    },
+    {
+      "map": 151,
+      "file": "151.bin",
+      "tiles": "gop_151"
+    },
+    {
+      "map": 152,
+      "file": "152.bin",
+      "tiles": "gop_152"
+    },
+    {
+      "map": 153,
+      "file": "153.bin",
+      "tiles": "gop_153"
+    },
+    {
+      "map": 154,
+      "file": "154.bin",
+      "tiles": "gop_154"
+    },
+    {
+      "map": 155,
+      "file": "155.bin",
+      "tiles": "gop_155"
+    },
+    {
+      "map": 156,
+      "file": "156.bin",
+      "tiles": "gop_156"
+    },
+    {
+      "map": 157,
+      "file": "157.bin",
+      "tiles": "gop_157"
+    },
+    {
+      "map": 158,
+      "file": "158.bin",
+      "tiles": "gop_158"
+    },
+    {
+      "map": 159,
+      "file": "159.bin",
+      "tiles": "gop_159"
+    },
+    {
+      "map": 160,
+      "file": "160.bin",
+      "tiles": "gop_160"
+    },
+    {
+      "map": 161,
+      "file": "161.bin",
+      "tiles": "gop_161"
+    },
+    {
+      "map": 162,
+      "file": "162.bin",
+      "tiles": "gop_162"
+    },
+    {
+      "map": 163,
+      "file": "163.bin",
+      "tiles": "gop_163"
+    },
+    {
+      "map": 164,
+      "file": "164.bin",
+      "tiles": "gop_164"
+    },
+    {
+      "map": 165,
+      "file": "165.bin",
+      "tiles": "gop_165"
+    },
+    {
+      "map": 166,
+      "file": "166.bin",
+      "tiles": "gop_166"
+    },
+    {
+      "map": 167,
+      "file": "167.bin",
+      "tiles": "gop_167"
+    },
+    {
+      "map": 169,
+      "file": "169.bin",
+      "tiles": "gop_169"
+    },
+    {
+      "map": 170,
+      "file": "170.bin",
+      "tiles": "gop_170"
+    },
+    {
+      "map": 172,
+      "file": "172.bin",
+      "tiles": "gop_172"
+    },
+    {
+      "map": 173,
+      "file": "173.bin",
+      "tiles": "gop_173"
+    },
+    {
+      "map": 174,
+      "file": "174.bin",
+      "tiles": "gop_174"
+    },
+    {
+      "map": 175,
+      "file": "175.bin",
+      "tiles": "gop_175"
+    },
+    {
+      "map": 176,
+      "file": "176.bin",
+      "tiles": "gop_176"
+    },
+    {
+      "map": 177,
+      "file": "177.bin",
+      "tiles": "gop_177"
+    },
+    {
+      "map": 178,
+      "file": "178.bin",
+      "tiles": "gop_178"
+    },
+    {
+      "map": 179,
+      "file": "179.bin",
+      "tiles": "gop_179"
+    },
+    {
+      "map": 180,
+      "file": "180.bin",
+      "tiles": "gop_180"
+    },
+    {
+      "map": 181,
+      "file": "181.bin",
+      "tiles": "gop_181"
+    },
+    {
+      "map": 182,
+      "file": "182.bin",
+      "tiles": "gop_182"
+    },
+    {
+      "map": 183,
+      "file": "183.bin",
+      "tiles": "gop_183"
+    },
+    {
+      "map": 184,
+      "file": "184.bin",
+      "tiles": "gop_184"
+    },
+    {
+      "map": 185,
+      "file": "185.bin",
+      "tiles": "gop_185"
+    },
+    {
+      "map": 186,
+      "file": "186.bin",
+      "tiles": "gop_186"
+    },
+    {
+      "map": 187,
+      "file": "187.bin",
+      "tiles": "gop_187"
+    },
+    {
+      "map": 188,
+      "file": "188.bin",
+      "tiles": "gop_188"
+    },
+    {
+      "map": 189,
+      "file": "189.bin",
+      "tiles": "gop_189"
+    },
+    {
+      "map": 190,
+      "file": "190.bin",
+      "tiles": "gop_190"
+    },
+    {
+      "map": 191,
+      "file": "191.bin",
+      "tiles": "gop_191"
+    },
+    {
+      "map": 192,
+      "file": "192.bin",
+      "tiles": "gop_192"
+    },
+    {
+      "map": 193,
+      "file": "193.bin",
+      "tiles": "gop_193"
+    },
+    {
+      "map": 194,
+      "file": "194.bin",
+      "tiles": "gop_194"
+    },
+    {
+      "map": 195,
+      "file": "195.bin",
+      "tiles": "gop_195"
+    },
+    {
+      "map": 196,
+      "file": "196.bin",
+      "tiles": "gop_196"
+    },
+    {
+      "map": 197,
+      "file": "197.bin",
+      "tiles": "gop_197"
+    },
+    {
+      "map": 198,
+      "file": "198.bin",
+      "tiles": "gop_198"
+    },
+    {
+      "map": 199,
+      "file": "199.bin",
+      "tiles": "gop_199"
+    },
+    {
+      "map": 200,
+      "file": "200.bin",
+      "tiles": "gop_200"
+    },
+    {
+      "map": 201,
+      "file": "201.bin",
+      "tiles": "gop_201"
+    },
+    {
+      "map": 202,
+      "file": "202.bin",
+      "tiles": "gop_202"
+    },
+    {
+      "map": 203,
+      "file": "203.bin",
+      "tiles": "gop_203"
+    },
+    {
+      "map": 204,
+      "file": "204.bin",
+      "tiles": "gop_204"
+    },
+    {
+      "map": 205,
+      "file": "205.bin",
+      "tiles": "gop_205"
+    },
+    {
+      "map": 206,
+      "file": "206.bin",
+      "tiles": "gop_206"
+    },
+    {
+      "map": 207,
+      "file": "207.bin",
+      "tiles": "gop_207"
+    },
+    {
+      "map": 208,
+      "file": "208.bin",
+      "tiles": "gop_208"
+    },
+    {
+      "map": 209,
+      "file": "209.bin",
+      "tiles": "gop_209"
+    },
+    {
+      "map": 210,
+      "file": "210.bin",
+      "tiles": "gop_210"
+    },
+    {
+      "map": 211,
+      "file": "211.bin",
+      "tiles": "gop_211"
+    },
+    {
+      "map": 212,
+      "file": "212.bin",
+      "tiles": "gop_212"
+    },
+    {
+      "map": 213,
+      "file": "213.bin",
+      "tiles": "gop_213"
+    },
+    {
+      "map": 214,
+      "file": "214.bin",
+      "tiles": "gop_214"
+    },
+    {
+      "map": 215,
+      "file": "215.bin",
+      "tiles": "gop_215"
+    },
+    {
+      "map": 216,
+      "file": "216.bin",
+      "tiles": "gop_216"
+    },
+    {
+      "map": 217,
+      "file": "217.bin",
+      "tiles": "gop_217"
+    },
+    {
+      "map": 218,
+      "file": "218.bin",
+      "tiles": "gop_218"
+    },
+    {
+      "map": 219,
+      "file": "219.bin",
+      "tiles": "gop_219"
+    },
+    {
+      "map": 220,
+      "file": "220.bin",
+      "tiles": "gop_220"
+    },
+    {
+      "map": 221,
+      "file": "221.bin",
+      "tiles": "gop_221"
+    },
+    {
+      "map": 222,
+      "file": "222.bin",
+      "tiles": "gop_222"
+    },
+    {
+      "map": 223,
+      "file": "223.bin",
+      "tiles": "gop_223"
+    },
+    {
+      "map": 224,
+      "file": "224.bin",
+      "tiles": "gop_224"
+    },
+    {
+      "map": 225,
+      "file": "225.bin",
+      "tiles": "gop_225"
+    }
+  ]
+}

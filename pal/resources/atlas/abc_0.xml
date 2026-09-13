@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 由 tools/extract 生成，不要手工编辑 -->
+<!-- 来源: abc.mkf — 战斗角色 -->
+<TextureAtlas imagePath="abc_0.bin" width="2039" height="2003" format="indexed8" paletteIndex="0">
+    <sprite n="abc_2_0" x="530" y="1638" w="23" h="76" oX="1" oY="0" oW="25" oH="77" chunk="2" frame="0"/>
+    <sprite n="abc_2_1" x="1133" y="1638" w="23" h="75" oX="1" oY="1" oW="25" oH="77" chunk="2" frame="1"/>
+    <sprite n="abc_3_2" x="1139" y="1935" w="32" h="64" oX="2" oY="8" oW="41" oH="73" chunk="3" frame="2"/>
+    <sprite n="abc_8_0" x="478" y="1935" w="32" h="65" oX="9" oY="1" oW="54" oH="74" chunk="8" frame="0"/>
+    <sprite n="abc_8_1" x="1900" y="1865" w="42" h="66" oX="0" oY="0" oW="54" oH="74" chunk="8" frame="1"/>
+    <sprite n="abc_10_0" x="1172" y="1935" w="39" h="64" oX="5" oY="2" oW="50" oH="67" chunk="10" frame="0"/>
+    <sprite n="abc_10_1" x="511" y="1935" w="40" h="65" oX="5" oY="1" oW="50" oH="67" chunk="10" frame="1"/>
+    <sprite n="abc_10_2" x="1212" y="1935" w="42" h="64" oX="2" oY="2" oW="50" oH="67" chunk="10" frame="2"/>
+    <sprite n="abc_11_0" x="1939" y="900" w="69" h="100" oX="1" oY="0" oW="84" oH="100" chunk="11" frame="0"/>
+    <sprite n="abc_11_1" x="1274" y="1007" w="69" h="97" oX="1" oY="2" oW="84" oH="100" chunk="11" frame="1"/>
+    <sprite n="abc_11_2" x="1215" y="791" w="82" h="106" oX="1" oY="0" oW="84" oH="106" chunk="11" frame="2"/>
+    <sprite n="abc_12_1" x="1526" y="1935" w="56" h="63" oX="1" oY="0" oW="78" oH="65" chunk="12" frame="1"/>
+    <sprite n="abc_15_2" x="311" y="1865" w="55" h="68" oX="0" oY="0" oW="56" oH="68" chunk="15" frame="2"/>
+    <sprite n="abc_17_0" x="552" y="1935" w="83" h="65" oX="2" oY="17" oW="85" oH="85" chunk="17" frame="0"/>
+    <sprite n="abc_17_1" x="1811" y="1299" w="81" h="85" oX="0" oY="0" oW="85" oH="85" chunk="17" frame="1"/>
+    <sprite n="abc_17_2" x="1" y="1007" w="75" h="100" oX="8" oY="0" oW="90" oH="100" chunk="17" frame="2"/>
+    <sprite n="abc_17_3" x="554" y="1638" w="90" h="76" oX="0" oY="20" oW="90" oH="100" chunk="17" frame="3"/>
+    <sprite n="abc_19_0" x="77" y="1007" w="96" h="100" oX="0" oY="0" oW="96" oH="111" chunk="19" frame="0"/>
+    <sprite n="abc_19_1" x="1" y="679" w="95" h="111" chunk="19" frame="1"/>
+    <sprite n="abc_19_2" x="376" y="900" w="93" h="104" oX="0" oY="4" oW="96" oH="111" chunk="19" frame="2"/>
+    <sprite n="abc_20_0" x="828" y="1557" w="80" h="78" oX="33" oY="18" oW="176" oH="101" chunk="20" frame="0"/>
+    <sprite n="abc_20_1" x="458" y="1108" w="67" h="95" oX="56" oY="0" oW="176" oH="101" chunk="20" frame="1"/>
+    <sprite n="abc_20_2" x="407" y="1387" w="113" h="84" oX="63" oY="17" oW="176" oH="101" chunk="20" frame="2"/>
+    <sprite n="abc_21_0" x="996" y="1007" w="76" h="98" oX="3" oY="3" oW="106" oH="102" chunk="21" frame="0"/>
+    <sprite n="abc_21_1" x="1073" y="1007" w="74" h="98" oX="5" oY="2" oW="106" oH="102" chunk="21" frame="1"/>
+    <sprite n="abc_21_2" x="174" y="1007" w="77" h="100" oX="2" oY="0" oW="106" oH="102" chunk="21" frame="2"/>
+    <sprite n="abc_21_3" x="1148" y="1007" w="74" h="98" oX="0" oY="1" oW="106" oH="102" chunk="21" frame="3"/>
+    <sprite n="abc_21_4" x="1344" y="1007" w="76" h="97" oX="3" oY="2" oW="106" oH="102" chunk="21" frame="4"/>
+    <sprite n="abc_21_5" x="1421" y="1007" w="88" h="97" oX="18" oY="5" oW="106" oH="102" chunk="21" frame="5"/>
+    <sprite n="abc_22_0" x="645" y="1638" w="52" h="76" oX="19" oY="17" oW="73" oH="93" chunk="22" frame="0"/>
+    <sprite n="abc_22_1" x="1243" y="1108" w="63" h="93" oX="0" oY="0" oW="73" oH="93" chunk="22" frame="1"/>
+    <sprite n="abc_22_2" x="94" y="1716" w="50" h="74" oX="23" oY="18" oW="73" oH="93" chunk="22" frame="2"/>
+    <sprite n="abc_23_2" x="1255" y="1935" w="44" h="64" oX="10" oY="1" oW="55" oH="68" chunk="23" frame="2"/>
+    <sprite n="abc_24_2" x="1062" y="1865" w="57" h="67" oX="33" oY="7" oW="91" oH="75" chunk="24" frame="2"/>
+    <sprite n="abc_25_1" x="1300" y="1935" w="63" h="64" oX="23" oY="1" oW="87" oH="77" chunk="25" frame="1"/>
+    <sprite n="abc_25_2" x="145" y="1716" w="72" h="74" oX="1" oY="2" oW="87" oH="77" chunk="25" frame="2"/>
+    <sprite n="abc_25_3" x="1364" y="1935" w="63" h="64" oX="23" oY="1" oW="87" oH="77" chunk="25" frame="3"/>
+    <sprite n="abc_25_4" x="218" y="1716" w="72" h="74" oX="1" oY="2" oW="87" oH="77" chunk="25" frame="4"/>
+    <sprite n="abc_28_0" x="1722" y="1716" w="63" h="72" oX="1" oY="1" oW="66" oH="74" chunk="28" frame="0"/>
+    <sprite n="abc_28_1" x="1786" y="1716" w="65" h="72" oX="1" oY="1" oW="66" oH="74" chunk="28" frame="1"/>
+    <sprite n="abc_29_1" x="1943" y="1865" w="85" h="66" oX="17" oY="0" oW="102" oH="67" chunk="29" frame="1"/>
+    <sprite n="abc_30_0" x="1548" y="1473" w="59" h="80" oX="3" oY="1" oW="73" oH="90" chunk="30" frame="0"/>
+    <sprite n="abc_30_1" x="1608" y="1473" w="61" h="80" oX="1" oY="1" oW="73" oH="90" chunk="30" frame="1"/>
+    <sprite n="abc_30_2" x="1670" y="1473" w="63" h="80" oX="9" oY="9" oW="73" oH="90" chunk="30" frame="2"/>
+    <sprite n="abc_31_2" x="1734" y="1473" w="39" h="80" oX="33" oY="0" oW="72" oH="80" chunk="31" frame="2"/>
+    <sprite n="abc_31_3" x="913" y="1473" w="57" h="81" chunk="31" frame="3"/>
+    <sprite n="abc_32_0" x="994" y="1792" w="69" h="70" oX="0" oY="7" oW="78" oH="77" chunk="32" frame="0"/>
+    <sprite n="abc_32_1" x="1688" y="1792" w="69" h="69" oX="2" oY="1" oW="78" oH="77" chunk="32" frame="1"/>
+    <sprite n="abc_32_2" x="1120" y="1865" w="63" h="67" oX="4" oY="2" oW="78" oH="77" chunk="32" frame="2"/>
+    <sprite n="abc_32_3" x="1852" y="1716" w="73" h="72" oX="5" oY="0" oW="78" oH="77" chunk="32" frame="3"/>
+    <sprite n="abc_33_2" x="725" y="1299" w="107" h="86" chunk="33" frame="2"/>
+    <sprite n="abc_36_1" x="1428" y="1935" w="28" h="64" oX="4" oY="3" oW="44" oH="72" chunk="36" frame="1"/>
+    <sprite n="abc_36_2" x="1" y="1935" w="27" h="66" oX="6" oY="0" oW="44" oH="72" chunk="36" frame="2"/>
+    <sprite n="abc_36_3" x="1758" y="1792" w="30" h="69" oX="4" oY="2" oW="44" oH="72" chunk="36" frame="3"/>
+    <sprite n="abc_36_4" x="1789" y="1792" w="39" h="69" oX="5" oY="3" oW="44" oH="72" chunk="36" frame="4"/>
+    <sprite n="abc_37_0" x="168" y="1206" w="101" h="91" chunk="37" frame="0"/>
+    <sprite n="abc_37_1" x="678" y="1206" w="101" h="90" chunk="37" frame="1"/>
+    <sprite n="abc_37_2" x="270" y="1206" w="101" h="91" chunk="37" frame="2"/>
+    <sprite n="abc_37_3" x="909" y="1557" w="99" h="78" oX="2" oY="0" oW="101" oH="78" chunk="37" frame="3"/>
+    <sprite n="abc_37_4" x="789" y="1007" w="83" h="99" oX="18" oY="0" oW="101" oH="99" chunk="37" frame="4"/>
+    <sprite n="abc_38_0" x="160" y="1108" w="148" h="96" oX="4" oY="0" oW="160" oH="104" chunk="38" frame="0"/>
+    <sprite n="abc_38_1" x="1510" y="1007" w="142" h="97" oX="0" oY="5" oW="160" oH="104" chunk="38" frame="1"/>
+    <sprite n="abc_38_2" x="309" y="1108" w="148" h="96" oX="12" oY="0" oW="160" oH="96" chunk="38" frame="2"/>
+    <sprite n="abc_40_0" x="1157" y="1638" w="92" h="75" oX="4" oY="6" oW="101" oH="81" chunk="40" frame="0"/>
+    <sprite n="abc_40_1" x="935" y="1716" w="95" h="73" oX="4" oY="7" oW="101" oH="81" chunk="40" frame="1"/>
+    <sprite n="abc_40_2" x="971" y="1473" w="91" h="81" oX="0" oY="0" oW="101" oH="81" chunk="40" frame="2"/>
+    <sprite n="abc_40_3" x="291" y="1716" w="97" h="74" oX="4" oY="6" oW="101" oH="81" chunk="40" frame="3"/>
+    <sprite n="abc_40_4" x="1774" y="1473" w="89" h="80" oX="6" oY="0" oW="101" oH="81" chunk="40" frame="4"/>
+    <sprite n="abc_41_0" x="721" y="440" w="109" h="118" chunk="41" frame="0"/>
+    <sprite n="abc_41_1" x="1516" y="440" w="85" h="117" oX="0" oY="1" oW="109" oH="118" chunk="41" frame="1"/>
+    <sprite n="abc_41_2" x="1602" y="440" w="149" h="117" oX="0" oY="1" oW="149" oH="118" chunk="41" frame="2"/>
+    <sprite n="abc_41_3" x="831" y="440" w="135" h="118" oX="3" oY="0" oW="149" oH="118" chunk="41" frame="3"/>
+    <sprite n="abc_42_0" x="835" y="1387" w="123" h="83" oX="0" oY="15" oW="138" oH="98" chunk="42" frame="0"/>
+    <sprite n="abc_42_1" x="1864" y="1473" w="109" h="80" oX="12" oY="14" oW="138" oH="98" chunk="42" frame="1"/>
+    <sprite n="abc_42_2" x="959" y="1387" w="123" h="83" oX="15" oY="10" oW="138" oH="98" chunk="42" frame="2"/>
+    <sprite n="abc_42_3" x="1" y="1557" w="109" h="80" oX="12" oY="14" oW="138" oH="98" chunk="42" frame="3"/>
+    <sprite n="abc_42_4" x="833" y="1299" w="85" h="86" oX="36" oY="8" oW="138" oH="98" chunk="42" frame="4"/>
+    <sprite n="abc_42_5" x="1307" y="1108" w="94" h="93" oX="27" oY="0" oW="138" oH="98" chunk="42" frame="5"/>
+    <sprite n="abc_43_0" x="1704" y="1206" w="82" h="87" oX="1" oY="0" oW="83" oH="87" chunk="43" frame="0"/>
+    <sprite n="abc_43_1" x="322" y="1557" w="83" h="79" oX="0" oY="8" oW="83" oH="87" chunk="43" frame="1"/>
+    <sprite n="abc_43_3" x="1063" y="1473" w="63" h="81" chunk="43" frame="3"/>
+    <sprite n="abc_43_4" x="389" y="1716" w="58" h="74" oX="0" oY="7" oW="63" oH="81" chunk="43" frame="4"/>
+    <sprite n="abc_44_1" x="367" y="1865" w="51" h="68" oX="11" oY="17" oW="92" oH="85" chunk="44" frame="1"/>
+    <sprite n="abc_44_2" x="419" y="1865" w="63" h="68" oX="11" oY="17" oW="92" oH="85" chunk="44" frame="2"/>
+    <sprite n="abc_44_3" x="448" y="1716" w="71" h="74" oX="5" oY="3" oW="92" oH="85" chunk="44" frame="3"/>
+    <sprite n="abc_44_5" x="550" y="679" w="148" h="110" chunk="44" frame="5"/>
+    <sprite n="abc_45_0" x="636" y="1935" w="49" h="65" chunk="45" frame="0"/>
+    <sprite n="abc_46_0" x="1184" y="1865" w="44" h="67" chunk="46" frame="0"/>
+    <sprite n="abc_46_1" x="1926" y="1716" w="56" h="72" oX="0" oY="0" oW="74" oH="76" chunk="46" frame="1"/>
+    <sprite n="abc_47_0" x="1250" y="1638" w="61" h="75" oX="0" oY="1" oW="61" oH="76" chunk="47" frame="0"/>
+    <sprite n="abc_47_1" x="698" y="1638" w="61" h="76" chunk="47" frame="1"/>
+    <sprite n="abc_48_0" x="526" y="1108" w="55" h="95" chunk="48" frame="0"/>
+    <sprite n="abc_48_1" x="853" y="1108" w="55" h="94" oX="0" oY="1" oW="55" oH="95" chunk="48" frame="1"/>
+    <sprite n="abc_48_2" x="919" y="1299" w="72" h="86" chunk="48" frame="2"/>
+    <sprite n="abc_49_0" x="520" y="1716" w="48" h="74" oX="0" oY="0" oW="50" oH="74" chunk="49" frame="0"/>
+    <sprite n="abc_49_1" x="569" y="1716" w="48" h="74" oX="0" oY="0" oW="50" oH="74" chunk="49" frame="1"/>
+    <sprite n="abc_50_0" x="1009" y="1557" w="82" h="78" oX="13" oY="13" oW="97" oH="91" chunk="50" frame="0"/>
+    <sprite n="abc_50_1" x="372" y="1206" w="92" h="91" oX="0" oY="0" oW="97" oH="91" chunk="50" frame="1"/>
+    <sprite n="abc_50_2" x="1549" y="1557" w="55" h="77" oX="42" oY="14" oW="97" oH="91" chunk="50" frame="2"/>
+    <sprite n="abc_51_0" x="760" y="1638" w="58" h="76" oX="0" oY="17" oW="72" oH="102" chunk="51" frame="0"/>
+    <sprite n="abc_51_1" x="1402" y="1108" w="49" h="93" oX="9" oY="0" oW="72" oH="102" chunk="51" frame="1"/>
+    <sprite n="abc_51_2" x="686" y="1935" w="62" h="65" oX="10" oY="37" oW="72" oH="102" chunk="51" frame="2"/>
+    <sprite n="abc_52_0" x="1787" y="1206" w="59" h="87" chunk="52" frame="0"/>
+    <sprite n="abc_52_1" x="1229" y="1865" w="67" h="67" chunk="52" frame="1"/>
+    <sprite n="abc_52_2" x="1605" y="1557" w="55" h="77" oX="42" oY="14" oW="97" oH="91" chunk="52" frame="2"/>
+    <sprite n="abc_53_2" x="1661" y="1557" w="55" h="77" oX="42" oY="14" oW="97" oH="91" chunk="53" frame="2"/>
+    <sprite n="abc_54_0" x="1083" y="1387" w="58" h="83" oX="0" oY="0" oW="71" oH="86" chunk="54" frame="0"/>
+    <sprite n="abc_54_2" x="1717" y="1557" w="55" h="77" oX="42" oY="14" oW="97" oH="91" chunk="54" frame="2"/>
+    <sprite n="abc_55_0" x="1578" y="1206" w="50" h="88" oX="0" oY="0" oW="62" oH="88" chunk="55" frame="0"/>
+    <sprite n="abc_55_1" x="1893" y="1299" w="57" h="85" oX="5" oY="3" oW="62" oH="88" chunk="55" frame="1"/>
+    <sprite n="abc_55_2" x="1773" y="1557" w="55" h="77" oX="42" oY="14" oW="97" oH="91" chunk="55" frame="2"/>
+    <sprite n="abc_57_0" x="29" y="1935" w="67" h="66" oX="0" oY="0" oW="73" oH="66" chunk="57" frame="0"/>
+    <sprite n="abc_57_1" x="521" y="1387" w="52" h="84" oX="0" oY="0" oW="87" oH="94" chunk="57" frame="1"/>
+    <sprite n="abc_58_0" x="909" y="1108" w="73" h="94" chunk="58" frame="0"/>
+    <sprite n="abc_58_1" x="483" y="1865" w="99" h="68" chunk="58" frame="1"/>
+    <sprite n="abc_59_0" x="1064" y="1792" w="74" h="70" oX="0" oY="22" oW="80" oH="92" chunk="59" frame="0"/>
+    <sprite n="abc_59_1" x="1297" y="1865" w="74" h="67" oX="0" oY="25" oW="80" oH="92" chunk="59" frame="1"/>
+    <sprite n="abc_59_2" x="1740" y="1108" w="71" h="92" oX="0" oY="0" oW="80" oH="92" chunk="59" frame="2"/>
+    <sprite n="abc_59_3" x="1372" y="1865" w="80" h="67" oX="0" oY="25" oW="80" oH="92" chunk="59" frame="3"/>
+    <sprite n="abc_60_0" x="834" y="791" w="107" h="107" oX="0" oY="12" oW="116" oH="119" chunk="60" frame="0"/>
+    <sprite n="abc_60_1" x="511" y="440" w="106" h="119" oX="1" oY="0" oW="116" oH="119" chunk="60" frame="1"/>
+    <sprite n="abc_60_2" x="163" y="183" w="171" h="129" oX="0" oY="0" oW="205" oH="129" chunk="60" frame="2"/>
+    <sprite n="abc_61_0" x="583" y="1865" w="57" h="68" oX="0" oY="1" oW="102" oH="69" chunk="61" frame="0"/>
+    <sprite n="abc_62_0" x="1031" y="1716" w="92" h="73" oX="0" oY="5" oW="104" oH="82" chunk="62" frame="0"/>
+    <sprite n="abc_62_1" x="316" y="1473" w="71" h="82" oX="33" oY="0" oW="104" oH="82" chunk="62" frame="1"/>
+    <sprite n="abc_63_0" x="1309" y="1206" w="87" h="89" oX="0" oY="11" oW="110" oH="100" chunk="63" frame="0"/>
+    <sprite n="abc_63_1" x="582" y="1108" w="103" h="95" oX="7" oY="0" oW="110" oH="100" chunk="63" frame="1"/>
+    <sprite n="abc_63_2" x="1812" y="1108" w="106" h="92" oX="0" oY="5" oW="110" oH="100" chunk="63" frame="2"/>
+    <sprite n="abc_64_0" x="1700" y="183" w="194" h="125" chunk="64" frame="0"/>
+    <sprite n="abc_64_1" x="78" y="561" w="166" h="116" oX="25" oY="9" oW="194" oH="125" chunk="64" frame="1"/>
+    <sprite n="abc_65_0" x="1752" y="440" w="192" h="117" oX="0" oY="4" oW="192" oH="121" chunk="65" frame="0"/>
+    <sprite n="abc_65_1" x="1584" y="314" w="179" h="120" oX="5" oY="0" oW="192" oH="121" chunk="65" frame="1"/>
+    <sprite n="abc_66_0" x="1764" y="314" w="159" h="120" chunk="66" frame="0"/>
+    <sprite n="abc_67_0" x="1142" y="1387" w="199" h="83" oX="0" oY="40" oW="199" oH="129" chunk="67" frame="0"/>
+    <sprite n="abc_67_1" x="1452" y="1108" w="82" h="93" oX="73" oY="36" oW="199" oH="129" chunk="67" frame="1"/>
+    <sprite n="abc_67_2" x="1342" y="1387" w="136" h="83" oX="33" oY="40" oW="199" oH="129" chunk="67" frame="2"/>
+    <sprite n="abc_67_3" x="335" y="183" w="168" h="129" oX="9" oY="0" oW="199" oH="129" chunk="67" frame="3"/>
+    <sprite n="abc_67_4" x="1535" y="1108" w="82" h="93" oX="73" oY="36" oW="199" oH="129" chunk="67" frame="4"/>
+    <sprite n="abc_67_5" x="1479" y="1387" w="136" h="83" oX="33" oY="40" oW="199" oH="129" chunk="67" frame="5"/>
+    <sprite n="abc_67_6" x="504" y="183" w="168" h="129" oX="9" oY="0" oW="199" oH="129" chunk="67" frame="6"/>
+    <sprite n="abc_68_0" x="465" y="1206" w="129" h="91" chunk="68" frame="0"/>
+    <sprite n="abc_68_1" x="1" y="791" w="162" h="108" oX="17" oY="18" oW="236" oH="128" chunk="68" frame="1"/>
+    <sprite n="abc_68_2" x="1093" y="183" w="195" h="127" oX="0" oY="1" oW="236" oH="128" chunk="68" frame="2"/>
+    <sprite n="abc_69_0" x="734" y="314" w="142" h="123" oX="0" oY="0" oW="183" oH="123" chunk="69" frame="0"/>
+    <sprite n="abc_69_1" x="877" y="314" w="137" h="123" oX="4" oY="0" oW="183" oH="123" chunk="69" frame="1"/>
+    <sprite n="abc_69_2" x="1206" y="561" w="164" h="115" oX="19" oY="7" oW="183" oH="123" chunk="69" frame="2"/>
+    <sprite n="abc_70_0" x="835" y="183" w="121" h="128" oX="6" oY="1" oW="140" oH="131" chunk="70" frame="0"/>
+    <sprite n="abc_70_1" x="1895" y="183" w="122" h="125" oX="5" oY="3" oW="140" oH="131" chunk="70" frame="1"/>
+    <sprite n="abc_70_2" x="1289" y="183" w="123" h="127" oX="0" oY="0" oW="140" oH="131" chunk="70" frame="2"/>
+    <sprite n="abc_70_3" x="957" y="183" w="135" h="128" oX="5" oY="3" oW="140" oH="131" chunk="70" frame="3"/>
+    <sprite n="abc_71_0" x="1393" y="1" w="130" h="137" oX="18" oY="0" oW="152" oH="141" chunk="71" frame="0"/>
+    <sprite n="abc_71_1" x="1240" y="1" w="152" h="139" oX="0" oY="2" oW="152" oH="141" chunk="71" frame="1"/>
+    <sprite n="abc_72_0" x="97" y="679" w="122" h="111" chunk="72" frame="0"/>
+    <sprite n="abc_73_0" x="1015" y="314" w="172" h="122" chunk="73" frame="0"/>
+    <sprite n="abc_74_0" x="967" y="440" w="182" h="118" oX="0" oY="0" oW="196" oH="118" chunk="74" frame="0"/>
+    <sprite n="abc_74_1" x="1150" y="440" w="168" h="118" oX="0" oY="0" oW="196" oH="118" chunk="74" frame="1"/>
+    <sprite n="abc_74_2" x="1319" y="440" w="196" h="118" chunk="74" frame="2"/>
+    <sprite n="abc_75_0" x="699" y="679" w="165" h="110" oX="0" oY="15" oW="165" oH="140" chunk="75" frame="0"/>
+    <sprite n="abc_75_1" x="865" y="679" w="162" h="110" oX="3" oY="15" oW="165" oH="140" chunk="75" frame="1"/>
+    <sprite n="abc_75_2" x="1" y="314" w="145" h="125" oX="20" oY="0" oW="165" oH="140" chunk="75" frame="2"/>
+    <sprite n="abc_75_3" x="942" y="791" w="129" h="107" oX="35" oY="33" oW="165" oH="140" chunk="75" frame="3"/>
+    <sprite n="abc_76_0" x="1924" y="314" w="101" h="120" oX="1" oY="0" oW="156" oH="122" chunk="76" frame="0"/>
+    <sprite n="abc_76_1" x="1" y="440" w="101" h="120" oX="0" oY="0" oW="156" oH="122" chunk="76" frame="1"/>
+    <sprite n="abc_76_2" x="103" y="440" w="149" h="120" oX="7" oY="2" oW="156" oH="122" chunk="76" frame="2"/>
+    <sprite n="abc_77_0" x="703" y="900" w="108" h="103" oX="4" oY="51" oW="122" oH="154" chunk="77" frame="0"/>
+    <sprite n="abc_77_1" x="228" y="1" w="120" h="154" oX="2" oY="0" oW="122" oH="154" chunk="77" frame="1"/>
+    <sprite n="abc_77_2" x="947" y="1" w="122" h="143" oX="0" oY="11" oW="122" oH="154" chunk="77" frame="2"/>
+    <sprite n="abc_78_0" x="1092" y="1557" w="128" h="78" oX="0" oY="25" oW="129" oH="126" chunk="78" frame="0"/>
+    <sprite n="abc_78_1" x="812" y="900" w="126" h="103" oX="3" oY="0" oW="129" oH="126" chunk="78" frame="1"/>
+    <sprite n="abc_78_2" x="1221" y="1557" w="89" h="78" oX="36" oY="40" oW="129" oH="126" chunk="78" frame="2"/>
+    <sprite n="abc_78_3" x="1616" y="1387" w="89" h="83" oX="36" oY="35" oW="129" oH="126" chunk="78" frame="3"/>
+    <sprite n="abc_78_4" x="1706" y="1387" w="77" h="83" oX="44" oY="43" oW="129" oH="126" chunk="78" frame="4"/>
+    <sprite n="abc_78_5" x="1784" y="1387" w="77" h="83" oX="44" oY="43" oW="129" oH="126" chunk="78" frame="5"/>
+    <sprite n="abc_78_6" x="1862" y="1387" w="71" h="83" oX="44" oY="43" oW="129" oH="126" chunk="78" frame="6"/>
+    <sprite n="abc_79_0" x="1445" y="900" w="91" h="101" oX="24" oY="0" oW="115" oH="101" chunk="79" frame="0"/>
+    <sprite n="abc_79_1" x="1312" y="1638" w="115" h="75" oX="0" oY="26" oW="115" oH="101" chunk="79" frame="1"/>
+    <sprite n="abc_79_2" x="749" y="1935" w="108" h="65" oX="5" oY="28" oW="115" oH="101" chunk="79" frame="2"/>
+    <sprite n="abc_79_3" x="858" y="1935" w="101" h="65" oX="12" oY="28" oW="115" oH="101" chunk="79" frame="3"/>
+    <sprite n="abc_80_0" x="1453" y="1865" w="86" h="67" oX="1" oY="20" oW="102" oH="95" chunk="80" frame="0"/>
+    <sprite n="abc_80_2" x="1847" y="1206" w="95" h="87" oX="3" oY="0" oW="102" oH="95" chunk="80" frame="2"/>
+    <sprite n="abc_80_3" x="992" y="1299" w="76" h="86" oX="26" oY="9" oW="102" oH="95" chunk="80" frame="3"/>
+    <sprite n="abc_81_0" x="1124" y="1716" w="79" h="73" oX="14" oY="7" oW="93" oH="80" chunk="81" frame="0"/>
+    <sprite n="abc_81_1" x="1204" y="1716" w="79" h="73" oX="14" oY="7" oW="93" oH="80" chunk="81" frame="1"/>
+    <sprite n="abc_81_2" x="1284" y="1716" w="79" h="73" oX="14" oY="7" oW="93" oH="80" chunk="81" frame="2"/>
+    <sprite n="abc_81_3" x="1364" y="1716" w="79" h="73" oX="14" oY="7" oW="93" oH="80" chunk="81" frame="3"/>
+    <sprite n="abc_81_4" x="1444" y="1716" w="58" h="73" oX="13" oY="5" oW="93" oH="80" chunk="81" frame="4"/>
+    <sprite n="abc_81_5" x="618" y="1716" w="66" h="74" oX="4" oY="4" oW="93" oH="80" chunk="81" frame="5"/>
+    <sprite n="abc_81_6" x="1311" y="1557" w="70" h="78" oX="0" oY="0" oW="93" oH="80" chunk="81" frame="6"/>
+    <sprite n="abc_81_7" x="641" y="1865" w="77" h="68" oX="15" oY="9" oW="93" oH="80" chunk="81" frame="7"/>
+    <sprite n="abc_81_8" x="719" y="1865" w="73" h="68" oX="14" oY="9" oW="93" oH="80" chunk="81" frame="8"/>
+    <sprite n="abc_82_0" x="1943" y="1206" w="54" h="87" oX="32" oY="0" oW="128" oH="88" chunk="82" frame="0"/>
+    <sprite n="abc_82_1" x="111" y="1557" w="62" h="80" oX="36" oY="6" oW="128" oH="88" chunk="82" frame="1"/>
+    <sprite n="abc_82_2" x="1540" y="1865" w="68" h="67" oX="32" oY="7" oW="128" oH="88" chunk="82" frame="2"/>
+    <sprite n="abc_82_4" x="97" y="1935" w="108" h="66" oX="6" oY="16" oW="128" oH="88" chunk="82" frame="4"/>
+    <sprite n="abc_83_0" x="1503" y="1716" w="65" h="73" chunk="83" frame="0"/>
+    <sprite n="abc_83_1" x="1" y="1792" w="65" h="72" oX="0" oY="1" oW="65" oH="73" chunk="83" frame="1"/>
+    <sprite n="abc_83_2" x="1139" y="1792" w="65" h="70" oX="0" oY="3" oW="65" oH="73" chunk="83" frame="2"/>
+    <sprite n="abc_83_3" x="1829" y="1792" w="65" h="69" oX="0" oY="4" oW="65" oH="73" chunk="83" frame="3"/>
+    <sprite n="abc_83_4" x="1895" y="1792" w="65" h="69" oX="0" oY="4" oW="65" oH="73" chunk="83" frame="4"/>
+    <sprite n="abc_84_0" x="819" y="1638" w="92" h="76" oX="2" oY="4" oW="94" oH="81" chunk="84" frame="0"/>
+    <sprite n="abc_84_1" x="1829" y="1557" w="91" h="77" oX="0" oY="4" oW="94" oH="81" chunk="84" frame="1"/>
+    <sprite n="abc_84_2" x="206" y="1935" w="99" h="66" oX="0" oY="8" oW="149" oH="98" chunk="84" frame="2"/>
+    <sprite n="abc_84_3" x="505" y="1792" w="115" h="71" oX="0" oY="11" oW="149" oH="98" chunk="84" frame="3"/>
+    <sprite n="abc_84_4" x="406" y="1557" w="131" h="79" oX="0" oY="11" oW="149" oH="98" chunk="84" frame="4"/>
+    <sprite n="abc_84_5" x="538" y="1557" w="131" h="79" oX="16" oY="19" oW="149" oH="98" chunk="84" frame="5"/>
+    <sprite n="abc_84_6" x="621" y="1792" w="117" h="71" oX="32" oY="27" oW="149" oH="98" chunk="84" frame="6"/>
+    <sprite n="abc_84_7" x="306" y="1935" w="96" h="66" oX="53" oY="32" oW="149" oH="98" chunk="84" frame="7"/>
+    <sprite n="abc_85_0" x="1583" y="1935" w="76" h="63" chunk="85" frame="0"/>
+    <sprite n="abc_85_1" x="1660" y="1935" w="76" h="63" chunk="85" frame="1"/>
+    <sprite n="abc_85_2" x="1737" y="1935" w="76" h="63" chunk="85" frame="2"/>
+    <sprite n="abc_85_3" x="1814" y="1935" w="76" h="63" chunk="85" frame="3"/>
+    <sprite n="abc_86_0" x="1569" y="1716" w="95" h="73" oX="0" oY="0" oW="101" oH="78" chunk="86" frame="0"/>
+    <sprite n="abc_86_1" x="1205" y="1792" w="95" h="70" oX="0" oY="2" oW="101" oH="78" chunk="86" frame="1"/>
+    <sprite n="abc_86_2" x="1382" y="1557" w="95" h="78" oX="0" oY="0" oW="101" oH="78" chunk="86" frame="2"/>
+    <sprite n="abc_86_3" x="685" y="1716" w="101" h="74" oX="0" oY="2" oW="101" oH="78" chunk="86" frame="3"/>
+    <sprite n="abc_86_4" x="787" y="1716" w="101" h="74" oX="0" oY="2" oW="101" oH="78" chunk="86" frame="4"/>
+    <sprite n="abc_87_0" x="182" y="900" w="91" h="105" oX="0" oY="0" oW="136" oH="113" chunk="87" frame="0"/>
+    <sprite n="abc_87_1" x="470" y="900" w="90" h="104" oX="0" oY="1" oW="136" oH="113" chunk="87" frame="1"/>
+    <sprite n="abc_87_2" x="1653" y="1007" w="81" h="97" oX="14" oY="11" oW="136" oH="113" chunk="87" frame="2"/>
+    <sprite n="abc_87_3" x="1618" y="1108" w="121" h="93" oX="15" oY="20" oW="136" oH="113" chunk="87" frame="3"/>
+    <sprite n="abc_87_4" x="388" y="1473" w="117" h="82" oX="15" oY="31" oW="136" oH="113" chunk="87" frame="4"/>
+    <sprite n="abc_88_0" x="1072" y="791" w="142" h="107" oX="0" oY="7" oW="142" oH="114" chunk="88" frame="0"/>
+    <sprite n="abc_88_1" x="164" y="791" w="142" h="108" oX="0" oY="6" oW="142" oH="114" chunk="88" frame="1"/>
+    <sprite n="abc_88_2" x="1371" y="561" w="135" h="114" oX="7" oY="0" oW="142" oH="114" chunk="88" frame="2"/>
+    <sprite n="abc_88_3" x="245" y="561" w="211" h="116" chunk="88" frame="3"/>
+    <sprite n="abc_91_2" x="739" y="1792" w="101" h="71" chunk="91" frame="2"/>
+    <sprite n="abc_92_0" x="983" y="1108" w="118" h="94" oX="0" oY="0" oW="118" oH="97" chunk="92" frame="0"/>
+    <sprite n="abc_92_1" x="780" y="1206" w="118" h="90" oX="0" oY="4" oW="118" oH="97" chunk="92" frame="1"/>
+    <sprite n="abc_92_2" x="1735" y="1007" w="108" h="97" oX="0" oY="0" oW="118" oH="97" chunk="92" frame="2"/>
+    <sprite n="abc_92_3" x="1" y="1387" w="122" h="85" chunk="92" frame="3"/>
+    <sprite n="abc_93_0" x="1609" y="1865" w="106" h="67" oX="0" oY="0" oW="106" oH="69" chunk="93" frame="0"/>
+    <sprite n="abc_93_1" x="1716" y="1865" w="105" h="67" oX="0" oY="0" oW="106" oH="69" chunk="93" frame="1"/>
+    <sprite n="abc_93_2" x="1" y="1865" w="104" h="69" oX="0" oY="0" oW="106" oH="69" chunk="93" frame="2"/>
+    <sprite n="abc_93_3" x="1301" y="1792" w="152" h="70" chunk="93" frame="3"/>
+    <sprite n="abc_94_0" x="1" y="1299" w="109" h="87" oX="1" oY="0" oW="128" oH="91" chunk="94" frame="0"/>
+    <sprite n="abc_94_1" x="1069" y="1299" w="108" h="86" oX="1" oY="1" oW="128" oH="91" chunk="94" frame="1"/>
+    <sprite n="abc_94_2" x="111" y="1299" w="108" h="87" oX="0" oY="0" oW="128" oH="91" chunk="94" frame="2"/>
+    <sprite n="abc_94_3" x="899" y="1206" w="124" h="90" oX="4" oY="1" oW="128" oH="91" chunk="94" frame="3"/>
+    <sprite n="abc_95_0" x="1178" y="1299" w="101" h="86" oX="0" oY="11" oW="106" oH="107" chunk="95" frame="0"/>
+    <sprite n="abc_95_1" x="124" y="1387" w="97" h="85" oX="0" oY="12" oW="106" oH="107" chunk="95" frame="1"/>
+    <sprite n="abc_95_2" x="1844" y="1007" w="87" h="97" oX="0" oY="0" oW="106" oH="107" chunk="95" frame="2"/>
+    <sprite n="abc_95_3" x="1921" y="1557" w="102" h="77" oX="4" oY="30" oW="106" oH="107" chunk="95" frame="3"/>
+    <sprite n="abc_96_0" x="174" y="1557" w="75" h="80" oX="18" oY="3" oW="102" oH="86" chunk="96" frame="0"/>
+    <sprite n="abc_96_1" x="1127" y="1473" w="77" h="81" oX="16" oY="2" oW="102" oH="86" chunk="96" frame="1"/>
+    <sprite n="abc_96_2" x="1205" y="1473" w="77" h="81" oX="16" oY="2" oW="102" oH="86" chunk="96" frame="2"/>
+    <sprite n="abc_96_3" x="506" y="1473" w="78" h="82" oX="15" oY="1" oW="102" oH="86" chunk="96" frame="3"/>
+    <sprite n="abc_96_4" x="1934" y="1387" w="93" h="83" oX="0" oY="0" oW="102" oH="86" chunk="96" frame="4"/>
+    <sprite n="abc_96_5" x="1" y="1638" w="86" h="77" oX="16" oY="9" oW="102" oH="86" chunk="96" frame="5"/>
+    <sprite n="abc_97_0" x="1891" y="1935" w="38" h="63" oX="10" oY="0" oW="48" oH="63" chunk="97" frame="0"/>
+    <sprite n="abc_97_1" x="1930" y="1935" w="48" h="63" chunk="97" frame="1"/>
+    <sprite n="abc_98_0" x="1" y="1473" w="64" h="83" oX="21" oY="16" oW="89" oH="104" chunk="98" frame="0"/>
+    <sprite n="abc_98_1" x="66" y="1473" w="64" h="83" oX="21" oY="16" oW="89" oH="104" chunk="98" frame="1"/>
+    <sprite n="abc_98_2" x="1283" y="1473" w="48" h="81" oX="31" oY="18" oW="89" oH="104" chunk="98" frame="2"/>
+    <sprite n="abc_98_3" x="1332" y="1473" w="49" h="81" oX="30" oY="18" oW="89" oH="104" chunk="98" frame="3"/>
+    <sprite n="abc_98_4" x="1382" y="1473" w="51" h="81" oX="28" oY="18" oW="89" oH="104" chunk="98" frame="4"/>
+    <sprite n="abc_98_5" x="67" y="1792" w="51" h="72" oX="28" oY="17" oW="89" oH="104" chunk="98" frame="5"/>
+    <sprite n="abc_98_6" x="1665" y="1716" w="56" h="73" oX="24" oY="16" oW="89" oH="104" chunk="98" frame="6"/>
+    <sprite n="abc_98_7" x="119" y="1792" w="61" h="72" oX="17" oY="28" oW="89" oH="104" chunk="98" frame="7"/>
+    <sprite n="abc_98_8" x="1822" y="1865" w="77" h="67" oX="1" oY="34" oW="89" oH="104" chunk="98" frame="8"/>
+    <sprite n="abc_98_9" x="106" y="1865" w="77" h="69" oX="1" oY="34" oW="89" oH="104" chunk="98" frame="9"/>
+    <sprite n="abc_98_10" x="1454" y="1792" w="77" h="70" oX="1" oY="34" oW="89" oH="104" chunk="98" frame="10"/>
+    <sprite n="abc_98_11" x="1532" y="1792" w="77" h="70" oX="1" oY="34" oW="89" oH="104" chunk="98" frame="11"/>
+    <sprite n="abc_98_12" x="1610" y="1792" w="77" h="70" oX="1" oY="34" oW="89" oH="104" chunk="98" frame="12"/>
+    <sprite n="abc_98_13" x="686" y="1108" w="84" h="95" oX="3" oY="9" oW="89" oH="104" chunk="98" frame="13"/>
+    <sprite n="abc_98_14" x="561" y="900" w="86" h="104" oX="3" oY="0" oW="89" oH="104" chunk="98" frame="14"/>
+    <sprite n="abc_99_0" x="1537" y="900" w="159" h="101" oX="0" oY="0" oW="162" oH="102" chunk="99" frame="0"/>
+    <sprite n="abc_99_1" x="1697" y="900" w="159" h="101" oX="0" oY="0" oW="162" oH="102" chunk="99" frame="1"/>
+    <sprite n="abc_99_2" x="1102" y="1108" w="140" h="94" oX="22" oY="8" oW="162" oH="102" chunk="99" frame="2"/>
+    <sprite n="abc_100_9" x="88" y="1638" w="35" h="77" oX="0" oY="0" oW="58" oH="87" chunk="100" frame="9"/>
+    <sprite n="abc_100_10" x="220" y="1299" w="46" h="87" oX="12" oY="0" oW="58" oH="87" chunk="100" frame="10"/>
+    <sprite n="abc_101_0" x="1024" y="1206" w="92" h="90" oX="44" oY="3" oW="185" oH="96" chunk="101" frame="0"/>
+    <sprite n="abc_101_1" x="771" y="1108" w="81" h="95" oX="63" oY="0" oW="185" oH="96" chunk="101" frame="1"/>
+    <sprite n="abc_101_2" x="585" y="1473" w="82" h="82" oX="74" oY="11" oW="185" oH="96" chunk="101" frame="2"/>
+    <sprite n="abc_101_3" x="670" y="1557" w="93" h="79" oX="81" oY="15" oW="185" oH="96" chunk="101" frame="3"/>
+    <sprite n="abc_101_4" x="668" y="1473" w="99" h="82" oX="82" oY="12" oW="185" oH="96" chunk="101" frame="4"/>
+    <sprite n="abc_102_0" x="124" y="1638" w="43" h="77" oX="19" oY="0" oW="87" oH="77" chunk="102" frame="0"/>
+    <sprite n="abc_102_1" x="168" y="1638" w="48" h="77" oX="14" oY="0" oW="87" oH="77" chunk="102" frame="1"/>
+    <sprite n="abc_102_2" x="217" y="1638" w="57" h="77" oX="5" oY="0" oW="87" oH="77" chunk="102" frame="2"/>
+    <sprite n="abc_102_3" x="275" y="1638" w="62" h="77" oX="0" oY="0" oW="87" oH="77" chunk="102" frame="3"/>
+    <sprite n="abc_103_0" x="252" y="1007" w="95" h="100" chunk="103" frame="0"/>
+    <sprite n="abc_104_0" x="220" y="679" w="109" h="111" oX="2" oY="2" oW="131" oH="130" chunk="104" frame="0"/>
+    <sprite n="abc_104_1" x="1769" y="561" w="124" h="112" oX="0" oY="1" oW="131" oH="130" chunk="104" frame="1"/>
+    <sprite n="abc_104_2" x="1945" y="440" w="85" h="117" oX="16" oY="0" oW="131" oH="130" chunk="104" frame="2"/>
+    <sprite n="abc_104_3" x="1894" y="561" w="90" h="112" oX="16" oY="1" oW="131" oH="130" chunk="104" frame="3"/>
+    <sprite n="abc_104_4" x="330" y="679" w="109" h="111" oX="2" oY="2" oW="131" oH="130" chunk="104" frame="4"/>
+    <sprite n="abc_104_5" x="440" y="679" w="109" h="111" oX="22" oY="19" oW="131" oH="130" chunk="104" frame="5"/>
+    <sprite n="abc_106_2" x="960" y="1935" w="80" h="65" oX="27" oY="1" oW="107" oH="66" chunk="106" frame="2"/>
+    <sprite n="abc_107_0" x="184" y="1865" w="54" h="69" oX="0" oY="6" oW="79" oH="78" chunk="107" frame="0"/>
+    <sprite n="abc_107_1" x="1428" y="1638" w="42" h="75" oX="6" oY="0" oW="79" oH="78" chunk="107" frame="1"/>
+    <sprite n="abc_107_2" x="181" y="1792" w="48" h="72" oX="31" oY="6" oW="79" oH="78" chunk="107" frame="2"/>
+    <sprite n="abc_107_3" x="230" y="1792" w="50" h="72" oX="0" oY="0" oW="110" oH="106" chunk="107" frame="3"/>
+    <sprite n="abc_107_5" x="403" y="1935" w="74" h="66" oX="29" oY="35" oW="110" oH="106" chunk="107" frame="5"/>
+    <sprite n="abc_107_6" x="841" y="1792" w="81" h="71" oX="29" oY="35" oW="110" oH="106" chunk="107" frame="6"/>
+    <sprite n="abc_108_0" x="281" y="1792" w="97" h="72" oX="0" oY="0" oW="113" oH="81" chunk="108" frame="0"/>
+    <sprite n="abc_108_1" x="1434" y="1473" w="113" h="81" chunk="108" frame="1"/>
+    <sprite n="abc_109_0" x="338" y="1638" w="88" h="77" oX="0" oY="0" oW="90" oH="79" chunk="109" frame="0"/>
+    <sprite n="abc_109_1" x="912" y="1638" w="90" h="76" oX="0" oY="3" oW="90" oH="79" chunk="109" frame="1"/>
+    <sprite n="abc_110_0" x="131" y="1473" w="71" h="83" chunk="110" frame="0"/>
+    <sprite n="abc_110_1" x="250" y="1557" w="71" h="80" oX="0" oY="3" oW="71" oH="83" chunk="110" frame="1"/>
+    <sprite n="abc_110_2" x="348" y="1007" w="84" h="100" oX="0" oY="0" oW="158" oH="131" chunk="110" frame="2"/>
+    <sprite n="abc_110_3" x="1280" y="1299" w="78" h="86" oX="80" oY="45" oW="158" oH="131" chunk="110" frame="3"/>
+    <sprite n="abc_111_0" x="1017" y="900" w="113" h="102" oX="0" oY="18" oW="144" oH="135" chunk="111" frame="0"/>
+    <sprite n="abc_111_1" x="147" y="314" w="113" h="125" oX="31" oY="0" oW="144" oH="135" chunk="111" frame="1"/>
+    <sprite n="abc_111_2" x="939" y="900" w="77" h="103" oX="64" oY="32" oW="144" oH="135" chunk="111" frame="2"/>
+    <sprite n="abc_112_0" x="873" y="1007" w="122" h="99" chunk="112" frame="0"/>
+    <sprite n="abc_112_1" x="1359" y="1299" w="89" h="86" oX="21" oY="13" oW="122" oH="99" chunk="112" frame="1"/>
+    <sprite n="abc_112_2" x="768" y="1473" w="144" h="82" chunk="112" frame="2"/>
+    <sprite n="abc_113_0" x="379" y="1792" w="54" h="72" oX="2" oY="7" oW="79" oH="89" chunk="113" frame="0"/>
+    <sprite n="abc_113_1" x="1471" y="1638" w="54" h="75" oX="0" oY="4" oW="79" oH="89" chunk="113" frame="1"/>
+    <sprite n="abc_113_2" x="574" y="1387" w="61" h="84" oX="7" oY="0" oW="79" oH="89" chunk="113" frame="2"/>
+    <sprite n="abc_113_3" x="1478" y="1557" w="70" h="78" oX="3" oY="6" oW="79" oH="89" chunk="113" frame="3"/>
+    <sprite n="abc_113_4" x="923" y="1792" w="70" h="71" oX="5" oY="13" oW="79" oH="89" chunk="113" frame="4"/>
+    <sprite n="abc_113_5" x="764" y="1557" w="63" h="79" oX="10" oY="5" oW="79" oH="89" chunk="113" frame="5"/>
+    <sprite n="abc_113_6" x="793" y="1865" w="58" h="68" oX="10" oY="16" oW="79" oH="89" chunk="113" frame="6"/>
+    <sprite n="abc_113_7" x="852" y="1865" w="58" h="68" oX="10" oY="16" oW="79" oH="89" chunk="113" frame="7"/>
+    <sprite n="abc_113_8" x="911" y="1865" w="58" h="68" oX="10" oY="16" oW="79" oH="89" chunk="113" frame="8"/>
+    <sprite n="abc_113_9" x="1457" y="1935" w="68" h="64" oX="11" oY="25" oW="79" oH="89" chunk="113" frame="9"/>
+    <sprite n="abc_114_2" x="457" y="561" w="56" h="116" oX="0" oY="0" oW="98" oH="141" chunk="114" frame="2"/>
+    <sprite n="abc_114_3" x="1413" y="183" w="67" h="127" oX="31" oY="14" oW="98" oH="141" chunk="114" frame="3"/>
+    <sprite n="abc_115_2" x="1526" y="1638" w="53" h="75" oX="0" oY="53" oW="54" oH="131" chunk="115" frame="2"/>
+    <sprite n="abc_115_3" x="648" y="900" w="54" h="104" oX="0" oY="21" oW="54" oH="131" chunk="115" frame="3"/>
+    <sprite n="abc_115_4" x="1507" y="561" w="54" h="114" oX="0" oY="5" oW="54" oH="131" chunk="115" frame="4"/>
+    <sprite n="abc_115_5" x="253" y="440" w="54" h="120" oX="0" oY="0" oW="54" oH="131" chunk="115" frame="5"/>
+    <sprite n="abc_115_11" x="184" y="1" w="43" h="176" oX="96" oY="0" oW="142" oH="181" chunk="115" frame="11"/>
+    <sprite n="abc_115_12" x="139" y="1" w="44" h="178" oX="96" oY="0" oW="142" oH="181" chunk="115" frame="12"/>
+    <sprite n="abc_115_13" x="94" y="1" w="44" h="179" oX="96" oY="0" oW="142" oH="181" chunk="115" frame="13"/>
+    <sprite n="abc_115_14" x="48" y="1" w="45" h="180" oX="96" oY="0" oW="142" oH="181" chunk="115" frame="14"/>
+    <sprite n="abc_115_15" x="1" y="1" w="46" h="181" oX="96" oY="0" oW="142" oH="181" chunk="115" frame="15"/>
+    <sprite n="abc_116_0" x="222" y="1387" w="86" h="85" oX="0" oY="16" oW="86" oH="103" chunk="116" frame="0"/>
+    <sprite n="abc_116_1" x="1003" y="1638" w="73" h="76" oX="13" oY="27" oW="86" oH="103" chunk="116" frame="1"/>
+    <sprite n="abc_116_2" x="636" y="1387" w="86" h="84" oX="0" oY="17" oW="86" oH="103" chunk="116" frame="2"/>
+    <sprite n="abc_116_3" x="1857" y="900" w="81" h="101" oX="5" oY="0" oW="86" oH="103" chunk="116" frame="3"/>
+    <sprite n="abc_119_0" x="1117" y="1206" w="54" h="90" oX="8" oY="64" oW="88" oH="155" chunk="119" frame="0"/>
+    <sprite n="abc_119_1" x="349" y="1" w="57" h="154" oX="5" oY="0" oW="88" oH="155" chunk="119" frame="1"/>
+    <sprite n="abc_119_2" x="407" y="1" w="59" h="154" oX="3" oY="0" oW="88" oH="155" chunk="119" frame="2"/>
+    <sprite n="abc_119_3" x="467" y="1" w="62" h="154" oX="0" oY="0" oW="88" oH="155" chunk="119" frame="3"/>
+    <sprite n="abc_119_4" x="530" y="1" w="57" h="154" oX="5" oY="0" oW="88" oH="155" chunk="119" frame="4"/>
+    <sprite n="abc_119_5" x="588" y="1" w="59" h="154" oX="3" oY="0" oW="88" oH="155" chunk="119" frame="5"/>
+    <sprite n="abc_119_6" x="1574" y="183" w="62" h="126" oX="0" oY="28" oW="88" oH="155" chunk="119" frame="6"/>
+    <sprite n="abc_119_7" x="433" y="1007" w="81" h="100" oX="4" oY="54" oW="88" oH="155" chunk="119" frame="7"/>
+    <sprite n="abc_119_8" x="1580" y="1638" w="82" h="75" oX="6" oY="80" oW="88" oH="155" chunk="119" frame="8"/>
+    <sprite n="abc_120_5" x="267" y="1299" w="70" h="87" oX="24" oY="8" oW="134" oH="113" chunk="120" frame="5"/>
+    <sprite n="abc_120_6" x="1919" y="1108" w="71" h="92" oX="32" oY="1" oW="134" oH="113" chunk="120" frame="6"/>
+    <sprite n="abc_120_7" x="1" y="1206" w="103" h="92" oX="23" oY="0" oW="134" oH="113" chunk="120" frame="7"/>
+    <sprite n="abc_120_8" x="723" y="1387" w="111" h="84" oX="23" oY="7" oW="134" oH="113" chunk="120" frame="8"/>
+    <sprite n="abc_121_0" x="1188" y="314" w="139" h="122" oX="16" oY="20" oW="169" oH="143" chunk="121" frame="0"/>
+    <sprite n="abc_121_1" x="1328" y="314" w="139" h="122" oX="16" oY="19" oW="169" oH="143" chunk="121" frame="1"/>
+    <sprite n="abc_121_2" x="1524" y="1" w="161" h="133" oX="4" oY="8" oW="169" oH="143" chunk="121" frame="2"/>
+    <sprite n="abc_121_3" x="1070" y="1" w="169" h="141" oX="0" oY="0" oW="169" oH="143" chunk="121" frame="3"/>
+    <sprite n="abc_121_4" x="1028" y="679" w="125" h="110" oX="27" oY="33" oW="169" oH="143" chunk="121" frame="4"/>
+    <sprite n="abc_122_0" x="1298" y="791" w="178" h="106" oX="0" oY="0" oW="180" oH="106" chunk="122" frame="0"/>
+    <sprite n="abc_122_1" x="1477" y="791" w="180" h="106" chunk="122" frame="1"/>
+    <sprite n="abc_123_0" x="338" y="1299" w="134" h="87" oX="0" oY="0" oW="143" oH="88" chunk="123" frame="0"/>
+    <sprite n="abc_123_1" x="473" y="1299" w="143" h="87" oX="0" oY="1" oW="143" oH="88" chunk="123" frame="1"/>
+    <sprite n="abc_124_0" x="617" y="1299" w="53" h="87" oX="20" oY="0" oW="98" oH="88" chunk="124" frame="0"/>
+    <sprite n="abc_124_1" x="671" y="1299" w="53" h="87" oX="20" oY="0" oW="98" oH="88" chunk="124" frame="1"/>
+    <sprite n="abc_124_2" x="1041" y="1935" w="97" h="65" oX="0" oY="17" oW="98" oH="88" chunk="124" frame="2"/>
+    <sprite n="abc_124_3" x="970" y="1865" w="91" h="68" oX="7" oY="20" oW="98" oH="88" chunk="124" frame="3"/>
+    <sprite n="abc_125_0" x="515" y="1007" w="97" h="100" oX="32" oY="27" oW="195" oH="134" chunk="125" frame="0"/>
+    <sprite n="abc_125_1" x="1481" y="183" w="92" h="127" oX="37" oY="0" oW="195" oH="134" chunk="125" frame="1"/>
+    <sprite n="abc_125_2" x="1766" y="679" w="92" h="109" oX="47" oY="18" oW="195" oH="134" chunk="125" frame="2"/>
+    <sprite n="abc_125_3" x="307" y="791" w="130" h="108" oX="65" oY="26" oW="195" oH="134" chunk="125" frame="3"/>
+    <sprite n="abc_126_0" x="105" y="1206" w="62" h="92" oX="24" oY="0" oW="105" oH="92" chunk="126" frame="0"/>
+    <sprite n="abc_126_1" x="261" y="314" w="82" h="125" oX="12" oY="0" oW="105" oH="133" chunk="126" frame="1"/>
+    <sprite n="abc_126_2" x="1686" y="1" w="82" h="131" oX="15" oY="0" oW="105" oH="139" chunk="126" frame="2"/>
+    <sprite n="abc_126_3" x="1562" y="561" w="73" h="114" oX="32" oY="0" oW="105" oH="125" chunk="126" frame="3"/>
+    <sprite n="abc_126_4" x="1859" y="679" w="64" h="109" oX="31" oY="0" oW="105" oH="122" chunk="126" frame="4"/>
+    <sprite n="abc_126_5" x="1223" y="1007" w="50" h="98" oX="38" oY="0" oW="105" oH="115" chunk="126" frame="5"/>
+    <sprite n="abc_127_0" x="203" y="1473" w="64" h="83" oX="60" oY="0" oW="190" oH="109" chunk="127" frame="0"/>
+    <sprite n="abc_127_1" x="268" y="1473" w="47" h="83" oX="60" oY="0" oW="190" oH="109" chunk="127" frame="1"/>
+    <sprite n="abc_127_2" x="1077" y="1638" w="55" h="76" oX="60" oY="7" oW="190" oH="109" chunk="127" frame="2"/>
+    <sprite n="abc_127_3" x="889" y="1716" w="45" h="74" oX="82" oY="21" oW="190" oH="109" chunk="127" frame="3"/>
+    <sprite n="abc_129_0" x="1663" y="1638" w="99" h="75" oX="36" oY="0" oW="135" oH="86" chunk="129" frame="0"/>
+    <sprite n="abc_129_1" x="1763" y="1638" w="92" h="75" oX="28" oY="0" oW="135" oH="86" chunk="129" frame="1"/>
+    <sprite n="abc_129_2" x="1449" y="1299" w="74" h="86" oX="49" oY="0" oW="135" oH="86" chunk="129" frame="2"/>
+    <sprite n="abc_130_0" x="274" y="900" w="101" h="105" oX="17" oY="0" oW="140" oH="113" chunk="130" frame="0"/>
+    <sprite n="abc_130_1" x="613" y="1007" w="93" h="100" oX="11" oY="0" oW="140" oH="113" chunk="130" frame="1"/>
+    <sprite n="abc_130_2" x="1932" y="1007" w="82" h="97" oX="20" oY="3" oW="140" oH="113" chunk="130" frame="2"/>
+    <sprite n="abc_130_3" x="1" y="1108" w="70" h="97" oX="32" oY="3" oW="140" oH="113" chunk="130" frame="3"/>
+    <sprite n="abc_130_4" x="1629" y="1206" w="74" h="88" oX="38" oY="10" oW="140" oH="113" chunk="130" frame="4"/>
+    <sprite n="abc_130_5" x="1172" y="1206" w="81" h="90" oX="38" oY="13" oW="140" oH="113" chunk="130" frame="5"/>
+    <sprite n="abc_130_6" x="595" y="1206" w="82" h="91" oX="38" oY="14" oW="140" oH="113" chunk="130" frame="6"/>
+    <sprite n="abc_130_7" x="1397" y="1206" w="103" h="89" oX="37" oY="24" oW="140" oH="113" chunk="130" frame="7"/>
+    <sprite n="abc_131_0" x="618" y="440" w="102" h="119" oX="27" oY="3" oW="168" oH="125" chunk="131" frame="0"/>
+    <sprite n="abc_131_1" x="1" y="561" w="76" h="117" oX="40" oY="5" oW="168" oH="125" chunk="131" frame="1"/>
+    <sprite n="abc_131_2" x="1468" y="314" w="115" h="122" oX="53" oY="0" oW="168" oH="125" chunk="131" frame="2"/>
+    <sprite n="abc_131_3" x="1636" y="561" w="132" h="113" oX="32" oY="12" oW="168" oH="125" chunk="131" frame="3"/>
+    <sprite n="abc_133_0" x="344" y="314" w="194" h="125" chunk="133" frame="0"/>
+    <sprite n="abc_133_1" x="514" y="561" w="166" h="116" oX="25" oY="9" oW="194" oH="125" chunk="133" frame="1"/>
+    <sprite n="abc_134_0" x="539" y="314" w="194" h="125" chunk="134" frame="0"/>
+    <sprite n="abc_134_1" x="681" y="561" w="166" h="116" oX="25" oY="9" oW="194" oH="125" chunk="134" frame="1"/>
+    <sprite n="abc_135_3" x="1524" y="1299" w="109" h="86" oX="7" oY="0" oW="132" oH="86" chunk="135" frame="3"/>
+    <sprite n="abc_137_0" x="1634" y="1299" w="101" h="86" oX="12" oY="11" oW="118" oH="107" chunk="137" frame="0"/>
+    <sprite n="abc_137_1" x="309" y="1387" w="97" h="85" oX="12" oY="12" oW="118" oH="107" chunk="137" frame="1"/>
+    <sprite n="abc_137_2" x="72" y="1108" w="87" h="97" oX="12" oY="0" oW="118" oH="107" chunk="137" frame="2"/>
+    <sprite n="abc_137_3" x="427" y="1638" w="102" h="77" oX="16" oY="30" oW="118" oH="107" chunk="137" frame="3"/>
+    <sprite n="abc_138_0" x="1131" y="900" w="156" h="102" chunk="138" frame="0"/>
+    <sprite n="abc_138_1" x="1288" y="900" w="156" h="102" chunk="138" frame="1"/>
+    <sprite n="abc_140_5" x="434" y="1792" w="70" h="72" oX="36" oY="21" oW="156" oH="119" chunk="140" frame="5"/>
+    <sprite n="abc_140_6" x="239" y="1865" w="71" h="69" oX="43" oY="13" oW="156" oH="119" chunk="140" frame="6"/>
+    <sprite n="abc_141_0" x="1154" y="679" w="199" h="110" chunk="141" frame="0"/>
+    <sprite n="abc_142_0" x="1354" y="679" w="199" h="110" chunk="142" frame="0"/>
+    <sprite n="abc_143_0" x="438" y="791" w="197" h="108" chunk="143" frame="0"/>
+    <sprite n="abc_144_0" x="636" y="791" w="197" h="108" chunk="144" frame="0"/>
+    <sprite n="abc_145_0" x="1769" y="1" w="161" h="130" chunk="145" frame="0"/>
+    <sprite n="abc_146_0" x="1" y="183" w="161" h="130" chunk="146" frame="0"/>
+    <sprite n="abc_147_0" x="673" y="183" w="161" h="129" oX="0" oY="1" oW="161" oH="130" chunk="147" frame="0"/>
+    <sprite n="abc_148_0" x="1254" y="1206" w="54" h="90" oX="8" oY="64" oW="88" oH="155" chunk="148" frame="0"/>
+    <sprite n="abc_148_1" x="648" y="1" w="57" h="154" oX="5" oY="0" oW="88" oH="155" chunk="148" frame="1"/>
+    <sprite n="abc_148_2" x="706" y="1" w="59" h="154" oX="3" oY="0" oW="88" oH="155" chunk="148" frame="2"/>
+    <sprite n="abc_148_3" x="766" y="1" w="62" h="154" oX="0" oY="0" oW="88" oH="155" chunk="148" frame="3"/>
+    <sprite n="abc_148_4" x="829" y="1" w="57" h="154" oX="5" oY="0" oW="88" oH="155" chunk="148" frame="4"/>
+    <sprite n="abc_148_5" x="887" y="1" w="59" h="154" oX="3" oY="0" oW="88" oH="155" chunk="148" frame="5"/>
+    <sprite n="abc_148_6" x="1637" y="183" w="62" h="126" oX="0" oY="28" oW="88" oH="155" chunk="148" frame="6"/>
+    <sprite n="abc_148_7" x="707" y="1007" w="81" h="100" oX="4" oY="54" oW="88" oH="155" chunk="148" frame="7"/>
+    <sprite n="abc_148_8" x="1856" y="1638" w="82" h="75" oX="6" oY="80" oW="88" oH="155" chunk="148" frame="8"/>
+    <sprite n="abc_149_0" x="1658" y="791" w="91" h="106" oX="7" oY="10" oW="104" oH="116" chunk="149" frame="0"/>
+    <sprite n="abc_149_1" x="1750" y="791" w="95" h="106" oX="9" oY="10" oW="104" oH="116" chunk="149" frame="1"/>
+    <sprite n="abc_149_2" x="848" y="561" w="95" h="116" oX="9" oY="0" oW="104" oH="116" chunk="149" frame="2"/>
+    <sprite n="abc_149_3" x="944" y="561" w="95" h="116" oX="9" oY="0" oW="104" oH="116" chunk="149" frame="3"/>
+    <sprite n="abc_149_4" x="1040" y="561" w="90" h="116" oX="14" oY="0" oW="104" oH="116" chunk="149" frame="4"/>
+    <sprite n="abc_149_5" x="1131" y="561" w="74" h="116" oX="16" oY="0" oW="104" oH="116" chunk="149" frame="5"/>
+    <sprite n="abc_149_6" x="1501" y="1206" w="76" h="89" oX="26" oY="27" oW="104" oH="116" chunk="149" frame="6"/>
+    <sprite n="abc_150_0" x="308" y="440" w="202" h="120" oX="1" oY="0" oW="211" oH="139" chunk="150" frame="0"/>
+    <sprite n="abc_150_1" x="1554" y="679" w="211" h="110" oX="0" oY="29" oW="211" oH="139" chunk="150" frame="1"/>
+    <sprite n="abc_151_0" x="1979" y="1935" w="38" h="63" oX="10" oY="0" oW="48" oH="63" chunk="151" frame="0"/>
+    <sprite n="abc_152_0" x="1939" y="1638" w="99" h="75" oX="36" oY="0" oW="135" oH="86" chunk="152" frame="0"/>
+    <sprite n="abc_152_1" x="1" y="1716" w="92" h="75" oX="28" oY="0" oW="135" oH="86" chunk="152" frame="1"/>
+    <sprite n="abc_152_2" x="1736" y="1299" w="74" h="86" oX="49" oY="0" oW="135" oH="86" chunk="152" frame="2"/>
+    <sprite n="abc_153_0" x="1846" y="791" w="178" h="106" oX="0" oY="0" oW="180" oH="106" chunk="153" frame="0"/>
+    <sprite n="abc_153_1" x="1" y="900" w="180" h="106" chunk="153" frame="1"/>
+</TextureAtlas>

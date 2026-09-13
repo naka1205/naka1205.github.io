@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 由 tools/extract 生成，不要手工编辑 -->
+<!-- 来源: rgm.mkf — 过场素材，rngplay.c 使用 -->
+<TextureAtlas imagePath="rgm.bin" width="2011" height="418" format="indexed8" paletteIndex="0">
+    <sprite n="rgm_1" x="636" y="234" w="78" h="91" chunk="1"/>
+    <sprite n="rgm_2" x="715" y="234" w="78" h="91" chunk="2"/>
+    <sprite n="rgm_3" x="794" y="234" w="78" h="91" chunk="3"/>
+    <sprite n="rgm_4" x="873" y="234" w="78" h="91" chunk="4"/>
+    <sprite n="rgm_5" x="952" y="234" w="78" h="91" chunk="5"/>
+    <sprite n="rgm_6" x="1031" y="234" w="78" h="91" chunk="6"/>
+    <sprite n="rgm_7" x="1110" y="234" w="78" h="91" chunk="7"/>
+    <sprite n="rgm_8" x="1189" y="234" w="78" h="91" chunk="8"/>
+    <sprite n="rgm_9" x="1268" y="234" w="78" h="91" chunk="9"/>
+    <sprite n="rgm_10" x="1347" y="234" w="78" h="91" chunk="10"/>
+    <sprite n="rgm_11" x="1759" y="133" w="83" h="94" chunk="11"/>
+    <sprite n="rgm_12" x="1843" y="133" w="83" h="94" chunk="12"/>
+    <sprite n="rgm_13" x="258" y="329" w="70" h="84" chunk="13"/>
+    <sprite n="rgm_14" x="1927" y="133" w="83" h="94" chunk="14"/>
+    <sprite n="rgm_15" x="1" y="234" w="83" h="94" chunk="15"/>
+    <sprite n="rgm_16" x="85" y="234" w="83" h="94" chunk="16"/>
+    <sprite n="rgm_17" x="169" y="234" w="83" h="94" chunk="17"/>
+    <sprite n="rgm_18" x="253" y="234" w="83" h="94" chunk="18"/>
+    <sprite n="rgm_19" x="337" y="234" w="84" h="94" chunk="19"/>
+    <sprite n="rgm_21" x="467" y="1" w="78" h="111" chunk="21"/>
+    <sprite n="rgm_22" x="546" y="1" w="78" h="111" chunk="22"/>
+    <sprite n="rgm_23" x="625" y="1" w="78" h="111" chunk="23"/>
+    <sprite n="rgm_24" x="704" y="1" w="78" h="111" chunk="24"/>
+    <sprite n="rgm_25" x="783" y="1" w="78" h="111" chunk="25"/>
+    <sprite n="rgm_26" x="1057" y="1" w="78" h="108" chunk="26"/>
+    <sprite n="rgm_27" x="1914" y="1" w="89" h="100" oX="0" oY="0" oW="89" oH="101" chunk="27"/>
+    <sprite n="rgm_28" x="1" y="133" w="89" h="100" chunk="28"/>
+    <sprite n="rgm_29" x="91" y="133" w="89" h="100" chunk="29"/>
+    <sprite n="rgm_30" x="593" y="133" w="89" h="98" chunk="30"/>
+    <sprite n="rgm_31" x="683" y="133" w="89" h="98" chunk="31"/>
+    <sprite n="rgm_32" x="773" y="133" w="89" h="98" chunk="32"/>
+    <sprite n="rgm_33" x="1479" y="234" w="63" h="90" chunk="33"/>
+    <sprite n="rgm_34" x="1543" y="234" w="62" h="90" chunk="34"/>
+    <sprite n="rgm_35" x="1606" y="234" w="63" h="90" chunk="35"/>
+    <sprite n="rgm_36" x="1325" y="133" w="93" h="95" chunk="36"/>
+    <sprite n="rgm_37" x="181" y="133" w="92" h="100" oX="0" oY="0" oW="93" oH="100" chunk="37"/>
+    <sprite n="rgm_38" x="1830" y="234" w="77" h="88" chunk="38"/>
+    <sprite n="rgm_39" x="274" y="133" w="89" h="100" chunk="39"/>
+    <sprite n="rgm_40" x="1419" y="133" w="78" h="95" chunk="40"/>
+    <sprite n="rgm_41" x="1136" y="1" w="75" h="107" chunk="41"/>
+    <sprite n="rgm_42" x="393" y="1" w="73" h="115" chunk="42"/>
+    <sprite n="rgm_43" x="863" y="133" w="86" h="98" chunk="43"/>
+    <sprite n="rgm_44" x="1773" y="1" w="68" h="101" chunk="44"/>
+    <sprite n="rgm_45" x="1212" y="1" w="71" h="107" chunk="45"/>
+    <sprite n="rgm_46" x="1162" y="133" w="76" h="97" chunk="46"/>
+    <sprite n="rgm_47" x="1498" y="133" w="89" h="95" chunk="47"/>
+    <sprite n="rgm_48" x="97" y="1" w="67" h="126" chunk="48"/>
+    <sprite n="rgm_49" x="165" y="1" w="67" h="126" chunk="49"/>
+    <sprite n="rgm_50" x="1284" y="1" w="62" h="104" chunk="50"/>
+    <sprite n="rgm_51" x="1347" y="1" w="62" h="104" chunk="51"/>
+    <sprite n="rgm_52" x="233" y="1" w="60" h="126" chunk="52"/>
+    <sprite n="rgm_53" x="972" y="1" w="84" h="109" chunk="53"/>
+    <sprite n="rgm_54" x="329" y="329" w="84" h="84" chunk="54"/>
+    <sprite n="rgm_55" x="364" y="133" w="85" h="99" chunk="55"/>
+    <sprite n="rgm_56" x="1410" y="1" w="93" h="103" chunk="56"/>
+    <sprite n="rgm_57" x="562" y="234" w="73" h="92" chunk="57"/>
+    <sprite n="rgm_58" x="484" y="234" w="77" h="93" oX="1" oY="0" oW="78" oH="93" chunk="58"/>
+    <sprite n="rgm_59" x="1695" y="1" w="77" h="102" oX="1" oY="0" oW="78" oH="102" chunk="59"/>
+    <sprite n="rgm_60" x="1588" y="133" w="73" h="95" chunk="60"/>
+    <sprite n="rgm_61" x="168" y="329" w="89" h="85" chunk="61"/>
+    <sprite n="rgm_62" x="1662" y="133" w="96" h="95" chunk="62"/>
+    <sprite n="rgm_63" x="1504" y="1" w="97" h="103" oX="0" oY="1" oW="97" oH="104" chunk="63"/>
+    <sprite n="rgm_64" x="1602" y="1" w="92" h="103" chunk="64"/>
+    <sprite n="rgm_65" x="950" y="133" w="75" h="98" chunk="65"/>
+    <sprite n="rgm_66" x="1842" y="1" w="71" h="101" chunk="66"/>
+    <sprite n="rgm_67" x="1908" y="234" w="59" h="88" chunk="67"/>
+    <sprite n="rgm_68" x="1426" y="234" w="52" h="91" chunk="68"/>
+    <sprite n="rgm_69" x="900" y="329" w="68" h="67" chunk="69"/>
+    <sprite n="rgm_70" x="969" y="329" w="58" h="62" oX="7" oY="0" oW="68" oH="69" chunk="70"/>
+    <sprite n="rgm_71" x="655" y="329" w="70" h="79" chunk="71"/>
+    <sprite n="rgm_72" x="1" y="1" w="95" h="131" chunk="72"/>
+    <sprite n="rgm_73" x="862" y="1" w="109" h="111" chunk="73"/>
+    <sprite n="rgm_74" x="422" y="234" w="61" h="94" chunk="74"/>
+    <sprite n="rgm_75" x="1" y="329" w="91" h="88" oX="4" oY="0" oW="95" oH="88" chunk="75"/>
+    <sprite n="rgm_76" x="450" y="133" w="73" h="99" chunk="76"/>
+    <sprite n="rgm_77" x="414" y="329" w="84" h="84" chunk="77"/>
+    <sprite n="rgm_80" x="499" y="329" w="76" h="83" chunk="80"/>
+    <sprite n="rgm_81" x="576" y="329" w="78" h="83" chunk="81"/>
+    <sprite n="rgm_82" x="294" y="1" w="98" h="118" chunk="82"/>
+    <sprite n="rgm_83" x="1239" y="133" w="85" h="96" chunk="83"/>
+    <sprite n="rgm_84" x="1026" y="133" w="135" h="98" chunk="84"/>
+    <sprite n="rgm_85" x="726" y="329" w="55" h="77" chunk="85"/>
+    <sprite n="rgm_86" x="839" y="329" w="60" h="70" chunk="86"/>
+    <sprite n="rgm_87" x="782" y="329" w="56" h="74" chunk="87"/>
+    <sprite n="rgm_88" x="1670" y="234" w="79" h="90" chunk="88"/>
+    <sprite n="rgm_89" x="1750" y="234" w="79" h="90" chunk="89"/>
+    <sprite n="rgm_90" x="93" y="329" w="74" h="87" chunk="90"/>
+    <sprite n="rgm_91" x="524" y="133" w="68" h="99" chunk="91"/>
+</TextureAtlas>

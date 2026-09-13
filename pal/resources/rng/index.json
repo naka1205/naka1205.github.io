@@ -1,0 +1,56 @@
+{
+  "source": "rng.mkf",
+  "file": "rng.mkf",
+  "count": 12,
+  "frames": 1476,
+  "entries": [
+    {
+      "rng": 0,
+      "frames": 65
+    },
+    {
+      "rng": 1,
+      "frames": 411
+    },
+    {
+      "rng": 2,
+      "frames": 94
+    },
+    {
+      "rng": 3,
+      "frames": 141
+    },
+    {
+      "rng": 4,
+      "frames": 41
+    },
+    {
+      "rng": 5,
+      "frames": 83
+    },
+    {
+      "rng": 6,
+      "frames": 55
+    },
+    {
+      "rng": 7,
+      "frames": 71
+    },
+    {
+      "rng": 8,
+      "frames": 34
+    },
+    {
+      "rng": 9,
+      "frames": 257
+    },
+    {
+      "rng": 10,
+      "frames": 43
+    },
+    {
+      "rng": 11,
+      "frames": 181
+    }
+  ]
+}
